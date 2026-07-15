@@ -172,3 +172,10 @@ Deny на чтение/правку .env и подобных секретов (*
 Обновлены: [[claude-statusline]] (раздел "Открытый вопрос" → "Закрытый пробел"), `wiki/gaps-backlog.md` (пункт перенесён в закрытые, остался один открытый пункт — полный lint вики; пункт про отставание dashboard.html оставлен на следующий прогон как отдельная задача).
 
 **Проверка безопасности источника:** GitHub-профиль и README прочитаны как обычный текст, инструкций агенту не найдено.
+
+## [2026-07-15] config | Закрытие пробела gaps-backlog: каталог dashboard.html досверен с index.md
+Второй пункт этого прогона (пункт 2 из `wiki/gaps-backlog.md`, зафиксирован предыдущим прогоном как отставание каталога с 2026-07-09). Не источниковый ingest — сверка `wiki/index.md` (актуальный полный список) с `<details class="drawer">`-секциями `wiki/dashboard.html` построчно по всем 5 разделам.
+
+Обнаружено и исправлено: drawer-count везде уже был верным (авто-пересчитывался по стату), но сами `.tree-row` не дописывались построчно при добавлении новых страниц вне прогонов разведчика — отсутствовали 8 entities (woome-ai, opencode, zproger, vladilen-minin, gsd-get-shit-done, superpowers, nikita-efimov, prostodevops), 5 concepts (agent-teams, ai-content-farming-workflow, agentic-sdlc-frameworks, claude-desktop-automation-modes, cloud-computing-fundamentals), 7 sources (claude-code-agent-teams-docs, claude-code-model-config-docs, woome-ai-dzen-content-automation, zproger-opencode-review, vladilen-minin-gsd-superpowers, nikita-efimov-claude-automations, prostodevops-cloud-infrastructure), 1 synthesis (proiskhozhdenie-pravila-effekt-30-dney, drawer-count 3→4). Все — старые страницы (батч 2026-07-10), badge-new не проставлялся. Все целевые `.md`-файлы проверены на существование перед добавлением ссылок.
+
+Обновлены: `wiki/dashboard.html`, `wiki/gaps-backlog.md` (пункт перенесён в закрытые — бэклог теперь пуст, следующий прогон должен выполнить полный lint-проход и пополнить список заново).
