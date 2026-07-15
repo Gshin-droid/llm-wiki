@@ -1,0 +1,533 @@
+<title>LLM Wiki — Картотека</title>
+<style>
+  @font-face {
+    font-family: "Ledger";
+    src: local("Iowan Old Style"), local("Palatino Linotype"), local("Georgia");
+  }
+
+  :root {
+    --bg: #EFF2E8;
+    --bg-raised: #FBFBF5;
+    --bg-sunk: #E4E8DA;
+    --ink: #1C2620;
+    --ink-soft: #55624F;
+    --ink-faint: #8A9482;
+    --accent: #3D6B4E;
+    --accent-ink: #FBFBF5;
+    --stamp: #A5672A;
+    --stamp-bg: #F3E4CC;
+    --line: #D3D8C4;
+    --line-strong: #B7BFA6;
+    --shadow: 220 25% 10%;
+    --radius: 3px;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131A15;
+      --bg-raised: #1A231C;
+      --bg-sunk: #0F1512;
+      --ink: #E6E6DA;
+      --ink-soft: #A3AD98;
+      --ink-faint: #6B7666;
+      --accent: #7FB894;
+      --accent-ink: #0F1512;
+      --stamp: #E0A75C;
+      --stamp-bg: #2C2216;
+      --line: #2A342B;
+      --line-strong: #3C4A3D;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131A15;
+    --bg-raised: #1A231C;
+    --bg-sunk: #0F1512;
+    --ink: #E6E6DA;
+    --ink-soft: #A3AD98;
+    --ink-faint: #6B7666;
+    --accent: #7FB894;
+    --accent-ink: #0F1512;
+    --stamp: #E0A75C;
+    --stamp-bg: #2C2216;
+    --line: #2A342B;
+    --line-strong: #3C4A3D;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #EFF2E8;
+    --bg-raised: #FBFBF5;
+    --bg-sunk: #E4E8DA;
+    --ink: #1C2620;
+    --ink-soft: #55624F;
+    --ink-faint: #8A9482;
+    --accent: #3D6B4E;
+    --accent-ink: #FBFBF5;
+    --stamp: #A5672A;
+    --stamp-bg: #F3E4CC;
+    --line: #D3D8C4;
+    --line-strong: #B7BFA6;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .mono {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .ledger {
+    font-family: "Ledger", ui-serif, Georgia, "Times New Roman", serif;
+  }
+  .eyebrow {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ---------- Header ---------- */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .titleblock .eyebrow { margin-bottom: 6px; }
+  h1 {
+    font-size: 34px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .titleblock .sub {
+    margin-top: 6px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    max-width: 46ch;
+  }
+  .updated {
+    text-align: right;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .updated .mono { color: var(--ink-soft); font-size: 13px; }
+  .pulse-row { display: flex; align-items: center; gap: 6px; justify-content: flex-end; margin-top: 4px; }
+  .pulse-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+    70%  { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent); }
+    100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
+  }
+
+  /* ---------- Stat strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 24px 0 36px;
+  }
+  .stat {
+    background: var(--bg-raised);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat .n { font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- Section headings ---------- */
+  section { margin-bottom: 44px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: "Ledger", ui-serif, Georgia, serif;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .section-note { font-size: 12px; color: var(--ink-faint); }
+
+  /* ---------- News cards ---------- */
+  .news-list { display: flex; flex-direction: column; gap: 10px; }
+  .news-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--stamp);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 14px;
+    align-items: baseline;
+  }
+  .news-stamp {
+    grid-row: 1 / 3;
+    align-self: start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    background: var(--stamp-bg);
+    border: 1px solid color-mix(in srgb, var(--stamp) 45%, transparent);
+    border-radius: 2px;
+    padding: 3px 6px;
+    transform: rotate(-2deg);
+    white-space: nowrap;
+  }
+  .news-title { font-weight: 600; font-size: 14.5px; text-wrap: balance; }
+  .news-body { font-size: 13px; color: var(--ink-soft); grid-column: 2; }
+  .news-links { grid-column: 2; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+  .news-links a { font-size: 12px; }
+
+  a.pill-link {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  a.pill-link:hover { border-bottom-color: var(--accent); }
+  a.pill-link:focus-visible, a.tree-row:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Catalog tree ---------- */
+  .drawer {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .drawer > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-sunk);
+    user-select: none;
+  }
+  .drawer > summary::-webkit-details-marker { display: none; }
+  .drawer > summary::before {
+    content: "▸";
+    color: var(--accent);
+    font-size: 12px;
+    width: 10px;
+    transition: transform 0.15s ease;
+  }
+  .drawer[open] > summary::before { transform: rotate(90deg); }
+  .drawer-label { font-family: "Ledger", ui-serif, Georgia, serif; font-weight: 600; font-size: 15px; }
+  .drawer-count {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-left: auto;
+  }
+  .drawer-desc { font-size: 12px; color: var(--ink-faint); }
+
+  .tree-rows { display: flex; flex-direction: column; }
+  .tree-row {
+    display: grid;
+    grid-template-columns: minmax(160px, 260px) 1fr auto;
+    gap: 4px 14px;
+    padding: 9px 16px;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    align-items: baseline;
+  }
+  .tree-row:hover { background: var(--bg-sunk); }
+  .tree-name {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 12.5px;
+    color: var(--accent);
+    overflow-wrap: anywhere;
+  }
+  .tree-desc { font-size: 12.5px; color: var(--ink-soft); }
+  .badge-new {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    background: var(--stamp-bg);
+    border: 1px solid color-mix(in srgb, var(--stamp) 45%, transparent);
+    border-radius: 2px;
+    padding: 1px 5px;
+    white-space: nowrap;
+    height: fit-content;
+  }
+  @media (max-width: 640px) {
+    .tree-row { grid-template-columns: 1fr; }
+    .badge-new { justify-self: start; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  footer a { color: var(--ink-soft); }
+  footer .sched {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+</style>
+
+<div class="page">
+
+  <header class="top">
+    <div class="titleblock">
+      <div class="eyebrow">Персональная база знаний · ИИ</div>
+      <h1>LLM Wiki — Картотека</h1>
+      <div class="sub">raw/ → wiki/ по правилам CLAUDE.md. Каталог, дерево источников и хроника пополнений.</div>
+    </div>
+    <div class="updated">
+      <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
+      <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
+      <div class="mono">обновлено 2026-07-15 (2 прогона) · след. запуск 06:00 (16.07)</div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
+  <div class="stats">
+    <div class="stat"><span class="n">103</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">40</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">24</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">34</span><span class="l">sources</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Новости за последние сутки</h2>
+      <span class="section-note">3 записи · 2026-07-15</span>
+    </div>
+    <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
+    <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Автономный разведчик: Claude Code changelog 2.1.206–2.1.210 + Week 28 dev digest</div>
+        <div class="news-body">/doctor стал полноценным чекапом с автопочинкой, in-app браузер в Desktop, hardened Agent-инструмент против prompt injection. Фоновые уведомления теперь явно помечают отсутствие человеческого ввода — тот же механизм, что запустил этот прогон.</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md">wiki/sources/claude-code-changelog-snapshot-2026-07-15</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">wiki/entities/claude-code</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">wiki/concepts/ai-security-by-design</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Автономный разведчик: Claude Managed Agents overview + quickstart</div>
+        <div class="news-body">Закрыт пробел, явно отмеченный в claude-agent-sdk.md — hosted agent harness Anthropic (Agent/Environment/Session/Events), сравнение с Agent SDK, экосистема (память, мультиагентность, self-hosted sandboxes, scheduled deployments, webhooks, vaults).</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md">wiki/sources/claude-managed-agents-overview</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">wiki/entities/claude-managed-agents</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Dynamic Workflows — официальная документация (внеочередной второй прогон)</div>
+        <div class="news-body">Закрыт пробел: скриптовая оркестрация десятков-сотен субагентов (agent/pipeline/parallel, quality-паттерны adversarial verify/judge panel/loop-until-dry) существовала с мая 2026, но не имела страницы. Попутно закрыт и пункт бэклога про биллинг Agent SDK — вторичные блоги про смену с 15.06 не подтвердились: изменение анонсировано, но поставлено на паузу.</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md">wiki/sources/claude-code-dynamic-workflows-docs</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md">wiki/concepts/dynamic-workflows</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md">wiki/entities/claude-agent-sdk</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- DASHBOARD:CATALOG — держи 5 <details class="drawer"> в исходном порядке (Entities/Concepts/Sources/Projects/Synthesis).
+       Для каждого нового .md файла в wiki/<категория>/ добавь новую .tree-row (в конец списка, порядок внутри drawer не важен) со ссылкой
+       https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md, tree-name = имя файла без .md, tree-desc = краткое описание
+       (то же, что в wiki/index.md для этой страницы). Если файл создан/изменён СЕГОДНЯШНИМ коммитом — добавь <span class="badge-new">новое</span>
+       (для новых страниц) или "обновлено" (для изменённых существующих). Убери badge-new у страниц из вчерашних и более старых прогонов —
+       свежесть должна отражать только сегодняшний день. Обнови drawer-count у изменившихся разделов и "N разделов" в section-note не трогай (всегда 5). -->
+  <section>
+    <div class="section-head">
+      <h2>Каталог</h2>
+      <span class="section-note">5 разделов · клик по записи открывает файл на GitHub</span>
+    </div>
+
+    <details class="drawer">
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">40</span></summary>
+      <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей (пока не подключено)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования (не используется)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/metics-media.md"><span class="tree-name">metics-media</span><span class="tree-desc">канал про сайты за $10k через Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/appbusters.md"><span class="tree-name">appbusters</span><span class="tree-desc">школа вайбкодинга</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/qaisar-kurmangaliev.md"><span class="tree-name">qaisar-kurmangaliev</span><span class="tree-desc">автор полного курса по Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/neiroprosveshchenie.md"><span class="tree-name">neiroprosveshchenie</span><span class="tree-desc">автор техники «просмотра» видео через Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/maxim-bashkardinov.md"><span class="tree-name">maxim-bashkardinov</span><span class="tree-desc">автор гайда Obsidian+Claude через MCP для документации проекта</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/shubin-danila.md"><span class="tree-name">shubin-danila</span><span class="tree-desc">автор обзора ландшафта LLM-памяти</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span><span class="badge-new">новое</span></a>
+      </div>
+    </details>
+
+    <details class="drawer">
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">24</span></summary>
+      <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">три базовые операции ведения вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-coding-guidelines.md"><span class="tree-name">llm-coding-guidelines</span><span class="tree-desc">четыре принципа Карпати против типичных ошибок LLM в коде</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/hybrid-memory-architecture.md"><span class="tree-name">hybrid-memory-architecture</span><span class="tree-desc">4-элементная архитектура: CLAUDE.md + Obsidian + Pinecone + NotebookLM</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/one-vault-one-project-rule.md"><span class="tree-name">one-vault-one-project-rule</span><span class="tree-desc">не смешивать темы в одном vault'е</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/five-levels-of-claude-mastery.md"><span class="tree-name">five-levels-of-claude-mastery</span><span class="tree-desc">модель зрелости использования Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/seven-signs-of-old-junior.md"><span class="tree-name">seven-signs-of-old-junior</span><span class="tree-desc">карьерная стагнация разработчиков, включая ИИ-зависимость</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">три примитива для многосессионных агентов: Default-FAIL, Fresh-Context Evaluator, Handoff</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны</span><span class="badge-new">новое</span></a>
+      </div>
+    </details>
+
+    <details class="drawer">
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">34</span></summary>
+      <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mastodont-claude-obsidian-video.md"><span class="tree-name">mastodont-claude-obsidian-video</span><span class="tree-desc">видео-транскрипт метода Карпати с ограничениями</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/ai-proryv-5-levels-claude.md"><span class="tree-name">ai-proryv-5-levels-claude</span><span class="tree-desc">5 уровней владения Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/berezhnitsky-7-signs-old-jun.md"><span class="tree-name">berezhnitsky-7-signs-old-jun</span><span class="tree-desc">7 признаков старого джуна</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/metics-media-10k-website.md"><span class="tree-name">metics-media-10k-website</span><span class="tree-desc">сайт за $10k через Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/berezhnitsky-attack-for-3-dollars.md"><span class="tree-name">berezhnitsky-attack-for-3-dollars</span><span class="tree-desc">как ИИ обрушил барьер входа в кибератаки</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/appbusters-vibecoding-45-min.md"><span class="tree-name">appbusters-vibecoding-45-min</span><span class="tree-desc">полный курс по вайбкодингу за 45 минут</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/qaisar-claude-full-course.md"><span class="tree-name">qaisar-claude-full-course</span><span class="tree-desc">полный курс по Claude на 2026 год</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/romaray-claude-watch-video.md"><span class="tree-name">romaray-claude-watch-video</span><span class="tree-desc">как научить Claude «смотреть» видео</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-llm-wiki-gist.md"><span class="tree-name">karpathy-llm-wiki-gist</span><span class="tree-desc">оригинальный гист Карпати</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bashkardinov-obsidian-claude-guide.md"><span class="tree-name">bashkardinov-obsidian-claude-guide</span><span class="tree-desc">Obsidian+Claude через MCP для документации проекта</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/shubin-llm-memory-landscape.md"><span class="tree-name">shubin-llm-memory-landscape</span><span class="tree-desc">обзор Mem0/Zep/Letta/Graphify/Karpathy-вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/sonny-huynh-second-brain.md"><span class="tree-name">sonny-huynh-second-brain</span><span class="tree-desc">«второй мозг» с ежедневными воркфлоу</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nikita-vels-claude-code-30-concepts.md"><span class="tree-name">nikita-vels-claude-code-30-concepts</span><span class="tree-desc">30 практических концептов механики Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/hook-4-pravila-claude-skills.md"><span class="tree-name">hook-4-pravila-claude-skills</span><span class="tree-desc">маркетинговый конспект «4 правила Anthropic» (есть неподтверждённая цитата)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-code-summit-build-skills-talk.md"><span class="tree-name">anthropic-code-summit-build-skills-talk</span><span class="tree-desc">первоисточник: доклад Barry Zhang &amp; Mahesh Murag</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-official-skills-docs.md"><span class="tree-name">anthropic-official-skills-docs</span><span class="tree-desc">официальная методология Anthropic по Skills</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-claude-skills-practical-guide.md"><span class="tree-name">habr-claude-skills-practical-guide</span><span class="tree-desc">практика сообщества: 9 категорий скиллов, лайфхаки</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-release-candidate.md"><span class="tree-name">mcp-2026-07-28-spec-release-candidate</span><span class="tree-desc">крупнейшая ревизия спецификации MCP</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-overview.md"><span class="tree-name">claude-agent-sdk-overview</span><span class="tree-desc">официальная документация Claude Agent SDK</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07</span><span class="tree-desc">снапшот changelog Claude Code (в. 2.1.172–2.1.205)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-memory-tool-docs.md"><span class="tree-name">claude-memory-tool-docs</span><span class="tree-desc">официальная документация Memory tool (Claude Developer Platform)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-long-running-agent-harness.md"><span class="tree-name">anthropic-long-running-agent-harness</span><span class="tree-desc">блог + репозиторий cwc-long-running-agents: harness для долгоживущих агентов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-15</span><span class="tree-desc">снапшот changelog (в. 2.1.206–2.1.210) + Week 28 dev digest</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md"><span class="tree-name">claude-managed-agents-overview</span><span class="tree-desc">официальная документация Claude Managed Agents: hosted agent harness</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md"><span class="tree-name">claude-code-dynamic-workflows-docs</span><span class="tree-desc">официальная документация Dynamic Workflows: скриптовая оркестрация субагентов</span><span class="badge-new">новое</span></a>
+      </div>
+    </details>
+
+    <details class="drawer" open>
+      <summary><span class="drawer-label">Projects</span><span class="drawer-desc">рабочие проекты пользователя</span><span class="drawer-count">1</span></summary>
+      <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/jarvis-personal-wiki.md"><span class="tree-name">jarvis-personal-wiki</span><span class="tree-desc">сама эта вики как проект: структура, решения, статус</span></a>
+      </div>
+    </details>
+
+    <details class="drawer">
+      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">3</span></summary>
+      <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
+      </div>
+    </details>
+
+  </section>
+
+  <footer>
+    <span class="sched"><span class="pulse-dot" style="animation:none;"></span> ежедневно 06:00 (Asia/Qyzylorda) · <a href="https://claude.ai/code/routines/trig_01Un57NFs5XEREgnxdhk7dwy">routine на claude.ai</a></span>
+    <span><a href="practices.html">Мои практики</a> · <a href="https://github.com/Gshin-droid/llm-wiki">github.com/Gshin-droid/llm-wiki</a></span>
+  </footer>
+
+</div>

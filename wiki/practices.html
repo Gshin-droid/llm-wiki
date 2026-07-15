@@ -1,0 +1,388 @@
+<title>LLM Wiki — Мои практики</title>
+<style>
+  @font-face {
+    font-family: "Ledger";
+    src: local("Iowan Old Style"), local("Palatino Linotype"), local("Georgia");
+  }
+
+  :root {
+    --bg: #EFF2E8;
+    --bg-raised: #FBFBF5;
+    --bg-sunk: #E4E8DA;
+    --ink: #1C2620;
+    --ink-soft: #55624F;
+    --ink-faint: #8A9482;
+    --accent: #3D6B4E;
+    --accent-ink: #FBFBF5;
+    --stamp: #A5672A;
+    --stamp-bg: #F3E4CC;
+    --line: #D3D8C4;
+    --line-strong: #B7BFA6;
+    --radius: 3px;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131A15;
+      --bg-raised: #1A231C;
+      --bg-sunk: #0F1512;
+      --ink: #E6E6DA;
+      --ink-soft: #A3AD98;
+      --ink-faint: #6B7666;
+      --accent: #7FB894;
+      --accent-ink: #0F1512;
+      --stamp: #E0A75C;
+      --stamp-bg: #2C2216;
+      --line: #2A342B;
+      --line-strong: #3C4A3D;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131A15;
+    --bg-raised: #1A231C;
+    --bg-sunk: #0F1512;
+    --ink: #E6E6DA;
+    --ink-soft: #A3AD98;
+    --ink-faint: #6B7666;
+    --accent: #7FB894;
+    --accent-ink: #0F1512;
+    --stamp: #E0A75C;
+    --stamp-bg: #2C2216;
+    --line: #2A342B;
+    --line-strong: #3C4A3D;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #EFF2E8;
+    --bg-raised: #FBFBF5;
+    --bg-sunk: #E4E8DA;
+    --ink: #1C2620;
+    --ink-soft: #55624F;
+    --ink-faint: #8A9482;
+    --accent: #3D6B4E;
+    --accent-ink: #FBFBF5;
+    --stamp: #A5672A;
+    --stamp-bg: #F3E4CC;
+    --line: #D3D8C4;
+    --line-strong: #B7BFA6;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .mono {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .eyebrow {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .page { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .titleblock .eyebrow { margin-bottom: 6px; }
+  h1 {
+    font-size: 34px;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    font-family: "Ledger", ui-serif, Georgia, serif;
+  }
+  .titleblock .sub {
+    margin-top: 6px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    max-width: 52ch;
+  }
+  .backlink {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    white-space: nowrap;
+  }
+  .backlink:hover { border-bottom-color: var(--accent); }
+  .backlink:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Intro strip */
+  .intro {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .intro a {
+    background: var(--bg-raised);
+    padding: 12px 14px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .intro a:hover { background: var(--bg-sunk); }
+  .intro a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .intro .g-letter {
+    font-family: "Ledger", ui-serif, Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .intro .g-name { font-size: 12px; color: var(--ink-soft); }
+  @media (max-width: 640px) { .intro { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Groups */
+  section.group { margin-bottom: 44px; }
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  .group-letter {
+    font-family: "Ledger", ui-serif, Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  h2 {
+    font-family: "Ledger", ui-serif, Georgia, serif;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+  }
+  .group-note { font-size: 12px; color: var(--ink-faint); margin-left: auto; }
+
+  .rules { display: flex; flex-direction: column; gap: 10px; }
+  .rule {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 13px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 14px;
+    align-items: baseline;
+  }
+  .rule-no {
+    grid-row: 1 / 3;
+    align-self: start;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--bg-sunk);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    min-width: 34px;
+    text-align: center;
+    padding: 3px 6px;
+  }
+  .rule-title { font-weight: 600; font-size: 14.5px; text-wrap: balance; }
+  .rule-why { grid-column: 2; font-size: 13px; color: var(--ink-soft); }
+  .rule-why .mono { font-size: 12px; }
+  .tag {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    background: var(--stamp-bg);
+    border: 1px solid color-mix(in srgb, var(--stamp) 45%, transparent);
+    border-radius: 2px;
+    padding: 1px 5px;
+    white-space: nowrap;
+    vertical-align: 1px;
+    margin-left: 6px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  footer a { color: var(--ink-soft); }
+</style>
+
+<div class="page">
+
+  <header class="top">
+    <div class="titleblock">
+      <div class="eyebrow">Персональная база знаний · ИИ · практики</div>
+      <h1>Мои правила</h1>
+      <div class="sub">19 правил, которые соблюдаю я — их нельзя делегировать Claude. Синтез из всей вики, 2026-07-09. Полная версия с источниками: <span class="mono">wiki/practices/moi-pravila.md</span></div>
+    </div>
+    <a class="backlink" href="dashboard.html">← к дашборду</a>
+  </header>
+
+  <nav class="intro" aria-label="Группы правил">
+    <a href="#g-a"><span class="g-letter">А</span><span class="g-name">Дисциплина работы с ИИ</span></a>
+    <a href="#g-b"><span class="g-letter">Б</span><span class="g-name">Гигиена сессий</span></a>
+    <a href="#g-v"><span class="g-letter">В</span><span class="g-name">Неделегируемые решения</span></a>
+    <a href="#g-g"><span class="g-letter">Г</span><span class="g-name">Привычки</span></a>
+  </nav>
+
+  <section class="group" id="g-a">
+    <div class="group-head">
+      <span class="group-letter">А</span>
+      <h2>Дисциплина работы с ИИ</h2>
+      <span class="group-note">чтобы не стать «старым джуном»</span>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="rule-no">01</span>
+        <div class="rule-title">Ревьюить AI-код строже, чем код коллеги</div>
+        <div class="rule-why">Уверенный тон не равен правильности. Не мержить не глядя — никогда.</div>
+      </div>
+      <div class="rule"><span class="rule-no">02</span>
+        <div class="rule-title">Сначала думать самому, потом спрашивать ИИ</div>
+        <div class="rule-why">Иначе атрофируется собственное умение решать — главный признак стагнации.</div>
+      </div>
+      <div class="rule"><span class="rule-no">03</span>
+        <div class="rule-title">Кросс-проверка на важных решениях</div>
+        <div class="rule-why">Архитектура, безопасность, деньги — спросить вторую модель и сравнить ответы.</div>
+      </div>
+      <div class="rule"><span class="rule-no">04</span>
+        <div class="rule-title">Доверие автономии наращивать постепенно</div>
+        <div class="rule-why">«Пустая парковка»: сначала черновики и ресёрч, потом код, только потом фоновые агенты с auto-push.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="group" id="g-b">
+    <div class="group-head">
+      <span class="group-letter">Б</span>
+      <h2>Гигиена сессий Claude Code</h2>
+      <span class="group-note">контекст, модели, permissions</span>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="rule-no">05</span>
+        <div class="rule-title">Один чат — одна задача</div>
+        <div class="rule-why">Новая тема — новый диалог, не продолжение забитого контекста.</div>
+      </div>
+      <div class="rule"><span class="rule-no">06</span>
+        <div class="rule-title">Контекст &gt;50% — реагировать <span class="tag">эвристика</span></div>
+        <div class="rule-why"><span class="mono">/compact</span> если продолжаю ту же задачу (можно «сохрани важное про X»), <span class="mono">/new</span> если нет.</div>
+      </div>
+      <div class="rule"><span class="rule-no">07</span>
+        <div class="rule-title">Модель под задачу</div>
+        <div class="rule-why">Sonnet — по умолчанию (~80% работы); Opus — планирование и архитектура; effort high/max — только для глубокого анализа.</div>
+      </div>
+      <div class="rule"><span class="rule-no">08</span>
+        <div class="rule-title">Знать про /rewind ДО включения Bypass Permissions</div>
+        <div class="rule-why">Checkpoints создаются автоматически — страховка должна быть знакома до аварии, не после.</div>
+      </div>
+      <div class="rule"><span class="rule-no">09</span>
+        <div class="rule-title">Permissions настроить до начала проекта</div>
+        <div class="rule-why">deny на .env/секреты, allow на безопасное, ask на опасное. Подхватывается при новой сессии, не сразу.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="group" id="g-v">
+    <div class="group-head">
+      <span class="group-letter">В</span>
+      <h2>Решения, которые нельзя делегировать ИИ</h2>
+      <span class="group-note">мои — и только мои</span>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="rule-no">10</span>
+        <div class="rule-title">Юрисдикция данных — вопрос юристу <span class="tag">до прод-хостинга</span></div>
+        <div class="rule-why">152-ФЗ vs GDPR решается до выбора региона сервера, не после.</div>
+      </div>
+      <div class="rule"><span class="rule-no">11</span>
+        <div class="rule-title">Бизнес-модель выбираю я</div>
+        <div class="rule-why">SaaS vs self-hosted, монетизация: ИИ готовит сравнение — решение моё.</div>
+      </div>
+      <div class="rule"><span class="rule-no">12</span>
+        <div class="rule-title">Деплой и установка пакетов — руками</div>
+        <div class="rule-why">Или с явным подтверждением каждый раз, не в автоматическом режиме агента.</div>
+      </div>
+      <div class="rule"><span class="rule-no">13</span>
+        <div class="rule-title">Вкус показывать скриншотами, не словами</div>
+        <div class="rule-why">Референсы с Dribbble/Awwwards; словесное описание дизайна ИИ интерпретирует шаблонно.</div>
+      </div>
+      <div class="rule"><span class="rule-no">14</span>
+        <div class="rule-title">Мой опыт легитимен</div>
+        <div class="rule-why">Реальный опыт со стеком — достаточная причина отклонить «минимальную» рекомендацию ИИ. Решение и причину фиксировать в вики.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="group" id="g-g">
+    <div class="group-head">
+      <span class="group-letter">Г</span>
+      <h2>Привычки</h2>
+      <span class="group-note">маленькие, ежедневные</span>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="rule-no">15</span>
+        <div class="rule-title">После фазы/фичи — verify-phase</div>
+        <div class="rule-why">Статические проверки не ловят всё: баг знака интервала и мёртвый guard нашлись только end-to-end и security-review.</div>
+      </div>
+      <div class="rule"><span class="rule-no">16</span>
+        <div class="rule-title">Конец сессии: «разовая правка или в скилл навсегда?»</div>
+        <div class="rule-why">30 секунд — и следующая сессия умнее. Это и есть «эффект 30 дней».</div>
+      </div>
+      <div class="rule"><span class="rule-no">17</span>
+        <div class="rule-title">TODO → тикет</div>
+        <div class="rule-why">Временный фикс без тикета = вечный фикс.</div>
+      </div>
+      <div class="rule"><span class="rule-no">18</span>
+        <div class="rule-title">15–20% времени — на техдолг</div>
+        <div class="rule-why">Не ноль. Заложено в план, а не «когда-нибудь потом».</div>
+      </div>
+      <div class="rule"><span class="rule-no">19</span>
+        <div class="rule-title">Перед первым push — секретов нет ни в одном коммите</div>
+        <div class="rule-why">Проверить глазами историю: git-история неудаляема на практике.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>правила для Claude Code — <span class="mono">wiki/practices/claude-code-practices.md</span> + <span class="mono">~/.claude/CLAUDE.md</span></span>
+    <span><a href="https://github.com/Gshin-droid/llm-wiki">github.com/Gshin-droid/llm-wiki</a></span>
+  </footer>
+
+</div>
