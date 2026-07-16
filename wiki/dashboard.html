@@ -343,7 +343,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-07-16 (1 прогон) · след. запуск 06:00 (17.07)</div>
+      <div class="mono">обновлено 2026-07-16 (2 прогона) · след. запуск 06:00 (17.07)</div>
     </div>
   </header>
 
@@ -359,7 +359,7 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-07-16</span>
+      <span class="section-note">2 записи · 2026-07-16</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
@@ -370,6 +370,18 @@
         <div class="news-body">Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества. Проверены Claude Platform release notes (последняя запись 14.07), Claude Code changelog (только патч 2.1.211, без новой фичи, Week 29 ещё не вышел) и общий веб-поиск — либо уже описанные в вики релизы, либо SEO-рерайты.</div>
         <div class="news-links">
           <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/log.md">wiki/log</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Свежий полный lint-проход вики — бэклог полностью очищен</div>
+        <div class="news-body">Единственный открытый пункт gaps-backlog требовал именно полного lint-прохода (предыдущий был 2026-07-07). Битые ссылки и страницы-сироты не найдены; исправлены три находки — устаревший вывод moy-uroven-vladeniya-claude (облачные рутины на деле уже настроены с 2026-07-10) и две отсутствующие кросс-ссылки (claude-cowork ↔ claude-desktop-automation-modes, claude-skills ↔ dynamic-workflows).</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md">moy-uroven-vladeniya-claude</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md">claude-cowork</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
         </div>
       </article>
 
@@ -402,8 +414,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
@@ -515,7 +527,7 @@
       <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">4</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/proiskhozhdenie-pravila-effekt-30-dney.md"><span class="tree-name">proiskhozhdenie-pravila-effekt-30-dney</span><span class="tree-desc">цепочка происхождения правила «разовая правка или в скилл навсегда?»</span></a>
       </div>
