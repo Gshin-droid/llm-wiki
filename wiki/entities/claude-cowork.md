@@ -13,7 +13,10 @@
 ## Пример из источников
 Разбор 2300+ файлов в папке загрузок по типам за несколько минут (см. [[qaisar-claude-full-course]]); еженедельная автоматическая уборка по расписанию.
 
+## Механика автоматизации (детальнее)
+Сжатое описание запуска задач по расписанию в этой странице (пункт "запускать задачи по расписанию") дополнено подробным разбором в [[claude-desktop-automation-modes]]: четыре конкретных режима (Cowork Scheduler, Local Routines, Cloud Routines, `/loop`), лимиты по тарифу, catch-up-поведение, типы триггеров облачных рутин.
+
 ## Связи
-- Источники: [[ai-proryv-5-levels-claude]], [[qaisar-claude-full-course]]
-- Концепт: [[five-levels-of-claude-mastery]]
+- Источники: [[ai-proryv-5-levels-claude]], [[qaisar-claude-full-course]], [[nikita-efimov-claude-automations]]
+- Концепты: [[five-levels-of-claude-mastery]], [[claude-desktop-automation-modes]]
 - См. также: [[claude-code]] (для технических/кодинг-задач вместо Cowork нужен именно Claude Code, по мнению источников)

@@ -22,8 +22,10 @@
 
 Это третий уровень в [[five-levels-of-claude-mastery]].
 
+Один из четырёх механизмов многошаговой работы в Claude Code наряду с субагентами, agent teams и workflows — сравнение по тому, кто держит план выполнения, см. [[dynamic-workflows]].
+
 ## Связи
 
 - Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]]
-- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]]
+- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]]
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.
