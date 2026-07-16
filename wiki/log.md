@@ -179,3 +179,15 @@ Deny на чтение/правку .env и подобных секретов (*
 Обнаружено и исправлено: drawer-count везде уже был верным (авто-пересчитывался по стату), но сами `.tree-row` не дописывались построчно при добавлении новых страниц вне прогонов разведчика — отсутствовали 8 entities (woome-ai, opencode, zproger, vladilen-minin, gsd-get-shit-done, superpowers, nikita-efimov, prostodevops), 5 concepts (agent-teams, ai-content-farming-workflow, agentic-sdlc-frameworks, claude-desktop-automation-modes, cloud-computing-fundamentals), 7 sources (claude-code-agent-teams-docs, claude-code-model-config-docs, woome-ai-dzen-content-automation, zproger-opencode-review, vladilen-minin-gsd-superpowers, nikita-efimov-claude-automations, prostodevops-cloud-infrastructure), 1 synthesis (proiskhozhdenie-pravila-effekt-30-dney, drawer-count 3→4). Все — старые страницы (батч 2026-07-10), badge-new не проставлялся. Все целевые `.md`-файлы проверены на существование перед добавлением ссылок.
 
 Обновлены: `wiki/dashboard.html`, `wiki/gaps-backlog.md` (пункт перенесён в закрытые — бэклог теперь пуст, следующий прогон должен выполнить полный lint-проход и пополнить список заново).
+
+## [2026-07-16] ingest | Автономный разведчик (еженедельный): тихо — ничего не прошло порог качества
+Прогон без пользователя рядом. Сессия началась с обнаружения расхождения: локальный клон контейнера был снят до схлопывания истории репозитория (см. запись 2026-07-15 про `git reset --hard origin/main`) и содержал устаревшую несвязанную историю на 2 коммита позади. Исправлено тем же способом — `git reset --hard origin/main` после сверки диффом, что контент не теряется (различия — только более новые страницы в origin и локальные Obsidian-конфиги, которых в origin нет намеренно).
+
+Проверены источники за период с прошлой записи лога (2026-07-15) по сегодня:
+- Claude Platform release notes — последняя запись 14.07.2026 (Admin API для Enterprise user management), уже отмечена нерелевантной в прогоне 2026-07-15; новых записей за 15–16.07 нет.
+- Claude Code CHANGELOG.md — вышла только одна новая версия, 2.1.211: исключительно багфиксы и мелкие улучшения (флаги stream-json для subagent text/thinking, фиксы permission preview, auto mode, MCP-реконнект и т.п.), без новой именованной фичи. Week 29 dev digest ещё не опубликован — https://code.claude.com/docs/en/whats-new всё ещё показывает Week 28 (уже в вики).
+- Общий веб-поиск (новости Claude, туториалы Claude Code, Hacker News/Reddit) — ничего датированного позже 2026-07-15 по существу: повторы уже описанных в вики релизов (Cowork web/mobile, Dynamic Workflows, Claude in Chrome beta) либо SEO-рерайты вида "Claude Code tutorial 2026" (codewithmukesh, aiworkflowcenter, skakarh, nxcode) — тот же паттерн, что уже отбрасывался в прогонах 2026-07-10/07-15.
+
+Решение: ничего не добавлено. Единственный кандидат (patch-версия 2.1.211) отклонён как рутинный багфикс-релиз без практической техники — не проходит порог "значимый релиз/практика" из `CLAUDE.md`.
+
+**Проверка безопасности:** источники не читались как контент для ingest, отдельной проверки не требовалось.
