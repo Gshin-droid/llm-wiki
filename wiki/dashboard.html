@@ -343,14 +343,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-07-15 (3 прогона) · след. запуск 06:00 (16.07)</div>
+      <div class="mono">обновлено 2026-07-16 (1 прогон) · след. запуск 06:00 (17.07)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">103</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">40</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">24</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">34</span><span class="l">sources</span></div>
@@ -359,60 +359,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · 2026-07-15</span>
+      <span class="section-note">1 запись · 2026-07-16</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Автономный разведчик: Claude Code changelog 2.1.206–2.1.210 + Week 28 dev digest</div>
-        <div class="news-body">/doctor стал полноценным чекапом с автопочинкой, in-app браузер в Desktop, hardened Agent-инструмент против prompt injection. Фоновые уведомления теперь явно помечают отсутствие человеческого ввода — тот же механизм, что запустил этот прогон.</div>
+        <span class="news-stamp">тихо</span>
+        <div class="news-title">Автономный разведчик: ничего не прошло порог качества</div>
+        <div class="news-body">Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества. Проверены Claude Platform release notes (последняя запись 14.07), Claude Code changelog (только патч 2.1.211, без новой фичи, Week 29 ещё не вышел) и общий веб-поиск — либо уже описанные в вики релизы, либо SEO-рерайты.</div>
         <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md">wiki/sources/claude-code-changelog-snapshot-2026-07-15</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">wiki/entities/claude-code</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">wiki/concepts/ai-security-by-design</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Автономный разведчик: Claude Managed Agents overview + quickstart</div>
-        <div class="news-body">Закрыт пробел, явно отмеченный в claude-agent-sdk.md — hosted agent harness Anthropic (Agent/Environment/Session/Events), сравнение с Agent SDK, экосистема (память, мультиагентность, self-hosted sandboxes, scheduled deployments, webhooks, vaults).</div>
-        <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md">wiki/sources/claude-managed-agents-overview</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">wiki/entities/claude-managed-agents</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Dynamic Workflows — официальная документация (внеочередной второй прогон)</div>
-        <div class="news-body">Закрыт пробел: скриптовая оркестрация десятков-сотен субагентов (agent/pipeline/parallel, quality-паттерны adversarial verify/judge panel/loop-until-dry) существовала с мая 2026, но не имела страницы. Попутно закрыт и пункт бэклога про биллинг Agent SDK — вторичные блоги про смену с 15.06 не подтвердились: изменение анонсировано, но поставлено на паузу.</div>
-        <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md">wiki/sources/claude-code-dynamic-workflows-docs</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md">wiki/concepts/dynamic-workflows</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md">wiki/entities/claude-agent-sdk</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Ежедневный процесс закрытия пробелов: авторство claude-statusline</div>
-        <div class="news-body">GitHub-профиль автора репозитория (`nilbuild` = Kamran Ahmed, известный британский разработчик) и README не содержат связи с Никитой Велсом — совпадение с видео чисто функциональное, пробел закрыт в отрицательную сторону.</div>
-        <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md">wiki/entities/claude-statusline</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">wiki/gaps-backlog</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">config</span>
-        <div class="news-title">Ежедневный процесс закрытия пробелов: каталог dashboard.html досверен с index.md</div>
-        <div class="news-body">Построчная сверка каталога с index.md: добавлены 8 entities, 5 concepts, 7 sources и 1 synthesis-страница, которые были в вики, но отсутствовали в дереве. Бэклог пробелов теперь содержит только пункт про полный lint вики.</div>
-        <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/index.md">wiki/index</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">wiki/gaps-backlog</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/log.md">wiki/log</a>
         </div>
       </article>
 
@@ -435,7 +392,7 @@
       <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">40</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей (пока не подключено)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -464,8 +421,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзора OpenCode</span></a>
@@ -489,7 +446,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/seven-signs-of-old-junior.md"><span class="tree-name">seven-signs-of-old-junior</span><span class="tree-desc">карьерная стагнация разработчиков, включая ИИ-зависимость</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
@@ -498,7 +455,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">три примитива для многосессионных агентов: Default-FAIL, Fresh-Context Evaluator, Handoff</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-content-farming-workflow.md"><span class="tree-name">ai-content-farming-workflow</span><span class="tree-desc">техника контент-фермы через ИИ-агента: скрапинг, «система» файлов вместо промта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
@@ -531,12 +488,12 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-claude-skills-practical-guide.md"><span class="tree-name">habr-claude-skills-practical-guide</span><span class="tree-desc">практика сообщества: 9 категорий скиллов, лайфхаки</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-release-candidate.md"><span class="tree-name">mcp-2026-07-28-spec-release-candidate</span><span class="tree-desc">крупнейшая ревизия спецификации MCP</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-overview.md"><span class="tree-name">claude-agent-sdk-overview</span><span class="tree-desc">официальная документация Claude Agent SDK</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07</span><span class="tree-desc">снапшот changelog Claude Code (в. 2.1.172–2.1.205)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07</span><span class="tree-desc">снапшот changelog Claude Code (в. 2.1.172–2.1.205)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-memory-tool-docs.md"><span class="tree-name">claude-memory-tool-docs</span><span class="tree-desc">официальная документация Memory tool (Claude Developer Platform)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-long-running-agent-harness.md"><span class="tree-name">anthropic-long-running-agent-harness</span><span class="tree-desc">блог + репозиторий cwc-long-running-agents: harness для долгоживущих агентов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-15</span><span class="tree-desc">снапшот changelog (в. 2.1.206–2.1.210) + Week 28 dev digest</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md"><span class="tree-name">claude-managed-agents-overview</span><span class="tree-desc">официальная документация Claude Managed Agents: hosted agent harness</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md"><span class="tree-name">claude-code-dynamic-workflows-docs</span><span class="tree-desc">официальная документация Dynamic Workflows: скриптовая оркестрация субагентов</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-15</span><span class="tree-desc">снапшот changelog (в. 2.1.206–2.1.210) + Week 28 dev digest</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md"><span class="tree-name">claude-managed-agents-overview</span><span class="tree-desc">официальная документация Claude Managed Agents: hosted agent harness</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md"><span class="tree-name">claude-code-dynamic-workflows-docs</span><span class="tree-desc">официальная документация Dynamic Workflows: скриптовая оркестрация субагентов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-agent-teams-docs.md"><span class="tree-name">claude-code-agent-teams-docs</span><span class="tree-desc">официальная документация Agent Teams (v2.1.178+): lead/teammates/task list/mailbox</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-model-config-docs.md"><span class="tree-name">claude-code-model-config-docs</span><span class="tree-desc">официальная документация Model configuration: алиасы, opusplan, fallback-цепочки</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/woome-ai-dzen-content-automation.md"><span class="tree-name">woome-ai-dzen-content-automation</span><span class="tree-desc">Claude Code + Дзен: контент-ферма, промо-видео с рабочей технической частью</span></a>
