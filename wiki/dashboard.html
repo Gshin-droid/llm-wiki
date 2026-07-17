@@ -343,7 +343,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-07-16 (2 прогона) · след. запуск 06:00 (17.07)</div>
+      <div class="mono">обновлено 2026-07-17 (1 прогон) · след. запуск 06:00 (18.07)</div>
     </div>
   </header>
 
@@ -359,28 +359,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 2026-07-16</span>
+      <span class="section-note">1 запись · 2026-07-17</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">тихо</span>
-        <div class="news-title">Автономный разведчик: ничего не прошло порог качества</div>
-        <div class="news-body">Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества. Проверены Claude Platform release notes (последняя запись 14.07), Claude Code changelog (только патч 2.1.211, без новой фичи, Week 29 ещё не вышел) и общий веб-поиск — либо уже описанные в вики релизы, либо SEO-рерайты.</div>
-        <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/log.md">wiki/log</a>
-        </div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Свежий полный lint-проход вики — бэклог полностью очищен</div>
-        <div class="news-body">Единственный открытый пункт gaps-backlog требовал именно полного lint-прохода (предыдущий был 2026-07-07). Битые ссылки и страницы-сироты не найдены; исправлены три находки — устаревший вывод moy-uroven-vladeniya-claude (облачные рутины на деле уже настроены с 2026-07-10) и две отсутствующие кросс-ссылки (claude-cowork ↔ claude-desktop-automation-modes, claude-skills ↔ dynamic-workflows).</div>
+        <div class="news-title">Свежий проход по чеклисту — бэклог был пуст</div>
+        <div class="news-body">Второй подряд полный lint-проход (бэклог опустел после 07-16). Битые ссылки, страницы-сироты, устаревшие "Актуально на", противоречия между entity/concept-страницами — везде чисто. Единственная находка: невычеркнутый пункт про уже закрытый вопрос авторства claude-statusline в jarvis-personal-wiki — исправлено. Бэклог пополнен вопросом о смысле ежедневного lint при пустом бэклоге и отсутствии новых источников.</div>
         <div class="news-links">
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md">moy-uroven-vladeniya-claude</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md">claude-cowork</a>
-          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/jarvis-personal-wiki.md">jarvis-personal-wiki</a>
           <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
         </div>
       </article>
