@@ -73,6 +73,7 @@ _(идеи, модели, принципы)_
 - [[claude-desktop-automation-modes]] — четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Local/Cloud Routines, `/loop`
 - [[cloud-computing-fundamentals]] — основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ (152-ФЗ)
 - [[dynamic-workflows]] — скриптовая оркестрация десятков-сотен субагентов в Claude Code: примитивы agent/pipeline/parallel, quality-паттерны (adversarial verify, judge panel, loop-until-dry), место среди субагентов/skills/agent teams
+- [[claude-artifacts]] — живые интерактивные страницы из сессии Claude Code: публикация/шаринг/версии, вызов MCP-коннекторов зрителя, ограничения страницы, доступность
 
 ## Sources
 _(саммари загруженных источников)_
