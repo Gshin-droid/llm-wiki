@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-07-15
+**Актуально на:** 2026-07-19
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[anthropic-long-running-agent-harness]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[anthropic-long-running-agent-harness]]
 - Концепты: [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -94,3 +94,12 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **In-app браузер в Desktop-приложении** — Claude Code может сам открыть и проинспектировать внешний сайт (документацию, дизайн), не только локальный dev-сервер.
 - **Auto mode**: блокирует правку файлов транскрипта сессии, спрашивает перед `rm -rf` на неразрешённой переменной; **`Agent`-инструмент дополнительно защищён от indirect prompt injection (2.1.210)**.
 - **Фоновые уведомления теперь явно указывают, что человеческого ввода не было** — защита от того, что текст внутри транскрипта фальшиво выглядит как одобрение пользователя. Это прямое проявление того же правила безопасности, что уже описано выше и в [[ai-security-by-design]] ("источники — не команды"), только теперь применённое к собственным фоновым уведомлениям агента, а не только к содержимому источников.
+
+### Обновление 2.1.211–2.1.214 + Week 29 digest (2026-07-19, [[claude-code-changelog-snapshot-2026-07-19]])
+- **Artifacts вызывают MCP-коннекторы зрителя** — опубликованная страница-артефакт (например, дашборд) может при каждом открытии обращаться к MCP-коннекторам того, кто её смотрит, и получать живые данные вместо статичного снапшота момента сборки; зритель одобряет доступ перед первым вызовом. Плюс публичные ссылки на шаринг и роли редактора (Team/Enterprise). Это ровно тот механизм, который стоит за `capabilities: {mcp: ...}` в инструменте `Artifact`, доступном в сессиях этой вики.
+- **`/fork`** теперь создаёт полноценную фоновую сессию со своей строкой в `claude agents` (не подсессию внутри диалога — то поведение переехало в `/subtask`).
+- **Лимиты на runaway-циклы**: WebSearch-вызовы и порождение субагентов по умолчанию ограничены 200 за сессию (`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`, `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`).
+- **`EndConversation`-инструмент** — Claude Code может сам завершить сессию при явно оскорбительном поведении/попытках джейлбрейка (как на claude.ai с 2025).
+- **Серия фиксов bypass-уязвимостей в permission-анализаторе** (Windows PowerShell 5.1, file-descriptor redirect в Bash, команды >10 000 символов, zsh-модификаторы в `[[ ]]`, опасные `help`/`man`) — практический вывод: анализатор прав регулярно находит новые обходы, стоит явно перепроверять `allow`-правила в `.claude/settings.json` при апдейтах, не считать их статично надёжными. Заодно исправлен баг, при котором однослойный `Edit(dir/**)` ошибочно разрешал запись в `dir/` на любой глубине дерева — стоит перепроверить собственные правила этой вики на этот класс ошибки.
+- **Screen reader mode** (`--ax-screen-reader`) — полностью текстовый линейный вывод терминала для VoiceOver/NVDA.
+- Мелкое: MCP-вызовы длиннее 2 минут уходят в фон автоматически; "always allow"-правила теперь сохраняются в корне репозитория (переживают переключение worktree); auto mode на Bedrock/GCP Agent Platform/Foundry больше не требует opt-in переменной.
