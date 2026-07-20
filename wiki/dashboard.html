@@ -343,26 +343,37 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-07-20 (1 прогон) · след. запуск 06:00 (21.07)</div>
+      <div class="mono">обновлено 2026-07-20 (2 прогона) · след. запуск 06:00 (21.07)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">105</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">6</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">106</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">8</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">40</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">25</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">35</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">36</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 2026-07-20</span>
+      <span class="section-note">4 записи · 2026-07-20</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Changelog v2.1.215: verify и code-review больше не авто-подключаются</div>
+        <div class="news-body">Автономный разведчик (еженедельный): единственная строка в changelog за период, но точечное изменение поведения, не рутинный багфикс — раньше Claude мог сам решить прогнать эти два скилла, теперь только по явному вызову командой. Не отмечено в топ-находках — значимо для точности вики, но не уровня предыдущих находок.</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-20.md">claude-code-changelog-snapshot-2026-07-20</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -423,7 +434,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
@@ -487,7 +498,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">35</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">36</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
@@ -524,6 +535,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nikita-efimov-claude-automations.md"><span class="tree-name">nikita-efimov-claude-automations</span><span class="tree-desc">Cowork Scheduler / Local &amp; Cloud Routines / /loop в Claude Desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/prostodevops-cloud-infrastructure.md"><span class="tree-name">prostodevops-cloud-infrastructure</span><span class="tree-desc">облачные вычисления с нуля: модели, механика, специфика РФ</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-19.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-19</span><span class="tree-desc">снапшот changelog (в. 2.1.211–2.1.214) + Week 29 dev digest</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-20.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-20</span><span class="tree-desc">снапшот changelog (в. 2.1.215): verify/code-review больше не авто-подключаются</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
