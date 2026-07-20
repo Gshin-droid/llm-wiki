@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-07-19
+**Актуально на:** 2026-07-20
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[anthropic-long-running-agent-harness]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]]
 - Концепты: [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -103,3 +103,6 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **Серия фиксов bypass-уязвимостей в permission-анализаторе** (Windows PowerShell 5.1, file-descriptor redirect в Bash, команды >10 000 символов, zsh-модификаторы в `[[ ]]`, опасные `help`/`man`) — практический вывод: анализатор прав регулярно находит новые обходы, стоит явно перепроверять `allow`-правила в `.claude/settings.json` при апдейтах, не считать их статично надёжными. Заодно исправлен баг, при котором однослойный `Edit(dir/**)` ошибочно разрешал запись в `dir/` на любой глубине дерева. Проверено (2026-07-20, ежедневное закрытие пробелов): в `.claude/settings.json` этой вики нет ни одного `Edit(dir/**)`-подобного allow-правила (allow-список содержит только `Read`/`Glob`/`Grep`/точечные `Bash(...)`-паттерны) — класс ошибки не применим, действий не требуется.
 - **Screen reader mode** (`--ax-screen-reader`) — полностью текстовый линейный вывод терминала для VoiceOver/NVDA.
 - Мелкое: MCP-вызовы длиннее 2 минут уходят в фон автоматически; "always allow"-правила теперь сохраняются в корне репозитория (переживают переключение worktree); auto mode на Bedrock/GCP Agent Platform/Foundry больше не требует opt-in переменной.
+
+### Обновление 2.1.215 (2026-07-20, [[claude-code-changelog-snapshot-2026-07-20]])
+**Скиллы `/verify` и `/code-review` больше не подключаются автоматически** — раньше Claude мог сам решить прогнать их, когда считал релевантными задаче; теперь только по явному вызову командой. Точечное исключение из общего механизма авто-подключения скиллов (см. [[claude-skills]]), не отмена механизма целиком. Практически: нельзя больше полагаться, что Claude сам прогонит code-review перед коммитом или verify после правки — нужно просить явно.
