@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-07-15
+**Актуально на:** 2026-07-21
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -23,8 +23,14 @@
 - **Self-hosted sandboxes** — с 2026-05-19, sandbox на своей инфраструктуре вместо инфраструктуры Anthropic.
 - **Scheduled deployments** — сессии по cron-расписанию без своего планировщика.
 - **Webhooks** — события жизненного цикла agent/deployment/deployment run (публикация новой версии, пауза деплоя, упавший scheduled run) — без polling.
-- **Vaults** — секьюрное внедрение credentials (env vars) в sandbox агента.
-- **Dreams** (research preview) — читает memory store + прошлые транскрипты сессий, выдаёт реорганизованную память (merged duplicates, заменённые устаревшие записи, новые инсайты).
+- **Vaults** — секьюрное внедрение credentials (env vars) в sandbox агента. С 2026-06-30 у env var credential есть настройка `injection_location` — куда именно подставляется значение на выходе (заголовки исходящего запроса, тело запроса, или оба места).
+- **Dreams** (research preview) — читает memory store + прошлые транскрипты сессий, выдаёт реорганизованную память (merged duplicates, заменённые устаревшие записи, новые инсайты). С 2026-07-10 поддерживает Claude Fable 5 и Claude Sonnet 5 (список поддерживаемых моделей ограничен, актуальный — в официальных доках).
+
+## Обновления с 2026-06-30 (найдено при lint-проходе 2026-07-21, official release notes)
+Точечные API-возможности, добавленные после первоначального ingest страницы (2026-07-15), не покрытые тем снапшотом:
+- **Event deltas** в потоке событий сессии (`event_deltas[]` параметр на `GET /v1/sessions/{id}/events/stream`) — события `event_start`/`event_delta` показывают текст ответа агента по мере генерации, до прихода полного `agent.message`.
+- **Backward pagination** для списка сессий — `GET /v1/sessions` теперь возвращает `prev_page` курсор рядом с `next_page`.
+- **Override конфигурации агента на уровне сессии** — при создании сессии можно передать `agent` с `type: "agent_with_overrides"`, заменив модель/system prompt/tools/MCP/skills только для этой сессии, не трогая сам объект агента.
 
 ## Практический пример (Python SDK)
 ```python
