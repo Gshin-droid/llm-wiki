@@ -1,4 +1,4 @@
-﻿# Индекс
+# Индекс
 
 Каталог всех страниц вики. Обновляется при каждой загрузке источника или синтезе.
 
@@ -45,6 +45,7 @@ _(люди, компании, инструменты)_
 - [[nikita-efimov]] — автор разбора автоматизаций Claude Desktop
 - [[prostodevops]] — DevOps-образовательный канал
 - [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API
+- [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
 
 ## Concepts
 _(идеи, модели, принципы)_
@@ -73,7 +74,7 @@ _(идеи, модели, принципы)_
 - [[claude-desktop-automation-modes]] — четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Local/Cloud Routines, `/loop`
 - [[cloud-computing-fundamentals]] — основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ (152-ФЗ)
 - [[dynamic-workflows]] — скриптовая оркестрация десятков-сотен субагентов в Claude Code: примитивы agent/pipeline/parallel, quality-паттерны (adversarial verify, judge panel, loop-until-dry), место среди субагентов/skills/agent teams
-- [[claude-artifacts]] — живые интерактивные страницы из сессии Claude Code: публикация/шаринг/версии, вызов MCP-коннекторов зрителя, ограничения страницы, доступность
+- [[ai-presentation-workflow]] — методология презентаций через ИИ-агента: смысл→визуал→сборка, нарратив-гейт до дизайна, референсы→правила; реализована как 4 локальных скилла
 
 ## Sources
 _(саммари загруженных источников)_
@@ -127,6 +128,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-changelog-snapshot-2026-07-22]] — снапшот changelog Claude Code (в. 2.1.216–2.1.217): `sandbox.filesystem.disabled` — избирательное отключение файловой изоляции сэндбокса с сохранением сетевой, плюс настраиваемые лимиты параллелизма/глубины субагентов и фикс `--max-budget-usd` для фоновых субагентов
 - [[claude-opus-5-launch]] — официальный запуск Claude Opus 5 (24.07.2026, та же цена что у Opus 4.8, thinking по умолчанию, breaking change для effort xhigh/max) + Claude Code v2.1.218–2.1.219 (Opus 5 как дефолт, `/code-review` фоновым субагентом, `/deep-research` manual-only, `sandbox.network.strictAllowlist`, workspace trust для хуков агентов, дефолт Dynamic Workflows medium/<15 агентов, неподтверждённая доками смена глубины вложенности субагентов до 3)
 - [[claude-code-migration-case-studies-2026-07]] — практика Dynamic Workflows в большом масштабе: официальный блог Anthropic про кейсы Bun/Klarna/CyberAgent (прочитан через вторичные источники — первоисточник вернул 403), 4-фазная архитектура миграции + adversarial review, и критика Zig-creator'а как содержательный контрпример "agent review агентами ≠ human review"
+- [[prezentacii-cherez-ii-agenta-web3nity]] — методология презентаций через ИИ-агента (смысл→визуал→сборка); 4 авторских скилла за Telegram-стеной, воспроизведены локально
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_

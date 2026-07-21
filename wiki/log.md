@@ -5,6 +5,9 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-07-21] ingest | Web3nity: презентации через ИИ-агента (youtube.com/watch?v=r0a5BxLhhTM)
+Методология «презентация через ИИ-агента»: смысл→визуал→сборка, нарратив-blueprint как отдельный гейт до дизайна, референсы→правила с самопроверкой скриншотом, переиспользуемый Visual DNA. Создано: wiki/sources/prezentacii-cherez-ii-agenta-web3nity.md, wiki/concepts/ai-presentation-workflow.md, wiki/entities/web3nity.md. Обновлён index.md. 4 авторских скилла раздаются только через приватный Telegram-канал (достать/проверить исходники нельзя) — методология зафиксирована из транскрипта, а эквивалент воспроизведён локально в ~/.claude/skills/ (presentation-story-architect, presentation-style-interpreter, presentation-visual-dna, presentation-builder) поверх существующих slides/design-system/frontend-design/ui-ux-pro-max. Прямых промпт-инъекций в источнике не найдено.
+
 ## [2026-07-07] init | Создание структуры базы знаний
 Создан каркас: raw/sources, raw/web-clipped, raw/assets, wiki/entities, wiki/concepts, wiki/sources, wiki/projects, wiki/synthesis, index.md, log.md, CLAUDE.md. Тематика: ИИ (изучение + рабочие проекты — вайбкодинг, интеграции ИИ, агенты). Добавлен базовый конфиг Obsidian.
 
