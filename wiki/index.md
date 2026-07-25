@@ -84,6 +84,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-managed-agents-overview]] — официальный API для агентов в managed sandbox-инфраструктуре, закрывает пробел, явно отмеченный в claude-agent-sdk.md
 - [[claude-code-dynamic-workflows-docs]] — скриптовая оркестрация субагентов (Dynamic Workflows), закрывает пробел: механизм существовал с мая 2026, но не имел отдельной страницы; ровно тот инструмент, которым устроен встроенный скилл deep-research
 - [[claude-code-changelog-snapshot-2026-07-19]] — Artifacts вызывают MCP-коннекторы зрителя при открытии страницы (ровно механизм скилла `artifact-capabilities`, доступного в сессиях этой вики), плюс лимиты на runaway-циклы (WebSearch/субагенты), `EndConversation`, серия фиксов bypass-уязвимостей в permission-анализаторе
+- [[claude-opus-5-launch]] — Claude Opus 5 (24.07.2026) стал дефолтной моделью Claude Code v2.1.219: та же цена, что у Opus 4.8, thinking по умолчанию (breaking change для effort xhigh/max), Dynamic Workflows получили официальный дефолт medium/<15 агентов — подтверждённый напрямую в системном промпте сессий этой вики
 
 ### Все источники
 - [[karpathy-jarvis-personal-ai-memory]] — метод Карпати: Claude Code + Obsidian как персональная AI-память (первоисточник паттерна этой вики)
@@ -123,6 +124,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-changelog-snapshot-2026-07-19]] — снапшот changelog Claude Code (в. 2.1.211–2.1.214) + Week 29 dev digest: Artifacts + MCP-коннекторы зрителя, `/fork` как фоновая сессия, лимиты runaway-циклов, `EndConversation`, серия фиксов bypass в permission-анализаторе, screen reader mode
 - [[claude-code-changelog-snapshot-2026-07-20]] — снапшот changelog Claude Code (в. 2.1.215): скиллы `/verify` и `/code-review` больше не подключаются автоматически, только по явному вызову
 - [[claude-code-changelog-snapshot-2026-07-22]] — снапшот changelog Claude Code (в. 2.1.216–2.1.217): `sandbox.filesystem.disabled` — избирательное отключение файловой изоляции сэндбокса с сохранением сетевой, плюс настраиваемые лимиты параллелизма/глубины субагентов и фикс `--max-budget-usd` для фоновых субагентов
+- [[claude-opus-5-launch]] — официальный запуск Claude Opus 5 (24.07.2026, та же цена что у Opus 4.8, thinking по умолчанию, breaking change для effort xhigh/max) + Claude Code v2.1.218–2.1.219 (Opus 5 как дефолт, `/code-review` фоновым субагентом, `/deep-research` manual-only, `sandbox.network.strictAllowlist`, workspace trust для хуков агентов, дефолт Dynamic Workflows medium/<15 агентов, неподтверждённая доками смена глубины вложенности субагентов до 3)
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_
