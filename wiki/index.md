@@ -46,6 +46,7 @@ _(люди, компании, инструменты)_
 - [[prostodevops]] — DevOps-образовательный канал
 - [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API
 - [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
+- [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; рассматривается к установке
 
 ## Concepts
 _(идеи, модели, принципы)_
@@ -129,6 +130,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-opus-5-launch]] — официальный запуск Claude Opus 5 (24.07.2026, та же цена что у Opus 4.8, thinking по умолчанию, breaking change для effort xhigh/max) + Claude Code v2.1.218–2.1.219 (Opus 5 как дефолт, `/code-review` фоновым субагентом, `/deep-research` manual-only, `sandbox.network.strictAllowlist`, workspace trust для хуков агентов, дефолт Dynamic Workflows medium/<15 агентов, неподтверждённая доками смена глубины вложенности субагентов до 3)
 - [[claude-code-migration-case-studies-2026-07]] — практика Dynamic Workflows в большом масштабе: официальный блог Anthropic про кейсы Bun/Klarna/CyberAgent (прочитан через вторичные источники — первоисточник вернул 403), 4-фазная архитектура миграции + adversarial review, и критика Zig-creator'а как содержательный контрпример "agent review агентами ≠ human review"
 - [[prezentacii-cherez-ii-agenta-web3nity]] — методология презентаций через ИИ-агента (смысл→визуал→сборка); 4 авторских скилла за Telegram-стеной, воспроизведены локально
+- [[romaray-top-5-skills]] — обзор «топ-5 скиллов» (слабый источник, разобран с поправками); ценен блоком про безопасность — исследование ToxicSkills от Snyk, и как повод развернуть [[context7]] по первоисточникам
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_

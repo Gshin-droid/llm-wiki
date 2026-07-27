@@ -21,6 +21,12 @@
 - **UI/UX Pro Max** — 57 стилей, 95 палитр, 56 пар шрифтов, вызывается явно при "большом дизайн-вмешательстве" (см. [[metics-media-10k-website]])
 - Библиотека готовых скилов на aitmpl.com — сотни (~847 на момент [[qaisar-claude-full-course]]) готовых умений: SEO-оптимизатор, генератор PPTX и т.д.
 
+## Не путать с MCP-сервером
+Распространённая ошибка вторичных источников (см. [[romaray-top-5-skills]]) — перечислять скиллы и MCP-серверы одним списком «топ скиллов». Механизмы разные: скилл — папка с markdown-инструкцией, которая исполняется тем же агентом в его же контексте; [[mcp-model-context-protocol|MCP-сервер]] — внешний процесс/сервис, объявляющий инструменты по протоколу. Разная установка, разная модель доверия, разная стоимость контекста. Показательный гибрид — [[context7]]: сервис Upstash с MCP-интерфейсом, у которого есть и скилл-режим, но скилл там лишь тонкий триггер над внешним сервисом.
+
+## Безопасность: цепочка поставок скиллов
+Исследование **ToxicSkills** (Snyk, 05.02.2026, через [[romaray-top-5-skills]]): просканировано 3 984 скилла с ClawHub и skills.sh — prompt injection найден в **36%**, обнаружено 1 467 вредоносных payload'ов, из них 76 подтверждённых (кража кредов, бэкдоры, эксфильтрация). Скилл в markdown-инструкции скрывает вредоносную нагрузку хуже, чем исполнимый код при код-ревью, но и заметить её при беглом чтении сложнее — вектор описан в [[ai-security-by-design]] («Skill marketplace-атаки»), исследование даёт ему первую количественную оценку в этой вики. Правило установки — п. 12 в [[claude-code-practices]].
+
 ## Не путать с CLAUDE.md-конвенцией
 [[llm-coding-guidelines|Karpathy's CLAUDE.md-гайдлайны]] ([[karpathy-skills-claude-md]]) концептуально похожи (тоже "устанавливается один раз, действует постоянно"), но технически это не Skill в продуктовом смысле (не SKILL.md, не подключается через `/`-команду или маркетплейс), а просто файл с инструкциями, который читает любой агент в начале работы в проекте. Разные механизмы, общая идея.
 
@@ -30,6 +36,6 @@
 
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]]
-- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]]
+- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]]
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.
