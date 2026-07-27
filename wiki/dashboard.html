@@ -348,20 +348,31 @@
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">114</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">16</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">115</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">22</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">42</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">26</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">41</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">42</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">4 записи · 2026-07-27</span>
+      <span class="section-note">5 записей · 2026-07-27</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Гайд по MCP от Web3nity — лестница подключения, каталоги, критерии проверки</div>
+        <div class="news-body">Обзорное видео, большая часть которого ниже порога вики (LLM, API, аналогия с USB-C — всё покрыто глубже). Взяты три блока, каждый закрывает реальный пробел: процедура подключения нового сервиса по MCP (встроенные плагины &rarr; документация сервиса &rarr; каталоги &rarr; собрать вместе с агентом), каталоги MCP-серверов — официальный <code>registry.modelcontextprotocol.io</code> проверен по первоисточнику, и два недостающих критерия проверки стороннего расширения (давность обновления, запрашиваемые разрешения). Отдельно ценно: правило автора «попроси агента проверить подключение на безопасность» независимо подтвердило процедуру, применённую здесь же днём ранее при установке Context7. Exa занесён в бэклог на проверку — страницу с чужих слов не заводили.</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-mcp-guide.md">web3nity-mcp-guide</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md">mcp-model-context-protocol</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">practice</span>
@@ -502,7 +513,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">41</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">42</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
@@ -545,6 +556,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-migration-case-studies-2026-07.md"><span class="tree-name">claude-code-migration-case-studies-2026-07</span><span class="tree-desc">Dynamic Workflows на практике: Bun/Klarna/CyberAgent + критика «unreviewed slop»</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/prezentacii-cherez-ii-agenta-web3nity.md"><span class="tree-name">prezentacii-cherez-ii-agenta-web3nity</span><span class="tree-desc">методология презентаций через ИИ-агента; 4 авторских скилла воспроизведены локально</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/romaray-top-5-skills.md"><span class="tree-name">romaray-top-5-skills</span><span class="tree-desc">обзор «топ-5 скиллов» с поправками; ценен блоком про безопасность (ToxicSkills, Snyk)</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-mcp-guide.md"><span class="tree-name">web3nity-mcp-guide</span><span class="tree-desc">вводный гайд по MCP; взяты лестница подключения, каталоги, критерии проверки расширений</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
