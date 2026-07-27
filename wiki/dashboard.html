@@ -358,10 +358,20 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 2026-07-27</span>
+      <span class="section-note">4 записи · 2026-07-27</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Правила цепочки поставок в глобальный CLAUDE.md; установлен Context7 MCP</div>
+        <div class="news-body">Правила «два доверия у расширения агента» и «инспектируемая установка вместо npx-скрипта» перенесены в глобальный CLAUDE.md — и тут же применены. Context7 поставлен MCP-режимом (user scope, анонимно), рекомендуемый вендором <code>npx ctx7 setup</code> сознательно отклонён. Пакет распакован и прочитан до установки: исходящие только на context7.com, подозрительный <code>login.microsoftonline.com</code> оказался валидацией JWT для Entra ID. Работоспособность подтверждена не статусом «connected», а реальным JSON-RPC запросом — 4 508 символов документации SQLAlchemy. Побочно вскрылась ошибка вторичных гайдов: инструмент называется <code>query-docs</code>, а не <code>get-library-docs</code>.</div>
+        <div class="news-links">
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md">context7</a>
+          <a class="pill-link" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
