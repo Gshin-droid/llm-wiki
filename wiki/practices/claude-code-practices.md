@@ -46,6 +46,7 @@
 
 ## 5. Процедуры [SKILL]
 
+- **Выбор процессного набора на старте нетривиального проекта** → `project-kickoff` п. 1а (добавлено 2026-07-27): не выбирать молча, а спросить `superpowers` или [[mattpocock-skills]]. Спрашивать после брифа, до архитектуры. Для лендинга/скрипта вопрос не задавать — цена процесса выше цены задачи. Сравнение наборов — [[agentic-sdlc-frameworks]]. Продублировано в `~/.claude/CLAUDE.md`.
 - **Старт нового проекта** → `~/.claude/skills/project-kickoff/` (по [[pre-project-architecture-checklist]]): бриф → архитектура/схема на согласование → security by design → permissions → /init → проверка перед первым push.
 - **Длинная/многосессионная задача** → `~/.claude/skills/long-task-harness/` (по [[long-running-agent-harness]]): PROGRESS.md + чекпойнт-коммиты, evidence, fresh-context evaluator, `/goal` как лёгкая альтернатива.
 - **Проверка фазы на рабочем проекте** → локальный скилл `verify-phase` в CLAUDE.md соответствующего проекта [PROJECT].
