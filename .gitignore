@@ -9,3 +9,6 @@ Thumbs.db
 
 # Личные материалы — только локально, не в GitHub
 /private/
+
+# Артефакты Playwright MCP (снимки страниц, логи консоли) — только локально
+.playwright-mcp/
