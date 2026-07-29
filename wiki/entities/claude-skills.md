@@ -1,7 +1,7 @@
 # Claude Skills
 
 **Тип:** функция продукта (Claude.ai / Claude Code)
-**Актуально на:** 2026-07-20
+**Актуально на:** 2026-07-29
 
 ## Что это
 Переносимая папка с инструкцией (`SKILL.md`) и опциональными скриптами/референсами, которая один раз устанавливается и "прокачивает" Claude в конкретной области — не разовая задача, а устойчивое умение, применимое в разных проектах и чатах. Вызывается командой `/` или подключается автоматически, когда Claude решает, что скилл релевантен задаче (см. архитектуру progressive disclosure в [[skill-authoring-practical-rules]]). Официально — открытый стандарт [Agent Skills](https://agentskills.io), не привязан к одному инструменту.
@@ -15,6 +15,8 @@
 ## Как создавать (практическая методология)
 
 Полный свод правил — description как единственный триггер, три слоя (Description/Instructions/Tools), правило 500 строк, композиционность вместо монолита, итеративное накопление по сессиям, тестирование with/without — см. отдельную страницу [[skill-authoring-practical-rules]].
+
+**Уточнения по claude.ai (2026-07-29, проверка утверждений [[bohomolov-skill-architecture]] по официальной документации):** description режется до 200 символов (спецификация допускает 1024); загрузка — ZIP с папкой скилла внутри, не с файлами в корне; скилл правится на месте через **Edit with Claude**, в том числе многофайловый (правки по разным файлам применяются за один проход) — полная пересборка ради одного файла, необходимая ещё в июне 2026, больше не нужна.
 
 Примеры из загруженных источников:
 - **Frontend Design** (by Anthropic) — банит заезженные шрифты/раскладки, подталкивает к небанальному дизайну (см. [[metics-media-10k-website]])
@@ -36,6 +38,6 @@
 
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]]
 - Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]]
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.
