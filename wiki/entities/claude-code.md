@@ -20,7 +20,7 @@ Claude Code — инструмент для терминала/IDE (уровни
 - Концепты: [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
-- Синтез: [[claude-code-checklist-postoyannogo-ispolzovaniya]] — практический чек-лист для повседневного использования
+- Синтез: [[claude-code-checklist-postoyannogo-ispolzovaniya]] — практический чек-лист для повседневного использования; [[opencode-vs-claude-code]] — сравнение с open-source мультипровайдерным агентом (плюсы/минусы, стоимость перехода)
 
 ## Тарифы (уточнено, была неточность)
 Ранее здесь стояло "требует Pro/Max подписку" со ссылкой на видео про вики — это неточно: тот источник упоминал Pro/Max только в контексте розыгрыша подписок, не как техническое требование. По факту из трёх источников, где это разбирается предметно:

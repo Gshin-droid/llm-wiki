@@ -159,3 +159,4 @@ _(ответы на вопросы, сравнения, анализ)_
 - [[moy-uroven-vladeniya-claude]] — оценка текущего уровня владения Claude по модели 5 уровней
 - [[claude-code-checklist-postoyannogo-ispolzovaniya]] — практический чек-лист Claude Code для повседневного использования
 - [[proiskhozhdenie-pravila-effekt-30-dney]] — цепочка происхождения правила «разовая правка или в скилл навсегда?»: от доклада Zhang/Murag до п. 16 моих правил
+- [[opencode-vs-claude-code]] — сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth в сторонних инструментах (ToS, февраль 2026), когда что выбирать
