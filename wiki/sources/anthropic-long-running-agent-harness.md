@@ -1,9 +1,9 @@
 # Effective harnesses for long-running agents (блог + репозиторий-пример)
 
 **Источники:**
-- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) (блог Anthropic Engineering — содержание получено через агрегированные пересказы, прямой WebFetch вернул 403)
-- [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) (связанная статья, тот же способ фиксации)
-- [github.com/anthropics/cwc-long-running-agents](https://github.com/anthropics/cwc-long-running-agents) (официальный репозиторий с реализацией — прочитан напрямую, первичный источник для деталей ниже)
+- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) (блог Anthropic Engineering, 26.11.2025 — содержание получено через агрегированные пересказы, прямой WebFetch вернул 403)
+- [Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps) (блог Anthropic Engineering, 24.03.2026, автор — Prithvi Rajasekaran из Anthropic Labs; **другая статья с другим паттерном**, см. раздел ниже — допроверено 2026-07-29, раньше в этой карточке ошибочно шла припиской "тот же способ фиксации" без содержания)
+- [github.com/anthropics/cwc-long-running-agents](https://github.com/anthropics/cwc-long-running-agents) (официальный репозиторий с реализацией первой статьи — прочитан напрямую, первичный источник для деталей ниже)
 
 **Загружено:** 2026-07-09
 **Raw:** `raw/sources/anthropic-long-running-agent-harness.md`
@@ -18,11 +18,22 @@
 
 Плюс встроенный short-cut — команда **`/goal`** в Claude Code: одна строка с критерием завершения ("every feature in PROGRESS.md is implemented, committed, and its tests pass"), отдельная быстрая модель сама проверяет выполнение после каждого хода — без кастомных хуков и файла-контракта.
 
+## Вторая статья: другой харнесс (Planner–Generator–Evaluator, GAN-inspired)
+
+Допроверка 2026-07-29 (ежедневный процесс закрытия пробелов) обнаружила: карточка источника с 07-09 числила вторую статью связанной со всеми тремя примитивами выше, но её отдельное содержание никогда не было прочитано и не попало в вики — прямой блог по-прежнему отдаёт 403 (перепроверено, включая попытку через `web.archive.org` — недоступен для WebFetch в этой среде). Содержание восстановлено по независимому совпадению нескольких пересказов (research-заметка в GitHub-репозитории `celesteanders/harness` с прямыми цитатами, understandingdata.com, InfoQ, Medium, TeamDay.ai) — это **другой харнесс**, не детализация первых трёх примитивов:
+
+- **Задача другая.** Не многосессионный прогресс по фиче-листу, а генерация целых full-stack приложений/фронтенд-дизайна без участия человека, где голого prompt-engineering оказалось недостаточно ("hit ceilings").
+- **Архитектура:** три агента — **Planner** (разворачивает промт в 1-4 предложения в полноценную продуктовую спецификацию, без гранулярной техноспецификации, которая каскадно ломает даунстрим), **Generator** (React + Vite + FastAPI + SQLite/PostgreSQL, спринтами, git, самооценка в конце спринта перед QA-хендоффом), **Evaluator** (реальный браузер через Playwright, оценка живого приложения как конечный пользователь по критериям: product depth/feature completeness, functionality/usability, visual design quality, code quality; для чисто фронтенд-дизайна отдельно — originality/craft/"чувствуется ли дизайн цельным, а не набором частей").
+- **GAN-инспирация буквальная**, не метафора: генератор и оценщик — разные роли по аналогии с генератором/дискриминатором GAN, соревновательный цикл обратной связи.
+- **Находка, объясняющая architecture choice:** самооценка агентом собственной работы ненадёжна — агент уверенно хвалит свою же посредственную работу; разделение генератора и оценщика на разные контексты оказалось рабочим рычагом против этого эффекта. Это прямая параллель с Fresh-Context Evaluator из первой статьи (независимая оценка из "чистого" контекста), но применённая к другому классу задач — ещё одно подтверждение, что паттерн "оценщик не видел, как делался код" у Anthropic системный, а не разовое решение.
+
+Разобрано подробнее в [[long-running-agent-harness]], раздел "Второй харнесс".
+
 ## Ключевая связь с memory tool
 Официальная документация [[claude-memory-tool]] прямо ссылается на этот кейс-стади как на детальную реализацию своего раздела "Multi-session software development pattern" — то есть Anthropic описывает один и тот же паттерн (progress log + git recovery между сессиями) на двух уровнях: как фичу API (memory tool) и как конкретный harness с хуками для Claude Code/Agent SDK.
 
 ## Оговорка по достоверности
-Прямой блог (`anthropic.com/engineering/...`) отдал 403 на WebFetch (анти-бот защита) — тезисы блога зафиксированы по совпадающим пересказам нескольких независимых изданий (InfoQ, ZenML LLMOps Database, Medium), а не прочитаны из первых рук. README самого репозитория `anthropics/cwc-long-running-agents` прочитан напрямую и является надёжным первичным источником для всех технических деталей выше.
+Прямой блог (`anthropic.com/engineering/...`) отдал 403 на WebFetch (анти-бот защита) на обоих прогонах (07-09 и допроверке 07-29) — тезисы блога зафиксированы по совпадающим пересказам нескольких независимых изданий (для первой статьи: InfoQ, ZenML LLMOps Database, Medium; для второй: research-заметка `celesteanders/harness` на GitHub, understandingdata.com, InfoQ, Medium, TeamDay.ai), а не прочитаны из первых рук. README самого репозитория `anthropics/cwc-long-running-agents` прочитан напрямую и является надёжным первичным источником для деталей первой статьи (три примитива).
 
 ## Связанные страницы
 - Концепт: [[long-running-agent-harness]] — новая карточка концепта
