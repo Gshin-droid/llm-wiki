@@ -70,7 +70,7 @@ _(идеи, модели, принципы)_
 - [[skill-authoring-practical-rules]] — как создавать Skills вместо промтов: description-триггер, три слоя, композиционность, итеративное накопление
 - [[mcp-model-context-protocol]] — открытый протокол подключения агентов к внешним сервисам: архитектура, крупнейшая ревизия спецификации 2026-07-28 (stateless core, MCP Apps, Tasks)
 - [[claude-memory-tool]] — официальный файловый инструмент памяти Claude API: just-in-time context retrieval, six-команд протокол, multi-session паттерн
-- [[long-running-agent-harness]] — три примитива Anthropic для многосессионных агентов: Default-FAIL Contract, Fresh-Context Evaluator, Agent-Maintained Handoff
+- [[long-running-agent-harness]] — два харнесса Anthropic для долгоживущих агентов: три примитива многосессионного прогресса (Default-FAIL Contract, Fresh-Context Evaluator, Agent-Maintained Handoff) + отдельный GAN-inspired Planner–Generator–Evaluator для автономной генерации целых приложений
 - [[agent-teams]] — команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes, security-модель
 - [[ai-content-farming-workflow]] — техника контент-фермы через ИИ-агента: скрапинг конкурентов, "система" файлов вместо промта, параллельная генерация
 - [[agentic-sdlc-frameworks]] — GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC, а не только код
@@ -116,7 +116,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-agent-sdk-overview]] — официальная документация Claude Agent SDK: капабилити, сравнение с Client SDK/CLI/Managed Agents
 - [[claude-code-changelog-snapshot-2026-07]] — снапшот официального changelog Claude Code (в. 2.1.172–2.1.205): Manual mode, фоновые субагенты по умолчанию, auto-commit/PR у фоновых агентов
 - [[claude-memory-tool-docs]] — официальная документация Memory tool: file-based память API, six команд, паттерн multi-session разработки
-- [[anthropic-long-running-agent-harness]] — блог + репозиторий `cwc-long-running-agents`: harness-паттерны для долгоживущих агентов
+- [[anthropic-long-running-agent-harness]] — две статьи блога + репозиторий `cwc-long-running-agents`: harness-паттерны для долгоживущих агентов (многосессионный прогресс + отдельный GAN-inspired харнесс для полных приложений, допроверен 2026-07-29)
 - [[claude-code-agent-teams-docs]] — официальная документация Agent Teams (v2.1.178+): архитектура lead/teammates/task list/mailbox, security-модель
 - [[claude-code-model-config-docs]] — официальная документация Model configuration: алиасы моделей, `opusplan` (task-based автопереключение Opus↔Sonnet), fallback-цепочки, content-based fallback Fable 5
 - [[woome-ai-dzen-content-automation]] — Claude Code + Дзен: контент-ферма, промо-видео с рабочей технической частью
