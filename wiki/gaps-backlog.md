@@ -6,7 +6,7 @@ Living-чеклист для ежедневного автономного пр�
 
 ## Открытые пункты
 
-_(нет открытых пунктов — оба пункта закрыты 2026-07-30, см. ниже)_
+- **Механика auto-memory в Claude Code** — статья Anthropic про контекст-инжиниринг поколения 5 ([[anthropic-context-engineering-claude-5]], ingest 2026-07-30) объявляет auto-memory заменой ручной дописки `CLAUDE.md`, но ограничивается фразой «Claude automatically saves memories that are relevant to the work and to you». Не раскрыто: формат и место хранения, область видимости (проект/пользователь/глобально), как соотносится с memory tool в Claude API ([[claude-memory-tool]]) и что происходит при конфликте автопамяти с `CLAUDE.md`. Проверять по `code.claude.com/docs` (memory/CLAUDE.md-страницы), не по пересказам. *Статус: не начато.*
 
 ## Закрытые пункты
 

@@ -68,6 +68,7 @@ _(идеи, модели, принципы)_
 - [[llm-memory-landscape]] — три разные задачи "памяти для ИИ": о пользователе, о коде, о знаниях
 - [[project-documentation-vault-pattern]] — Obsidian-вики как документация кодового проекта, альтернатива персональной вики
 - [[second-brain-daily-workflows]] — ежедневные продуктивностные воркфлоу Obsidian+Claude (не про накопление знаний)
+- [[context-engineering-claude-5]] — официальные правила Anthropic под поколение 5: правила → суждение, примеры → интерфейс, что живёт в CLAUDE.md, что в скиллах, что в references; и где эти правила НЕ применимы
 - [[skill-authoring-practical-rules]] — как создавать Skills вместо промтов: description-триггер, три слоя, композиционность, итеративное накопление, гранулярность против ходов агента (замер 2026-07-29), границы работы скилла
 - [[mcp-model-context-protocol]] — открытый протокол подключения агентов к внешним сервисам: архитектура, крупнейшая ревизия спецификации 2026-07-28 (stateless core, MCP Apps, Tasks)
 - [[claude-memory-tool]] — официальный файловый инструмент памяти Claude API: just-in-time context retrieval, six-команд протокол, multi-session паттерн
@@ -92,9 +93,11 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-dynamic-workflows-docs]] — скриптовая оркестрация субагентов (Dynamic Workflows), закрывает пробел: механизм существовал с мая 2026, но не имел отдельной страницы; ровно тот инструмент, которым устроен встроенный скилл deep-research
 - [[claude-code-changelog-snapshot-2026-07-19]] — Artifacts вызывают MCP-коннекторы зрителя при открытии страницы (ровно механизм скилла `artifact-capabilities`, доступного в сессиях этой вики), плюс лимиты на runaway-циклы (WebSearch/субагенты), `EndConversation`, серия фиксов bypass-уязвимостей в permission-анализаторе
 - [[claude-opus-5-launch]] — Claude Opus 5 (24.07.2026) стал дефолтной моделью Claude Code v2.1.219: та же цена, что у Opus 4.8, thinking по умолчанию (breaking change для effort xhigh/max), Dynamic Workflows получили официальный дефолт medium/<15 агентов — подтверждённый напрямую в системном промпте сессий этой вики
+- [[anthropic-context-engineering-claude-5]] — первоисточник Anthropic: >80% системного промпта Claude Code вырезано без потери качества на evals; прямо задевает личный `~/.claude/CLAUDE.md` и скиллы пользователя — что оставить, что сжать в принцип, что увезти в скилл (разбор кандидатов — [[claude-code-practices]], п. 6а)
 - [[claude-code-migration-case-studies-2026-07]] — Dynamic Workflows на реальном масштабе: Bun (Zig→Rust, ~1M строк за 11 дней), Klarna (security-аудит), CyberAgent (hardening) — воспроизводимая 4-фазная архитектура + честная критика (adversarial review агентами ≠ человеческое ревью)
 
 ### Все источники
+- [[anthropic-context-engineering-claude-5]] — официальная статья Anthropic (24.07.2026): из системного промпта Claude Code убрали >80% без потери качества; шесть сдвигов «раньше → теперь» и разметка слоёв контекста
 - [[karpathy-jarvis-personal-ai-memory]] — метод Карпати: Claude Code + Obsidian как персональная AI-память (первоисточник паттерна этой вики)
 - [[karpathy-skills-claude-md]] — репозиторий с CLAUDE.md-гайдлайнами против типичных ошибок LLM (188.8k звёзд)
 - [[mastodont-claude-obsidian-video]] — полный видео-транскрипт метода Карпати с ограничениями и гибридной архитектурой
