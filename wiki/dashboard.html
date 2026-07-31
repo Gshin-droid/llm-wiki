@@ -342,52 +342,32 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-07-29 (4 записи) · след. запуск 06:00 (30.07)</div>
+      <div class="mono">обновлено 2026-07-31 (1 запись) · след. запуск 06:00 (01.08)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">123</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">16</span><span class="l">новых за сутки</span></div>
-    <div class="stat"><span class="n">45</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">27</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">45</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">130</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">3</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">46</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">29</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">48</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">4 записи · 2026-07-29</span>
+      <span class="section-note">1 запись · 2026-07-31</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">query</span>
-        <div class="news-title">OpenCode vs Claude Code</div>
-        <div class="news-body">Сравнение двух CLI-агентов после стороннего видео: сначала распутаны категории (OpenCode сравнивают с редактором, хотя заменяет он агента), затем разбор по 12 осям с плюсами и минусами каждого. Попутно вскрылось устаревание: ToS Anthropic (февраль 2026) запретил subscription-OAuth в сторонних инструментах, OpenCode вырезал Claude-OAuth — «бесплатной альтернативой» он остаётся только на локальных моделях.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md">opencode-vs-claude-code</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md">opencode</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">Архитектура профессионального скилла (Bohomolov Lab) + проверка валидности</div>
-        <div class="news-body">Каждое утверждение видео сверено с офдокой: метод валиден, но это урезанное подмножество уже описанной методологии — архитектурная часть подтверждена, инженерной (description-триггер, eval-цикл) в нём нет вовсе. Центральное утверждение «файл в скилл дописать нельзя, надо пересобирать» устарело; попутно вскрылись два новых факта — claude.ai режет description до 200 символов против 1024 по спецификации, и `dependencies` во frontmatter обязателен для скриптов с внешними пакетами.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bohomolov-skill-architecture.md">bohomolov-skill-architecture</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md">skill-authoring-practical-rules</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md">bohomolov-lab</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Как начать вайб-кодить: 10 идей за день (Web3nity)</div>
-        <div class="news-body">Технической ценности нет, но в вики не было страницы про <em>отбор</em> задач — что вообще имеет смысл превращать в инструмент. Заведён концепт: рамка «четвёртый вариант» (руками / сотруднику / подрядчику / завайбкодить), два критерия отбора и каталог из 11 типовых инструментов. Расхождение с названием ролика зафиксировано явно — в транскрипте 11 идей, не 10.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-10-vibecoding-ideas.md">web3nity-10-vibecoding-ideas</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-task-selection.md">vibecoding-task-selection</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">project</span>
-        <div class="news-title">Сверка локальной панели проектов с диском</div>
-        <div class="news-body">Первая полная сверка карточек проектов с реальным состоянием репозиториев (git-лог, ветки, PR, незакоммиченные правки). Расхождения оказались односторонними: сделанная работа не отмечена, обратного случая нет ни одного. Отсюда правило — сверка по git-логу раз в неделю.</div>
+        <div class="news-title">Финальная спецификация MCP 2026-07-28 вышла точно в срок</div>
+        <div class="news-body">Официальный блог MCP подтвердил финальный релиз крупнейшей ревизии протокола — вики с 09.07 держала его как ещё не вышедший RC. Содержание не изменилось, добавлены детали: Multi Round-Trip Requests, header-based routing, кэшируемые list-ответы, CIMD вместо Dynamic Client Registration, точный список stable/deprecated и SDK-поддержки по языкам.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-final.md">mcp-2026-07-28-spec-final</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md">mcp-model-context-protocol</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-release-candidate.md">mcp-2026-07-28-spec-release-candidate</a></div>
       </article>
 
     </div>
@@ -409,7 +389,7 @@
       <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">45</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей (пока не подключено)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -419,7 +399,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
@@ -440,13 +420,13 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзора OpenCode</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vladilen-minin.md"><span class="tree-name">vladilen-minin</span><span class="tree-desc">автор кейсов GSD/Superpowers</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gsd-get-shit-done.md"><span class="tree-name">gsd-get-shit-done</span><span class="tree-desc">spec-driven агентский фреймворк полного SDLC поверх Claude Code</span></a>
@@ -473,11 +453,11 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator для целых приложений</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-task-selection.md"><span class="tree-name">vibecoding-task-selection</span><span class="tree-desc">отбор задач для вайбкодинга: рамка «четвёртый вариант», критерии, каталог из 11 инструментов</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator для целых приложений</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-task-selection.md"><span class="tree-name">vibecoding-task-selection</span><span class="tree-desc">отбор задач для вайбкодинга: рамка «четвёртый вариант», критерии, каталог из 11 инструментов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-content-farming-workflow.md"><span class="tree-name">ai-content-farming-workflow</span><span class="tree-desc">техника контент-фермы через ИИ-агента: скрапинг, «система» файлов вместо промта</span></a>
@@ -490,7 +470,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">45</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">46</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
@@ -511,13 +491,14 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-code-summit-build-skills-talk.md"><span class="tree-name">anthropic-code-summit-build-skills-talk</span><span class="tree-desc">первоисточник: доклад Barry Zhang &amp; Mahesh Murag</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-official-skills-docs.md"><span class="tree-name">anthropic-official-skills-docs</span><span class="tree-desc">официальная методология Anthropic по Skills</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-claude-skills-practical-guide.md"><span class="tree-name">habr-claude-skills-practical-guide</span><span class="tree-desc">практика сообщества: 9 категорий скиллов, лайфхаки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-release-candidate.md"><span class="tree-name">mcp-2026-07-28-spec-release-candidate</span><span class="tree-desc">крупнейшая ревизия спецификации MCP</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-release-candidate.md"><span class="tree-name">mcp-2026-07-28-spec-release-candidate</span><span class="tree-desc">крупнейшая ревизия спецификации MCP (RC, superseded финальным релизом)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-2026-07-28-spec-final.md"><span class="tree-name">mcp-2026-07-28-spec-final</span><span class="tree-desc">финальный релиз спецификации MCP: MRTR, header-based routing, кэшируемые list-ответы, CIMD</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-overview.md"><span class="tree-name">claude-agent-sdk-overview</span><span class="tree-desc">официальная документация Claude Agent SDK</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07</span><span class="tree-desc">снапшот changelog Claude Code (в. 2.1.172–2.1.205)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-memory-tool-docs.md"><span class="tree-name">claude-memory-tool-docs</span><span class="tree-desc">официальная документация Memory tool (Claude Developer Platform)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-long-running-agent-harness.md"><span class="tree-name">anthropic-long-running-agent-harness</span><span class="tree-desc">две статьи + репозиторий cwc-long-running-agents: два разных harness-паттерна для долгоживущих агентов</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-10-vibecoding-ideas.md"><span class="tree-name">web3nity-10-vibecoding-ideas</span><span class="tree-desc">каталог задач для вайбкодинга не-разработчику: рамка отбора, 11 инструментов, границы применимости</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bohomolov-skill-architecture.md"><span class="tree-name">bohomolov-skill-architecture</span><span class="tree-desc">4 апгрейда однофайлового скилла до многофайловой структуры; архитектура подтверждена офдокой, «пересобирать ради файла» устарело</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-long-running-agent-harness.md"><span class="tree-name">anthropic-long-running-agent-harness</span><span class="tree-desc">две статьи + репозиторий cwc-long-running-agents: два разных harness-паттерна для долгоживущих агентов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-10-vibecoding-ideas.md"><span class="tree-name">web3nity-10-vibecoding-ideas</span><span class="tree-desc">каталог задач для вайбкодинга не-разработчику: рамка отбора, 11 инструментов, границы применимости</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bohomolov-skill-architecture.md"><span class="tree-name">bohomolov-skill-architecture</span><span class="tree-desc">4 апгрейда однофайлового скилла до многофайловой структуры; архитектура подтверждена офдокой, «пересобирать ради файла» устарело</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-07-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-07-15</span><span class="tree-desc">снапшот changelog (в. 2.1.206–2.1.210) + Week 28 dev digest</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-overview.md"><span class="tree-name">claude-managed-agents-overview</span><span class="tree-desc">официальная документация Claude Managed Agents: hosted agent harness</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-dynamic-workflows-docs.md"><span class="tree-name">claude-code-dynamic-workflows-docs</span><span class="tree-desc">официальная документация Dynamic Workflows: скриптовая оркестрация субагентов</span></a>
@@ -554,7 +535,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/proiskhozhdenie-pravila-effekt-30-dney.md"><span class="tree-name">proiskhozhdenie-pravila-effekt-30-dney</span><span class="tree-desc">цепочка происхождения правила «разовая правка или в скилл навсегда?»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span></a>
       </div>
     </details>
 
