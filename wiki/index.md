@@ -100,6 +100,7 @@ _(отбирает автономный разведчик практическ�
 - [[mcp-2026-07-28-spec-final]] — финальный релиз крупнейшей ревизии MCP вышел точно в срок (28.07.2026): stateless core подтверждён, плюс новое против RC — Multi Round-Trip Requests, header-based routing, кэшируемые list-ответы, CIMD вместо Dynamic Client Registration; закрывает открытый статус на [[mcp-model-context-protocol]], актуально для уже установленных MCP-серверов вики (Context7)
 
 ### Все источники
+- [[claude-code-memory-docs]] — официальная документация Claude Code: auto-memory (формат `MEMORY.md`+топики, `~/.claude/projects/<project>/memory/`, machine-local per-repo, лимит 200 строк/25KB) против `CLAUDE.md`, конфликт не разрешается формально, независима от memory tool в API
 - [[mogilko-ai-system-five-levels]] — пять уровней внедрения ИИ в бизнес: что класть в файлы о себе, как их собирать интервью, чего не отдавать агентам
 - [[anthropic-context-engineering-claude-5]] — официальная статья Anthropic (24.07.2026): из системного промпта Claude Code убрали >80% без потери качества; шесть сдвигов «раньше → теперь» и разметка слоёв контекста
 - [[karpathy-jarvis-personal-ai-memory]] — метод Карпати: Claude Code + Obsidian как персональная AI-память (первоисточник паттерна этой вики)

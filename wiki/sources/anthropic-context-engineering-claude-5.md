@@ -25,7 +25,7 @@ Anthropic описывает, как изменилось наполнение �
 
 ## Что не взято / лиды
 
-- **Механика auto-memory** — статья говорит «Claude automatically saves memories that are relevant to the work and to you» и на этом останавливается: ни формата хранения, ни области видимости, ни как это соотносится с memory tool в API. В `wiki/gaps-backlog.md` лидом.
+- **Механика auto-memory** — статья говорит «Claude automatically saves memories that are relevant to the work and to you» и на этом останавливается: ни формата хранения, ни области видимости, ни как это соотносится с memory tool в API. Закрыто 2026-07-31 по официальной документации Claude Code — см. [[claude-code-memory-docs]].
 - **«Rich references» (HTML-артефакты, test suites, rubrics как ТЗ)** — направление названо, но воспроизводимой процедуры в статье нет. Взято одной строкой в концепт, разворачивать нечего.
 - **Личные наблюдения автора поста** («пересел на Fable 5, он перестал тупить на объёме») — субъективный опыт без замера, в вики как факт не идёт.
 

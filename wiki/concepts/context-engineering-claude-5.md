@@ -45,7 +45,7 @@
 - **[[claude-code-practices]]** — личный свод пользователя и синхронизированный с ним `~/.claude/CLAUDE.md`: список запретов, часть которых — страховка под старые модели.
 - **Инструкции «добавь шаг верификации»** — уже отмечены как избыточные для Opus 5 в [[claude-code]] по данным [[claude-opus-5-launch]]. Статья обобщает частный случай в правило.
 
-Отдельный сюжет — **auto-memory**: ровно этот механизм виден в сессиях этой вики (директория памяти с файлами-фактами и индексом, которые агент ведёт сам). Он не заменяет `CLAUDE.md` и тем более wiki-слой: память копит факты о пользователе и работе, вики — курируемое знание с проверкой на входе (см. [[persistent-wiki-pattern]], [[claude-memory-tool]]).
+Отдельный сюжет — **auto-memory**: ровно этот механизм виден в сессиях этой вики (директория памяти с файлами-фактами и индексом, которые агент ведёт сам). Он не заменяет `CLAUDE.md` и тем более wiki-слой: память копит факты о пользователе и работе, вики — курируемое знание с проверкой на входе (см. [[persistent-wiki-pattern]], [[claude-memory-tool]]). Механику (формат, область видимости, конфликт с `CLAUDE.md`), которую эта статья не раскрывает, закрывает официальная документация Claude Code — см. [[claude-code-memory-docs]].
 
 ## Источники
 
@@ -53,4 +53,4 @@
 
 ## Связи
 
-[[claude-code]] · [[claude-skills]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-memory-tool]] · [[claude-code-practices]] · [[claude-opus-5-launch]] · [[humanizer-ru-skill-refactor]]
+[[claude-code]] · [[claude-skills]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-memory-tool]] · [[claude-code-practices]] · [[claude-opus-5-launch]] · [[humanizer-ru-skill-refactor]] · [[claude-code-memory-docs]]
