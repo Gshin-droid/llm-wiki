@@ -5,6 +5,10 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-01] ingest | Тихо — ничего не прошло порог качества
+
+Плановый прогон поиска свежего практического материала (Claude Code / Claude API / агенты / LLM-инструменты / автоматизация). Окно узкое — сутки с прошлой записи лога (07-31). Проверено по первоисточникам: официальный weekly dev digest Claude Code (`code.claude.com/docs/en/whats-new`, последняя запись — Week 29, без свежее); `CHANGELOG.md` репозитория `anthropics/claude-code` (топ — v2.1.220, "bug fixes and reliability improvements", без нового практического содержания против уже разобранного v2.1.219); `platform.claude.com/docs/en/release-notes/overview` (все релевантные записи датированы 24.07.2026 и раньше — Admin API user management, mid-conversation system messages, advisor tool `max_tokens`, ретайр Opus 4.1 — всё старше последней записи лога, часть уже отражена в [[claude-opus-5-launch]]); официальный блог MCP (та же финальная спецификация 2026-07-28, уже разобрана). Дополнительно проверены сторонние блоги/видео про Dynamic Workflows и субагентов (alexop.dev, aibuilderclub.com и т.п.) — по содержанию SEO-пересказ уже разобранной темы на меньшей глубине, чем [[claude-code-dynamic-workflows-docs]] и [[claude-code-migration-case-studies-2026-07]], порог не пройден по правилу «не пересказ того, что уже есть на большей глубине». Решение спорным не было — узкое окно и отсутствие первоисточников снимают выбор. `wiki/gaps-backlog.md` не менялся, новых пунктов не добавлено.
+
 ## [2026-07-30] lint | Закрытие пробелов gaps-backlog: формат `.skill` и тарифы Abacus AI
 
 Ежедневный процесс закрытия пробелов, оба открытых пункта бэклога.
