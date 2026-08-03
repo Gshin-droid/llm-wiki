@@ -99,6 +99,7 @@ _(отбирает автономный разведчик практическ�
 - [[anthropic-context-engineering-claude-5]] — первоисточник Anthropic: >80% системного промпта Claude Code вырезано без потери качества на evals; прямо задевает личный `~/.claude/CLAUDE.md` и скиллы пользователя — что оставить, что сжать в принцип, что увезти в скилл (разбор кандидатов — [[claude-code-practices]], п. 6а)
 - [[claude-code-migration-case-studies-2026-07]] — Dynamic Workflows на реальном масштабе: Bun (Zig→Rust, ~1M строк за 11 дней), Klarna (security-аудит), CyberAgent (hardening) — воспроизводимая 4-фазная архитектура + честная критика (adversarial review агентами ≠ человеческое ревью)
 - [[mcp-2026-07-28-spec-final]] — финальный релиз крупнейшей ревизии MCP вышел точно в срок (28.07.2026): stateless core подтверждён, плюс новое против RC — Multi Round-Trip Requests, header-based routing, кэшируемые list-ответы, CIMD вместо Dynamic Client Registration; закрывает открытый статус на [[mcp-model-context-protocol]], актуально для уже установленных MCP-серверов вики (Context7)
+- [[claude-code-routines-docs]] — официальная документация Cloud Routines и `/loop`/scheduled tasks: точная таблица трёх способов расписания, self-paced `/loop` через `ScheduleWakeup`, `loop.md`, и впервые названный/датированный (v2.1.214) security-механизм триггера рутины как не-живого подтверждения пользователя — дословно совпадает с тем, что видно в системных инструкциях автономных прогонов этой самой вики
 
 ### Все источники
 - [[claude-code-memory-docs]] — официальная документация Claude Code: auto-memory (формат `MEMORY.md`+топики, `~/.claude/projects/<project>/memory/`, machine-local per-repo, лимит 200 строк/25KB) против `CLAUDE.md`, конфликт не разрешается формально, независима от memory tool в API
@@ -151,6 +152,7 @@ _(отбирает автономный разведчик практическ�
 - [[bohomolov-skill-architecture]] — 4 апгрейда однофайлового скилла до многофайловой структуры; архитектурная часть подтверждена офдокой, «пересобирать скилл ради одного файла» устарело, eval-цикла и description-триггера в методе нет
 - [[mcp-2026-07-28-spec-final]] — официальный блог MCP: финальная спецификация 2026-07-28, MRTR, header-based routing, кэшируемые list-ответы, точный список stable/deprecated, SDK-поддержка по языкам
 - [[geo-ai-search-official-docs]] — официальная документация OpenAI/Perplexity/Google/Gemini о том, как контент попадает в ответы ИИ-поисковиков: robots.txt как реальный переключатель, текстовые краулеры против нативной работы Gemini с видео
+- [[claude-code-routines-docs]] — официальная документация Cloud Routines и `/loop`/scheduled tasks: таблица трёх способов расписания, self-paced `/loop` через `ScheduleWakeup`, `loop.md`, security-механизм `<routine-fire-payload>`/фрейминга триггера (v2.1.214)
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_
