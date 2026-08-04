@@ -107,5 +107,11 @@
 - **9 категорий скиллов, Gotchas-паттерн** ([[habr-claude-skills-practical-guide]]) — справочный материал, не правило.
 - ~35 правил остались на уровне concept-страниц — сознательный строгий отбор: длинный список правил не соблюдается и съедает контекст каждой сессии.
 
+## 8. Верификация автоматизированных находок [GLOBAL]
+
+Источник: прогон разведчика 2026-08-04, [[claude-code-changelog-snapshot-2026-08-04]].
+
+14. **Для changelog/release-notes требовать verbatim-цитату первоисточника, не доверять первой сводке инструмента.** *Почему: WebFetch на суммаризирующей модели, спрошенный про версию 2.1.221 репозитория `anthropics/claude-code`, приписал ей два пункта (лимиты параллелизма/per-session субагентов), которые на деле относятся к более ранним версиям 2.1.217/2.1.212 — модель смешала контекст соседних версий при пересказе. Расхождение поймано только повторным запросом точной цитаты из `raw.githubusercontent.com/.../CHANGELOG.md`.* Практическое следствие: при разборе changelog/release-notes всегда просить точную цитату конкретной версии/даты, отдельно от «перескажи последние обновления» — общая сводка рискует смешать версии.
+
 ## Связи
-[[context-engineering-claude-5]] · [[moi-pravila]] · [[pre-project-architecture-checklist]] · [[long-running-agent-harness]] · [[agent-teams]] · [[ai-security-by-design]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-code]]
+[[context-engineering-claude-5]] · [[moi-pravila]] · [[pre-project-architecture-checklist]] · [[long-running-agent-harness]] · [[agent-teams]] · [[ai-security-by-design]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-code]] · [[claude-code-changelog-snapshot-2026-08-04]]

@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-04] ingest | Claude Code changelog v2.1.220–2.1.221
+
+Плановый прогон поиска свежего практического материала. Окно — сутки с прошлой записи лога (08-03). Официальный `CHANGELOG.md` `anthropics/claude-code` вышел с новой версией сегодня же (2.1.221, плюс 2.1.220 без деталей) — единственный кандидат, прошедший порог качества за узкое окно; проверены также `code.claude.com/docs/en/whats-new` (без новой недельной записи) и `platform.claude.com/docs/en/release-notes/overview` (последняя запись 01.08, Dreams+Opus 5 — не практический контент, отброшено).
+
+**Ключевая находка:** уточнение git-поведения фоновых сессий — *"open a draft PR only when the task calls for one, follow your CLAUDE.md git instructions, and always end by reporting where the work lives"*. Прежняя запись вики (07-09) звучала так, будто draft PR открывается всегда; уточнено в [[claude-code]]. Официальная формулировка теперь прямо ближе к практике этой самой вики (раздел CLAUDE.md «Автономные рутины: инкрементальный коммит и пуш»).
+
+**Побочная находка процесса, зафиксирована как практика.** Первый заход через WebFetch (суммаризирующая модель) на `code.claude.com/docs/en/changelog` ошибочно приписал версии 2.1.221 лимиты параллелизма/per-session субагентов — на деле относящиеся к более ранним 2.1.217/2.1.212. Поймано сверкой с verbatim-текстом `raw.githubusercontent.com/.../CHANGELOG.md` напрямую, вторым отдельным запросом. Добавлен пункт 8/14 в [[claude-code-practices]]: для changelog/release-notes всегда требовать точную цитату, не доверять первой сводке инструмента. Спорным решение не было — расхождение обнаружено и устранено в рамках того же прогона, до записи в вики.
+
+Создано: `raw/sources/claude-code-changelog-2026-08-04.md`, `wiki/sources/claude-code-changelog-snapshot-2026-08-04.md`. Обновлены: [[claude-code]] (git-поведение фоновых сессий, `sandbox` `mode: "mask"`, `prompt-audit`, Focus view), [[claude-code-practices]] (новый п. 14), `wiki/index.md`.
+
 ## [2026-08-03] lint | Допроверка дневного лимита Cloud Routines (без изменений) + углубление [[persistent-wiki-pattern]]
 
 Ежедневный процесс закрытия пробелов. Бэклог пуст — приоритетный fallback.
