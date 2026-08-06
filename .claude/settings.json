@@ -34,13 +34,26 @@
       "Read",
       "Glob",
       "Grep",
+      "Read(//c/jarvis/**)",
       "Bash(git status*)",
       "Bash(git diff*)",
       "Bash(git log*)",
+      "Bash(git pull *)",
       "Bash(npm test*)",
       "Bash(npm run test*)",
       "Bash(pytest*)",
-      "Bash(python -m pytest*)"
+      "Bash(python -m pytest*)",
+      "Bash(python .claude/skills/wiki-ingest/scripts/ingest.py *)",
+      "Bash(python .claude/skills/wiki-lint/scripts/lint_wiki.py *)",
+      "WebSearch",
+      "WebFetch(domain:context7.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:claude.ai)",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_find",
+      "mcp__plugin_playwright_playwright__browser_hover",
+      "mcp__plugin_playwright_playwright__browser_resize"
     ],
     "ask": [
       "Bash(npm install*)",
@@ -52,6 +65,9 @@
       "Bash(rm -rf *)",
       "Bash(curl *)",
       "Bash(wget *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\swadmin\\.claude\\projects\\c--jarvis\\memory"
     ]
   }
 }
