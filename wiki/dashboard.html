@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-08-05 (1 запись) · след. запуск 06:00 (06.08)</div>
+      <div class="mono">обновлено 2026-08-06 (1 запись) · след. запуск 06:00 (07.08)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">135</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">46</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">30</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">52</span><span class="l">sources</span></div>
@@ -358,16 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-05</span>
+      <span class="section-note">1 запись · 2026-08-06</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка exa (тип поиска instant) + claude-agent-sdk (биллинг)</div>
-        <div class="news-body">Обе страницы вышли из 3-дневного кулдауна ровно сегодня. У exa найден пропуск прошлой допроверки — шестое значение параметра типа поиска <code>instant</code> (sub-200ms, запущен ещё 13.02.2026), подтверждено тремя независимыми источниками (официальный блог Exa, аккаунт @ExaAILabs в X, техножурналистика MarkTechPost/UBOS). У claude-agent-sdk статус паузы биллинга с 15.06.2026 без изменений, но источник усилен независимым изданием The New Stack.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md">exa</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md">claude-agent-sdk</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
+        <div class="news-title">Углубление ingest-query-lint по первоисточнику (гист Карпати)</div>
+        <div class="news-body">Бэклог пуст, обе страницы допроверки в кулдауне — очередь дошла до старейшего концепта вики. Две находки по уже имеющимся первоисточникам: оригинальный гист Карпати не ограничивает форму ответа Query markdown-страницей (таблица, слайд-дек, график, canvas) — деталь осела на странице источника и не дошла до концепта; раздел «Применение в этой вики» всё ещё описывал три операции, без Practice и без разделения Lint на еженедельный механический и ежедневный содержательный ритм.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md">ingest-query-lint</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-llm-wiki-gist.md">karpathy-llm-wiki-gist</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
       </article>
 
     </div>
