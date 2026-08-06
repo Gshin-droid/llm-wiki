@@ -56,7 +56,7 @@ _(люди, компании, инструменты)_
 _(идеи, модели, принципы)_
 
 - [[persistent-wiki-pattern]] — вики вместо RAG: накопление знаний вместо повторного извлечения (+ ограничения на масштабе)
-- [[ingest-query-lint]] — три базовые операции ведения вики
+- [[ingest-query-lint]] — пять операций ведения вики (Ingest/Query/Project/Practice/Lint); Query не ограничен markdown-формой по первоисточнику, Lint разделён на еженедельный механический и ежедневный содержательный ритм
 - [[llm-coding-guidelines]] — четыре принципа Карпати против типичных ошибок LLM в коде
 - [[hybrid-memory-architecture]] — 4-элементная архитектура: CLAUDE.md + Obsidian + Pinecone + NotebookLM
 - [[one-vault-one-project-rule]] — не смешивать темы в одном vault'е (открытый вопрос для этой вики)
