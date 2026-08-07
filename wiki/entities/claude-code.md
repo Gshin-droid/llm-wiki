@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-04
+**Актуально на:** 2026-08-07
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -152,3 +152,10 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **`prompt-audit` — новая subcommand скилла `claude-api`**: аудит промптов и описаний инструментов на паттерны, написанные под старые модели (актуально после смены поведения Opus 5 — избыточные инструкции вида "добавь шаг верификации", см. выше раздел "Модели и Effort").
 - **Focus view (VSCode)** — переключатель в чат-меню, прячет активность инструментов за раскрываемым саммари хода с live-индикатором работающего инструмента (`Ctrl+Alt+F`).
 - Рутинные фиксы: bypass permission-проверки Bash через zsh `[[ ]]`-условия, PowerShell-пути с кавычками, `/fork` создаёт свой отдельный worktree.
+
+### Обновление 2.1.222–2.1.223 (2026-08-07, [[claude-code-changelog-snapshot-2026-08-07]])
+- **Ultraplan удалён** (`"Removed ultraplan feature"`, 2.1.222) — экспериментальный режим (draft план в облаке → правка в веб-редакторе → запуск удалённо/локально, early preview с апреля 2026, Week 15) убран без объяснения причины в changelog; отдельной страницы в вики для него не заводилось.
+- **Побег из сэндбокса Dynamic Workflows через `import()`** (2.1.223) — workflow-скрипты могли динамическим `import()` выполнить код за пределами заявленной песочницы ("No filesystem or Node.js API access"). Разобрано подробно в [[dynamic-workflows]] и [[ai-security-by-design]].
+- **Продолжение серии bypass-фиксов permission-анализатора**: worktree-изолированные сессии/субагенты могли выполнять деструктивные git-команды несмотря на изоляцию (2.1.222); `PreToolUse` auto-allow хуки обходили ограничения инструментов в фоновых агентских задачах (2.1.222); Bash-команда могла спрятать часть себя от анализатора, в т.ч. через табы/невидимый Unicode (2.1.223); `bypassPermissions` в frontmatter агента игнорировал org-политику запрета этого режима (2.1.223). Полный разбор и связь с более ранними находками того же класса — [[ai-security-by-design]].
+- **Auto mode теперь проверяет `SendMessage`** (2.1.222) — межагентные сообщения (используются, например, в Agent Teams и при возобновлении фоновых воркеров) впервые попали под тот же classifier, что уже защищает `Agent`-инструмент от indirect prompt injection.
+- Малое: `/teleport`-подсказка в облачных сессиях, `owner/*`-wildcard в `strictKnownMarketplaces`/`blockedMarketplaces`, `/review` — алиас `/code-review`, повторный `/code-review` без effort переиспользует последний введённый уровень.

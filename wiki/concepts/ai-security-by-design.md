@@ -62,8 +62,20 @@ Bun портировал ~1M строк Zig→Rust через [[dynamic-workflow
 
 Вывод, общий для обоих кейсов и дополняющий раздел «Память как attack surface» выше: расширения агента (скиллы, MCP-серверы, коннекторы) требуют **двух независимых проверок доверия** — к автору расширения и к содержимому, которое расширение приносит. Вторая проверка обычно не делается вовсе. Практическое правило — п. 12 в [[claude-code-practices]]; ограничение ущерба — `deny`-список на `.env`/ключи, применённый в `.claude/settings.json` этой вики.
 
+## Дыра в песочнице Dynamic Workflows и продолжение серии bypass-фиксов (2026-08-07, [[claude-code-changelog-snapshot-2026-08-07]])
+
+**Побег из сэндбокса через `import()`.** [[dynamic-workflows|Dynamic Workflows]] декларирует "простоту" границы доверия — скрипт координирует, но не имеет прямого доступа к файловой системе/shell, только через агентов. Changelog v2.1.223: *"Fixed workflow scripts being able to use dynamic `import()` to run code outside the workflow sandbox"* — сама декларация обходилась динамическим импортом, то есть лимиты на число агентов (принцип 6, безопасность по умолчанию) стояли поверх границы, которая не держала. Показательный пример того, что "простота — враг безопасности" (принцип 4) применим и к собственной реализации песочницы, не только к внешним зависимостям вроде log4j.
+
+**Ещё три находки того же класса, что и серия 07-19/07-25 выше** (одна и та же категория механизма — анализ Bash-команды/permission-правил перед выполнением — продолжает давать течь месяцами):
+- **Worktree-изоляция не держала git** (2.1.222): `isolation: 'worktree'`-сессии и их субагенты могли выполнять деструктивные git-команды несмотря на заявленную изоляцию.
+- **`PreToolUse` auto-allow bypass в фоновых задачах** (2.1.222): auto-allow правила хуков обходили ограничения инструментов конкретно в background agent tasks — сценарий, прямо релевантный автономным прогонам этой вики.
+- **`bypassPermissions` игнорировал org-политику отключения** (2.1.223): режим в frontmatter агента не уважал организационный запрет.
+- **Bash прячет часть себя от анализатора** (2.1.223): новый обфускационный вектор — табы/невидимый Unicode внутри команды, продолжение находок 07-19 (zsh `[[ ]]`) и 07-25 (длинные команды, `help`/`man`).
+
+**Расширение защиты на межагентный канал (2.1.222).** *"Improved auto mode safety: messages sent to other agent sessions via `SendMessage` are now evaluated"* — тот же classifier, что с 2.1.210 защищает `Agent`-инструмент от indirect prompt injection, теперь проверяет и содержимое сообщений между агентскими сессиями (`SendMessage`, используется в Agent Teams и при возобновлении фоновых воркеров). До этого фикса межагентный канал связи был непроверенным путём для той же атаки.
+
 ## Источник
-[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]]
+[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]]
 
 ## Связи
 Пересекается с практикой вайбкодинга ([[vibecoding-full-workflow]], [[supabase]]) — секреты на бэкенде, а не на фронтенде — это прямое применение принципа минимизации поверхности атаки. Также напрямую применимо к [[persistent-wiki-pattern]] и операции Ingest.

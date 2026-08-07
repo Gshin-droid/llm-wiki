@@ -101,6 +101,7 @@ _(отбирает автономный разведчик практическ�
 - [[mcp-2026-07-28-spec-final]] — финальный релиз крупнейшей ревизии MCP вышел точно в срок (28.07.2026): stateless core подтверждён, плюс новое против RC — Multi Round-Trip Requests, header-based routing, кэшируемые list-ответы, CIMD вместо Dynamic Client Registration; закрывает открытый статус на [[mcp-model-context-protocol]], актуально для уже установленных MCP-серверов вики (Context7)
 - [[claude-code-routines-docs]] — официальная документация Cloud Routines и `/loop`/scheduled tasks: точная таблица трёх способов расписания, self-paced `/loop` через `ScheduleWakeup`, `loop.md`, и впервые названный/датированный (v2.1.214) security-механизм триггера рутины как не-живого подтверждения пользователя — дословно совпадает с тем, что видно в системных инструкциях автономных прогонов этой самой вики
 - [[claude-code-changelog-snapshot-2026-08-04]] — changelog v2.1.221 уточняет git-поведение фоновых сессий: draft PR только когда задача этого требует, следование git-инструкциям `CLAUDE.md` — официальная параллель дисциплине «инкрементальный коммит и пуш» этой самой вики; плюс `sandbox` `mode: "mask"` для credential-файлов и `prompt-audit` для скилла `claude-api`
+- [[claude-code-changelog-snapshot-2026-08-07]] — changelog v2.1.222–2.1.223: побег из сэндбокса Dynamic Workflows через `import()` (прямо касается механизма, которым эта вики оркеструет пакетные прогоны), Ultraplan удалён, продолжение серии bypass-фиксов permission-анализатора (worktree-изоляция не держала git, `PreToolUse` auto-allow bypass в фоновых задачах), auto mode теперь проверяет и `SendMessage`
 
 ### Все источники
 - [[claude-code-memory-docs]] — официальная документация Claude Code: auto-memory (формат `MEMORY.md`+топики, `~/.claude/projects/<project>/memory/`, machine-local per-repo, лимит 200 строк/25KB) против `CLAUDE.md`, конфликт не разрешается формально, независима от memory tool в API
@@ -155,6 +156,7 @@ _(отбирает автономный разведчик практическ�
 - [[geo-ai-search-official-docs]] — официальная документация OpenAI/Perplexity/Google/Gemini о том, как контент попадает в ответы ИИ-поисковиков: robots.txt как реальный переключатель, текстовые краулеры против нативной работы Gemini с видео
 - [[claude-code-routines-docs]] — официальная документация Cloud Routines и `/loop`/scheduled tasks: таблица трёх способов расписания, self-paced `/loop` через `ScheduleWakeup`, `loop.md`, security-механизм `<routine-fire-payload>`/фрейминга триггера (v2.1.214)
 - [[claude-code-changelog-snapshot-2026-08-04]] — снапшот changelog Claude Code (в. 2.1.220–2.1.221): git-поведение фоновых сессий уточнено (draft PR не всегда), `sandbox` `mode: "mask"` для credential-файлов, `prompt-audit` для скилла `claude-api`, Focus view (VSCode)
+- [[claude-code-changelog-snapshot-2026-08-07]] — снапшот changelog Claude Code (в. 2.1.222–2.1.223): побег из сэндбокса Dynamic Workflows через `import()`, удаление Ultraplan, продолжение серии bypass-фиксов permission-анализатора (worktree/git, `PreToolUse` auto-allow, обфускация Bash-команд), auto mode проверяет `SendMessage`
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_
