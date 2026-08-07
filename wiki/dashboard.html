@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-08-07 (1 запись) · след. запуск 06:00 (08.08)</div>
+      <div class="mono">обновлено 2026-08-07 (2 записи) · след. запуск 06:00 (08.08)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-07</span>
+      <span class="section-note">2 записи · 2026-08-07</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Углубление claude-watch-skill (закрытие пробела gaps-backlog)</div>
+        <div class="news-body">Бэклог пуст, допроверка claude-managed-agents по официальным release notes ничего нового не дала — переход к шагу 3 fallback. Официальная документация Claude API по vision подтвердила: Claude принимает только статичные изображения, видео как модальность не поддерживается — это объясняет, зачем технике Whisper+yt-dlp+FFmpeg вообще нужен обходной путь.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md">claude-watch-skill</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -450,7 +457,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
