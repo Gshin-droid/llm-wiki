@@ -8,9 +8,12 @@
 
 Также его наблюдения о типичных ошибках LLM при написании кода легли в основу [[llm-coding-guidelines|четырёх принципов]], дистиллированных в репозитории [[karpathy-skills-claude-md]] (188.8k звёзд на GitHub).
 
+## Границы его схемы памяти (2026-08-07, [[berezhnitsky-agent-memory-lies]])
+Первая содержательная критика гиста в этой вики — не опровержение, а указание условия, при котором схема работает. Карпати называет сырьё источником правды, но рабочим слоем делает вики: страницы правятся инкрементно поверх себя, удачный ответ подшивается новой страницей, знание «компаундится». Это держится, пока писатель один и он же единственный читатель — тогда порча пересказа видна тому же человеку, который её создал. Со второго писателя, по аргументу источника, схема должна перевернуться: каноном становится структура с якорями, а проза — пересобираемым кэшом. Разбор — [[agent-memory-five-questions]], вопрос 5; что из этого применено к этой вики — [[persistent-wiki-pattern]].
+
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[mastodont-claude-obsidian-video]], [[karpathy-llm-wiki-gist]]
-- Концепты: [[persistent-wiki-pattern]], [[llm-coding-guidelines]], [[hybrid-memory-architecture]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[mastodont-claude-obsidian-video]], [[karpathy-llm-wiki-gist]], [[berezhnitsky-agent-memory-lies]]
+- Концепты: [[persistent-wiki-pattern]], [[llm-coding-guidelines]], [[hybrid-memory-architecture]], [[agent-memory-five-questions]]
 
 ## Закрытый вопрос
 ~~Оригинальный gist Карпати не был загружен напрямую~~ — резолвлено 2026-07-07, см. [[karpathy-llm-wiki-gist]] (полный текст, апрель 2026, `gist.github.com/karpathy/442a6bf555914893e9891c11519de94f`).
