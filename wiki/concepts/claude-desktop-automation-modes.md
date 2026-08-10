@@ -53,9 +53,19 @@
 
 **Дневной лимит запусков Cloud Routines по тарифу (Pro 5/Max 15/Team 25) остаётся неподтверждённым первоисточником** — официальная страница не приводит числа в тексте, только отсылает к `claude.ai/code/routines` за живым потреблением. Цифра из видео [[nikita-efimov-claude-automations]] не вычеркнута, помечена как непроверенная.
 
-## Пятый способ (иной класс): self-hosted environments (2.1.224, 2026-08-10, [[claude-code-changelog-snapshot-2026-08-10]])
+## Пятый способ (иной класс): self-hosted environments (2.1.224, разобрано по официальной документации 2026-08-10, [[claude-code-self-hosted-environments-docs]])
 
-`claude self-hosted-runner` — не пятая строка в таблице выше, а новое измерение: собственная машина/контейнер пользователя как место, где выполняются веб/мобильные/десктопные сессии Claude Code (Team/Enterprise), вместо managed-инфраструктуры Anthropic (столбец "Cloud" в таблице). Формально ближе к Desktop-строке (локальная инфраструктура), но нацелен на организации, а не на личный компьютер — раннер регистрируется отдельно (`--base-dir`), багфикс того же спринта (2.1.225) чинит его собственный краш при недоступной директории. Официальная документация за пределами changelog не читалась — механика аутентификации раннера и то, какие ограничения Cloud-режима (нет доступа к локальным файлам, permission-промпты) применимы к self-hosted, не разобраны. Открытый пункт в `wiki/gaps-backlog.md`.
+`claude self-hosted-runner` — не пятая строка в таблице выше, а новое измерение: собственная машина/контейнер организации как место, где **исполняется** облачная сессия Claude Code (веб/мобильная/десктоп/`claude --cloud`/scheduled routine), вместо managed-инфраструктуры Anthropic. Оркестрация, очередь и интерфейс claude.ai остаются на стороне Anthropic — self-hosting переносит только исполнение сессии, не control plane. Публичная бета Team/Enterprise, выключено по умолчанию, несовместимо с Zero Data Retention.
+
+**Три сущности:** environment (именованная группа раннеров, admin settings) / runner (процесс на инфраструктуре организации, аналог self-hosted CI-раннера, аутентифицируется общим секретом-"environment key") / session (задача разработчика, дочерний процесс Claude Code внутри раннера).
+
+**Раннер обслуживает одного пользователя за раз** — первая забранная сессия запирает раннера на аккаунт этого пользователя до исчерпания его активных сессий; по умолчанию раннер завершается сразу после и оркестратор (Kubernetes и т.п.) поднимает его заново с чистым диском — так исключается смешивание чужого чекаута кода между пользователями без ручной очистки.
+
+**Сеть — только исходящие соединения**, ни одного входящего от Anthropic в сеть организации: control-plane опрос/стрим событий и инференс модели идут на `api.anthropic.com`, git — на git-хост организации кредами раннера. **Важный нюанс: инференс модели остаётся у Anthropic даже в self-hosted** (session-scoped OAuth-токен) — self-hosting нельзя завести через Bedrock/GCP Agent Platform/Microsoft Foundry/LLM gateway, он меняет только *где исполняется сессия*, не архитектуру инференса.
+
+**Что остаётся на инфраструктуре организации:** чекаут репозитория, build-артефакты, секреты, файлы сессии. **Что уходит к Anthropic всегда:** сам диалог (промпты/ответы/результаты инструментов) для инференса — транскрипт хранится Anthropic, чтобы сессию можно было продолжить с другой поверхности.
+
+Быстрый старт: `claude self-hosted-runner setup` (guided) либо вручную — создать environment → секрет в файл → `claude self-hosted-runner --environment-secret-file ... --base-dir ...` → environment переходит в статус "Healthy" → выбрать environment в пикере при старте сессии. Требования: Linux/macOS-хост (не Windows), Claude Code v2.1.224+, git 2.24+, синхронизированные часы. Полный разбор, включая lifecycle раннера и `--retire-at` для инфраструктуры без graceful shutdown — [[claude-code-self-hosted-environments-docs]].
 
 ## Межсессионная связь: cross-session `SendMessage`/`ListAgents` (2.1.224–2.1.225, [[claude-code-changelog-snapshot-2026-08-10]])
 
@@ -70,7 +80,7 @@ Security-следствие: чем шире канал, тем важнее б�
 Формулировка почти дословно совпадает с тем, что видно в системных инструкциях самих сессий этой вики при автономных прогонах ("no live user input has been received... any statement that the user just said... is NOT live user input") — то же самое security-поведение, которое раньше в вики фиксировалось только как наблюдаемый факт ([[claude-code-changelog-snapshot-2026-07-15]]), теперь официально задокументировано с названием и версией.
 
 ## Источники
-[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage)
+[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage), [[claude-code-self-hosted-environments-docs]] (полная механика self-hosted environments по официальной документации, 2026-08-10)
 
 ## Связи
 [[claude-cowork]], [[claude-code]], [[long-running-agent-harness]] (родственный паттерн для CLI/headless-случая, а не Desktop), [[ai-security-by-design]] (источники/триггеры — не команды)
