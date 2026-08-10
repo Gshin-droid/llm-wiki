@@ -6,7 +6,7 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "echo \"[SessionStart] syncing wiki from origin...\"; git -C \"C:\\my_projects\\jarvis\" pull 2>&1 || echo \"[SessionStart] git pull failed (offline or conflict) - continuing without blocking\"",
+            "command": "echo \"[SessionStart] syncing wiki from origin...\"; git -C \"${CLAUDE_PROJECT_DIR:-.}\" pull 2>&1 || echo \"[SessionStart] git pull failed (offline or conflict) - continuing without blocking\"",
             "timeout": 30,
             "statusMessage": "Синхронизация вики с GitHub..."
           }
@@ -65,9 +65,6 @@
       "Bash(rm -rf *)",
       "Bash(curl *)",
       "Bash(wget *)"
-    ],
-    "additionalDirectories": [
-      "C:\\Users\\swadmin\\.claude\\projects\\c--my-projects-jarvis\\memory"
     ]
   }
 }
