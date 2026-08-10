@@ -26,6 +26,7 @@ _(люди, компании, инструменты)_
 - [[appbusters]] — школа вайбкодинга
 - [[qaisar-kurmangaliev]] — автор полного курса по Claude
 - [[neiroprosveshchenie]] — автор техники "просмотра" видео через Claude
+- [[memora]] — MCP-сервер памяти для агентов: цепочки замещения, детерминированные выжимки с якорями на исходные записи; разобран как чужая реализация нашей же рамки, ставить не планируется
 - [[mem0]] — memory-фреймворк для агентов на API
 - [[zep-graphiti]] — temporal knowledge graph для памяти
 - [[letta]] — memory-as-OS фреймворк (бывший MemGPT); допроверка 08-10: флагман сместился в coding-агента с памятью (Letta Code)
@@ -109,6 +110,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[memora-agent-memory-mcp]] — репозиторий Memora как первоисточник: разбор аварии «эмбеддинги не считались месяцами, а система отчитывалась здоровой», принципы против петли пересказа, цепочки замещения; плюс найденное противоречие про эндпоинт эмбеддингов OpenRouter
 - [[claude-code-self-hosted-environments-docs]] — официальная документация Claude Code: self-hosted environments (concept + quickstart), environment/runner/session, аутентификация раннера общим секретом, network paths (только исходящие), lifecycle раннера (запирается на одного пользователя, `--drain-grace-sec`/`--retire-at`), быстрый старт с командами
 - [[claude-code-changelog-snapshot-2026-08-10]] — официальный changelog Claude Code (в. 2.1.224–2.1.226): self-hosted environments (`claude self-hosted-runner`, Team/Enterprise), cross-session `SendMessage`/`ListAgents` расширен на весь парк машин пользователя, расширение маскирования кредов сэндбокса (JWT/AWS SigV4), лимит 200 субагентов на сессию убран (устарел прежний факт)
 - [[minja-memory-injection-attack]] — официальный код атаки MINJA (NeurIPS 2025, `github.com/dsh3n77/MINJA`): indication prompt + progressive shortening на трёх агентах (RAP/EHR/QA), реальные промпт-шаблоны атаки; полный текст статьи заблокирован сетевым прокси, точные ISR/ASR и абляция «пустая vs заполненная память» не подтверждены
