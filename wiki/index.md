@@ -28,7 +28,7 @@ _(люди, компании, инструменты)_
 - [[neiroprosveshchenie]] — автор техники "просмотра" видео через Claude
 - [[mem0]] — memory-фреймворк для агентов на API
 - [[zep-graphiti]] — temporal knowledge graph для памяти
-- [[letta]] — memory-as-OS фреймворк (бывший MemGPT)
+- [[letta]] — memory-as-OS фреймворк (бывший MemGPT); допроверка 08-10: флагман сместился в coding-агента с памятью (Letta Code)
 - [[graphify]] — локальный граф архитектуры кода
 - [[maxim-bashkardinov]] — автор гайда Obsidian+Claude через MCP для документации проекта
 - [[shubin-danila]] — автор обзора ландшафта LLM-памяти
