@@ -44,6 +44,9 @@
 ## Ограничения
 Одна команда на сессию; нет вложенных команд (тиммейт не спавнит тиммейтов); lead фиксирован; in-process тиммейт не запускает фоновых субагентов; split panes только tmux/iTerm2 (не VS Code/Windows Terminal — дефолтный in-process режим работает везде).
 
+## Не путать с cross-session `SendMessage` (2.1.224, [[claude-code-changelog-snapshot-2026-08-10]])
+Mailbox тиммейтов выше — связь внутри одной команды одной сессии. С 2.1.224 `SendMessage`/`ListAgents` — отдельный, более широкий механизм: любая сессия Claude Code может написать любой другой сессии на любой из машин пользователя, вне контекста team. Разобран в [[claude-desktop-automation-modes]].
+
 ## Связи
 - Источник: [[claude-code-agent-teams-docs]]
 - Сущность: [[claude-code]]

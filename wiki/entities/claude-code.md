@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-07
+**Актуально на:** 2026-08-10
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -57,6 +57,8 @@ Haiku — простые задачи; Sonnet — "золотая середин
 
 **`sandbox.filesystem.disabled` (2.1.216, 2026-07-22, [[claude-code-changelog-snapshot-2026-07-22]]):** сэндбокс состоит из двух независимых слоёв — файловой и сетевой изоляции; эта настройка отключает только файловый слой, оставляя сетевой в силе. Полезно для тулчейнов (`kubectl`/`terraform`), которым нужен широкий доступ к диску, но не нужен произвольный сетевой доступ. Официальный компромисс: с отключённой файловой изоляцией сэндбоксированная команда может расширить себе доступ на будущее, переписав shell rc-файлы или файлы в `$PATH` — включать только для доверенных нагрузок; из настроек проекта включить нельзя, только user/managed.
 
+**Расширение маскирования кредов (2.1.224, 2026-08-10, [[claude-code-changelog-snapshot-2026-08-10]]):** к `mode: "mask"` добавились `extract`/`onExtractNoMatch` (точечное маскирование по regex внутри структурированного env-значения, не всего секрета целиком), `decode: "jwt"` с `maskClaims` (маскирование конкретных claims внутри JWT) и `awsPairs`/`sigv4` (сэндбокс сам переподписывает AWS SigV4-запросы). Требует `network.tlsTerminate`, та же граница, что у `sandbox.filesystem.disabled` — доступно только из user/managed/`--settings`, не из проектного `.claude/settings.json`.
+
 **`sandbox.network.strictAllowlist` (2.1.219, 2026-07-25, [[claude-opus-5-launch]]):** сетевой аналог — блокирует недоверенные хосты жёстко, без диалогового запроса подтверждения (раньше в части случаев сэндбокс мог спросить разрешение на новый хост вместо отказа). Дополняет `sandbox.filesystem.disabled` — теперь оба слоя сэндбокса имеют отдельную точечную настройку.
 
 **Обновление терминологии (2026-07-09, [[claude-code-changelog-snapshot-2026-07]]):** режим "по умолчанию спрашивать разрешение" переименован в UI из "default" в **"Manual"** (значок ⏸ в статус-строке при включённом Manual mode) — сути не меняет, только название. Auto mode (автономный режим без ручных подтверждений) параллельно ужесточён: блокирует деструктивные git/инфраструктурные команды и правку файлов транскрипта сессии, спрашивает перед `rm -rf` на неразрешённых переменных.
@@ -64,6 +66,8 @@ Haiku — простые задачи; Sonnet — "золотая середин
 **Применено в этой вики** (2026-07-08): `.claude/settings.json` содержит `deny` на чтение/правку `.env`/секретов (`*.pem`, `*.key`, `id_rsa` и т.п.), `allow` на чтение файлов/git-статус-diff-log/запуск тестов, `ask` на установку-удаление пакетов, `rm`, `curl`/`wget`.
 
 **✅ Подтверждено практикой на 2026-07-08 (после перезапуска сессии).** Повторный тест всех трёх категорий правил дал ожидаемый результат: `deny` заблокировал чтение `.env` без запроса, `allow` пропустил `git status` без запроса, `ask` вывел запрос на подтверждение перед `rm -rf`. Гипотеза из предыдущего теста подтвердилась — конфиг `settings.json` подхватывается только при старте новой сессии, "живое" редактирование в открытой сессии не действует. Подробности теста и вывод — [[jarvis-personal-wiki]].
+
+**Лимит субагентов на сессию убран (2.1.224, 2026-08-10, [[claude-code-changelog-snapshot-2026-08-10]]).** *Устарело:* ниже и в [[ai-security-by-design]] до этой правки числился лимит 200 суммарно за сессию (`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`, действовал с 2.1.212) — changelog 2.1.224 убрал его целиком: *"long-running sessions no longer refuse new agents (concurrency and depth limits still apply)"*. В силе остаются только лимит на одновременно бегущих (20 по умолчанию) и лимит вложенности (3 уровня по умолчанию) — оба описаны ниже, не изменились.
 
 ### MCP, Skills, Subagents, Agent Teams, Workflows — когда что использовать
 - **[[mcp-model-context-protocol|MCP]]-серверы** — мост к внешним сервисам (Notion, Google Таблицы, календари, CRM) прямо из диалога, тот же механизм использует и [[claude-agent-sdk]]. `claude mcp login/logout` — аутентификация MCP-серверов из CLI без интерактивного меню.
@@ -159,3 +163,12 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **Продолжение серии bypass-фиксов permission-анализатора**: worktree-изолированные сессии/субагенты могли выполнять деструктивные git-команды несмотря на изоляцию (2.1.222); `PreToolUse` auto-allow хуки обходили ограничения инструментов в фоновых агентских задачах (2.1.222); Bash-команда могла спрятать часть себя от анализатора, в т.ч. через табы/невидимый Unicode (2.1.223); `bypassPermissions` в frontmatter агента игнорировал org-политику запрета этого режима (2.1.223). Полный разбор и связь с более ранними находками того же класса — [[ai-security-by-design]].
 - **Auto mode теперь проверяет `SendMessage`** (2.1.222) — межагентные сообщения (используются, например, в Agent Teams и при возобновлении фоновых воркеров) впервые попали под тот же classifier, что уже защищает `Agent`-инструмент от indirect prompt injection.
 - Малое: `/teleport`-подсказка в облачных сессиях, `owner/*`-wildcard в `strictKnownMarketplaces`/`blockedMarketplaces`, `/review` — алиас `/code-review`, повторный `/code-review` без effort переиспользует последний введённый уровень.
+
+### Обновление 2.1.224–2.1.226 (2026-08-10, [[claude-code-changelog-snapshot-2026-08-10]])
+- **Self-hosted environments** (2.1.224) — `claude self-hosted-runner` позволяет прогонять веб/мобильные/десктопные сессии на своей инфраструктуре (Team/Enterprise), не только на managed-инфраструктуре Anthropic. Механика раннера не разбиралась за пределами changelog — открытый пункт в `wiki/gaps-backlog.md`.
+- **Cross-session `SendMessage`/`ListAgents`** (2.1.224–2.1.225) — межагентный канал связи расширен с одной машины/сессии на весь парк машин пользователя; `ListAgents` находит сессии на других машинах, Remote Control-сессиям можно писать первым по имени. Новые настройки `crossSessionInbound`/`dialogExpiry` держат входящие сообщения к `bypassPermissions`-сессиям на подтверждении пользователя вместо автодоставки. Разобрано подробнее в [[claude-desktop-automation-modes]] и [[ai-security-by-design]].
+- **Лимит субагентов на сессию убран** (2.1.224) — см. пометку "устарело" в разделе "MCP, Skills, Subagents..." выше.
+- **Расширение маскирования кредов сэндбокса** — см. раздел Permissions выше.
+- **Workspace trust prompt для `claude agents`** (2.1.225) — уравнивает с уже требующим доверия `claude`.
+- **Feedback survey transcript share** (2.1.224, opt-in) — теперь может приложить системный промпт последнего запроса, включая содержимое `CLAUDE.md`; секреты редактируются как раньше.
+- Малое: `archive`-источник плагинов (zip по HTTPS, SHA-256 pinning), Bash tool description явно уточняет — вывод виден модели, не обязательно пользователю, gateway spend-limit называет сам лимит и время сброса.
