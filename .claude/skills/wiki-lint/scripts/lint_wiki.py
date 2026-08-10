@@ -29,6 +29,16 @@ SERVICE = {"index", "log", "gaps-backlog"}
 # Ссылка-конвенция: файл правил вики, страницы у него нет и не должно быть.
 LINK_ALLOWLIST = {"CLAUDE.md"}
 
+# Абсолютные пути к файлам на диске в публичном .claude/settings.json.
+# Повод — 2026-08-10: разрешение «всегда разрешать» село в этот файл правилом с
+# путём к личному проекту, а `additionalDirectories` уже содержал домашнюю папку
+# с именем пользователя. Основной предохранитель — локальный pre-commit, но он в
+# репозиторий не уезжает и после нового клона отсутствует; эта проверка ловит то
+# же самое постфактум. Правило намеренно про форму пути, а не про конкретные имена:
+# имя пользователя в самом скрипте было бы той же утечкой, которую он ищет.
+DISK_PATH = re.compile(r"[A-Za-z]:[\\/]|/home/|/Users/|/c/my_")
+SETTINGS = ".claude/settings.json"
+
 
 def strip_code(text):
     """Ссылки внутри кода — цитаты правил, а не связи. Съедаем их до разбора."""
@@ -74,14 +84,26 @@ def lint(wiki, today, stale_days):
             stale.append({"page": p["path"], "actual": p["actual"], "age_days": age})
     stale.sort(key=lambda s: -s["age_days"])
 
+    paths = disk_paths(wiki.parent)
     return {
         "pages": len(pages),
         "broken_links": broken,
         "orphans": orphans,
         "unindexed": unindexed,
         "stale": stale,
-        "total": len(broken) + len(orphans) + len(unindexed) + len(stale),
+        "disk_paths": paths,
+        "total": len(broken) + len(orphans) + len(unindexed) + len(stale) + len(paths),
     }
+
+
+def disk_paths(repo):
+    """Строки публичного settings.json с абсолютным путём к файлу на диске."""
+    f = repo / SETTINGS
+    if not f.exists():
+        return []
+    return [{"line": i, "text": s.strip()}
+            for i, s in enumerate(f.read_text(encoding="utf-8").splitlines(), 1)
+            if DISK_PATH.search(s)]
 
 
 def report(r, stale_days):
@@ -102,6 +124,12 @@ def report(r, stale_days):
         print(f"\n«Актуально на» старше {stale_days} дней ({len(r['stale'])}):")
         for s in r["stale"]:
             print(f"  {s['page']} — {s['actual']} ({s['age_days']} дн.)")
+    if r["disk_paths"]:
+        print(f"\nПути с диска в публичном {SETTINGS} ({len(r['disk_paths'])}) — файл уезжает на GitHub:")
+        for d in r["disk_paths"]:
+            print(f"  строка {d['line']}: {d['text'][:100]}")
+        print("  Перенести правило в .claude/settings.local.json (он в gitignore);")
+        print("  путь к самому проекту в командах заменять на ${CLAUDE_PROJECT_DIR}.")
     if not r["total"]:
         print("Механических находок нет. Дальше — смысловая часть, её делает модель.")
 
@@ -109,7 +137,10 @@ def report(r, stale_days):
 def self_test():
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
-        w = Path(tmp)
+        # Игрушечный репозиторий целиком, не одна папка wiki: проверке настроек
+        # нужен корень (wiki.parent), а он не должен указывать в системный temp.
+        w = Path(tmp) / "wiki"
+        w.mkdir()
         (w / "index.md").write_text("# Индекс\n- [[alpha]]\n", encoding="utf-8")
         (w / "log.md").write_text("# Лог\n", encoding="utf-8")
         (w / "alpha.md").write_text(
@@ -123,6 +154,28 @@ def self_test():
         assert r["orphans"] == ["ghost.md"], r["orphans"]          # beta связана, alpha в индексе
         assert sorted(r["unindexed"]) == ["beta.md", "ghost.md"], r["unindexed"]
         assert [s["page"] for s in r["stale"]] == ["alpha.md"], r["stale"]
+
+        assert r["disk_paths"] == [], r["disk_paths"]               # settings.json нет вовсе
+
+        # Пути с диска в публичных настройках. Проверяем оба исхода: чистый файл
+        # молчит, файл с путём — находка. Проверка только «сработал на плохом»
+        # оставила бы правило, ругающееся на что угодно.
+        s = w.parent / ".claude"
+        s.mkdir(exist_ok=True)
+        (s / "settings.json").write_text('{"permissions":{"allow":["Bash(git status)"]}}\n', encoding="utf-8")
+        assert lint(w, dt.date(2026, 7, 29), 30)["disk_paths"] == []
+
+        # Файл настроек в жизни отформатирован по строкам, находки тоже построчные:
+        # оба пути должны найтись по отдельности, а не слипнуться в один.
+        (s / "settings.json").write_text(
+            '{\n'
+            '  "permissions": {\n'
+            '    "allow": ["Bash(node --test \\"C:/my_projects/x/t.js\\")"],\n'
+            '    "additionalDirectories": ["C:\\\\Users\\\\someone\\\\.claude"]\n'
+            '  }\n'
+            '}\n', encoding="utf-8")
+        found = lint(w, dt.date(2026, 7, 29), 30)["disk_paths"]
+        assert [d["line"] for d in found] == [3, 4], found
 
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
         r2 = lint(w, dt.date(2026, 7, 29), 30)
