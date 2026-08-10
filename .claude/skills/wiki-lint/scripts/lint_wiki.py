@@ -39,6 +39,25 @@ LINK_ALLOWLIST = {"CLAUDE.md"}
 DISK_PATH = re.compile(r"[A-Za-z]:[\\/]|/home/|/Users/|/c/my_")
 SETTINGS = ".claude/settings.json"
 
+# Страницы стареют с разной скоростью, поэтому и порог у них разный (введено
+# 2026-08-10 по данным прогона: из 28 просроченных 15 были людьми и каналами,
+# где сверка формальна и годами даёт ноль находок — шум приучал не смотреть на
+# число вовсе). Тип берём из самой страницы, а не из списка имён в скрипте:
+# список имён пришлось бы вести руками, и он бы протухал быстрее страниц.
+TYPE = re.compile(r"\*\*Тип:?\*\*:?\s*(.+)")
+PERSON_MARKS = ("человек", "автор", "youtube-канал")
+
+
+def kind_of(text):
+    """«человек» — авторы, каналы, издания; «продукт» — всё остальное.
+
+    Без пометки «Тип» страница считается продуктом: неизвестное проверяем чаще,
+    а не реже."""
+    m = TYPE.search(text)
+    if m and any(w in m.group(1).lower() for w in PERSON_MARKS):
+        return "человек"
+    return "продукт"
+
 
 def strip_code(text):
     """Ссылки внутри кода — цитаты правил, а не связи. Съедаем их до разбора."""
@@ -53,11 +72,12 @@ def collect(wiki):
             "path": path.relative_to(wiki).as_posix(),
             "links": [m.group(1).strip() for m in LINK.finditer(strip_code(text))],
             "actual": (ACTUAL.search(text) or [None, None])[1],
+            "kind": kind_of(text),
         }
     return pages
 
 
-def lint(wiki, today, stale_days):
+def lint(wiki, today, stale_days, people_days=180):
     pages = collect(wiki)
     index_text = (wiki / "index.md").read_text(encoding="utf-8") if (wiki / "index.md").exists() else ""
     index_links = {m.group(1).strip() for m in LINK.finditer(strip_code(index_text))}
@@ -79,14 +99,17 @@ def lint(wiki, today, stale_days):
     for name, p in pages.items():
         if not p["actual"]:
             continue
+        limit = people_days if p["kind"] == "человек" else stale_days
         age = (today - dt.date.fromisoformat(p["actual"])).days
-        if age > stale_days:
-            stale.append({"page": p["path"], "actual": p["actual"], "age_days": age})
+        if age > limit:
+            stale.append({"page": p["path"], "actual": p["actual"], "age_days": age,
+                          "kind": p["kind"], "limit": limit})
     stale.sort(key=lambda s: -s["age_days"])
 
     paths = disk_paths(wiki.parent)
     return {
         "pages": len(pages),
+        "people_days": people_days,
         "broken_links": broken,
         "orphans": orphans,
         "unindexed": unindexed,
@@ -121,9 +144,10 @@ def report(r, stale_days):
         for u in r["unindexed"]:
             print(f"  {u}")
     if r["stale"]:
-        print(f"\n«Актуально на» старше {stale_days} дней ({len(r['stale'])}):")
+        print(f"\nПросроченное «Актуально на» ({len(r['stale'])}) — порог {stale_days} дн. "
+              f"для продуктов, {r['people_days']} дн. для людей и изданий:")
         for s in r["stale"]:
-            print(f"  {s['page']} — {s['actual']} ({s['age_days']} дн.)")
+            print(f"  {s['page']} — {s['actual']} ({s['age_days']} дн., {s['kind']}, порог {s['limit']})")
     if r["disk_paths"]:
         print(f"\nПути с диска в публичном {SETTINGS} ({len(r['disk_paths'])}) — файл уезжает на GitHub:")
         for d in r["disk_paths"]:
@@ -177,6 +201,26 @@ def self_test():
         found = lint(w, dt.date(2026, 7, 29), 30)["disk_paths"]
         assert [d["line"] for d in found] == [3, 4], found
 
+        # Разные пороги: у продукта и у человека одна и та же дата, но продукт
+        # просрочен, а человек нет. Проверяем и границу срабатывания для человека —
+        # иначе правило «людей не трогаем» молча превратилось бы в «не трогаем никогда».
+        (w / "index.md").write_text("# Индекс\n- [[alpha]]\n- [[tool]]\n- [[person]]\n", encoding="utf-8")
+        (w / "tool.md").write_text(
+            "# Tool\n**Тип:** инструмент (IDE)\n**Актуально на:** 2026-06-01\n[[alpha]]\n", encoding="utf-8")
+        (w / "person.md").write_text(
+            "# Person\n**Тип:** человек / YouTube-канал\n**Актуально на:** 2026-06-01\n[[alpha]]\n", encoding="utf-8")
+
+        by_page = {s["page"]: s for s in lint(w, dt.date(2026, 7, 29), 30, 180)["stale"]}
+        assert "tool.md" in by_page, by_page          # 58 дней при пороге 30
+        assert "person.md" not in by_page, by_page    # 58 дней при пороге 180 — рано
+        assert by_page["tool.md"]["kind"] == "продукт"
+
+        late = {s["page"] for s in lint(w, dt.date(2027, 1, 1), 30, 180)["stale"]}
+        assert "person.md" in late, late              # 214 дней — уже пора
+
+        for f in ("tool.md", "person.md"):
+            (w / f).unlink()
+
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
         r2 = lint(w, dt.date(2026, 7, 29), 30)
         assert r2["broken_links"][0]["target"] == "nowhere", r2["broken_links"]
@@ -187,7 +231,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--wiki", default=str(WIKI), help="путь к папке wiki")
     ap.add_argument("--stale-days", type=int, default=30,
-                    help="порог свежести «Актуально на» (по умолчанию 30)")
+                    help="порог свежести «Актуально на» для продуктов (по умолчанию 30)")
+    ap.add_argument("--people-days", type=int, default=180,
+                    help="то же для людей и изданий — у них почти ничего не меняется "
+                         "(по умолчанию 180)")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -201,7 +248,7 @@ def main():
         print(f"нет такой папки: {wiki}", file=sys.stderr)
         return 2
 
-    result = lint(wiki, dt.date.today(), args.stale_days)
+    result = lint(wiki, dt.date.today(), args.stale_days, args.people_days)
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
