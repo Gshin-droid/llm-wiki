@@ -41,8 +41,8 @@ _(люди, компании, инструменты)_
 - [[opencode]] — open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code
 - [[zproger]] — автор обзора OpenCode
 - [[vladilen-minin]] — автор кейсов GSD/Superpowers
-- [[gsd-get-shit-done]] — spec-driven агентский фреймворк полного SDLC поверх Claude Code
-- [[superpowers]] — TDD-ориентированный набор скиллов с автообнаружением, лёгкая альтернатива GSD
+- [[gsd-get-shit-done]] — spec-driven агентский фреймворк полного SDLC, мультихост; допроверка 08-12: проект переехал в GSD Core (`open-gsd/gsd-core`), старый репозиторий архивирован
+- [[superpowers]] — TDD-ориентированный набор скиллов с автообнаружением, лёгкая альтернатива GSD; автор Jesse Vincent (obra), 270k+ звёзд, 11 хостов установки (допроверка 08-12)
 - [[nikita-efimov]] — автор разбора автоматизаций Claude Desktop
 - [[prostodevops]] — DevOps-образовательный канал
 - [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API
