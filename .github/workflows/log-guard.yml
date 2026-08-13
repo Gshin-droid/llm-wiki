@@ -1,0 +1,22 @@
+# Сторож журнала вики. Падает, если из wiki/log.md пропала запись или
+# задвоился заголовок — см. .claude/skills/wiki-lint/scripts/log_guard.py.
+#
+# Почему в CI, а не в локальном pre-commit: коммиты сюда шлёт и облачная
+# рутина, у которой локальных хуков нет. Проверка на стороне GitHub —
+# единственная, через которую проходят оба.
+name: Сторож журнала
+
+on:
+  push:
+    paths:
+      - 'wiki/log.md'
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # нужен предыдущий коммит для сравнения
+      - name: Проверить целостность журнала
+        run: python .claude/skills/wiki-lint/scripts/log_guard.py "${{ github.event.before }}"
