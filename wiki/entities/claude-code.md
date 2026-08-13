@@ -172,3 +172,6 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **Workspace trust prompt для `claude agents`** (2.1.225) — уравнивает с уже требующим доверия `claude`.
 - **Feedback survey transcript share** (2.1.224, opt-in) — теперь может приложить системный промпт последнего запроса, включая содержимое `CLAUDE.md`; секреты редактируются как раньше.
 - Малое: `archive`-источник плагинов (zip по HTTPS, SHA-256 pinning), Bash tool description явно уточняет — вывод виден модели, не обязательно пользователю, gateway spend-limit называет сам лимит и время сброса.
+
+### Auto mode становится дефолтом с 14.08.2026 (2026-08-13, [[claude-code-auto-mode-default]])
+Официальная документация (`code.claude.com/docs/en/permission-modes`): начиная с **14 августа 2026** auto mode — дефолтный режим разрешений для **новых** сессий на Pro/Max/Team вместо Manual. Не затрагивает сессии, где пользователь уже сам задал `defaultMode`, и org-управляемый дефолт (Team/Enterprise managed settings) — оба остаются в силе. `.claude/settings.json` этой вики `defaultMode` не задаёт, так что автономные прогоны этой вики зависят от дефолта уровня пользователя. Требования к доступности auto mode (модель Opus 4.6+/Sonnet 4.6+/Fable 5 на Anthropic API, доп. ограничения на Bedrock/Agent Platform/Foundry) не изменились этим релизом — см. подробности в источнике.
