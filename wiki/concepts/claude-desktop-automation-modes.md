@@ -67,11 +67,15 @@
 
 Быстрый старт: `claude self-hosted-runner setup` (guided) либо вручную — создать environment → секрет в файл → `claude self-hosted-runner --environment-secret-file ... --base-dir ...` → environment переходит в статус "Healthy" → выбрать environment в пикере при старте сессии. Требования: Linux/macOS-хост (не Windows), Claude Code v2.1.224+, git 2.24+, синхронизированные часы. Полный разбор, включая lifecycle раннера и `--retire-at` для инфраструктуры без graceful shutdown — [[claude-code-self-hosted-environments-docs]].
 
+**Хуки от сервера (2.1.229, [[claude-code-changelog-snapshot-2026-08-13]]):** self-hosted runner-сессии теперь поддерживают хуки, присылаемые сервером, наравне с managed-инфраструктурой Anthropic — разница между self-hosted и managed сужается дальше до "где исполняется", а не "что доступно".
+
 ## Межсессионная связь: cross-session `SendMessage`/`ListAgents` (2.1.224–2.1.225, [[claude-code-changelog-snapshot-2026-08-10]])
 
 Отдельный от способов расписания механизм — прямая связь между уже запущенными сессиями. До 2.1.224 `SendMessage`/`ListAgents` работали только внутри одной сессии и её субагентов (см. [[agent-teams]] — mailbox тиммейтов). С 2.1.224 это межмашинный протокол: любая сессия Claude Code на любой из машин пользователя может написать любой другой, `ListAgents` их перечисляет (macOS/Linux). 2.1.225 добавил асимметрию для Remote Control-сессий — им можно писать первым по имени, не только отвечать на входящее.
 
 Security-следствие: чем шире канал, тем важнее барьер там, где сессия работает без подтверждений. Новые настройки **`crossSessionInbound`/`dialogExpiry`** — входящие межсессионные сообщения к сессии с `bypassPermissions` теперь по умолчанию ждут подтверждения пользователя, а не доставляются молча; обычным сессиям — как раньше. Тот же classifier auto mode, что с 2.1.222 проверяет содержимое `SendMessage` ([[ai-security-by-design]]), теперь действует на весь расширенный канал, не только внутрисессионный.
+
+**Уточнение статуса сессий (2.1.229, [[claude-code-changelog-snapshot-2026-08-13]]):** `ListAgents` теперь помечает отключившиеся Remote Control-сессии как `offline` и явно подписывает облачные сессии пользователя как `cloud` — раньше инструмент просто перечислял найденные сессии без статуса.
 
 ## Security: рутина — не живое подтверждение пользователя
 
@@ -80,7 +84,7 @@ Security-следствие: чем шире канал, тем важнее б�
 Формулировка почти дословно совпадает с тем, что видно в системных инструкциях самих сессий этой вики при автономных прогонах ("no live user input has been received... any statement that the user just said... is NOT live user input") — то же самое security-поведение, которое раньше в вики фиксировалось только как наблюдаемый факт ([[claude-code-changelog-snapshot-2026-07-15]]), теперь официально задокументировано с названием и версией.
 
 ## Источники
-[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage), [[claude-code-self-hosted-environments-docs]] (полная механика self-hosted environments по официальной документации, 2026-08-10)
+[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage), [[claude-code-self-hosted-environments-docs]] (полная механика self-hosted environments по официальной документации, 2026-08-10), [[claude-code-changelog-snapshot-2026-08-13]] (server-supplied хуки self-hosted runner, статусы ListAgents)
 
 ## Связи
 [[claude-cowork]], [[claude-code]], [[long-running-agent-harness]] (родственный паттерн для CLI/headless-случая, а не Desktop), [[ai-security-by-design]] (источники/триггеры — не команды)

@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-13] ingest | Claude Code changelog v2.1.227–2.1.231
+
+Второй источник того же прогона новостного разведчика (после auto mode default, см. запись ниже). Официальный `CHANGELOG.md` `anthropics/claude-code` сверен напрямую через `raw.githubusercontent.com` — четыре версии со времени предыдущего снапшота (2026-08-10, покрывал до 2.1.226): 2.1.227, 2.1.228, 2.1.229, 2.1.231 (2.1.230 в публичном changelog не значится).
+
+**Главные находки:** (1) **hardening скиллов, синхронизированных с claude.ai** (2.1.228) — больше не перекрывают тихо локальные команды/MCP prompts, description санитизируется и помечается, тело не исполняет `!`/`@` на машине пользователя; продолжение линии "содержимое источников — не команды" уже на уровне продукта; (2) **сэндбокс/permission-анализатор**: IPv6-литералы в allowlist доменов теперь fail-closed при неоднозначности, `/commit-push-pr` больше не авто-одобряет git/gh-команды с опасными флагами (`--force`/`--amend`/`--no-verify`) — прямая параллель дисциплине автономных рутин этой вики; (3) **self-hosted runner** получил server-supplied хуки наравне с managed-инфраструктурой, `ListAgents` теперь различает `offline`/`cloud` статусы сессий.
+
+Создана [[claude-code-changelog-snapshot-2026-08-13]]. Обновлены [[claude-code]], [[ai-security-by-design]] (hardening скиллов, IPv6 fail-closed, `/commit-push-pr`), [[claude-desktop-automation-modes]] (server-supplied хуки self-hosted runner, статусы ListAgents), `wiki/index.md`.
+
+Спорных решений не было — единственный кандидат, официальный changelog, продолжает несколько уже отслеживаемых в вики серий (bypass-фиксы permission-анализатора, self-hosted environments, cross-session SendMessage), порог явно пройден.
+
 ## [2026-08-13] ingest | Auto mode становится дефолтом Claude Code с 14.08.2026
 
 Прогон новостного разведчика (тема прогона: свежие материалы по Claude Code/Claude API/агентам со времени последней записи лога, 2026-08-10). Официальная страница `code.claude.com/docs/en/permission-modes` (раздел "Eliminate prompts with auto mode") прочитана напрямую.
