@@ -341,8 +341,8 @@
     </div>
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
-      <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (cron 06:00 ежедневно) -->
-      <div class="mono">обновлено 2026-08-11 (2 записи) · след. запуск 08:00 (08.12)</div>
+      <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
+      <div class="mono">обновлено 2026-08-13 (3 записи) · след. запуск 08:00 (08.14)</div>
     </div>
   </header>
 
@@ -358,23 +358,30 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 2026-08-11</span>
+      <span class="section-note">3 записи · 2026-08-12 — 2026-08-13</span>
     </div>
-    <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md с ЗАГОЛОВКАМИ ## [СЕГОДНЯШНЯЯ ДАТА] ...  (не месяц, ровно сегодня). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если записей за сегодня нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и дата). -->
+    <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">«Правило двух» Meta по первоисточнику (ежедневное закрытие пробелов)</div>
-        <div class="news-body">Прямой ai.meta.com заблокирован сетевым прокси окружения; формулировка восстановлена по совпадению независимых технических источников (Simon Willison, oso.dev, mbgsec.com). Подтверждены три условия (те же, что у «смертельной троицы» Willison) и уточнена деталь, которой не было в пересказе на слух: лимит действует в рамках одной сессии.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/meta-agents-rule-of-two.md">meta-agents-rule-of-two</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Obsidian Web Clipper сверен по официальному репозиторию</div>
+        <div class="news-body">Репозиторий obsidianmd/obsidian-clipper прочитан напрямую через git clone, а не по пересказу: механизм передачи заметки (obsidian://-URI с лимитом длины в legacy-режиме, буфер обмена без лимита по умолчанию) подтверждён исходным кодом версии 1.7.1. Побочная находка — индекс вики всё ещё называл расширение «пока не подключено», хотя им пользуются с 07-07 и накопился 31 файл.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md">obsidian-web-clipper<span class="badge-new">обновлено</span></a></div>
       </article>
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Датировка эндпоинта эмбеддингов OpenRouter (ежедневное закрытие пробелов)</div>
-        <div class="news-body">Официальный репозиторий OpenRouterTeam/ai-sdk-provider прочитан напрямую через git clone (openrouter.ai заблокирован сетевым прокси в этот прогон). CHANGELOG.md и история коммитов датируют поддержку эмбеддингов 2025-12-06 — на 8+ месяцев раньше релизных заметок Memora, до всего известного интервала их аварии.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-openrouter-embeddings-dating.md">memora-openrouter-embeddings-dating</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md">openrouter</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-agent-memory-mcp.md">memora-agent-memory-mcp</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Claude Statusline: подтверждено, что проект заброшен</div>
+        <div class="news-body">Репозиторий nilbuild/claude-statusline прочитан напрямую. С прошлой сверки не изменилось ничего: версия та же 1.0.6, а последний коммит датирован апрелем — раньше самой первой сверки. То есть страница описывает не «давно не проверявшийся», а фактически остановленный проект.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md">claude-statusline<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Локальные модели: гипотеза «ночью крупнее» проверена и отклонена</div>
+        <div class="news-body">Пятнадцать прогонов на пяти материалах: модель на 8 млрд параметров проиграла двум младшим и по фактам, и по числу провалов, а не только по скорости. Дневная модель сменилась на более быструю, ночной режим переосмыслен — ночью выигрываем объёмом, а не размером модели. Заодно правило: прикидывая, влезет ли модель в видеопамять, складывать вес и окно контекста.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
       </article>
 
     </div>
@@ -409,7 +416,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим Claude Desktop с доступом к файлам компьютера</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/metics-media.md"><span class="tree-name">metics-media</span><span class="tree-desc">канал про сайты за $10k через Claude Code</span></a>
@@ -457,7 +464,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/seven-signs-of-old-junior.md"><span class="tree-name">seven-signs-of-old-junior</span><span class="tree-desc">карьерная стагнация разработчиков, включая ИИ-зависимость</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
@@ -544,8 +551,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-10.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-10</span><span class="tree-desc">снапшот changelog (в. 2.1.224–2.1.226): self-hosted environments, cross-session SendMessage/ListAgents, расширение маскирования кредов сэндбокса</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-self-hosted-environments-docs.md"><span class="tree-name">claude-code-self-hosted-environments-docs</span><span class="tree-desc">официальный гайд: environment/runner/session, аутентификация раннера, сеть только исходящая, quickstart с командами</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-agent-memory-mcp.md"><span class="tree-name">memora-agent-memory-mcp</span><span class="tree-desc">репозиторий Memora как первоисточник: авария «эмбеддинги не считались месяцами», принципы против петли пересказа, цепочки замещения</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/meta-agents-rule-of-two.md"><span class="tree-name">meta-agents-rule-of-two</span><span class="tree-desc">официальный пост Meta (31.10.2025): точная формулировка «правила двух», граница «в рамках одной сессии», human-in-the-loop</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-openrouter-embeddings-dating.md"><span class="tree-name">memora-openrouter-embeddings-dating</span><span class="tree-desc">официальный GitHub-репозиторий OpenRouter: эндпоинт эмбеддингов датирован 2025-12-06, на 8+ месяцев раньше релизных заметок Memora</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/meta-agents-rule-of-two.md"><span class="tree-name">meta-agents-rule-of-two</span><span class="tree-desc">официальный пост Meta (31.10.2025): точная формулировка «правила двух», граница «в рамках одной сессии», human-in-the-loop</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-openrouter-embeddings-dating.md"><span class="tree-name">memora-openrouter-embeddings-dating</span><span class="tree-desc">официальный GitHub-репозиторий OpenRouter: эндпоинт эмбеддингов датирован 2025-12-06, на 8+ месяцев раньше релизных заметок Memora</span></a>
       </div>
     </details>
 
