@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-16] ingest | Claude Code changelog v2.1.232–2.1.233
+
+Прогон новостного разведчика (тема: свежие материалы по Claude Code/Claude API/агентам со времени последней записи лога, 2026-08-15). Официальный `CHANGELOG.md` `anthropics/claude-code` сверен напрямую через `raw.githubusercontent.com` — вышли **2.1.232** и **2.1.233** со времени предыдущего снапшота (08-13, покрывал до 2.1.231), оба крупные. Официальные release notes Claude Platform (`platform.claude.com/docs/en/release-notes/overview`) также прочитаны напрямую — новых записей после 11 августа там нет, единственный кандидат прогона — changelog.
+
+**Главные находки:** (1) **форк субагента по умолчанию наследует диалог родителя целиком** (2.1.232) — расширение уже отслеживаемого механизма `/fork`; (2) **`@`-упоминание для прямого обращения к другой сессии** (2.1.232) — эргономика поверх межмашинного `SendMessage`/`ListAgents` (08-10, 08-13); (3) **продолжение серии bypass-фиксов permission-анализатора/сэндбокса** (PowerShell variable-writing bypass, Windows symlink traversal, NTLM credential leak через Windows NT device paths, nested repository trust inheritance, Bash input redirection permission checking, укрепление cross-session messaging и Linux sandbox) — тот же класс механизма, что течёт с 07-19; (4) **первое упоминание GitLab в этой вики** — GitLab MR URL в `--worktree`/agent view, secret redaction для GitLab-токенов, GitLab как источник plugin marketplace, до сих пор весь цикл разработки в вики был завязан на GitHub. Побочная деталь: 2.1.233 частично откатывает собственные Bash-изменения 2.1.232 (Cygwin-симлинки, input redirections) — фикс безопасности предыдущей версии сам оказался регрессией.
+
+Создана [[claude-code-changelog-snapshot-2026-08-16]]. Обновлены [[claude-code]] (новый раздел "Обновление 2.1.232–2.1.233", `Актуально на` → 2026-08-16), [[ai-security-by-design]] (продолжение серии bypass-фиксов), `wiki/index.md`.
+
+Спорных решений не было — официальный changelog продолжает несколько уже отслеживаемых в вики серий (bypass-фиксы permission-анализатора, межмашинный канал связи), порог явно пройден.
+
 ## [2026-08-15] lint | Допроверка «Актуально на»: claude-cowork — Cowork больше не Desktop-only
 
 Ежедневный процесс закрытия пробелов. Сначала повторно опробован пункт «Первоисточники исследований из [[berezhnitsky-agent-memory-lies]]» — кандидат arXiv:2605.08442 («обзор безопасности агентской памяти»): `arxiv.org` по-прежнему `EGRESS_BLOCKED`, тот же результат, что 08-12/08-13/08-14. Пункт остаётся открытым.

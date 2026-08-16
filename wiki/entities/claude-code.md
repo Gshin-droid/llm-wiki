@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-10
+**Актуально на:** 2026-08-16
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -183,3 +183,10 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **`ListAgents`** теперь помечает отключившиеся Remote Control-сессии как `offline`, облачные сессии — как `cloud` (2.1.229).
 - **Write tool**: новые модели могут перезаписать файл, который не читали в этой сессии, — уравнено с правилами Edit tool; старые модели по-прежнему обязаны сначала прочитать (2.1.228).
 - Малое: четвёртый источник плагинов — `command` (вывод локальной команды, напр. IDE), `mode: "link"` (2.1.229); session groups в сайдбаре VSCode (2.1.229); из первого уведомления Pro/Max/Team убрана устаревшая заметка про повышенную стоимость auto mode-сессий (2.1.228); ряд MCP OAuth-фиксов (2.1.227, 2.1.229, 2.1.231).
+
+### Обновление 2.1.232–2.1.233 (2026-08-16, [[claude-code-changelog-snapshot-2026-08-16]])
+- **Форк субагента наследует диалог целиком по умолчанию** (2.1.232) — `/fork`-механизм (см. "Обновление 2.1.211–2.1.214" выше) теперь по умолчанию передаёт форкнутой сессии весь диалог родителя, не только новую задачу.
+- **`@`-упоминание для прямого обращения к другой сессии** (2.1.232) — эргономика поверх межмашинного `SendMessage`/`ListAgents` (08-10, 08-13): можно написать `@session-name` вместо явного вызова `SendMessage`; имена сессий теперь принудительно уникальны (автоматический вариант при конфликте).
+- **Продолжение серии bypass-фиксов permission-анализатора/сэндбокса**: PowerShell variable-writing bypass, Windows symlink traversal, nested repository trust inheritance, Bash input redirection permission checking, укрепление сокет-директории cross-session messaging, Linux filesystem sandbox, ограничение источников конфигурации `sandbox.ripgrep` (все — 2.1.232); NTLM credential leak через Windows NT device paths (2.1.233). Разобрано подробнее в [[ai-security-by-design]].
+- **Первое упоминание GitLab в этой вики**: GitLab MR URL в `--worktree`/agent view (2.1.233), secret redaction для GitLab-токенов и GitLab как источник plugin marketplace (оба 2.1.232) — расширение платформы хостинга кода вслед за GitHub, для этой вики (репозиторий на GitHub) практически не актуально.
+- Малое: Fable 5 восстановлена для организаций с доступом (2.1.232, багфикс); ограничение task-tracking инструментов на новых моделях с опцией override (2.1.233, точная причина в changelog не раскрыта); `forward_user_identity` для атрибуции расходов по пользователю, memory cgroup для Linux Bash, `claude plugin validate` теперь проверяет frontmatter скилл-markdown (все — 2.1.233); 2.1.233 частично откатывает Bash-изменения 2.1.232 для Cygwin-симлинков и input redirections — сам фикс безопасности предыдущей версии оказался регрессией.

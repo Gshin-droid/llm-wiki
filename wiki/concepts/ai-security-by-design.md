@@ -108,8 +108,20 @@ Bun портировал ~1M строк Zig→Rust через [[dynamic-workflow
 
 **Сэндбокс — IPv6 fail-closed, `/commit-push-pr` больше не авто-одобряет опасные флаги (2.1.229).** Продолжение серии bypass-фиксов выше: неоднозначная запись IPv6-литерала в allowlist доменов сэндбокса теперь трактуется как запрет, а не разрешение (`/doctor` явно на это указывает). Отдельно — `/commit-push-pr` (встроенный скилл, автоматизирующий коммит/пуш/PR) раньше мог сам одобрить себе git/gh-команды с опасными флагами (`--force`, `--amend`, `--no-verify`) в рамках собственного вызова; теперь такие флаги требуют обычного подтверждения. Прямая параллель дисциплине «инкрементальный коммит и пуш» этой вики — сам факт существования такого авто-одобрения лишний повод не полагаться на `--force`/`--no-verify` в автономных прогонах без явной причины.
 
+## Продолжение серии bypass-фиксов: PowerShell, Windows symlink/NTLM, cross-session messaging (2026-08-16, [[claude-code-changelog-snapshot-2026-08-16]])
+
+Тот же механизм, что уже отслеживается в этой странице с 07-19 (Bash-анализатор), продолжает давать течь спустя месяц после предыдущей волны (08-13):
+- **PowerShell variable-writing bypass** (2.1.232) — команда PowerShell могла записать переменную в обход разрешений.
+- **Windows symlink traversal** (2.1.232) и **NTLM credential leak через Windows NT device paths** (2.1.233) — два разных вектора одного класса: файловые примитивы Windows (симлинк, NT device path `\\.\`) обходили обычную файловую проверку.
+- **Nested repository trust inheritance** (2.1.232) — вложенный репозиторий (submodule/вложенный клон) мог неверно наследовать статус доверия родительского — прямое применение принципа 6 ("безопасность по умолчанию") к случаю, который раньше не был закрыт.
+- **Bash input redirection permission checking** (2.1.232) — редирект **ввода** (`<`) в Bash теперь тоже проверяется анализатором; раньше находка того же класса (07-19) касалась только file-descriptor **вывода**.
+- **Укрепление сокет-директории cross-session messaging** (2.1.232) — сам межагентный канал `SendMessage`/`@`-упоминаний (расширен тем же релизом, см. [[claude-code]]) получил защиту сокет-директории, которой пользуется.
+- **Linux filesystem sandbox strengthened, `sandbox.ripgrep` configuration sources restricted** (2.1.232) — сужение того, откуда `ripgrep`-инструмент внутри сэндбокса может брать конфигурацию.
+
+Показательная деталь того же релиза, отдельная от bypass-серии: **2.1.233 частично откатывает собственные Bash-изменения 2.1.232** для Cygwin-симлинков и input redirections — редкий задокументированный случай, когда фикс безопасности предыдущей версии сам оказался регрессией и был отменён в следующей же версии. Прямое напоминание к принципу 4 ("простота — враг безопасности"): даже точечный security-патч несёт риск сломать легитимный сценарий, поэтому подобные фиксы стоит проверять на регрессию, а не считать once-and-done.
+
 ## Источник
-[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]]
+[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]]
 
 ## Связи
 Пересекается с практикой вайбкодинга ([[vibecoding-full-workflow]], [[supabase]]) — секреты на бэкенде, а не на фронтенде — это прямое применение принципа минимизации поверхности атаки. Также напрямую применимо к [[persistent-wiki-pattern]] и операции Ingest.
