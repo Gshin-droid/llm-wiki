@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-17 (1 запись) · след. запуск 08:00 (08.18)</div>
+      <div class="mono">обновлено 2026-08-17 (2 записи) · след. запуск 08:00 (08.18)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">149</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">151</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">3</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">47</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">31</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">64</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">32</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">65</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-17</span>
+      <span class="section-note">2 записи · 2026-08-17</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude Cookbooks: чеклист оптимизации стоимости Claude API</div>
+        <div class="news-body">Официальный notebook Anthropic (12.08): семь шагов снижения стоимости агента — baseline, prompt caching (кэш −32%, byte-stable префикс −44%, explicit breakpoints −54%), input/output token management, batch API, model selection. Дополняет [[delegirovanie-deshevym-modelyam]] отдельным рычагом — экономией внутри вызова, а не маршрутизацией между моделями. Managed Agents cookbooks (16 гайдов, слепое пятно источника) отложены пунктом бэклога.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-cost-optimization.md">claude-cookbook-cost-optimization<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md">claude-api-cost-optimization<span class="badge-new">новое</span></a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -439,7 +446,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">31</span></summary>
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">32</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">пять операций ведения вики (Ingest/Query/Project/Practice/Lint)</span></a>
@@ -472,11 +479,12 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-data-layer-core-files.md"><span class="tree-name">ai-data-layer-core-files</span><span class="tree-desc">четыре core-файла о себе, метод сбора через интервью, граница делегирования агентам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/context-engineering-claude-5.md"><span class="tree-name">context-engineering-claude-5</span><span class="tree-desc">официальные правила Anthropic под поколение 5: правила→суждение, CLAUDE.md/скиллы/references</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/geo-ai-answer-visibility.md"><span class="tree-name">geo-ai-answer-visibility</span><span class="tree-desc">GEO: видимость в ответах ИИ-поисковиков — общий механизм и асимметрия видео</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">64</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">65</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
@@ -542,6 +550,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-default.md"><span class="tree-name">claude-code-auto-mode-default</span><span class="tree-desc">официальная документация: с 14.08.2026 auto mode — дефолтный режим разрешений для новых сессий на Pro/Max/Team</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-13.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-13</span><span class="tree-desc">снапшот changelog (в. 2.1.227–2.1.231): hardening скиллов claude.ai, сэндбокс IPv6 fail-closed, /commit-push-pr без авто-одобрения опасных флагов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-16.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-16</span><span class="tree-desc">снапшот changelog (в. 2.1.232–2.1.233): форк субагента наследует диалог по умолчанию, @-упоминание cross-session, продолжение серии bypass-фиксов, первое упоминание GitLab</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-cost-optimization.md"><span class="tree-name">claude-cookbook-cost-optimization</span><span class="tree-desc">официальный notebook Claude Cookbooks (12.08): чеклист оптимизации стоимости Claude API — baseline, prompt caching, input/output tokens, batch API, model selection</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -567,7 +576,7 @@
   </section>
 
   <footer>
-    <span class="sched"><span class="pulse-dot" style="animation:none;"></span> время Asia/Qyzylorda: ingest каждые 3 дня 06:00 · закрытие пробелов ежедневно 08:00 · разведчик по пн 07:00 · <a href="https://claude.ai/code/routines">рутины на claude.ai</a></span>
+    <span class="sched"><span class="pulse-dot" style="animation:none;"></span> время Asia/Qyzylorda: новости раз в 3 дня 21:00 · закрытие пробелов ежедневно 08:00 · практики по пн 22:00 · <a href="https://claude.ai/code/routines">рутины на claude.ai</a></span>
     <span><a href="https://claude.ai/code/artifact/6855dbc3-b2f6-4f45-9e8f-b7ced1213cc0">Мои практики</a> · <a href="https://github.com/Gshin-droid/llm-wiki">github.com/Gshin-droid/llm-wiki</a></span>
   </footer>
 
