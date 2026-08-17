@@ -87,12 +87,14 @@ _(идеи, модели, принципы)_
 - [[ai-presentation-workflow]] — методология презентаций через ИИ-агента: смысл→визуал→сборка, нарратив-гейт до дизайна, референсы→правила; реализована как 4 локальных скилла
 - [[vibecoding-task-selection]] — отбор задач для вайбкодинга: рамка «четвёртый вариант» (руками/сотруднику/подрядчику/завайбкодить), критерии повторяемости и своей экспертизы, каталог из 11 типовых инструментов
 - [[geo-ai-answer-visibility]] — GEO: видимость в ответах ИИ-поисковиков — общий механизм (текстовый краулер + robots.txt) и асимметрия видео (Gemini/YouTube против текстовых краулеров ChatGPT/Perplexity)
+- [[claude-api-cost-optimization]] — официальный чеклист экономии стоимости вызова Claude API (кэш, токены, batch, модель) — рычаг, дополняющий маршрутизацию между моделями
 
 ## Sources
 _(саммари загруженных источников)_
 
 ### ⭐ Топ-находки
 _(отбирает автономный разведчик практического материала — см. `CLAUDE.md` → операция Ingest.)_
+- [[claude-cookbook-cost-optimization]] — официальный notebook Anthropic: семишаговый чеклист снижения стоимости агента на Claude API с измеренной экономией (кэш до −54%) на реальном примере, применим прямо в шлюзе [[delegirovanie-deshevym-modelyam]]
 - [[claude-code-changelog-snapshot-2026-07-15]] — hardened Agent tool против prompt injection, `/doctor` как полноценный чекап, защита от фальшивых "одобрений пользователя" в транскрипте (тот же механизм виден в системных уведомлениях этого прогона)
 - [[claude-managed-agents-overview]] — официальный API для агентов в managed sandbox-инфраструктуре, закрывает пробел, явно отмеченный в claude-agent-sdk.md
 - [[claude-code-dynamic-workflows-docs]] — скриптовая оркестрация субагентов (Dynamic Workflows), закрывает пробел: механизм существовал с мая 2026, но не имел отдельной страницы; ровно тот инструмент, которым устроен встроенный скилл deep-research
@@ -112,6 +114,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[claude-cookbook-cost-optimization]] — официальный notebook Claude Cookbooks (2026-08-12): чеклист оптимизации стоимости Claude API — baseline, prompt caching (byte-stable префикс, explicit breakpoints), input/output token management, batch API, model selection
 - [[claude-code-changelog-snapshot-2026-08-16]] — официальный changelog Claude Code (в. 2.1.232–2.1.233): форк субагента наследует диалог целиком по умолчанию, `@`-упоминание для прямого обращения к сессии, продолжение серии bypass-фиксов (PowerShell, Windows symlink/NTLM, cross-session messaging), первое упоминание GitLab в этой вики
 - [[claude-code-changelog-snapshot-2026-08-13]] — официальный changelog Claude Code (в. 2.1.227–2.1.231): hardening скиллов из claude.ai, сэндбокс IPv6 fail-closed, `/commit-push-pr` без авто-одобрения опасных флагов, self-hosted runner — server-supplied хуки, `ListAgents` различает offline/cloud
 - [[claude-code-auto-mode-default]] — официальная документация Claude Code (`permission-modes`): auto mode — дефолтный режим разрешений для новых сессий с 14.08.2026 на Pro/Max/Team, требования доступности, границы (не переопределяет свой/org-дефолт)
