@@ -28,7 +28,16 @@
       "Read(**/*.pem)",
       "Read(**/*.key)",
       "Read(**/id_rsa)",
-      "Read(**/id_ed25519)"
+      "Read(**/id_ed25519)",
+      "Bash(rm *)",
+      "Bash(rm -rf *)",
+      "Bash(npm install*)",
+      "Bash(npm uninstall*)",
+      "Bash(pip install*)",
+      "Bash(pnpm add*)",
+      "Bash(yarn add*)",
+      "Bash(curl *)",
+      "Bash(wget *)"
     ],
     "allow": [
       "Read",
@@ -38,10 +47,6 @@
       "Bash(git diff*)",
       "Bash(git log*)",
       "Bash(git pull *)",
-      "Bash(npm test*)",
-      "Bash(npm run test*)",
-      "Bash(pytest*)",
-      "Bash(python -m pytest*)",
       "Bash(python .claude/skills/wiki-ingest/scripts/ingest.py *)",
       "Bash(python .claude/skills/wiki-lint/scripts/lint_wiki.py *)",
       "WebSearch",
@@ -54,16 +59,6 @@
       "mcp__plugin_playwright_playwright__browser_hover",
       "mcp__plugin_playwright_playwright__browser_resize"
     ],
-    "ask": [
-      "Bash(npm install*)",
-      "Bash(npm uninstall*)",
-      "Bash(pip install*)",
-      "Bash(pnpm add*)",
-      "Bash(yarn add*)",
-      "Bash(rm *)",
-      "Bash(rm -rf *)",
-      "Bash(curl *)",
-      "Bash(wget *)"
-    ]
+    "ask": []
   }
 }
