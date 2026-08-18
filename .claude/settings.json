@@ -34,7 +34,6 @@
       "Read",
       "Glob",
       "Grep",
-      "Read(//c/jarvis/**)",
       "Bash(git status*)",
       "Bash(git diff*)",
       "Bash(git log*)",
