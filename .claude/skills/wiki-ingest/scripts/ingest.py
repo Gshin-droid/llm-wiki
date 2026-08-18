@@ -14,6 +14,10 @@ import re
 import sys
 from pathlib import Path
 
+# Имена файлов из веб-клиппера несут символы вне cp1251 (неразрывный дефис и т.п.),
+# на которых печать в консоль Windows падает UnicodeEncodeError.
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parents[4]
 RAW_DIRS = ("web-clipped", "inbox-assistant", "sources")
 REQUIRED_SECTIONS = ("**Дата загрузки:**", "**Raw:**", "## Связи")
