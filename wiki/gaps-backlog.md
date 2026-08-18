@@ -4,6 +4,16 @@ Living-чеклист для ежедневного автономного пр�
 
 Формат пункта: **Тема** — почему это пробел. *Статус: не начато / в работе / закрыто (дата, источник)*.
 
+## Важно для всех пунктов ниже: сетевой фильтр стоит на стороне рутин, а не на стороне сайтов
+
+Найдено 2026-08-18 в обычной сессии с пользователем. `arxiv.org` открылся напрямую без затруднений — тогда как автономные рутины упираются в `EGRESS_BLOCKED` на нём начиная с 08-12 и с тех пор потратили на повторные попытки как минимум пять прогонов (08-12, 08-13, 08-14, 08-15, 08-17). То же касается доменов из других пунктов: блокировка живёт в облачном окружении, где исполняются рутины, а не на стороне arXiv, Cursor или Meta.
+
+Практические следствия:
+
+1. **Пункт, который рутина не смогла закрыть из-за `EGRESS_BLOCKED`, не безнадёжен — он адресован не рутине.** Такие пункты закрываются из локальной сессии, и это единственный способ их закрыть, пока фильтр стоит.
+2. **Рутине не следует биться в один и тот же заблокированный домен каждый прогон.** Один заход, отметка в логе, переход к следующему пункту — иначе прогон уходит в ноль, как уже было пять раз.
+3. Помечать такие пункты явным словом «локально» ниже, чтобы было видно, кому пункт по силам.
+
 ## Открытые пункты
 
 - **Managed Agents cookbooks — 16 официальных гайдовых notebook'ов + 3 applied-примера** — заведено 2026-08-17 (еженедельный разведчик практического материала). Репозиторий `anthropics/claude-cookbooks`, директория `managed_agents/` — добавлены 2026-08-06, не покрыты ни одним прогоном вики до сих пор (репозиторий cookbook впервые открыт этим прогоном). Прямо касается [[claude-managed-agents]] (не сверялась с 2026-08-04) — closer look может обновить/уточнить многие разделы страницы: issue→fix→PR workflow с recovery-паттернами (`CMA_orchestrate_issue_to_pr`), HITL approval gates через `requires_action` (`CMA_gate_human_in_the_loop`), server-side prompt versioning с regression detection (`CMA_prompt_versioning_and_rollback`), production-сетап (MCP, vaults, webhooks, geo-pinning — `CMA_operate_in_production`, `CMA_pin_inference_geo`), memory stores для user preferences (`CMA_remember_user_preferences`), multiagent coordinator со scoped специалистами (`CMA_coordinate_specialist_team`), real-time мониторинг субагентов с cost metering (`CMA_watch_subagents_live`), advisor-консультация мид-turn (`CMA_consult_an_advisor`), бюджет на сессию (`CMA_cap_session_spend`), skills из репозитория (`CMA_use_skills_from_a_repo`), grade-and-revise через outcome grader (`CMA_verify_with_outcome_grader`). Разбирать не разом — по 1-2 notebook'а за проход, начиная с тех, что прямее всего касаются уже задокументированных примитивов [[claude-managed-agents]] (production-сетап, memory, multiagent). *Статус: не начато.*
