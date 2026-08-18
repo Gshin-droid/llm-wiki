@@ -144,6 +144,7 @@ _(отбирает автономный разведчик практическ�
 - [[shubin-llm-memory-landscape]] — обзор Mem0/Zep/Letta/Graphify/Karpathy-вики
 - [[sonny-huynh-second-brain]] — "второй мозг" с ежедневными воркфлоу
 - [[nikita-vels-claude-code-30-concepts]] — 30 практических концептов механики Claude Code
+- [[nikita-vels-claude-code-full-course]] — трёхчасовая версия того же курса (апрель 2026): разобрана по дельте, новое — критерий «MCP или скилл» по частоте и обмен агентов через папку `Runtime`; первый источник, пропущенный через каскад дешёвых моделей
 - [[hook-4-pravila-claude-skills]] — маркетинговый конспект "4 правила Anthropic" (вторичный источник, есть неподтверждённая цитата)
 - [[anthropic-code-summit-build-skills-talk]] — первоисточник: доклад Barry Zhang & Mahesh Murag на AI Engineer Code Summit
 - [[anthropic-official-skills-docs]] — официальная методология Anthropic: инженерный блог + skill-creator + доки Claude Code
