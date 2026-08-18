@@ -3,6 +3,7 @@
 
     python ingest.py pending              # сырые материалы без страницы в wiki/sources
     python ingest.py check <slug>         # проверить готовность разбора
+    python ingest.py check-new <base>     # то же для страниц, добавленных после base (для CI)
     python ingest.py --self-test
 
 Смысловое (что взять из источника, во что превратить, чему противоречит)
@@ -11,6 +12,7 @@
 import argparse
 import datetime as dt
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -57,6 +59,8 @@ def pending(root):
 
 
 def check(root, slug, today):
+    """today=None — не требовать записи именно за сегодня (в CI страница могла
+    приехать коммитом позавчерашнего прогона), достаточно упоминания в логе."""
     page = root / "wiki" / "sources" / f"{slug}.md"
     problems = []
     if not page.exists():
@@ -72,11 +76,15 @@ def check(root, slug, today):
         problems.append("страница не добавлена в wiki/index.md")
 
     log = (root / "wiki" / "log.md").read_text(encoding="utf-8")
-    entry = re.search(rf"^## \[{today}\] ingest \|.*$", log, re.M)
-    if not entry:
-        problems.append(f"в wiki/log.md нет записи '## [{today}] ingest | ...'")
-    elif slug not in log[entry.start():]:
-        problems.append("запись в логе есть, но не ссылается на эту страницу")
+    if today is None:
+        if slug not in log:
+            problems.append("в wiki/log.md нет записи об этой странице")
+    else:
+        entry = re.search(rf"^## \[{today}\] ingest \|.*$", log, re.M)
+        if not entry:
+            problems.append(f"в wiki/log.md нет записи '## [{today}] ingest | ...'")
+        elif slug not in log[entry.start():]:
+            problems.append("запись в логе есть, но не ссылается на эту страницу")
 
     linked = [p.name for p in (root / "wiki").rglob("*.md")
               if p.parent.name in ("entities", "concepts") and f"[[{slug}]]" in p.read_text(encoding="utf-8")]
@@ -84,6 +92,18 @@ def check(root, slug, today):
         problems.append("ни одна страница entities/concepts не ссылается на источник "
                         "— шаги 5-6 Ingest, вероятно, пропущены")
     return problems
+
+
+def added_sources(base, ref="HEAD", cwd=None):
+    """Слаги страниц wiki/sources/, появившихся между base и ref.
+
+    Пустой или нулевой base (первый push ветки) — сравнивать не с чем."""
+    if not base or set(base) <= {"0"}:
+        return []
+    r = subprocess.run(["git", "diff", "--name-only", "--diff-filter=A", base, ref,
+                        "--", "wiki/sources"],
+                       capture_output=True, text=True, encoding="utf-8", cwd=cwd, check=True)
+    return [Path(p).stem for p in r.stdout.split() if p.endswith(".md")]
 
 
 def self_test():
@@ -119,13 +139,52 @@ def self_test():
         got = check(r, "statya-x", "2026-07-29")
         assert any("index.md" in p for p in got) and any("шаги 5-6" in p for p in got), got
         assert check(r, "нет-такого", "2026-07-29")[0].startswith("нет страницы")
+
+        # Режим CI (today=None): дата записи не важна, наличие — важно.
+        (r / "wiki" / "index.md").write_text("- [[statya-x]] — про X\n", encoding="utf-8")
+        (r / "wiki" / "entities" / "some-author.md").write_text("[[statya-x]]", encoding="utf-8")
+        assert check(r, "statya-x", None) == [], check(r, "statya-x", None)
+        (r / "wiki" / "log.md").write_text("## [2026-07-29] lint | без нашей страницы\n",
+                                           encoding="utf-8")
+        assert check(r, "statya-x", None) == ["в wiki/log.md нет записи об этой странице"]
+
+    self_test_added()
     print("self-test ok")
+
+
+def self_test_added():
+    """Сторож, который ничего не находит, выглядит как зелёная сборка."""
+    import subprocess as sp
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        r = Path(tmp)
+        env = {"GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t", "GIT_COMMITTER_NAME": "t",
+               "GIT_COMMITTER_EMAIL": "t@t", "PATH": __import__("os").environ["PATH"]}
+        def git(*a):
+            sp.run(["git", *a], cwd=r, check=True, capture_output=True, env=env)
+        git("init", "-q")
+        (r / "wiki" / "sources").mkdir(parents=True)
+        (r / "wiki" / "sources" / "staraya.md").write_text("старая", encoding="utf-8")
+        git("add", "-A"); git("commit", "-qm", "первый")
+        base = sp.run(["git", "rev-parse", "HEAD"], cwd=r, capture_output=True, text=True,
+                      check=True).stdout.strip()
+
+        (r / "wiki" / "sources" / "novaya.md").write_text("новая", encoding="utf-8")
+        (r / "wiki" / "sources" / "staraya.md").write_text("старая, дополненная", encoding="utf-8")
+        (r / "wiki" / "concepts").mkdir()
+        (r / "wiki" / "concepts" / "ne-istochnik.md").write_text("не страница источника", encoding="utf-8")
+        git("add", "-A"); git("commit", "-qm", "второй")
+
+        # Только добавленная страница источника: правка старой и новый концепт — мимо.
+        assert added_sources(base, cwd=r) == ["novaya"], added_sources(base, cwd=r)
+        assert added_sources("0" * 40, cwd=r) == []
+        assert added_sources("", cwd=r) == []
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("command", nargs="?", choices=["pending", "check"])
-    ap.add_argument("slug", nargs="?")
+    ap.add_argument("command", nargs="?", choices=["pending", "check", "check-new"])
+    ap.add_argument("slug", nargs="?", help="для check — slug страницы, для check-new — base-коммит")
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -154,6 +213,28 @@ def main():
                 print(f"  - {p}")
             return 1
         print(f"{args.slug}: страница, индекс, лог и связи на месте.")
+        return 0
+
+    if args.command == "check-new":
+        slugs = added_sources(args.slug, cwd=str(root))
+        if not slugs:
+            print("Новых страниц источников в этом push нет.")
+            return 0
+        bad = 0
+        for slug in slugs:
+            problems = check(root, slug, None)
+            if problems:
+                bad += 1
+                print(f"РАЗБОР НЕ ЗАКОНЧЕН: {slug}", file=sys.stderr)
+                for p in problems:
+                    print(f"  - {p}", file=sys.stderr)
+            else:
+                print(f"{slug}: индекс, лог и связи на месте.")
+        if bad:
+            print("\nСтраница источника без строки в индексе, записи в логе или обратной\n"
+                  "ссылки из entities/concepts — это оборванный разбор: найти её потом\n"
+                  "не сможет ни человек, ни следующий прогон.", file=sys.stderr)
+            return 1
         return 0
 
     ap.print_help()

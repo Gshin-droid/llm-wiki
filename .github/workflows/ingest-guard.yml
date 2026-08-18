@@ -1,0 +1,23 @@
+# Сторож разбора. Падает, если новая страница в wiki/sources/ приехала без
+# строки в wiki/index.md, записи в wiki/log.md или обратной ссылки из
+# entities/concepts — то есть разбор оборвался на середине.
+#
+# Почему в CI, а не хуком на завершение сессии: локальные хуки не переживают
+# клонирование, а автономные рутины работают из свежего клона. Проверка на
+# стороне GitHub — единственная, через которую проходят и они, и человек.
+name: Сторож разбора
+
+on:
+  push:
+    paths:
+      - 'wiki/sources/**'
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # нужен base-коммит для сравнения
+      - name: Проверить, что разбор доведён до конца
+        run: python .claude/skills/wiki-ingest/scripts/ingest.py check-new "${{ github.event.before }}"
