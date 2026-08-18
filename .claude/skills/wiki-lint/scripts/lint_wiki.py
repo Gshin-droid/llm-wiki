@@ -7,7 +7,8 @@
     python lint_wiki.py --self-test
 
 Проверяет: битые [[wiki-links]], страницы-сироты, страницы вне index.md,
-просроченные «Актуально на». Смысловое (противоречия, недостающие страницы,
+просроченные «Актуально на», повторяющиеся безрезультатные заходы в один
+и тот же недоступный домен. Смысловое (противоречия, недостающие страницы,
 устаревшие факты) скрипт не умеет — это работа модели.
 """
 import argparse
@@ -49,6 +50,30 @@ SETTINGS = ".claude/settings.json"
 TYPE = re.compile(r"\*\*Тип:?\*\*:?\s*(.+)")
 PERSON_MARKS = ("человек", "автор", "youtube-канал")
 
+# Повторяющаяся бесполезная попытка: рутина который день ходит в один и тот же
+# недоступный домен, честно записывает неудачу и назавтра заходит снова. Повод —
+# 2026-08-18: `EGRESS_BLOCKED` встречался в логе 12 раз, пять прогонов подряд
+# ушли в ноль на одном домене. Текстовое правило «не долбиться» уже записано в
+# gaps-backlog, но текст — просьба, а не гарантия; ловит только проверка.
+# Считаем по РАЗНЫМ датам записей, а не по числу упоминаний: три абзаца про одну
+# и ту же неудачу в одном прогоне — это один заход, а не три.
+ENTRY_HEAD = re.compile(r"^## \[(\d{4}-\d{2}-\d{2})\]", re.M)
+BLOCK_MARK = re.compile(r"EGRESS_BLOCKED|заблокирован|недоступ|не открыл|403", re.I)
+DOMAIN = re.compile(r"\b([a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)+)\b", re.I)
+# Имена файлов ловятся тем же выражением, что и домены: log.md, lint_wiki.py.
+# Номера версий и arXiv-идентификаторы — тоже: 2.1.224, 2605.08442. Отсюда же
+# отсев чисто числовой «зоны»: доменов с цифровым окончанием не бывает.
+NOT_DOMAIN = {"md", "py", "json", "html", "yml", "yaml", "txt", "js", "ts", "jsonl", "ipynb"}
+# Запись почти всегда строится через противопоставление: «прокси блокировал
+# почти всё, но github.com остался доступен». По строке целиком в находки
+# попадает именно тот домен, который открылся, — то есть проверка ругается на
+# успех. Поэтому строка режется по противительным союзам, и домены берутся
+# только из той части, где стоит признак блокировки.
+CONTRAST = re.compile(r",?\s+(?:но|зато|однако|при этом|кроме)\s+|;\s+")
+# Сколько знаков между доменом и словом о блокировке ещё считать «рядом».
+# ponytail: расстояние в символах, а не разбор предложения; станет шумно — сузить.
+NEAR = 90
+
 
 def kind_of(text):
     """«человек» — авторы, каналы, издания; «продукт» — всё остальное.
@@ -79,7 +104,7 @@ def collect(wiki):
     return pages
 
 
-def lint(wiki, today, stale_days, people_days=180):
+def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
     pages = collect(wiki)
     index_text = (wiki / "index.md").read_text(encoding="utf-8") if (wiki / "index.md").exists() else ""
     index_links = {m.group(1).strip() for m in LINK.finditer(strip_code(index_text))}
@@ -109,6 +134,7 @@ def lint(wiki, today, stale_days, people_days=180):
     stale.sort(key=lambda s: -s["age_days"])
 
     paths = disk_paths(wiki.parent)
+    stuck = stuck_attempts(wiki, stuck_days)
     return {
         "pages": len(pages),
         "people_days": people_days,
@@ -117,8 +143,50 @@ def lint(wiki, today, stale_days, people_days=180):
         "unindexed": unindexed,
         "stale": stale,
         "disk_paths": paths,
-        "total": len(broken) + len(orphans) + len(unindexed) + len(stale) + len(paths),
+        "stuck": stuck,
+        "total": (len(broken) + len(orphans) + len(unindexed)
+                  + len(stale) + len(paths) + len(stuck)),
     }
+
+
+def stuck_attempts(wiki, min_days=3):
+    """Домены, в которые лог упирается из прогона в прогон без результата.
+
+    Ищем построчно, а не по записи целиком: в одной записи рядом обычно стоят и
+    заблокированный домен, и тот, который открылся, — по абзацу их не разделить."""
+    log = wiki / "log.md"
+    if not log.exists():
+        return []
+
+    text = log.read_text(encoding="utf-8")
+    heads = list(ENTRY_HEAD.finditer(text))
+    seen = {}
+    for i, h in enumerate(heads):
+        date = h.group(1)
+        body = text[h.end(): heads[i + 1].start() if i + 1 < len(heads) else len(text)]
+        for line in body.splitlines():
+            if not BLOCK_MARK.search(line):
+                continue
+            for part in CONTRAST.split(line):
+                marks = [m.start() for m in BLOCK_MARK.finditer(part)]
+                if not marks:
+                    continue
+                for m in DOMAIN.finditer(part):
+                    host = m.group(1).lower()
+                    zone = host.rsplit(".", 1)[-1]
+                    if zone in NOT_DOMAIN or zone.isdigit():
+                        continue
+                    # Записи длинные, и в одном предложении часто перечислены и
+                    # закрытые домены, и тот, через который в итоге всё получилось.
+                    # Засчитываем только домен рядом с самим признаком блокировки.
+                    if min(abs(m.start() - k) for k in marks) > NEAR:
+                        continue
+                    seen.setdefault(host, set()).add(date)
+
+    stuck = [{"host": h, "days": len(d), "dates": sorted(d)}
+             for h, d in seen.items() if len(d) >= min_days]
+    stuck.sort(key=lambda s: -s["days"])
+    return stuck
 
 
 def disk_paths(repo):
@@ -156,6 +224,15 @@ def report(r, stale_days):
             print(f"  строка {d['line']}: {d['text'][:100]}")
         print("  Перенести правило в .claude/settings.local.json (он в gitignore);")
         print("  путь к самому проекту в командах заменять на ${CLAUDE_PROJECT_DIR}.")
+    if r["stuck"]:
+        print(f"\nПовторяющиеся безрезультатные заходы ({len(r['stuck'])}) — "
+              f"лог упирается в одно и то же:")
+        for s in r["stuck"]:
+            print(f"  {s['host']} — {s['days']} прогонов: {', '.join(s['dates'])}")
+        print("  Рутине туда больше не ходить: домен блокирует сетевой фильтр её")
+        print("  окружения, а не сам сайт. Такой пункт закрывается из локальной сессии.")
+        print("  Список — подсказка, а не приговор: домен, который в тех же записях")
+        print("  открывался, может попасть сюда за компанию. Проверить глазами.")
     if not r["total"]:
         print("Механических находок нет. Дальше — смысловая часть, её делает модель.")
 
@@ -226,6 +303,38 @@ def self_test():
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
         r2 = lint(w, dt.date(2026, 7, 29), 30)
         assert r2["broken_links"][0]["target"] == "nowhere", r2["broken_links"]
+
+        # Повторяющиеся безрезультатные заходы. Проверяем четыре вещи сразу:
+        # (1) три разных дня по одному домену — находка; (2) два дня — ещё нет,
+        # иначе правило ругалось бы на обычную вторую попытку; (3) домен, который
+        # в тех же записях открылся, в находки не попадает — иначе сработало бы
+        # на любой странице, где рядом стоят удачный и неудачный фетч;
+        # (4) имена файлов (log.md) за домены не считаются.
+        (w / "log.md").write_text(
+            "# Лог\n\n"
+            "## [2026-08-15] lint | раз\n"
+            "`arxiv.org` заблокирован сетевым фильтром окружения, "
+            "но `github.com` остался доступен — оттуда и взяли README.\n"
+            "Запись легла в log.md как обычно.\n\n"
+            "## [2026-08-16] lint | два\n"
+            "Снова EGRESS_BLOCKED на `arxiv.org` (статья 2605.08442).\n"
+            "И ещё раз `arxiv.org` в том же прогоне — это тот же заход, не новый.\n"
+            "`cursor.com` недоступен.\n\n"
+            "## [2026-08-17] lint | три\n"
+            "`arxiv.org` опять не открылся, зато `github.com` отдал всё нужное.\n",
+            encoding="utf-8")
+
+        stuck = {s["host"]: s for s in lint(w, dt.date(2026, 8, 18), 30)["stuck"]}
+        assert "arxiv.org" in stuck, stuck                 # три разных дня
+        assert stuck["arxiv.org"]["days"] == 3, stuck      # повтор внутри дня не считается
+        assert "cursor.com" not in stuck, stuck            # один день — рано
+        assert "github.com" not in stuck, stuck            # открылся, а не заблокирован
+        assert "log.md" not in stuck, stuck                # имя файла — не домен
+        assert "2605.08442" not in stuck, stuck            # arXiv-номер — не домен
+
+        # Порог настраиваемый, и на двух днях он тоже должен срабатывать.
+        loose = {s["host"] for s in lint(w, dt.date(2026, 8, 18), 30, stuck_days=2)["stuck"]}
+        assert "arxiv.org" in loose and "cursor.com" not in loose, loose
     print("self-test ok")
 
 
@@ -237,6 +346,9 @@ def main():
     ap.add_argument("--people-days", type=int, default=180,
                     help="то же для людей и изданий — у них почти ничего не меняется "
                          "(по умолчанию 180)")
+    ap.add_argument("--stuck-days", type=int, default=3,
+                    help="со скольких разных прогонов заход в один и тот же "
+                         "недоступный домен считать зацикливанием (по умолчанию 3)")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -250,7 +362,8 @@ def main():
         print(f"нет такой папки: {wiki}", file=sys.stderr)
         return 2
 
-    result = lint(wiki, dt.date.today(), args.stale_days, args.people_days)
+    result = lint(wiki, dt.date.today(), args.stale_days, args.people_days,
+                  args.stuck_days)
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
