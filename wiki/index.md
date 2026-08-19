@@ -55,6 +55,8 @@ _(люди, компании, инструменты)_
 - [[comrad404]] — автор канала обзоров ИИ-инструментов; разбор понятия «харнес», необычно добросовестный для формата
 - [[paragonzone]] — канал про ИИ-инструменты; разбор безопасности вайбкодинг-проектов на собственном стенде
 
+- [[deepseek-harness]] — открытый (MIT) агентный харнес DeepSeek: сменны все компоненты, включая цикл агента; полная трасса рассуждений отдаётся пользователю, а не прячется; статус developer preview, подписка Claude в него не переносится
+
 ## Concepts
 _(идеи, модели, принципы)_
 
@@ -93,6 +95,8 @@ _(идеи, модели, принципы)_
 - [[geo-ai-answer-visibility]] — GEO: видимость в ответах ИИ-поисковиков — общий механизм (текстовый краулер + robots.txt) и асимметрия видео (Gemini/YouTube против текстовых краулеров ChatGPT/Perplexity)
 - [[claude-api-cost-optimization]] — официальный чеклист экономии стоимости вызова Claude API (кэш, токены, batch, модель) — рычаг, дополняющий маршрутизацию между моделями
 
+- [[spatiotemporal-composability]] — обратимые компоненты: почему харнес умеет только расти и что даёт возможность снимать плагин без следа; что из идеи переносится на чужой харнес, а что нет
+
 ## Sources
 _(саммари загруженных источников)_
 
@@ -118,6 +122,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[deepseek-harness-zproger-review]] — обзор DeepSeek Harness: демонстрация полной трассы агента в интерфейсе; факты сверены отдельно, четыре расхождения с первоисточниками зафиксированы (звёзды, счёт плагинов, Cordis, непроговорённый статус preview)
 - [[claude-code-changelog-snapshot-2026-08-19]] — официальный changelog Claude Code (в. 2.1.234–2.1.235): auto mode сам возобновляет сессию после сброса лимита использования, встроенный скилл `claude-api` сжат с ~200k+ до ~25k токенов, продолжение серии bypass-фиксов (NT-namespace path rejection, session-scoped permission answers в фоновых субагентах); Workbench→Playground (18.08, платформенные release notes) проверен и отброшен — консольный анонс без CLI/API-практики
 - [[claude-cookbook-managed-agents-production-memory]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): production-паттерн через webhooks (`session.status_idled`, HMAC-подпись, human-in-the-loop `escalate()`) и memory stores (per-workspace, монтируются как `/mnt/memory/{store-name}`, файловые тулы + REST-доступ приложения)
 - [[claude-cookbook-cost-optimization]] — официальный notebook Claude Cookbooks (2026-08-12): чеклист оптимизации стоимости Claude API — baseline, prompt caching (byte-stable префикс, explicit breakpoints), input/output token management, batch API, model selection
