@@ -45,7 +45,7 @@ _(люди, компании, инструменты)_
 - [[superpowers]] — TDD-ориентированный набор скиллов с автообнаружением, лёгкая альтернатива GSD; автор Jesse Vincent (obra), 270k+ звёзд, 11 хостов установки (допроверка 08-12)
 - [[nikita-efimov]] — автор разбора автоматизаций Claude Desktop
 - [[prostodevops]] — DevOps-образовательный канал
-- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API
+- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19 — production-паттерн (webhooks) и memory stores по официальным cookbook'ам
 - [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
 - [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; установлен 2026-07-27
 - [[mattpocock-skills]] — пак скиллов Matt Pocock: пайплайн grilling→spec→tickets→implement, tracer-bullet нарезка; установлен 2026-07-27
@@ -118,6 +118,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[claude-cookbook-managed-agents-production-memory]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): production-паттерн через webhooks (`session.status_idled`, HMAC-подпись, human-in-the-loop `escalate()`) и memory stores (per-workspace, монтируются как `/mnt/memory/{store-name}`, файловые тулы + REST-доступ приложения)
 - [[claude-cookbook-cost-optimization]] — официальный notebook Claude Cookbooks (2026-08-12): чеклист оптимизации стоимости Claude API — baseline, prompt caching (byte-stable префикс, explicit breakpoints), input/output token management, batch API, model selection
 - [[claude-code-changelog-snapshot-2026-08-16]] — официальный changelog Claude Code (в. 2.1.232–2.1.233): форк субагента наследует диалог целиком по умолчанию, `@`-упоминание для прямого обращения к сессии, продолжение серии bypass-фиксов (PowerShell, Windows symlink/NTLM, cross-session messaging), первое упоминание GitLab в этой вики
 - [[claude-code-changelog-snapshot-2026-08-13]] — официальный changelog Claude Code (в. 2.1.227–2.1.231): hardening скиллов из claude.ai, сэндбокс IPv6 fail-closed, `/commit-push-pr` без авто-одобрения опасных флагов, self-hosted runner — server-supplied хуки, `ListAgents` различает offline/cloud

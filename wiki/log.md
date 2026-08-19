@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-19] ingest | Managed Agents cookbooks — production-паттерн и memory stores
+
+Рутина 3 (хвосты), обычный день (среда, не воскресенье). Единственный пункт `wiki/gaps-backlog.md` со статусом «не начато» — «Managed Agents cookbooks», заведённый 08-17 еженедельным разведчиком. Взято 2 notebook'а из 16 в директории `managed_agents/` репозитория `anthropics/claude-cookbooks`, по совету самого пункта — ближе всего к уже задокументированным примитивам [[claude-managed-agents]]: `CMA_operate_in_production` (production-паттерн) и `CMA_remember_user_preferences` (memory).
+
+**GitHub не был заблокирован в этот прогон.** Прямой `curl`/`api.github.com` недоступны (в deny-списке разрешений и вне allow-листа WebFetch соответственно), но `raw.githubusercontent.com` разрешён явно — оба `.ipynb`-файла прочитаны напрямую через него, без обхода через вторичные пересказы.
+
+**Находки.** (1) Production: webhook на `session.status_idled`/`session.budget_reached` вместо удержания SSE-соединения, верификация подписи `x_anthropic_signature` (HMAC-SHA256, секрет `whsec_...`), human-in-the-loop через кастомный тул `escalate()` и `user.custom_tool_result`; MCP toolsets работают «no round-trip through your application»; все ресурсы, не только agent, поддерживают `update` с optimistic concurrency по `version`. (2) Memory stores: store — контейнер per-workspace (не per-agent/per-session), типовой паттерн — своя БД user_id→store_id; монтируется как `/mnt/memory/{store-name}`, агент пишет обычными файловыми тулами (без отдельного memory-протокола, в отличие от client-side memory tool с шестью командами); приложение читает/сидирует через REST (`memories.list`, `memories.create`), версии иммутабельны.
+
+Создана [[claude-cookbook-managed-agents-production-memory]]. Дополнена [[claude-managed-agents]] (новый раздел). Обновлён `wiki/index.md`. Остаток пункта — 14 из 16 гайдовых notebook'ов + 3 applied-примера, помечен в `wiki/gaps-backlog.md` с прогрессом 2/16.
+
 ## [2026-08-19] practice | Инструменты поиска уязвимостей: прогон на живом проекте, 52 находки и одна настоящая
 
 Отправная точка — вопрос пользователя: дыры и ошибки были всегда, люди накопили опыт и построили инструменты; что именно накоплено и что из этого применимо к своим проектам. Соблазн был начать с обзора каталогов. Выбран обратный порядок — **сначала прогон на живом проекте, теория вокруг находок**, иначе в вики уезжает красивая карта ландшафта, которой никто не пользуется.

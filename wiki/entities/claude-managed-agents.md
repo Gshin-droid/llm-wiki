@@ -44,6 +44,14 @@
 ## Допроверка 2026-08-04 (ежедневное закрытие пробелов, официальные release notes)
 Третий визит к этой странице после отставаний 07-21 и 07-24 (см. разделы выше) — по прецеденту закрытых пунктов бэклога 07-22…07-27, где допроверка страниц с историей отставания от `platform.claude.com/docs/en/release-notes/overview` регулярно давала находки. Полный перечень release notes с 2026-06-30 по 2026-08-01 проверен построчно. Единственная запись, затрагивающая Managed Agents, с прошлой проверки (07-22) — **1 августа 2026**: Dreams (research preview) добавил поддержку Claude Opus 5 (учтено в разделе "Экосистема вокруг ядра" выше). Остальные записи между 07-22 и 08-01 — про модели/эффорт/fallback общей платформы, Managed Agents не касаются. Отставания документации от продукта на этот раз не найдено — release notes актуальны на момент проверки.
 
+## Cookbook: production-паттерн и memory stores (2026-08-19, официальный репозиторий)
+
+Первый разбор пункта бэклога «Managed Agents cookbooks» — два notebook'а из `anthropics/claude-cookbooks/managed_agents/` ([[claude-cookbook-managed-agents-production-memory]]), остальные 14 из 16 гайдовых + 3 applied-примера ещё не разобраны.
+
+**Production-паттерн (`CMA_operate_in_production`).** Вместо удержания SSE-соединения — webhook в консоли (Settings → Webhooks) на `session.status_idled` (агент закончил или ждёт результата тула) и `session.budget_reached` (упёрлись в бюджет сессии). Верификация подписи — заголовок `x_anthropic_signature`, HMAC-SHA256 с секретом `whsec_...`. Human-in-the-loop: кастомный тул `escalate()` останавливает сессию в `idled`, обработчик находит необработанный `agent.custom_tool_use` с именем `escalate` в событиях, после решения человека шлёт `user.custom_tool_result` с тем же `custom_tool_use_id`. MCP toolsets вызываются агентом «no round-trip through your application» — без прохода через приложение разработчика. Все ресурсы (не только agent) поддерживают `list`/`retrieve`/`update`/`archive`/`delete`, `update` — optimistic concurrency через `version`.
+
+**Memory stores (`CMA_remember_user_preferences`), уточнение раздела «Экосистема» выше.** Store — «named container for text files, scoped to your workspace» (per-workspace, не per-agent/per-session); типовой продакшн-паттерн — своя БД с маппингом user_id → store_id. Монтируется через `resources: [{"type": "memory_store", "memory_store_id": ..., "access": ..., "instructions": ...}]`, видна агенту как директория `/mnt/memory/{store-name}`; агент читает/пишет обычными файловыми тулами, без отдельного memory-протокола (в отличие от client-side [[claude-memory-tool]] с явными шестью командами). Приложение — через REST: `memory_stores.memories.list(store_id, view="full")`, `memory_stores.memories.create(store_id, path=..., content=...)` для сидирования. Версии иммутабельны (`memory_stores.memory_versions.list`) — аудит и ручная коррекция вне агента. `description` store попадает в системный промпт агента.
+
 ## Практический пример (Python SDK)
 ```python
 from anthropic import Anthropic
@@ -75,6 +83,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
