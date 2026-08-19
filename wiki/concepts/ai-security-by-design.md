@@ -122,8 +122,16 @@ Bun портировал ~1M строк Zig→Rust через [[dynamic-workflow
 
 Показательная деталь того же релиза, отдельная от bypass-серии: **2.1.233 частично откатывает собственные Bash-изменения 2.1.232** для Cygwin-симлинков и input redirections — редкий задокументированный случай, когда фикс безопасности предыдущей версии сам оказался регрессией и был отменён в следующей же версии. Прямое напоминание к принципу 4 ("простота — враг безопасности"): даже точечный security-патч несёт риск сломать легитимный сценарий, поэтому подобные фиксы стоит проверять на регрессию, а не считать once-and-done.
 
+## Продолжение серии bypass-фиксов: NT-namespace paths, session-scoped permissions (2026-08-19, [[claude-code-changelog-snapshot-2026-08-19]])
+
+Тот же механизм, отслеживаемый на этой странице с 07-19, дал ещё две находки спустя три дня после предыдущей волны (08-16):
+- **Windows NT-namespace path rejection** (2.1.234) — *"Implemented Windows NT-namespace path rejection to harden against NTLM credential leaks"*. Прямое продолжение находки предыдущего снапшота (*"Closed NTLM credential leak vector via Windows NT device paths"*, 2.1.233): та закрыла один конкретный вектор через NT device path (`\\.\`-нотация), эта вводит более общее правило, отклоняющее NT-namespace пути как класс. Changelog не поясняет, был ли прежний точечный фикс неполным — оставлено открытым вопросом, не домыслено.
+- **Session-scoped permission answers dropped in background subagent prompts** (2.1.234) — ответ на разрешение, данный в рамках сессии, мог теряться в промптах фоновых субагентов. Практический эффект (повторный запрос или, наоборот, пропущенная проверка) в changelog не раскрыт.
+
+Показательно, что фикс от 08-16 (закрытие NTLM-вектора через NT device paths) и фикс от 08-19 (отклонение NT-namespace путей как класса) вышли с разницей в три дня — тот же паттерн, что уже отмечен на этой странице 08-16: один и тот же механизм регулярно даёт течь, и точечный фикс предыдущей волны не гарантирует, что находка закрыта целиком, а не только один конкретный вектор внутри неё.
+
 ## Источник
-[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]]
+[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]]
 
 ## Связи
 Пересекается с практикой вайбкодинга ([[vibecoding-full-workflow]], [[supabase]]) — секреты на бэкенде, а не на фронтенде — это прямое применение принципа минимизации поверхности атаки. Также напрямую применимо к [[persistent-wiki-pattern]] и операции Ingest.
