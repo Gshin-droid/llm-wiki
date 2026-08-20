@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-20] ingest | Managed Agents cookbooks — human-in-the-loop gate и мультиагентная координация
+
+Рутина 3 (хвосты), обычный день (четверг). Продолжение пункта `wiki/gaps-backlog.md` «Managed Agents cookbooks», взятого вчера впервые — правило рутины 3 велит брать пункт бэклога со статусом «не начато» первым делом, а «в работе» с чёткими следующими подпунктами трактуется так же, раз явных «не начато» пунктов без блокировки (DeepSeek-плагины — не раньше февраля 2027; формат шапки старых источников — решение за пользователем) в бэклоге не было.
+
+Взято два notebook'а из директории `managed_agents/` репозитория `anthropics/claude-cookbooks`, ближе всего к уже задокументированному: `CMA_gate_human_in_the_loop` (второй кастомный тул `decide()` рядом с `escalate()`) и `CMA_coordinate_specialist_team` (впервые раскрыт механизм "Multiagent orchestration" — параметр `multiagent: {type: coordinator}`, toolset-скоуп по ролям, отдельный примитив advisor). Оба прочитаны напрямую через `raw.githubusercontent.com`. Попутно получен полный листинг директории через обычную веб-страницу репозитория (`api.github.com` отдал 403) — все 16 гайдовых имён и 3 applied-примера теперь поимённо подтверждены, включая два ранее неопознанных гайдовых (`CMA_iterate_fix_failing_tests`, `CMA_explore_unfamiliar_codebase`) и два applied сверх `data_analyst_agent` (`slack_data_bot`, `sre_incident_responder`).
+
+Создана [[claude-cookbook-managed-agents-hitl-multiagent]]. Дополнена [[claude-managed-agents]] (новый раздел, обновлены «Связи»). Обновлён `wiki/index.md`. Прогресс пункта в `wiki/gaps-backlog.md`: 4/16 (+3 applied-примера не начаты).
+
+**Побочная находка, не влияющая на этот пункт.** Перед тем как взять cookbook-пункт, была предпринята попытка допроверить два продуктовых entity из соседнего открытого пункта бэклога («Актуально на» просрочено) — `obsidian` и `notebooklm`. Оба заблокированы сетевым прокси окружения: `obsidian.md`, `docs.obsidian.md`, `notebooklm.google`, `support.google.com` все вернули `EGRESS_BLOCKED`, а WebSearch по NotebookLM дал только вторичные SEO-пересказы (отброшены, CLAUDE.md прямо требует их отбрасывать). `github.com`/`raw.githubusercontent.com` при этом открыты без проблем — сегодняшняя блокировка не сплошная, а по семейству доменов (`obsidian.md`, `google.*`), тот же паттерн, что уже фиксировался для других семейств в прошлых прогонах. По правилу «один заход, отметка в логе, следующий пункт» — переход к cookbook-пункту без повторных попыток. `obsidian` и `notebooklm` остаются в списке шести непроверенных продуктов в `wiki/gaps-backlog.md`, попытка не засчитана как допроверка.
+
 ## [2026-08-19] practice | Обратимость правил: у смонтированного правила записывается, что его снимает
 
 Прямое продолжение разбора [[deepseek-harness]] — перенос технического приёма [[spatiotemporal-composability]] на собственную обвязку пользователя. Записано пунктом 12 в [[claude-code-practices]].

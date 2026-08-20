@@ -45,7 +45,7 @@ _(люди, компании, инструменты)_
 - [[superpowers]] — TDD-ориентированный набор скиллов с автообнаружением, лёгкая альтернатива GSD; автор Jesse Vincent (obra), 270k+ звёзд, 11 хостов установки (допроверка 08-12)
 - [[nikita-efimov]] — автор разбора автоматизаций Claude Desktop
 - [[prostodevops]] — DevOps-образовательный канал
-- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19 — production-паттерн (webhooks) и memory stores по официальным cookbook'ам
+- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19/08-20 — production-паттерн (webhooks), memory stores, human-in-the-loop и мультиагентная координация по официальным cookbook'ам
 - [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
 - [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; установлен 2026-07-27
 - [[mattpocock-skills]] — пак скиллов Matt Pocock: пайплайн grilling→spec→tickets→implement, tracer-bullet нарезка; установлен 2026-07-27
@@ -122,6 +122,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[claude-cookbook-managed-agents-hitl-multiagent]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): human-in-the-loop через два кастомных тула (`decide()`/`escalate()`), мультиагентная координация (`multiagent: {type: coordinator}`, advisor-примитив, toolset-скоуп по ролям); полный список 16 гайдовых + 3 applied notebook'ов подтверждён поимённо
 - [[deepseek-harness-zproger-review]] — обзор DeepSeek Harness: демонстрация полной трассы агента в интерфейсе; факты сверены отдельно, четыре расхождения с первоисточниками зафиксированы (звёзды, счёт плагинов, Cordis, непроговорённый статус preview)
 - [[claude-code-changelog-snapshot-2026-08-19]] — официальный changelog Claude Code (в. 2.1.234–2.1.235): auto mode сам возобновляет сессию после сброса лимита использования, встроенный скилл `claude-api` сжат с ~200k+ до ~25k токенов, продолжение серии bypass-фиксов (NT-namespace path rejection, session-scoped permission answers в фоновых субагентах); Workbench→Playground (18.08, платформенные release notes) проверен и отброшен — консольный анонс без CLI/API-практики
 - [[claude-cookbook-managed-agents-production-memory]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): production-паттерн через webhooks (`session.status_idled`, HMAC-подпись, human-in-the-loop `escalate()`) и memory stores (per-workspace, монтируются как `/mnt/memory/{store-name}`, файловые тулы + REST-доступ приложения)

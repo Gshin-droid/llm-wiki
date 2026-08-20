@@ -52,6 +52,14 @@
 
 **Memory stores (`CMA_remember_user_preferences`), уточнение раздела «Экосистема» выше.** Store — «named container for text files, scoped to your workspace» (per-workspace, не per-agent/per-session); типовой продакшн-паттерн — своя БД с маппингом user_id → store_id. Монтируется через `resources: [{"type": "memory_store", "memory_store_id": ..., "access": ..., "instructions": ...}]`, видна агенту как директория `/mnt/memory/{store-name}`; агент читает/пишет обычными файловыми тулами, без отдельного memory-протокола (в отличие от client-side [[claude-memory-tool]] с явными шестью командами). Приложение — через REST: `memory_stores.memories.list(store_id, view="full")`, `memory_stores.memories.create(store_id, path=..., content=...)` для сидирования. Версии иммутабельны (`memory_stores.memory_versions.list`) — аудит и ручная коррекция вне агента. `description` store попадает в системный промпт агента.
 
+## Cookbook: human-in-the-loop gate и мультиагентная координация (2026-08-20, официальный репозиторий)
+
+Третий и четвёртый notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-hitl-multiagent]]).
+
+**Human-in-the-loop (`CMA_gate_human_in_the_loop`).** Расширяет уже известный `escalate()` вторым кастомным тулом `decide()` — для однозначных решений по чётким правилам, `escalate()` остаётся для неоднозначных. Оба — `"type": "custom"`, дают событие `agent.custom_tool_use`, сессия встаёт в `stop_reason.type == "requires_action"`; при нескольких одновременных вызовах ответ трекается набором `responded_to`, чтобы не отправить `user.custom_tool_result` дважды на один `custom_tool_use_id`. Notebook прямо подтверждает, что вебхуки — не отдельный механизм, а замена триггера у того же ответа: «webhooks for production» вместо держащегося SSE-соединения, сам протокол ответа не меняется.
+
+**Multiagent orchestration (`CMA_coordinate_specialist_team`), впервые раскрыт механизм за строкой «public beta с 2026-05-06» выше.** Координатор — обычный agent с параметром `"multiagent": {"type": "coordinator", "agents": [...]}`: роспись специалистов и опциональный advisor задаются в его конфиге. Специалисты — обычные `client.beta.agents.create()` с урезанным под роль toolset'ом (`agent_toolset_20260401`) и структурированным выходом через `send_to_parent` — toolset-скоуп физически не даёт ролям "перетекать" друг в друга (например, ценовой агент без web-доступа не может подсмотреть цены конкурентов). Координатор запускает специалистов параллельно и цепочкой (когда один зависит от находок другого). **Advisor** — отдельный примитив: более сильная модель без своих тулов, вызывается координатором мид-turn как консультация, не полноценный субагент-поток. Новые типы событий: `session.thread_created` (спавн субагента), `agent.thread_message_received` (payload от `send_to_parent`/advisor), `agent.tool_use`. Файлы монтируются `client.beta.files.upload()` в `/mnt/user-data/...`, доступны субагентам как обычные файлы.
+
 ## Практический пример (Python SDK)
 ```python
 from anthropic import Anthropic
@@ -83,6 +91,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
