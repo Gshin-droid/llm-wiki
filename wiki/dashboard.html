@@ -342,13 +342,13 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-21 (3 записи) · след. запуск 08:00 (08.22)</div>
+      <div class="mono">обновлено 2026-08-21 (4 записи) · след. запуск 08:00 (08.22)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">167</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">170</span><span class="l">страниц</span></div>
     <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">50</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">35</span><span class="l">concepts</span></div>
@@ -358,23 +358,30 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 2026-08-20…21</span>
+      <span class="section-note">4 записи · 2026-08-20…21</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Харнес-инжиниринг: происхождение термина, четыре функции, семь слоёв, три уровня проверки</div>
+        <div class="news-body">Разбор обвязки на живых агентах из продакшена, где каждый слой назван вместе с породившим его инцидентом и его ценой. Термин ввёл Митчелл Хашимото в феврале 2026 с принципом: каждая ошибка агента инженерится так, чтобы стать структурно невозможной — кодом, а не промптом. Заведён концепт «три уровня проверки»: инварианты в коде, замеры на эталонных запросах, человек — плюс правило спуска (каждый инцидент опускает проверку на уровень ниже) и три вопроса, отличающих инвариант от эвристики. Ключевая асимметрия: заблокированный правильный ответ хуже пропущенной ошибки, потому что пропущенную увидят и обсудят, а заблокированную не увидит никто. Четыре опорных утверждения проверены по первоисточникам: разброс результата от смены обвязки в 7,80 раза больше, чем от смены модели, и в шести парах сравнений из девяти рейтинг моделей переворачивался.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md">bereznitsky-harness-engineering<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md">mitchell-hashimoto<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md">agent-harness<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
         <span class="news-stamp">project</span>
         <div class="news-title">devkit — конвейер разработки: страница проекта</div>
         <div class="news-body">Собственный переиспользуемый конвейер от идеи до рабочей версии. Главное решение: инструмент обязан доказать, что смотрел. Оркестратор сканеров вернул зелёное «пройдено», хотя один из сканеров внутри дошёл только до корня монорепозитория и промолчал об этом — десятки настоящих находок оказались спрятаны под галочкой. Отсюда учёт охвата (ноль осмотренных целей при ненулевых — код «не проверено», а не «чисто») и канарейка: заведомо дырявый образец, который инструменты обязаны находить каждый прогон. Обобщение: «ноль находок» и «проверено» — разные утверждения, а большинство инструментов сообщает первое, тогда как читается второе. Граница публикации записана на самой странице: наружу метод, внутрь — состав установки и найденные дыры.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/devkit-conveyer-razrabotki.md">devkit-conveyer-razrabotki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices<span class="badge-new">обновлено</span></a></div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/devkit-conveyer-razrabotki.md">devkit-conveyer-razrabotki</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">practice</span>
         <div class="news-title">Справочник инструментов: оркестраторы, разбор шума, что платформа даёт приватному репозиторию</div>
         <div class="news-body">Пять классов инструментов не нужно вызывать поштучно — готовые прогонщики запускают набор и сводят вывод в вендор-нейтральный SARIF. Проблема «один CVE, четыре ignore-файла» решается не своим списком подавлений, а стандартом OpenVEX с обоснованием из фиксированного списка; сильнее подавлений — сравнение с прошлым прогоном, когда отчёт говорит не «136 находок», а «новых — две». Управление находками на стороне хостинга приватному репозиторию недоступно на бесплатных тарифах обеих платформ, тогда как автопочинка библиотек бесплатна. Отдельная оговорка для этой вики: аннотации code scanning в pull request публичного репозитория видны всем с read-доступом — карта незакрытых дыр становится публичной вместе с первым же PR.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/poisk-uyazvimostey-instrumenty.md">poisk-uyazvimostey-instrumenty<span class="badge-new">обновлено</span></a></div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/poisk-uyazvimostey-instrumenty.md">poisk-uyazvimostey-instrumenty</a></div>
       </article>
 
       <article class="news-card">
@@ -484,9 +491,10 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">48</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">49</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07</span></a>
@@ -540,7 +548,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">33</span></summary>
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">34</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">пять операций ведения вики (Ingest/Query/Project/Practice/Lint)</span></a>
@@ -569,6 +577,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; правило спуска и критерий «инвариант или эвристика»</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md"><span class="tree-name">agent-harness</span><span class="tree-desc">обвязка между моделью и работой: агент = модель + харнес, восемь частей, пять болей, внутренний и внешний харнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/spatiotemporal-composability.md"><span class="tree-name">spatiotemporal-composability</span><span class="tree-desc">обратимые компоненты: почему свод правил умеет только расти и что даёт возможность снять плагин без следа</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-app-security.md"><span class="tree-name">vibecoding-app-security</span><span class="tree-desc">безопасность того, что собрал агент: пять классов дыр с самопроверкой, деградация кода при итерациях, граница «свои данные / чужие»</span></a>
@@ -581,8 +590,9 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">72</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">73</span></summary>
       <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; цифры сверены по arXiv</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-skills-claude-md.md"><span class="tree-name">karpathy-skills-claude-md</span><span class="tree-desc">CLAUDE.md-гайдлайны против типичных ошибок LLM (188.8k звёзд)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mastodont-claude-obsidian-video.md"><span class="tree-name">mastodont-claude-obsidian-video</span><span class="tree-desc">видео-транскрипт метода Карпати с ограничениями</span></a>
