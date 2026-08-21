@@ -342,13 +342,13 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-21 (1 запись) · след. запуск 08:00 (08.22)</div>
+      <div class="mono">обновлено 2026-08-21 (3 записи) · след. запуск 08:00 (08.22)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">170</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">167</span><span class="l">страниц</span></div>
     <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">50</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">35</span><span class="l">concepts</span></div>
@@ -358,23 +358,37 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-21</span>
+      <span class="section-note">3 записи · 2026-08-20…21</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
+        <span class="news-stamp">project</span>
+        <div class="news-title">devkit — конвейер разработки: страница проекта</div>
+        <div class="news-body">Собственный переиспользуемый конвейер от идеи до рабочей версии. Главное решение: инструмент обязан доказать, что смотрел. Оркестратор сканеров вернул зелёное «пройдено», хотя один из сканеров внутри дошёл только до корня монорепозитория и промолчал об этом — десятки настоящих находок оказались спрятаны под галочкой. Отсюда учёт охвата (ноль осмотренных целей при ненулевых — код «не проверено», а не «чисто») и канарейка: заведомо дырявый образец, который инструменты обязаны находить каждый прогон. Обобщение: «ноль находок» и «проверено» — разные утверждения, а большинство инструментов сообщает первое, тогда как читается второе. Граница публикации записана на самой странице: наружу метод, внутрь — состав установки и найденные дыры.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/devkit-conveyer-razrabotki.md">devkit-conveyer-razrabotki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Справочник инструментов: оркестраторы, разбор шума, что платформа даёт приватному репозиторию</div>
+        <div class="news-body">Пять классов инструментов не нужно вызывать поштучно — готовые прогонщики запускают набор и сводят вывод в вендор-нейтральный SARIF. Проблема «один CVE, четыре ignore-файла» решается не своим списком подавлений, а стандартом OpenVEX с обоснованием из фиксированного списка; сильнее подавлений — сравнение с прошлым прогоном, когда отчёт говорит не «136 находок», а «новых — две». Управление находками на стороне хостинга приватному репозиторию недоступно на бесплатных тарифах обеих платформ, тогда как автопочинка библиотек бесплатна. Отдельная оговорка для этой вики: аннотации code scanning в pull request публичного репозитория видны всем с read-доступом — карта незакрытых дыр становится публичной вместе с первым же PR.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/poisk-uyazvimostey-instrumenty.md">poisk-uyazvimostey-instrumenty<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
         <span class="news-stamp">ingest</span>
         <div class="news-title">Managed Agents cookbooks — issue→PR workflow и outcome grader</div>
         <div class="news-body">Продолжение пункта бэклога по официальным notebook'ам anthropics/claude-cookbooks (6 из 16). Issue→PR: восстановление после сбоя CI/ревью через чтение диагностики и точечную правку, а не слепой повтор; состояние воркфлоу живёт в файловой системе контейнера, не в контексте диалога. Outcome grader — первое раскрытие примитива Outcomes, до сих пор одной строкой "public beta с 2026-05-06": событие user.define_outcome задаёт задачу writer'у и rubric изолированному grader'у с чистым контекстом, цикл grade-and-revise идёт до satisfied/max_iterations_reached/failed/interrupted.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-issue-outcome-grader.md">claude-cookbook-managed-agents-issue-outcome-grader</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-issue-outcome-grader.md">claude-cookbook-managed-agents-issue-outcome-grader<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
         <div class="news-title">Managed Agents cookbooks — human-in-the-loop gate и мультиагентная координация</div>
         <div class="news-body">Продолжение пункта бэклога по официальным notebook'ам anthropics/claude-cookbooks (4 из 16). Human-in-the-loop: второй кастомный тул decide() рядом с уже известным escalate(). Multiagent orchestration впервые раскрыт по существу: параметр multiagent: {type: coordinator} у координирующего агента, toolset-скоуп по ролям не даёт специалистам «перетекать» друг в друга, отдельный примитив advisor — сильная модель без тулов для мид-turn консультации. Попутно поимённо подтверждён полный список всех 16 гайдовых notebook'ов и 3 applied-примеров директории.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md">claude-cookbook-managed-agents-hitl-multiagent</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md">claude-cookbook-managed-agents-hitl-multiagent<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
       </article>
 
       <article class="news-card">
@@ -506,7 +520,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
@@ -640,13 +654,14 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-cost-optimization.md"><span class="tree-name">claude-cookbook-cost-optimization</span><span class="tree-desc">официальный notebook Claude Cookbooks (12.08): чеклист оптимизации стоимости Claude API — baseline, prompt caching, input/output tokens, batch API, model selection</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-production-memory.md"><span class="tree-name">claude-cookbook-managed-agents-production-memory</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks (managed_agents/): production через webhooks и human-in-the-loop, memory stores как /mnt/memory/{store-name}</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-19.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-19</span><span class="tree-desc">changelog 2.1.234–2.1.235: auto mode после сброса лимита, скилл claude-api в 10 раз дешевле, продолжение bypass-фиксов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md"><span class="tree-name">claude-cookbook-managed-agents-hitl-multiagent</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: human-in-the-loop через decide()/escalate(), мультиагентная координация (coordinator + advisor)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md"><span class="tree-name">claude-cookbook-managed-agents-hitl-multiagent</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: human-in-the-loop через decide()/escalate(), мультиагентная координация (coordinator + advisor)</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
     <details class="drawer" open>
-      <summary><span class="drawer-label">Projects</span><span class="drawer-desc">рабочие проекты пользователя</span><span class="drawer-count">2</span></summary>
+      <summary><span class="drawer-label">Projects</span><span class="drawer-desc">рабочие проекты пользователя</span><span class="drawer-count">3</span></summary>
       <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/devkit-conveyer-razrabotki.md"><span class="tree-name">devkit-conveyer-razrabotki</span><span class="tree-desc">свой конвейер разработки: «инструмент обязан доказать, что смотрел» — учёт охвата и канарейка, склейка готового, отброшенные альтернативы</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/jarvis-personal-wiki.md"><span class="tree-name">jarvis-personal-wiki</span><span class="tree-desc">сама эта вики как проект: структура, решения, статус</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/humanizer-ru-skill-refactor.md"><span class="tree-name">humanizer-ru-skill-refactor</span><span class="tree-desc">эксперимент: монолитный скилл разложен по многофайловой архитектуре, A/B-замеры</span></a>
       </div>
