@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-20 (1 запись) · след. запуск 08:00 (08.21)</div>
+      <div class="mono">обновлено 2026-08-21 (1 запись) · след. запуск 08:00 (08.22)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">165</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">170</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">50</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">35</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">72</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">73</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-20</span>
+      <span class="section-note">1 запись · 2026-08-21</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Managed Agents cookbooks — issue→PR workflow и outcome grader</div>
+        <div class="news-body">Продолжение пункта бэклога по официальным notebook'ам anthropics/claude-cookbooks (6 из 16). Issue→PR: восстановление после сбоя CI/ревью через чтение диагностики и точечную правку, а не слепой повтор; состояние воркфлоу живёт в файловой системе контейнера, не в контексте диалога. Outcome grader — первое раскрытие примитива Outcomes, до сих пор одной строкой "public beta с 2026-05-06": событие user.define_outcome задаёт задачу writer'у и rubric изолированному grader'у с чистым контекстом, цикл grade-and-revise идёт до satisfied/max_iterations_reached/failed/interrupted.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-issue-outcome-grader.md">claude-cookbook-managed-agents-issue-outcome-grader<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
