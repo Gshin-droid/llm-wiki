@@ -60,6 +60,14 @@
 
 **Multiagent orchestration (`CMA_coordinate_specialist_team`), впервые раскрыт механизм за строкой «public beta с 2026-05-06» выше.** Координатор — обычный agent с параметром `"multiagent": {"type": "coordinator", "agents": [...]}`: роспись специалистов и опциональный advisor задаются в его конфиге. Специалисты — обычные `client.beta.agents.create()` с урезанным под роль toolset'ом (`agent_toolset_20260401`) и структурированным выходом через `send_to_parent` — toolset-скоуп физически не даёт ролям "перетекать" друг в друга (например, ценовой агент без web-доступа не может подсмотреть цены конкурентов). Координатор запускает специалистов параллельно и цепочкой (когда один зависит от находок другого). **Advisor** — отдельный примитив: более сильная модель без своих тулов, вызывается координатором мид-turn как консультация, не полноценный субагент-поток. Новые типы событий: `session.thread_created` (спавн субагента), `agent.thread_message_received` (payload от `send_to_parent`/advisor), `agent.tool_use`. Файлы монтируются `client.beta.files.upload()` в `/mnt/user-data/...`, доступны субагентам как обычные файлы.
 
+## Cookbook: issue→PR workflow и outcome grader (2026-08-21, официальный репозиторий)
+
+Пятый и шестой notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-issue-outcome-grader]]).
+
+**Issue→PR workflow (`CMA_orchestrate_issue_to_pr`).** Репозиторий монтируется ресурсом `github_repository` (URL, mount path, токен) или зафикстуренным `file`-ресурсом; `environments.create` с `networking: {"type": "limited", "allow_package_managers": true}` и полем `packages` — сеть ограничена, но пакетные менеджеры разрешены явно (третий вариант сетевой конфигурации рядом с уже известными `unrestricted`/`strictAllowlist` из [[claude-code]]). Восстановление после сбоя CI — не повтор, а чтение диагностики упавшей проверки и точечная правка по тексту ошибки; тот же паттерн на комментариях ревью-бота. Состояние воркфлоу между турнами живёт в файловой системе контейнера, не в контексте диалога — независимый финальный турн подтверждает результат чтением файла, а не памятью.
+
+**Outcome grader (`CMA_verify_with_outcome_grader`), первое раскрытие примитива Outcomes** (раньше на странице — одна строка "public beta с 2026-05-06", по аналогии с Multiagent orchestration до 08-20). Событие `user.define_outcome` (не отдельный REST-ресурс) задаёт `description` (задача writer'а) и `rubric` (что проверяет grader, `type: "text"`/`"file"`), `max_iterations` (дефолт 3, максимум 20), под тем же бета-заголовком `managed-agents-2026-04-01`. Grade-and-revise: writer пишет артефакт → платформа поднимает **отдельного grader'а с чистым контекстом** (тот же model/tools, но без видимости рассуждений writer'а) → вердикт `satisfied` или список несовпадений по критериям → writer правит → повтор до `satisfied`/`max_iterations_reached`/`failed`/`interrupted`. Изоляция grader'а — не деталь реализации, а сама защита: grader не принимает правку writer'а на слово, проверяет источник заново с нуля. События потока: `span.outcome_evaluation_start`/`span.outcome_evaluation_end` (`result` + `explanation`). Rubric-принципы источника: требовать конкретных цифр, требовать посимвольного совпадения цитаты с фетчем по `web_fetch`, исключать сторонние подтверждения (зеркала/сниппеты), явные "no-fire zones" вне скоупа проверки, предписанный формат вывода.
+
 ## Практический пример (Python SDK)
 ```python
 from anthropic import Anthropic
@@ -91,6 +99,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
