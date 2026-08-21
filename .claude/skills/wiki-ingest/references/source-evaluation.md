@@ -33,6 +33,7 @@
 | Claude Code — версии и changelog | `raw.githubusercontent.com` → `anthropics/claude-code/CHANGELOG.md` | многократно |
 | Claude API, модели, release notes | `platform.claude.com/docs/en/*`, в т.ч. `release-notes/overview` | 07-21, 08-04, 08-07 |
 | MCP — спецификация, реестр | `blog.modelcontextprotocol.io`, `registry.modelcontextprotocol.io` | 07-28 |
+| Работы arXiv из локальной сессии | `arxiv.org/abs/<id>` и `arxiv.org/html/<id>v1` — читаются целиком, включая таблицы результатов (в автономном прогоне тот же домен блокируется, см. шапку бэклога) | 08-21 |
 | Любой открытый продукт или исследование | **официальный репозиторий на GitHub** — README, доки внутри репозитория, `git clone` для больших файлов | 08-08 Chroma, 08-09 MINJA и mem0, 08-10 letta |
 | Документация библиотеки под конкретную задачу | MCP-сервер `context7` | установлен и работает |
 
@@ -42,6 +43,7 @@
 | `arxiv.org` и все проверенные зеркала — `openreview.net`, `neurips.cc`, `researchgate.net`, `semanticscholar.org`, `huggingface.co`, `alphaxiv.org` | `EGRESS_BLOCKED` на уровне прокси | 08-09 |
 | `research.trychroma.com`, `docs.letta.com`, `antigravity.google`, `cursor.com` | `EGRESS_BLOCKED`, домен целиком | 08-08, 08-09, 08-10 |
 | `exa.ai`, `docs.exa.ai`, `habr.com` | 403 на весь сайт, не на отдельную страницу | 08-01 и позже |
+| `openai.com` | 403 на `openai.com/index/*`; страница существует, но не читается | 08-21, из локальной сессии |
 | `web.archive.org`, `r.jina.ai` | не работают как обход — инструменту недоступны | 08-01, 08-05 |
 
 **Два разных отказа, и их стоит различать.** `EGRESS_BLOCKED` — прокси песочницы не пускает домен; 403 — запрос дошёл, но его отклонили. Проверяется запросом к `$HTTPS_PROXY/__agentproxy/status` (прецедент 08-01). Учти: `curl` стоит в списке `ask` в `.claude/settings.json` и в автономном прогоне вызовет запрос разрешения — решение пользователя от 2026-08-10 разрешения не расширять, так что проще записать «недоступно» и идти дальше, чем ждать подтверждения.
