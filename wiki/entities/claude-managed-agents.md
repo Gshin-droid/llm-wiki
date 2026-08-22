@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-04
+**Актуально на:** 2026-08-22
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -68,6 +68,15 @@
 
 **Outcome grader (`CMA_verify_with_outcome_grader`), первое раскрытие примитива Outcomes** (раньше на странице — одна строка "public beta с 2026-05-06", по аналогии с Multiagent orchestration до 08-20). Событие `user.define_outcome` (не отдельный REST-ресурс) задаёт `description` (задача writer'а) и `rubric` (что проверяет grader, `type: "text"`/`"file"`), `max_iterations` (дефолт 3, максимум 20), под тем же бета-заголовком `managed-agents-2026-04-01`. Grade-and-revise: writer пишет артефакт → платформа поднимает **отдельного grader'а с чистым контекстом** (тот же model/tools, но без видимости рассуждений writer'а) → вердикт `satisfied` или список несовпадений по критериям → writer правит → повтор до `satisfied`/`max_iterations_reached`/`failed`/`interrupted`. Изоляция grader'а — не деталь реализации, а сама защита: grader не принимает правку writer'а на слово, проверяет источник заново с нуля. События потока: `span.outcome_evaluation_start`/`span.outcome_evaluation_end` (`result` + `explanation`). Rubric-принципы источника: требовать конкретных цифр, требовать посимвольного совпадения цитаты с фетчем по `web_fetch`, исключать сторонние подтверждения (зеркала/сниппеты), явные "no-fire zones" вне скоупа проверки, предписанный формат вывода.
 
+## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
+
+Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
+
+- **`allowed_domains`/`blocked_domains`** — впервые можно ограничить, какие сайты доступны тулам `web_search`/`web_fetch` конкретного агента, через `configs`-массив `agent_toolset_20260401` (`web_fetch` дополнительно получил `max_content_tokens`, `web_search` — `user_location`). Раньше `configs`-запись управлялась только `name`/`enabled`/`permission_policy`, без per-tool домен-фильтра — прямое применение минимальных привилегий из [[ai-security-by-design]] к встроенным тулам агента, а не только к MCP/сэндбоксу.
+- **Self-hosted sandbox + memory stores** — атрибут «Экосистема» выше указывал self-hosted sandbox и memory stores как две независимые опции; теперь они совместимы: SDK-воркеры (Python/TypeScript/Go) сами скачивают примонтированный store в sandbox по `mount_path` и синхронизируют изменения агента обратно. До этой записи memory stores были доступны только в managed cloud-sandbox.
+
+Источник — [[claude-code-changelog-snapshot-2026-08-22]].
+
 ## Практический пример (Python SDK)
 ```python
 from anthropic import Anthropic
@@ -99,6 +108,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)

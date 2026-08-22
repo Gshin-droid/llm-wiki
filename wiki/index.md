@@ -200,6 +200,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-routines-docs]] — официальная документация Cloud Routines и `/loop`/scheduled tasks: таблица трёх способов расписания, self-paced `/loop` через `ScheduleWakeup`, `loop.md`, security-механизм `<routine-fire-payload>`/фрейминга триггера (v2.1.214)
 - [[claude-code-changelog-snapshot-2026-08-04]] — снапшот changelog Claude Code (в. 2.1.220–2.1.221): git-поведение фоновых сессий уточнено (draft PR не всегда), `sandbox` `mode: "mask"` для credential-файлов, `prompt-audit` для скилла `claude-api`, Focus view (VSCode)
 - [[claude-code-changelog-snapshot-2026-08-07]] — снапшот changelog Claude Code (в. 2.1.222–2.1.223): побег из сэндбокса Dynamic Workflows через `import()`, удаление Ultraplan, продолжение серии bypass-фиксов permission-анализатора (worktree/git, `PreToolUse` auto-allow, обфускация Bash-команд), auto mode проверяет `SendMessage`
+- [[claude-code-changelog-snapshot-2026-08-22]] — changelog Claude Code (в. 2.1.236–2.1.240, `/claude-api upgrade` под миграцию SDK) + официальные Claude Platform release notes: Python SDK v1.0 (breaking changes), новый browser use tool, computer use tool вышел из беты, разом out-of-beta Files/Agent Skills/Admin API, домен-фильтр web_search/web_fetch и self-hosted memory stores у Managed Agents
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_

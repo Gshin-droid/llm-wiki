@@ -5,6 +5,18 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-22] ingest | Python SDK v1.0, browser use tool, computer use из беты — changelog Claude Code 2.1.236–2.1.240 и Claude Platform release notes
+
+Рутина 1 (новости), прогон через три дня после предыдущего (08-19) — в графике «раз в 3 дня». Официальный `CHANGELOG.md` `anthropics/claude-code` и официальные Claude Platform release notes прочитаны через `WebFetch` (сетевой доступ этого прогона не дал прямого построчного `raw.githubusercontent.com`/`curl`, как в снапшотах 08-16/08-19 — оговорка внесена на страницу источника).
+
+**Четыре находки, все официальные.** (1) **Python SDK v1.0** (20.08) — первая мажорная версия с ломающими изменениями: переезд HTTP-слоя на `httpx2`, удаление legacy Text Completions API и параметров `temperature`/`top_p`/`top_k` из Messages, требование Python 3.10+. Claude Code день спустя (2.1.239) добавил `/claude-api upgrade` — миграционный помощник ровно под этот релиз, не совпадение по времени. (2) **Browser use tool** (`browser_toolset_20260801`, 19.08) — новый агентский инструмент, управляет вкладкой браузера приложения (accessibility tree, формы, вкладки), а не всем десктопом; рядом **computer use tool** вышел из беты с batch actions. (3) Разом out-of-beta ушли Files API, Agent Skills API, Admin API user-management — без изменения практической механики для этой вики, записано ради полноты картины стабилизации платформы. (4) У Claude Managed Agents — домен-фильтр (`allowed_domains`/`blocked_domains`) для `web_search`/`web_fetch` и self-hosted sandbox научился монтировать memory stores.
+
+Changelog самого Claude Code (2.1.236–2.1.240) в этот раз без headline-фикса — взяты только пункты с практическим эффектом: `ANTHROPIC_DEFAULT_MODEL`, `claude self-hosted-runner --defer-shutdown-max-min`, `headersHelper` для marketplace-плагинов, `notify_when_idle` у `SendMessage`, надбавка 1.1× к cost estimate для data-residency workspaces.
+
+Создана [[claude-code-changelog-snapshot-2026-08-22]]. Дополнены [[claude-code]] (новый раздел changelog, «Актуально на» → 08-22) и [[claude-managed-agents]] (новый раздел про домен-фильтр и self-hosted memory, «Актуально на» → 08-22). Обновлён `wiki/index.md`.
+
+**Не взято:** переименование Workbench→Playground (18.08) — уже разобрано и отброшено прошлым снапшотом (08-19), не пересказывается повторно. Старый web-клип «GPT-5.6 Sol и Fable 5» (`raw/web-clipped/`, опубликован 07.08, лежит без разбора с 08-11) не взят в этот прогон — материал старше окна «с прошлой записи в логе», рекламный (агрегатор Abacus, реферальные ссылки), кейсы без проверки по первоисточникам; остаётся в `pending` для отдельного решения, не для новостного разведчика.
+
 ## [2026-08-22] lint | Закрыты три цифры-лида из разбора харнес-инжиниринга
 
 Ежедневный процесс закрытия пробелов (сегодня суббота, не воскресенье — обычный порядок, не особый прогон). Взят единственный пункт со статусом «не начато», заведённый накануне: три числа, приведённые в [[bereznitsky-harness-engineering]] на слух без ссылок (прогноз Gartner, цитата Бориса Черни, проект Карпати Auto Research).
