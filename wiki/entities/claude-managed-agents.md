@@ -104,6 +104,15 @@ with client.beta.sessions.events.stream(session.id) as stream:
 ```
 Тот же официальный SDK (`anthropic` / `@anthropic-ai/sdk`), что и для обычного Messages API — просто другой namespace (`client.beta.agents/environments/sessions`).
 
+## Противоречия
+
+Найдено 2026-08-23 сверкой с сырьём (воскресный прогон рутины 3). Две даты в разделе «Экосистема вокруг ядра» расходятся с `raw/sources/claude-managed-agents-overview.md` — тем самым raw-файлом, из которого страница выросла при ingest 07-15:
+
+- **Webhooks, первый набор событий.** Страница (раздел «Обновления с 2026-07-22», закрыт 07-24) утверждает: «ранее webhooks покрывали только agent/deployment/deployment run (**2026-05-06**, самый первый набор) и session/vault (2026-05-06, самый первый набор)». Raw-файл про тот же первый набор agent/deployment/deployment-run говорит другую дату: «Webhooks: agent/deployment/deployment-run lifecycle события (**2026-07-02**)».
+- **Vaults, `injection_location`.** Страница (раздел «Экосистема вокруг ядра») датирует появление настройки «С **2026-06-30** у env var credential есть настройка `injection_location`». Raw-файл датирует ту же настройку иначе: «с настройкой `injection_location` (headers/body/both) с **2026-07-02**».
+
+Обе раздельные даты (07-24-запись и raw-файл) официальные по происхождению — raw-файл собран из тех же release notes платформы, что видела страница при ingest, 07-24-запись сделана отдельной построчной сверкой release notes в другой день. Какая из двух точнее — не установлено, сверка это не чинит. Пункт заведён в `wiki/gaps-backlog.md`: передопроверить обе даты по официальным release notes платформы напрямую.
+
 ## Ограничения
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
