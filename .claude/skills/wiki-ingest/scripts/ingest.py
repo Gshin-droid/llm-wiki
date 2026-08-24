@@ -22,7 +22,15 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).resolve().parents[4]
 RAW_DIRS = ("web-clipped", "inbox-assistant", "sources")
-REQUIRED_SECTIONS = ("**Дата загрузки:**", "**Raw:**", "## Связи")
+# Внутри элемента — равноправные варианты одного поля. Страницы июля-августа 2026
+# писали `**Источник:**` и `## Связанные страницы`, нынешний шаблон — `**Raw:**` и
+# `## Связи`. Смысл поля тот же, поэтому старые страницы не переписываем, а признаём
+# оба написания (решение пользователя 2026-08-24). Новые пишутся по шаблону ниже.
+REQUIRED_SECTIONS = (
+    ("**Дата загрузки:**",),
+    ("**Raw:**", "**Источник:**"),
+    ("## Связи", "## Связанные страницы"),
+)
 
 
 def covered_text(root):
@@ -67,9 +75,9 @@ def check(root, slug, today):
         return [f"нет страницы wiki/sources/{slug}.md"]
 
     body = page.read_text(encoding="utf-8")
-    for section in REQUIRED_SECTIONS:
-        if section not in body:
-            problems.append(f"на странице нет обязательного поля: {section}")
+    for variants in REQUIRED_SECTIONS:
+        if not any(v in body for v in variants):
+            problems.append("на странице нет обязательного поля: " + " / ".join(variants))
 
     index = (root / "wiki" / "index.md").read_text(encoding="utf-8")
     if f"[[{slug}]]" not in index:
@@ -139,6 +147,24 @@ def self_test():
         got = check(r, "statya-x", "2026-07-29")
         assert any("index.md" in p for p in got) and any("шаги 5-6" in p for p in got), got
         assert check(r, "нет-такого", "2026-07-29")[0].startswith("нет страницы")
+
+        # Старый формат шапки (`**Источник:**` + `## Связанные страницы`) равноправен
+        # новому: проверка не должна ронять страницы, написанные до смены шаблона.
+        (r / "wiki" / "index.md").write_text("- [[statya-x]] — про X\n", encoding="utf-8")
+        (r / "wiki" / "entities" / "some-author.md").write_text("[[statya-x]]", encoding="utf-8")
+        (r / "wiki" / "sources" / "statya-x.md").write_text(
+            "# X\n**Дата загрузки:** 2026-07-29\n"
+            "**Источник:** raw/web-clipped/Статья про X/\n## Связанные страницы\n",
+            encoding="utf-8")
+        assert check(r, "statya-x", "2026-07-29") == [], check(r, "statya-x", "2026-07-29")
+        # А поля нет вовсе — по-прежнему находка.
+        (r / "wiki" / "sources" / "statya-x.md").write_text(
+            "# X\n**Дата загрузки:** 2026-07-29\n## Связи\n", encoding="utf-8")
+        got = check(r, "statya-x", "2026-07-29")
+        assert any("**Raw:** / **Источник:**" in p for p in got), got
+        (r / "wiki" / "sources" / "statya-x.md").write_text(
+            "# X\n**Дата загрузки:** 2026-07-29\n**Raw:** `raw/web-clipped/Статья про X/`\n## Связи\n",
+            encoding="utf-8")
 
         # Режим CI (today=None): дата записи не важна, наличие — важно.
         (r / "wiki" / "index.md").write_text("- [[statya-x]] — про X\n", encoding="utf-8")

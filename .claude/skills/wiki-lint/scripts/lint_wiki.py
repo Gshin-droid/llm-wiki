@@ -50,6 +50,14 @@ SETTINGS = ".claude/settings.json"
 TYPE = re.compile(r"\*\*Тип:?\*\*:?\s*(.+)")
 PERSON_MARKS = ("человек", "автор", "youtube-канал")
 
+# Продукт, помеченный «не используется», из счётчика свежести выпадает совсем
+# (решение пользователя 2026-08-24). Смысл счётчика — «версии и цены протухают за
+# недели», но актуализировать нечего у того, чем не пользуются: страница описывает
+# факт «оценили и не взяли», а он не устаревает. Пометка ставится руками строкой
+# `**Статус:** ... не используется ...` — счётчик выключает человек, а не скрипт.
+STATUS = re.compile(r"\*\*Статус:?\*\*:?\s*(.+)")
+UNUSED_MARK = "не используется"
+
 # Повторяющаяся бесполезная попытка: рутина который день ходит в один и тот же
 # недоступный домен, честно записывает неудачу и назавтра заходит снова. Повод —
 # 2026-08-18: `EGRESS_BLOCKED` встречался в логе 12 раз, пять прогонов подряд
@@ -100,6 +108,7 @@ def collect(wiki):
             "links": [m.group(1).strip() for m in LINK.finditer(strip_code(text))],
             "actual": (ACTUAL.search(text) or [None, None])[1],
             "kind": kind_of(text),
+            "unused": UNUSED_MARK in (STATUS.search(text) or [None, ""])[1].lower(),
         }
     return pages
 
@@ -124,7 +133,7 @@ def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
 
     stale = []
     for name, p in pages.items():
-        if not p["actual"]:
+        if not p["actual"] or p["unused"]:
             continue
         limit = people_days if p["kind"] == "человек" else stale_days
         age = (today - dt.date.fromisoformat(p["actual"])).days
@@ -297,7 +306,18 @@ def self_test():
         late = {s["page"] for s in lint(w, dt.date(2027, 1, 1), 30, 180)["stale"]}
         assert "person.md" in late, late              # 214 дней — уже пора
 
-        for f in ("tool.md", "person.md"):
+        # Пометка «не используется» снимает счётчик свежести совсем: та же дата,
+        # что у просроченного tool.md, но в находки не попадает ни сейчас, ни через
+        # полгода. Проверяем оба среза — иначе правило было бы просто отсрочкой.
+        (w / "index.md").write_text(
+            "# Индекс\n- [[alpha]]\n- [[tool]]\n- [[person]]\n- [[dropped]]\n", encoding="utf-8")
+        (w / "dropped.md").write_text(
+            "# Dropped\n**Тип:** инструмент (IDE)\n**Статус:** не используется в этой вике\n"
+            "**Актуально на:** 2026-06-01\n[[alpha]]\n", encoding="utf-8")
+        assert "dropped.md" not in {s["page"] for s in lint(w, dt.date(2026, 7, 29), 30, 180)["stale"]}
+        assert "dropped.md" not in {s["page"] for s in lint(w, dt.date(2027, 1, 1), 30, 180)["stale"]}
+
+        for f in ("tool.md", "person.md", "dropped.md"):
             (w / f).unlink()
 
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
