@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-24 (5 записей) · след. запуск 08:00 (08.25)</div>
+      <div class="mono">обновлено 2026-08-24 (6 записей) · след. запуск 08:00 (08.25)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">174</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">10</span><span class="l">новых за сутки</span></div>
-    <div class="stat"><span class="n">51</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">177</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">13</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">75</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">76</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · 2026-08-24</span>
+      <span class="section-note">6 записей · 2026-08-24</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude + FreeCAD через MCP: цикл с визуальной обратной связью</div>
+        <div class="news-body">Еженедельный разведчик практики. Туториал подключения FreeCAD к Claude Desktop через сторонний MCP-сервер — сам домен (CAD/3D-печать) в проектах пользователя не встречался, но паттерн общего порядка стоил переноса: цикл со скриншотом вьюпорта вместо только текста конкретизирует абстрактный «шаг = запрос + инструменты» на случае, где у модели нет иного доступа к результату своих действий, кроме рендера. Тот же компромисс стоимость/наглядность, что у кэша и batch, здесь — по модальности фидбека. Отдельно зафиксирован честный риск: MCP-сервер закрывает несохранённые документы без запроса подтверждения. Не отмечено ⭐ Топ-находкой сознательно — критерий «пользователь будет искать это при похожей задаче» для домена CAD не выполняется, взятое уже перенесено в концепт.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md">makeform-freecad-mcp-tutorial<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md">mcp-model-context-protocol<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md">make-form<span class="badge-new">новое</span></a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">query</span>
@@ -414,7 +421,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">51</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">53</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -467,6 +474,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-efimov.md"><span class="tree-name">nikita-efimov</span><span class="tree-desc">автор разбора автоматизаций Claude Desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/prostodevops.md"><span class="tree-name">prostodevops</span><span class="tree-desc">DevOps-образовательный канал</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/marina-mogilko.md"><span class="tree-name">marina-mogilko</span><span class="tree-desc">предприниматель, автор выступления про пять уровней внедрения ИИ в бизнес</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; площадка кейса MCP с визуальной обратной связью</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -488,7 +497,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator для целых приложений</span></a>
@@ -514,7 +523,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">75</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">76</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -591,6 +600,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md"><span class="tree-name">claude-cookbook-managed-agents-hitl-multiagent</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: human-in-the-loop через decide()/escalate(), мультиагентная координация (coordinator + advisor)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-issue-outcome-grader.md"><span class="tree-name">claude-cookbook-managed-agents-issue-outcome-grader</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: issue→PR workflow с recovery-паттернами, outcome grader — изолированный grader с чистым контекстом, grade-and-revise цикл</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-22.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-22</span><span class="tree-desc">changelog Claude Code 2.1.236–2.1.240 + Claude Platform release notes: Python SDK v1.0, browser use tool, computer use из беты, домен-фильтр web_search/web_fetch у Managed Agents</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md"><span class="tree-name">makeform-freecad-mcp-tutorial</span><span class="tree-desc">туториал: Claude + FreeCAD через MCP, цикл с визуальной обратной связью (скриншот вьюпорта), обработка неоднозначных промптов</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
