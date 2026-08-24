@@ -99,8 +99,11 @@ NEAR = 90
 LOGGED_DIRS = ("entities", "concepts", "sources", "projects", "synthesis", "practices")
 
 
-def changed_pages(root, since="midnight"):
-    """Страницы вики, тронутые коммитами за сегодня. None — посмотреть не вышло."""
+DASHBOARD = "wiki/dashboard.html"
+
+
+def changed_today(root, since="midnight"):
+    """Файлы вики, тронутые коммитами за сегодня. None — посмотреть не вышло."""
     try:
         out = subprocess.run(
             ["git", "log", f"--since={since}", "--name-only", "--diff-filter=AM",
@@ -108,12 +111,23 @@ def changed_pages(root, since="midnight"):
             capture_output=True, text=True, encoding="utf-8", cwd=root, check=True).stdout
     except (subprocess.CalledProcessError, FileNotFoundError, OSError):
         return None
-    pages = set()
-    for line in out.splitlines():
-        p = line.strip()
-        if p.endswith(".md") and p.count("/") == 2 and p.split("/")[1] in LOGGED_DIRS:
-            pages.add(Path(p).stem)
-    return pages
+    return {line.strip() for line in out.splitlines() if line.strip()}
+
+
+def pages_among(files):
+    return {Path(p).stem for p in files
+            if p.endswith(".md") and p.count("/") == 2 and p.split("/")[1] in LOGGED_DIRS}
+
+
+def dashboard_behind(files):
+    """Страницы за день менялись, дашборд — нет.
+
+    Правило «дашборд обновляется в каждый прогон, последним коммитом» куплено
+    случаем 12–13.08.2026: опубликованная страница двое суток показывала
+    позапрошлые новости. До 24.08 оно жило только текстом. Это находка, а не
+    сторож: исключение объявлено в самом правиле — правка одной строки каталога
+    обновлением не считается, — а значит перед нами эвристика."""
+    return bool(pages_among(files)) and DASHBOARD not in files
 
 
 def entries_of(log_text, day):
@@ -202,10 +216,11 @@ def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
 
     # Охват журнала. changed=None означает «посмотреть не удалось» — это не
     # «чисто»: отсутствие проверки и её успех различаются в отчёте явно.
-    changed = changed_pages(wiki.parent)
+    changed = changed_today(wiki.parent)
     log_text = (wiki / "log.md").read_text(encoding="utf-8") if (wiki / "log.md").exists() else ""
     unlogged = (None if changed is None
-                else uncovered(changed, entries_of(log_text, today.isoformat())))
+                else uncovered(pages_among(changed), entries_of(log_text, today.isoformat())))
+    dash_behind = None if changed is None else dashboard_behind(changed)
 
     return {
         "pages": len(pages),
@@ -217,8 +232,10 @@ def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
         "disk_paths": paths,
         "stuck": stuck,
         "unlogged": unlogged,
+        "dashboard_behind": dash_behind,
         "total": (len(broken) + len(orphans) + len(unindexed)
-                  + len(stale) + len(paths) + len(stuck) + len(unlogged or [])),
+                  + len(stale) + len(paths) + len(stuck) + len(unlogged or [])
+                  + int(bool(dash_behind))),
     }
 
 
@@ -317,6 +334,11 @@ def report(r, stale_days):
         print("  самой. Это подсказка, а не отказ — у правила есть законные")
         print("  исключения (опечатка, служебная правка). Разбор — концепт")
         print("  invariant-vidno-znachit-zapisano.")
+    if r["dashboard_behind"]:
+        print("\nДашборд отстал: страницы сегодня менялись, wiki/dashboard.html — нет.")
+        print("  Он обновляется в каждый прогон и последним коммитом, уже после пуша")
+        print("  содержания. Опубликованная страница двое суток показывала позапрошлые")
+        print("  новости именно потому, что прогон закончился без этого шага.")
     if not r["total"]:
         print("Механических находок нет. Дальше — смысловая часть, её делает модель.")
 
@@ -407,6 +429,13 @@ def self_test():
         assert uncovered({"gamma"}, day) == ["gamma"], day      # названа во вчерашней записи
         assert uncovered({"delta"}, day) == ["delta"]           # не названа нигде
         assert entries_of(log, "2026-01-01") == ""              # дня нет — пусто, а не весь лог
+
+        # Дашборд. Проверяем оба исхода: страницы без дашборда — находка,
+        # страницы вместе с дашбордом и день без правок страниц — нет.
+        assert dashboard_behind({"wiki/entities/alpha.md"}) is True
+        assert dashboard_behind({"wiki/entities/alpha.md", DASHBOARD}) is False
+        assert dashboard_behind({"wiki/log.md", "wiki/index.md"}) is False
+        assert pages_among({"wiki/log.md", "wiki/entities/a.md", "wiki/x/y/z.md"}) == {"a"}
 
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
         r2 = lint(w, dt.date(2026, 7, 29), 30)
