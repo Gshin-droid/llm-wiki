@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-22
+**Актуально на:** 2026-08-24
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -36,7 +36,7 @@
 Продолжение того же отставания, что и раздел выше (страница создана 2026-07-15, официальные release notes с тех пор пополнились новой партией точечных изменений):
 - **Event deltas теперь и на уровне отдельного subagent-потока** — `GET /v1/sessions/{id}/threads/{thread_id}/stream` принимает тот же параметр `event_deltas[]`, что и потоковая выдача на уровне сессии (добавлена 2026-06-30, см. раздел выше) — можно превью-стримить текст конкретного субагента, не всей сессии сразу.
 - **`effort` в конфигурации модели агента** — уровень effort (см. [[claude-code|effort в Claude Code]]) теперь настраивается прямо в объекте `model` при создании агента, а не только через сам Messages API.
-- **Webhooks расширены на environment/memory store** — 4 новых `environment.*` события и 3 `memory_store.*` события; ранее webhooks покрывали только agent/deployment/deployment run (2026-05-06) и session/vault (2026-05-06, самый первый набор) — теперь весь основной жизненный цикл ресурсов события покрыт.
+- **Webhooks расширены на environment/memory store** — 4 новых `environment.*` события и 3 `memory_store.*` события; ранее webhooks покрывали только agent/deployment/deployment run (**2026-06-30**, дата исправлена 2026-08-24 — см. «Противоречия» ниже; было ошибочно записано 2026-05-06) и session/vault (2026-05-06, самый первый набор, подтверждено) — теперь весь основной жизненный цикл ресурсов события покрыт.
 - **`initial_events` при создании сессии** — можно сразу передать до 50 событий `user.message`/`user.define_outcome` в `POST /v1/sessions`; если список непустой, agent loop стартует в том же вызове, без отдельного запроса на отправку событий.
 - **`version` необязателен при обновлении агента** — если передан, работает как optimistic concurrency (несовпадение → 409); если не передан, обновление применяется безусловно.
 - Попутно подтверждено: `managed-agents-2026-04-01` (общий beta-заголовок) с 2026-07-22 сам перенял поведение листинга памяти, ранее доступное только под `agent-memory-2026-07-22` (см. раздел "Memory" выше, запись от 2026-07-02) — де-факто расхождение между двумя заголовками для memory-эндпоинтов закрылось.
@@ -106,12 +106,13 @@ with client.beta.sessions.events.stream(session.id) as stream:
 
 ## Противоречия
 
-Найдено 2026-08-23 сверкой с сырьём (воскресный прогон рутины 3). Две даты в разделе «Экосистема вокруг ядра» расходятся с `raw/sources/claude-managed-agents-overview.md` — тем самым raw-файлом, из которого страница выросла при ingest 07-15:
+Найдено 2026-08-23 сверкой с сырьём (воскресный прогон рутины 3), **снято 2026-08-24** (ежедневное закрытие пробелов) прямой построчной проверкой официальных release notes (`platform.claude.com/docs/en/release-notes/overview`, раздел за 2026-06-30) — не пересказом и не raw-файлом, а первоисточником напрямую.
 
-- **Webhooks, первый набор событий.** Страница (раздел «Обновления с 2026-07-22», закрыт 07-24) утверждает: «ранее webhooks покрывали только agent/deployment/deployment run (**2026-05-06**, самый первый набор) и session/vault (2026-05-06, самый первый набор)». Raw-файл про тот же первый набор agent/deployment/deployment-run говорит другую дату: «Webhooks: agent/deployment/deployment-run lifecycle события (**2026-07-02**)».
-- **Vaults, `injection_location`.** Страница (раздел «Экосистема вокруг ядра») датирует появление настройки «С **2026-06-30** у env var credential есть настройка `injection_location`». Raw-файл датирует ту же настройку иначе: «с настройкой `injection_location` (headers/body/both) с **2026-07-02**».
+Изначально расхождение выглядело так: раздел «Экосистема вокруг ядра» датировал первый набор webhook-событий agent/deployment/deployment-run 2026-05-06, а появление `injection_location` у Vaults — 2026-06-30; `raw/sources/claude-managed-agents-overview.md` (тот же ingest 07-15) для обоих фактов называл 2026-07-02.
 
-Обе раздельные даты (07-24-запись и raw-файл) официальные по происхождению — raw-файл собран из тех же release notes платформы, что видела страница при ingest, 07-24-запись сделана отдельной построчной сверкой release notes в другой день. Какая из двух точнее — не установлено, сверка это не чинит. Пункт заведён в `wiki/gaps-backlog.md`: передопроверить обе даты по официальным release notes платформы напрямую.
+**Официальный первоисточник разрешает обе даты одинаково: оба факта — из записи за 30 июня 2026.** Дословно, из раздела «June 30, 2026»: «Webhooks for Claude Managed Agents now cover the agent, deployment, and deployment run lifecycle. […] See the Agent events, Deployment events, and Deployment run events tabs» и отдельным пунктом того же дня: «Claude Managed Agents vaults now support an `injection_location` setting on environment variable credentials […] It controls whether the credential's value is substituted, at egress, into the agent's outbound request headers, the request body, or both.» Ни 2026-05-06 (для webhooks agent/deployment/deployment-run — с этой датой спутан отдельный, действительно случившийся 06.05.2026 первый набор webhooks session/vault, см. запись «May 6, 2026»: «Webhook event types include session and vault lifecycle events»), ни 2026-07-02 (raw-файл, для обоих фактов) первоисточником не подтверждаются.
+
+**Итог:** страничная дата у Vaults (2026-06-30) была верной с самого начала; ошибка была только в дате webhooks agent/deployment/deployment-run — исправлена на 2026-06-30 в разделе «Обновления с 2026-07-22» выше. Дата raw-файла (07-02) для обоих фактов не подтвердилась — сам raw-файл не правится (сырьё неизменяемо), расхождение с ним фиксируется здесь как факт истории, а не как повод сомневаться в исправленной дате.
 
 ## Ограничения
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.

@@ -5,6 +5,18 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-24] lint | Снята дата-нестыковка на claude-managed-agents прямой сверкой с release notes
+
+Ежедневный процесс закрытия пробелов (сегодня понедельник, обычный порядок). Единственный пункт `wiki/gaps-backlog.md` со статусом «не начато» без блокировки — дата-нестыковка на [[claude-managed-agents]], заведённая 08-23 воскресной сверкой с сырьём (два факта в разделе «Экосистема вокруг ядра» — первый набор webhooks agent/deployment/deployment-run и `injection_location` у Vaults — датированы на странице 2026-05-06/2026-06-30, а в `raw/sources/claude-managed-agents-overview.md` оба названы 2026-07-02).
+
+**Метод.** Прямой фетч `platform.claude.com/docs/en/release-notes/overview` в этот прогон прошёл без блокировки (`WebFetch`, без обхода через GitHub или вторичные пересказы) — построчная проверка раздела за май–июль 2026.
+
+**Результат — обе даты разрешены одной и той же записью.** Раздел «June 30, 2026» официальных release notes называет оба факта в один день, дословно: «Webhooks for Claude Managed Agents now cover the agent, deployment, and deployment run lifecycle» и отдельным пунктом «Claude Managed Agents vaults now support an `injection_location` setting on environment variable credentials […] It controls whether the credential's value is substituted, at egress, into the agent's outbound request headers, the request body, or both». Раздел «May 6, 2026» отдельно подтверждает первый набор webhooks — но для **session/vault**, не agent/deployment/deployment-run («Webhook event types include session and vault lifecycle events») — вот с чем спуталась страничная дата 05-06. Дата raw-файла (07-02) для обоих фактов первоисточником не подтвердилась ни разу.
+
+**Правка.** [[claude-managed-agents]]: дата webhooks agent/deployment/deployment-run в разделе «Обновления с 2026-07-22» исправлена 05-06 → 06-30 (дата Vaults 06-30 оказалась верной уже на странице, не тронута); раздел «Противоречия» не удалён, а дополнен разрешением с точными цитатами и итоговым выводом — какая дата откуда и почему верна; «Актуально на» → 2026-08-24. `wiki/gaps-backlog.md`: пункт перенесён в «Закрытые пункты» с деталями метода.
+
+**Побочное.** Домен `platform.claude.com` в этот прогон открылся напрямую без затруднений — стоит иметь в виду для следующих допроверок из этого же семейства (`claude-projects`, cursor и т.д. остаются под другими доменами и не проверялись этим прогоном).
+
 ## [2026-08-23] lint | сверка с сырьём: claude-managed-agents
 
 Второе (и в этот раз последнее) дело воскресного прогона рутины 3 — первый раз, когда этот пункт вообще исполняется (см. оговорку в записи ниже про мехпроход того же дня). Страница выбрана по правилу приоритета: ни одна страница вики никогда не сверялась с сырьём, поэтому при равенстве взята страница, собранная из наибольшего числа источников (пять: [[claude-managed-agents-overview]] + три cookbook-разбора + changelog-снапшот 08-22) и чаще всех правленная автономной рутиной (07-15 ingest, правки 07-21/07-24/08-04/08-19/08-20/08-21/08-22).
