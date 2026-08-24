@@ -15,6 +15,7 @@ import argparse
 import datetime as dt
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -83,6 +84,60 @@ CONTRAST = re.compile(r",?\s+(?:но|зато|однако|при этом|кр�
 NEAR = 90
 
 
+# Охват журнала: страница вики поменялась — сказано ли об этом в логе за тот же
+# день. Вторая половина правила «сообщил о действии — запись обязана
+# существовать»: здесь наоборот, действие есть, а записи может не быть. Повод —
+# инвариант «видно модели значит записано» из архитектуры dsh, разобранный в
+# wiki/concepts/invariant-vidno-znachit-zapisano.md (2026-08-24).
+#
+# Почему ОТЧЁТ, а не сторож в CI: у правила есть законные исключения — правка
+# опечатки, служебные файлы, механическая замена ссылки. По фильтру из
+# verification-three-levels один такой «да» переводит правило в эвристику, а
+# эвристике место на уровне замера: находка показывается человеку и не роняет
+# сборку. Ложный отказ здесь был бы невидимым — правильную правку никто бы не
+# увидел.
+LOGGED_DIRS = ("entities", "concepts", "sources", "projects", "synthesis", "practices")
+
+
+def changed_pages(root, since="midnight"):
+    """Страницы вики, тронутые коммитами за сегодня. None — посмотреть не вышло."""
+    try:
+        out = subprocess.run(
+            ["git", "log", f"--since={since}", "--name-only", "--diff-filter=AM",
+             "--pretty=format:", "--", "wiki/"],
+            capture_output=True, text=True, encoding="utf-8", cwd=root, check=True).stdout
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+        return None
+    pages = set()
+    for line in out.splitlines():
+        p = line.strip()
+        if p.endswith(".md") and p.count("/") == 2 and p.split("/")[1] in LOGGED_DIRS:
+            pages.add(Path(p).stem)
+    return pages
+
+
+def entries_of(log_text, day):
+    """Текст всех записей лога за указанный день, склеенный в одну строку."""
+    parts, keep = [], False
+    for line in log_text.splitlines():
+        head = ENTRY_HEAD.match(line)
+        if head:
+            keep = head.group(1) == day
+        if keep:
+            parts.append(line)
+    return "\n".join(parts)
+
+
+def uncovered(pages, day_text):
+    """Чистая логика решения — её и проверяет self-test.
+
+    ponytail: сверка подстрокой. Имя, входящее в имя другой страницы
+    (`deepseek-harness` внутри `deepseek-harness-zproger-review`), засчитается
+    за упоминание — пропуск, а не ложная тревога. Для подсказки это верный
+    перекос: шумная проверка перестаёт читаться первой."""
+    return sorted(name for name in pages if name not in day_text)
+
+
 def kind_of(text):
     """«человек» — авторы, каналы, издания; «продукт» — всё остальное.
 
@@ -144,6 +199,14 @@ def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
 
     paths = disk_paths(wiki.parent)
     stuck = stuck_attempts(wiki, stuck_days)
+
+    # Охват журнала. changed=None означает «посмотреть не удалось» — это не
+    # «чисто»: отсутствие проверки и её успех различаются в отчёте явно.
+    changed = changed_pages(wiki.parent)
+    log_text = (wiki / "log.md").read_text(encoding="utf-8") if (wiki / "log.md").exists() else ""
+    unlogged = (None if changed is None
+                else uncovered(changed, entries_of(log_text, today.isoformat())))
+
     return {
         "pages": len(pages),
         "people_days": people_days,
@@ -153,8 +216,9 @@ def lint(wiki, today, stale_days, people_days=180, stuck_days=3):
         "stale": stale,
         "disk_paths": paths,
         "stuck": stuck,
+        "unlogged": unlogged,
         "total": (len(broken) + len(orphans) + len(unindexed)
-                  + len(stale) + len(paths) + len(stuck)),
+                  + len(stale) + len(paths) + len(stuck) + len(unlogged or [])),
     }
 
 
@@ -242,6 +306,17 @@ def report(r, stale_days):
         print("  окружения, а не сам сайт. Такой пункт закрывается из локальной сессии.")
         print("  Список — подсказка, а не приговор: домен, который в тех же записях")
         print("  открывался, может попасть сюда за компанию. Проверить глазами.")
+    if r["unlogged"] is None:
+        print("\nОхват журнала: НЕ ПРОВЕРЕН — git не ответил. Это не «чисто».")
+    elif r["unlogged"]:
+        print(f"\nИзменены сегодня, но не названы в записях лога за сегодня ({len(r['unlogged'])}):")
+        for u in r["unlogged"]:
+            print(f"  {u}")
+        print("  Инвариант «видно модели — значит записано»: решение, принятое по")
+        print("  странице, должно быть восстановимо из журнала, а не только из неё")
+        print("  самой. Это подсказка, а не отказ — у правила есть законные")
+        print("  исключения (опечатка, служебная правка). Разбор — концепт")
+        print("  invariant-vidno-znachit-zapisano.")
     if not r["total"]:
         print("Механических находок нет. Дальше — смысловая часть, её делает модель.")
 
@@ -319,6 +394,19 @@ def self_test():
 
         for f in ("tool.md", "person.md", "dropped.md"):
             (w / f).unlink()
+
+        # Охват журнала. Проверяем чистую логику решения: нужная запись за нужный
+        # день закрывает страницу, запись за другой день — нет. Второе важнее
+        # первого: без него правило молча считало бы вчерашний лог сегодняшним.
+        log = ("## [2026-07-29] lint | правки\n"
+               "обновлены [[alpha]] и beta\n"
+               "## [2026-07-28] ingest | вчера\n"
+               "разобрана [[gamma]]\n")
+        day = entries_of(log, "2026-07-29")
+        assert uncovered({"alpha", "beta"}, day) == [], day
+        assert uncovered({"gamma"}, day) == ["gamma"], day      # названа во вчерашней записи
+        assert uncovered({"delta"}, day) == ["delta"]           # не названа нигде
+        assert entries_of(log, "2026-01-01") == ""              # дня нет — пусто, а не весь лог
 
         (w / "alpha.md").write_text("# Alpha\n[[nowhere]]\n", encoding="utf-8")
         r2 = lint(w, dt.date(2026, 7, 29), 30)
