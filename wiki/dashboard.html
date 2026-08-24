@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-24 (4 записи) · след. запуск 08:00 (08.25)</div>
+      <div class="mono">обновлено 2026-08-24 (5 записей) · след. запуск 08:00 (08.25)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">171</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">174</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">10</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">51</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">36</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">75</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">4 записи · 2026-08-24</span>
+      <span class="section-note">5 записей · 2026-08-24</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">query</span>
+        <div class="news-title">Устройство агентной оболочки: что там правда ново и что берём себе</div>
+        <div class="news-body">Разбор по документации самого проекта, а не по обзорам. Цикл агента оказался классическим — ход, шаг, восемь именованных точек вмешательства; единственная сильная идея в том, что журнал не сопровождает работу агента, а порождает видимое модели, отчего форк, продолжение и воспроизведение получаются следствиями одного решения. Попутно исправлено собственное утверждение, будто у оболочки нет привилегированного ядра: её же документация называет цикл единственным, а журнал незаменяемым. Из разбора взято две вещи — инвариант «видно модели значит записано» с механической подсказкой в скрипте проверки и карта швов собственной обвязки: семнадцать точек с ценой каждой и решающим деревом, куда класть новое правило.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md">ustroystvo-agentnoy-obolochki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md">karta-shvov-nashey-obvyazki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md">invariant-vidno-znachit-zapisano<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness<span class="badge-new">обновлено</span></a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">guard</span>
@@ -464,7 +471,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">36</span></summary>
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">37</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">пять операций ведения вики (Ingest/Query/Project/Practice/Lint)</span></a>
@@ -502,6 +509,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/context-engineering-claude-5.md"><span class="tree-name">context-engineering-claude-5</span><span class="tree-desc">официальные правила Anthropic под поколение 5: правила→суждение, CLAUDE.md/скиллы/references</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/geo-ai-answer-visibility.md"><span class="tree-name">geo-ai-answer-visibility</span><span class="tree-desc">GEO: видимость в ответах ИИ-поисковиков — общий механизм и асимметрия видео</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -596,7 +604,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">6</span></summary>
+      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">8</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
@@ -604,6 +612,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/audit-nashey-obvyazki.md"><span class="tree-name">audit-nashey-obvyazki</span><span class="tree-desc">что из разобранного про харнес у нас уже стоит и чего нет: шесть частей из восьми, пробел — повторяющееся бесполезное поведение</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/proiskhozhdenie-pravila-effekt-30-dney.md"><span class="tree-name">proiskhozhdenie-pravila-effekt-30-dney</span><span class="tree-desc">цепочка происхождения правила «разовая правка или в скилл навсегда?»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md"><span class="tree-name">ustroystvo-agentnoy-obolochki</span><span class="tree-desc">как устроен агент внутри: цикл, журнал как источник, что оттуда берём</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md"><span class="tree-name">karta-shvov-nashey-obvyazki</span><span class="tree-desc">фаза цикла → чем вмешиваться → чем платишь; куда класть новое правило</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
