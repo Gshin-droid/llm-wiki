@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-23 (2 записи) · след. запуск 08:00 (08.24)</div>
+      <div class="mono">обновлено 2026-08-24 (1 запись) · след. запуск 08:00 (08.25)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">171</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">3</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">51</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">36</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">75</span><span class="l">sources</span></div>
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 2026-08-23</span>
+      <span class="section-note">1 запись · 2026-08-24</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">сверка с сырьём: claude-managed-agents</div>
-        <div class="news-body">Особый воскресный прогон рутины «хвосты» — впервые в истории вики этот блок действительно исполнился. Страница, собранная из пяти источников и семь раз правленная автономной рутиной, сверена построчно с raw-файлом ingest'а и повторным чтением официальных cookbook-notebook'ов: почти всё подтвердилось дословно, кроме двух дат (первый набор webhook-событий и появление Vaults `injection_location`) — они расходятся с исходным raw-файлом. Добавлен раздел «Противоречия», без исправления в ту или иную сторону.</div>
+        <div class="news-title">Снята дата-нестыковка на claude-managed-agents прямой сверкой с release notes</div>
+        <div class="news-body">Единственный автономно закрываемый пункт бэклога — дата-нестыковка, заведённая воскресной сверкой с сырьём (08-23). Прямой фетч официальных Claude Platform release notes прошёл без блокировки: обе спорные даты (первый набор webhooks agent/deployment/deployment-run и появление `injection_location` у Vaults) разрешены одной и той же записью релиза — 2026-06-30, дословно подтверждено цитатами. Ошибочная страничная дата webhooks (05-06) исправлена; раздел «Противоречия» не удалён, а дополнен разрешением.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Механический проход: новая просрочка claude-artifacts.md</div>
-        <div class="news-body">Первое дело того же воскресного прогона. 178 страниц, 0 битых ссылок и сирот. Новая просроченная «Актуально на» — concepts/claude-artifacts.md (35 дней, порог 30) — добавлена в бэклог. Список повторяющихся заблокированных доменов без изменений; github.com в списке отклонён как известное ложное срабатывание скрипта.</div>
-        <div class="news-links"></div>
       </article>
 
     </div>
