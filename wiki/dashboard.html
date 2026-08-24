@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-24 (7 записей) · след. запуск 08:00 (08.25)</div>
+      <div class="mono">обновлено 2026-08-24 (8 записей) · след. запуск 08:00 (08.25)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">7 записей · 2026-08-24</span>
+      <span class="section-note">8 записей · 2026-08-24</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">project</span>
+        <div class="news-title">Моделирование под 3D-печать: направление взято в работу</div>
+        <div class="news-body">Утренний разбор туториала «Claude + FreeCAD через MCP» брал кейс как пример подключения нишевого приложения; вечером выяснилось, что тема нужна предметно — цель создавать модели под печать. От этого меняется критерий: для примера MCP довольно того, что цикл работает, а для печати нужна цепочка целиком, вплоть до детали, попавшей в размер. Проверено, что связка с редактором не единственный путь: обзоры сходятся на том, что надёжнее работает не «нейросеть рисует геометрию», а «нейросеть пишет код, который строит геометрию» — генераторы меша для функциональных деталей не годятся, у них нет размерных ограничений. Заведён порядок проверки, где приёмкой считается напечатанная деталь, а не картинка в окне редактора.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md">makeform-freecad-mcp-tutorial</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">practice</span>
