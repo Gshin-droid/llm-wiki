@@ -65,10 +65,16 @@
 
 Косвенное подтверждение, что налог реален и Anthropic его признаёт: `/doctor` в [[claude-code]] находит неиспользуемые скиллы, MCP-серверы и плагины **относительно их стоимости в контексте** и предлагает их убрать.
 
+## MCP вне кодинга: визуальная обратная связь (добавлено 2026-08-24, [[makeform-freecad-mcp-tutorial]])
+
+Все примеры выше — MCP как мост к сервисам, работающим с текстом/данными (Obsidian, документация библиотек). Разбор стороннего `neka-nat/freecad-mcp` показывает другой класс: MCP-сервер, обвязывающий desktop-приложение с **графическим** результатом ([[freecad]], CAD). Цикл — промпт → вызов Python API приложения → **скриншот вьюпорта** возвращается моделью через MCP → модель анализирует картинку и шлёт следующую команду — то же «шаг = запрос + инструменты» из [[ustroystvo-agentnoy-obolochki]], но конкретизированное на случае, где у модели нет иного доступа к результату своих же действий, кроме рендера. Конфиг сервера явно разводит два режима — со скриншотом (дороже по токенам, модель видит результат) и text-only (дешевле, только имена объектов/статусы) — тот же компромисс стоимости, что у [[claude-api-cost-optimization]], только по модальности обратной связи, а не по кэшу или batch.
+
+Отдельно показан риск, общий для сторонних MCP-серверов, обвязывающих desktop-приложения: деструктивная команда («закрыть все документы») выполняется без запроса подтверждения, предупреждение о потере несохранённых данных приходит постфактум. Не свойство MCP как протокола — конкретной реализации без explicit confirmation перед разрушающим вызовом; стоит проверять при оценке нового стороннего сервера этого класса.
+
 ## Не путать со Skills
 Механизмы часто смешивают (см. [[romaray-top-5-skills]] — вторичный источник, перечисляющий MCP-серверы и скиллы одним списком). Разбор различий — на странице [[claude-skills]].
 
 ## Связи
-- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]]
-- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]]
-- Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]]
+- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]]
+- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]]
+- Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]], [[claude-api-cost-optimization]]
