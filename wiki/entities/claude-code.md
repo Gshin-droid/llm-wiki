@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-22
+**Актуально на:** 2026-08-25
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]], [[claude-code-changelog-snapshot-2026-08-25]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -209,3 +209,12 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - Остальное — рутинные багфиксы terminal/UI/Remote Control без изменения практической механики; полный список — в raw-снапшоте источника.
 
 Официальные **Claude Platform release notes** за то же окно (08-19–08-20) содержат более крупные находки, прямо не про Claude Code CLI: browser use tool (новый агентский инструмент), computer use tool вышел из беты, Python SDK v1.0, разом out-of-beta ушли Files/Agent Skills/Admin API. Полный разбор — источник [[claude-code-changelog-snapshot-2026-08-22]].
+
+### Обновление 2.1.241–2.1.245 (2026-08-25, [[claude-code-changelog-snapshot-2026-08-25]])
+Единственная содержательная версия окна — **2.1.243**, без headline-анонса, но с двумя пунктами прямого практического веса для механик, которыми пользуется сама эта вики:
+
+- **`promptCacheTtl`/`subagentPromptCacheTtl`** — раздельный TTL промпт-кэша: час на основном диалоге, пять минут (дефолт) на субагентах, вместо одного общего режима автокэша. Прямое пересечение с шагом 2 чеклиста [[claude-api-cost-optimization]] (prompt caching) — TTL как отдельный от byte-stable префикса параметр той же техники.
+- **Разбивка `/usage` по `/loop`-циклам** — число прогонов/токенов/токенов-на-прогон/времени последнего прогона на каждый активный `/loop`; видимость, не изменение механики `/loop` (описанной в [[claude-desktop-automation-modes]]).
+- Малое: `modelPicker` (курируемый список моделей в `/model`), `modelPricing` (контрактные ставки организации в `/cost`), keyless sign-in через Anthropic Console в `/login`, GitHub-статус в `/status`, модель+effort субагента в `/tasks`; компрессия нативного бинарника (340 МБ → 75 МБ на Linux x64) и снижение памяти сессии.
+- **2.1.245** — единственный фикс: краш при старте на Linux с glibc 2.44 (Arch, CachyOS, Fedora Rawhide).
+- Платформенные release notes за 08-22–08-25 проверены отдельно — новых записей после 20.08 нет.
