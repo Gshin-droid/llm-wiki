@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-24 (8 записей) · след. запуск 08:00 (08.25)</div>
+      <div class="mono">обновлено 2026-08-25 (1 запись) · след. запуск 08:00 (08.26)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">177</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">13</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">76</span><span class="l">sources</span></div>
@@ -358,65 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">8 записей · 2026-08-24</span>
+      <span class="section-note">1 запись · 2026-08-25</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">project</span>
-        <div class="news-title">Моделирование под 3D-печать: направление взято в работу</div>
-        <div class="news-body">Утренний разбор туториала «Claude + FreeCAD через MCP» брал кейс как пример подключения нишевого приложения; вечером выяснилось, что тема нужна предметно — цель создавать модели под печать. От этого меняется критерий: для примера MCP довольно того, что цикл работает, а для печати нужна цепочка целиком, вплоть до детали, попавшей в размер. Проверено, что связка с редактором не единственный путь: обзоры сходятся на том, что надёжнее работает не «нейросеть рисует геометрию», а «нейросеть пишет код, который строит геометрию» — генераторы меша для функциональных деталей не годятся, у них нет размерных ограничений. Заведён порядок проверки, где приёмкой считается напечатанная деталь, а не картинка в окне редактора.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md">makeform-freecad-mcp-tutorial</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">practice</span>
-        <div class="news-title">Замер решающего дерева: выдержало, два правила переехали на свой шов</div>
-        <div class="news-body">Дерево «куда класть новое правило» — эвристика, а эвристику проверяют прогоном по случаям с известным ответом, а не рассуждением о ней. Четырнадцать реально принятых правил проведены по дереву, критерий успеха объявлен заранее: одиннадцать совпадений, три расхождения. Правило «новые записи сверху» выглядело инвариантом, но измерение нашло двадцать одно нарушение на историческом хвосте журнала — вместо строгого сторожа порядка поставлен узкий: первая запись обязана быть самой свежей. Правило про обновление дашборда, купленное реальным случаем, до сих пор жило только текстом и стало находкой скрипта. У самого дерева нашёлся пробел: оно не знало про правила-страховки, которые дублируются намеренно.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md">karta-shvov-nashey-obvyazki<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude + FreeCAD через MCP: цикл с визуальной обратной связью</div>
-        <div class="news-body">Еженедельный разведчик практики. Туториал подключения FreeCAD к Claude Desktop через сторонний MCP-сервер — сам домен (CAD/3D-печать) в проектах пользователя не встречался, но паттерн общего порядка стоил переноса: цикл со скриншотом вьюпорта вместо только текста конкретизирует абстрактный «шаг = запрос + инструменты» на случае, где у модели нет иного доступа к результату своих действий, кроме рендера. Тот же компромисс стоимость/наглядность, что у кэша и batch, здесь — по модальности фидбека. Отдельно зафиксирован честный риск: MCP-сервер закрывает несохранённые документы без запроса подтверждения. Не отмечено ⭐ Топ-находкой сознательно — критерий «пользователь будет искать это при похожей задаче» для домена CAD не выполняется, взятое уже перенесено в концепт.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md">makeform-freecad-mcp-tutorial<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md">mcp-model-context-protocol<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md">make-form<span class="badge-new">новое</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">query</span>
-        <div class="news-title">Устройство агентной оболочки: что там правда ново и что берём себе</div>
-        <div class="news-body">Разбор по документации самого проекта, а не по обзорам. Цикл агента оказался классическим — ход, шаг, восемь именованных точек вмешательства; единственная сильная идея в том, что журнал не сопровождает работу агента, а порождает видимое модели, отчего форк, продолжение и воспроизведение получаются следствиями одного решения. Попутно исправлено собственное утверждение, будто у оболочки нет привилегированного ядра: её же документация называет цикл единственным, а журнал незаменяемым. Из разбора взято две вещи — инвариант «видно модели значит записано» с механической подсказкой в скрипте проверки и карта швов собственной обвязки: семнадцать точек с ценой каждой и решающим деревом, куда класть новое правило.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md">ustroystvo-agentnoy-obolochki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md">karta-shvov-nashey-obvyazki<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md">invariant-vidno-znachit-zapisano<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">guard</span>
-        <div class="news-title">Четвёртый сторож: личное не уезжает в публикацию</div>
-        <div class="news-body">Три прежних сторожа следили за порядком ведения вики, а за тем, что уходит в публикацию, не смотрел ни один — при том что коммиты сюда шлёт ещё и облачная рутина ночью, у которой локальных хуков нет вовсе. Новый сторож роняет сборку, если коммит добавил строку с путём файловой системы конкретной машины. Проверен на всей истории репозитория: сработал бы на одиннадцати коммитах, все одиннадцать — разбор самого правила, где путь стоит примером; для них есть объявленное исключение в сообщении коммита.</div>
-        <div class="news-links"></div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Счётчик свежести снят с продуктов, которыми не пользуются</div>
-        <div class="news-body">Держать 30-дневный срок годности на инструменте, который оценили и не взяли, бессмысленно: актуализировать там нечего. Скрипт проверки теперь читает пометку «не используется» и такую страницу из просроченных исключает; ставится пометка руками. Помечены четыре продукта, просроченных стало 3 вместо 7. Заодно признан равноправным старый формат шапки страниц источников — вместо переписывания старых страниц ради формы.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md">cursor<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md">antigravity-ide<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md">graphify<span class="badge-new">обновлено</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md">notebooklm<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Отказ от разбора: обзор агрегатора бесплатных API</div>
-        <div class="news-body">Материал получает не страницу, а запись с причиной. Класс продукта — десктопный сборщик чужих API-ключей за одним локальным адресом — уже разобран и отвергнут: сложить ключи от всех провайдеров в стороннее приложение это цепочка поставок, а звёзды на GitHub доверия не дают. Цифра из заголовка оказалась суммой лимитов всех провайдеров сразу. Очередь неразобранного сократилась до четырёх материалов.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Снята дата-нестыковка на claude-managed-agents прямой сверкой с release notes</div>
-        <div class="news-body">Единственный автономно закрываемый пункт бэклога — дата-нестыковка, заведённая воскресной сверкой с сырьём (08-23). Прямой фетч официальных Claude Platform release notes прошёл без блокировки: обе спорные даты (первый набор webhooks agent/deployment/deployment-run и появление `injection_location` у Vaults) разрешены одной и той же записью релиза — 2026-06-30, дословно подтверждено цитатами. Ошибочная страничная дата webhooks (05-06) исправлена; раздел «Противоречия» не удалён, а дополнен разрешением.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
+        <div class="news-title">Допроверка сервера neka-nat/freecad-mcp: риск шире, чем знала вики</div>
+        <div class="news-body">Ежедневное закрытие пробелов — шаг 1 плана «ИИ + CAD»: допроверить сторонний MCP-сервер, который до сих пор не смотрели. Живость подтверждена (1.9k★, MIT, последний issue 13 дней назад), но находка отличается от записанного: официальный список из 12 тулов не содержит отдельного тула закрытия документа — команда «close all documents» из туториала шла через <code>execute_code</code> (произвольный Python FreeCAD API). Значит риск не в одной недодуманной команде, а в том, что <code>execute_code</code> вообще не имеет механизма подтверждения ни для одного деструктивного вызова; README защищает только сеть и таймаут GUI, не действия.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad<span class="badge-new">обновлено</span></a></div>
       </article>
 
     </div>
@@ -442,10 +393,10 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования; официальный MCP-сервер и self-hosted опция (не используется)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати; продукт — self-hostable платформа делегирования задач 20 агентам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/comrad404.md"><span class="tree-name">comrad404</span><span class="tree-desc">автор канала обзоров ИИ-инструментов; разбор харнеса, необычно добросовестный для формата</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/paragonzone.md"><span class="tree-name">paragonzone</span><span class="tree-desc">канал про ИИ-инструменты; разбор безопасности вайбкодинг-проектов на собственном стенде</span></a>
@@ -465,14 +416,14 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT); флагман сместился в coding-агента с памятью (Letta Code)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/maxim-bashkardinov.md"><span class="tree-name">maxim-bashkardinov</span><span class="tree-desc">автор гайда Obsidian+Claude через MCP для документации проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/shubin-danila.md"><span class="tree-name">shubin-danila</span><span class="tree-desc">автор обзора ландшафта LLM-памяти</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
@@ -488,8 +439,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-efimov.md"><span class="tree-name">nikita-efimov</span><span class="tree-desc">автор разбора автоматизаций Claude Desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/prostodevops.md"><span class="tree-name">prostodevops</span><span class="tree-desc">DevOps-образовательный канал</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/marina-mogilko.md"><span class="tree-name">marina-mogilko</span><span class="tree-desc">предприниматель, автор выступления про пять уровней внедрения ИИ в бизнес</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; площадка кейса MCP с визуальной обратной связью</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; сервер MCP допроверен по первоисточнику — риск шире, чем известная «команда закрытия»</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
       </div>
     </details>
 
@@ -511,7 +462,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator для целых приложений</span></a>
@@ -532,7 +483,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/context-engineering-claude-5.md"><span class="tree-name">context-engineering-claude-5</span><span class="tree-desc">официальные правила Anthropic под поколение 5: правила→суждение, CLAUDE.md/скиллы/references</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/geo-ai-answer-visibility.md"><span class="tree-name">geo-ai-answer-visibility</span><span class="tree-desc">GEO: видимость в ответах ИИ-поисковиков — общий механизм и асимметрия видео</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала</span></a>
       </div>
     </details>
 
@@ -614,7 +565,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-hitl-multiagent.md"><span class="tree-name">claude-cookbook-managed-agents-hitl-multiagent</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: human-in-the-loop через decide()/escalate(), мультиагентная координация (coordinator + advisor)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-issue-outcome-grader.md"><span class="tree-name">claude-cookbook-managed-agents-issue-outcome-grader</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: issue→PR workflow с recovery-паттернами, outcome grader — изолированный grader с чистым контекстом, grade-and-revise цикл</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-22.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-22</span><span class="tree-desc">changelog Claude Code 2.1.236–2.1.240 + Claude Platform release notes: Python SDK v1.0, browser use tool, computer use из беты, домен-фильтр web_search/web_fetch у Managed Agents</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md"><span class="tree-name">makeform-freecad-mcp-tutorial</span><span class="tree-desc">туториал: Claude + FreeCAD через MCP, цикл с визуальной обратной связью (скриншот вьюпорта), обработка неоднозначных промптов</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md"><span class="tree-name">makeform-freecad-mcp-tutorial</span><span class="tree-desc">туториал: Claude + FreeCAD через MCP, цикл с визуальной обратной связью (скриншот вьюпорта), обработка неоднозначных промптов</span></a>
       </div>
     </details>
 
@@ -636,8 +587,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/audit-nashey-obvyazki.md"><span class="tree-name">audit-nashey-obvyazki</span><span class="tree-desc">что из разобранного про харнес у нас уже стоит и чего нет: шесть частей из восьми, пробел — повторяющееся бесполезное поведение</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/proiskhozhdenie-pravila-effekt-30-dney.md"><span class="tree-name">proiskhozhdenie-pravila-effekt-30-dney</span><span class="tree-desc">цепочка происхождения правила «разовая правка или в скилл навсегда?»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md"><span class="tree-name">ustroystvo-agentnoy-obolochki</span><span class="tree-desc">как устроен агент внутри: цикл, журнал как источник, что оттуда берём</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md"><span class="tree-name">karta-shvov-nashey-obvyazki</span><span class="tree-desc">фаза цикла → чем вмешиваться → чем платишь; куда класть новое правило</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md"><span class="tree-name">ustroystvo-agentnoy-obolochki</span><span class="tree-desc">как устроен агент внутри: цикл, журнал как источник, что оттуда берём</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md"><span class="tree-name">karta-shvov-nashey-obvyazki</span><span class="tree-desc">фаза цикла → чем вмешиваться → чем платишь; куда класть новое правило</span></a>
       </div>
     </details>
 
