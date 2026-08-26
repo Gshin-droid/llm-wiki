@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-24
+**Актуально на:** 2026-08-26
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -68,6 +68,14 @@
 
 **Outcome grader (`CMA_verify_with_outcome_grader`), первое раскрытие примитива Outcomes** (раньше на странице — одна строка "public beta с 2026-05-06", по аналогии с Multiagent orchestration до 08-20). Событие `user.define_outcome` (не отдельный REST-ресурс) задаёт `description` (задача writer'а) и `rubric` (что проверяет grader, `type: "text"`/`"file"`), `max_iterations` (дефолт 3, максимум 20), под тем же бета-заголовком `managed-agents-2026-04-01`. Grade-and-revise: writer пишет артефакт → платформа поднимает **отдельного grader'а с чистым контекстом** (тот же model/tools, но без видимости рассуждений writer'а) → вердикт `satisfied` или список несовпадений по критериям → writer правит → повтор до `satisfied`/`max_iterations_reached`/`failed`/`interrupted`. Изоляция grader'а — не деталь реализации, а сама защита: grader не принимает правку writer'а на слово, проверяет источник заново с нуля. События потока: `span.outcome_evaluation_start`/`span.outcome_evaluation_end` (`result` + `explanation`). Rubric-принципы источника: требовать конкретных цифр, требовать посимвольного совпадения цитаты с фетчем по `web_fetch`, исключать сторонние подтверждения (зеркала/сниппеты), явные "no-fire zones" вне скоупа проверки, предписанный формат вывода.
 
+## Cookbook: итеративный фикс тестов и разведка чужого кода (2026-08-26, официальный репозиторий)
+
+Седьмой и восьмой notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-iterate-explore]]) — без новых примитивов API, но с двумя деталями механики, не встречавшимися в прошлых кусках.
+
+**Канонический паттерн стриминга (`CMA_iterate_fix_failing_tests`).** Порядок, повторяющийся во всех ноутбуках директории: SSE-стрим открывается **до** отправки события, затем `sessions.events.send`, выход из цикла — только на `session.status_idle` с `stop_reason.type == "end_turn"`. Ресурсы разделены по назначению: `files.upload()` монтируется read-only в `/mnt/session/uploads/`, рабочая копия — в писабельном `/mnt/user`, финальный результат — в `/mnt/session/outputs/`, читаемом приложением месте.
+
+**Ресурсы сессии меняются на лету (`CMA_explore_unfamiliar_codebase`).** Новый метод — `sessions.resources.add()`: файл добавляется агенту **посреди уже идущей сессии**, без пересоздания session. В демонстрации агент сначала расследует код, находит пробел в контексте, и только тогда приложение подкладывает недостающий файл (`DEPLOY_HISTORY.md`) — то есть метод рассчитан на подгрузку по ходу расследования, а не только на монтирование всего заранее при создании сессии.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -118,6 +126,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
