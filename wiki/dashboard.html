@@ -342,32 +342,32 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-26 (1 запись) · след. запуск 08:00 (08.27)</div>
+      <div class="mono">обновлено 2026-08-27 (1 запись) · след. запуск 08:00 (08.28)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">179</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">180</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">78</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">79</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-26</span>
+      <span class="section-note">1 запись · 2026-08-27</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">Managed Agents cookbooks: канонический паттерн стриминга и разведка чужого кода</div>
-        <div class="news-body">Ежедневное закрытие пробелов — продолжен дольше всех простаивавший пункт бэклога (8/16, последняя правка 08-21). Взяты <code>CMA_iterate_fix_failing_tests</code> (канонический паттерн стриминга SSE, разделение ресурсов read-only uploads / писабельный /mnt/user / outputs) и <code>CMA_explore_unfamiliar_codebase</code> (агент обязан сверять документацию с деревом файлов, а не доверять ей на слово; новый метод <code>sessions.resources.add()</code> — подгрузка ресурса посреди уже идущей сессии).</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-iterate-explore.md">claude-cookbook-managed-agents-iterate-explore<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
+        <div class="news-title">Managed Agents cookbooks: версионирование промпта и живой мониторинг субагентов</div>
+        <div class="news-body">Ежедневное закрытие пробелов — продолжен пункт бэклога (10/16, до вчерашних 8/16). Взяты <code>CMA_prompt_versioning_and_rollback</code> (закрепление версии агента через <code>agent={"id": ..., "version": N}</code> при создании сессии против неявной последней версии; откат — смена номера) и <code>CMA_watch_subagents_live</code> (живой мониторинг мультиагентной команды: event deltas субагента + initial_events + effort вместе; дельты best-effort, полный текст только в финальном agent.message).</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-versioning-monitoring.md">claude-cookbook-managed-agents-versioning-monitoring<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
       </article>
 
     </div>
@@ -488,7 +488,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">78</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">79</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -567,7 +567,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-22.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-22</span><span class="tree-desc">changelog Claude Code 2.1.236–2.1.240 + Claude Platform release notes: Python SDK v1.0, browser use tool, computer use из беты, домен-фильтр web_search/web_fetch у Managed Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/makeform-freecad-mcp-tutorial.md"><span class="tree-name">makeform-freecad-mcp-tutorial</span><span class="tree-desc">туториал: Claude + FreeCAD через MCP, цикл с визуальной обратной связью (скриншот вьюпорта), обработка неоднозначных промптов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-25.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-25</span><span class="tree-desc">changelog Claude Code 2.1.241–2.1.245: promptCacheTtl/subagentPromptCacheTtl, разбивка /usage по /loop</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-iterate-explore.md"><span class="tree-name">claude-cookbook-managed-agents-iterate-explore</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: канонический паттерн стриминга событий сессии, sessions.resources.add() — подгрузка ресурса посреди уже идущей сессии</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-iterate-explore.md"><span class="tree-name">claude-cookbook-managed-agents-iterate-explore</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: канонический паттерн стриминга событий сессии, sessions.resources.add() — подгрузка ресурса посреди уже идущей сессии</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-versioning-monitoring.md"><span class="tree-name">claude-cookbook-managed-agents-versioning-monitoring</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: закрепление версии агента при создании сессии против неявной последней, живой мониторинг мультиагентной команды — дельты best-effort</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
