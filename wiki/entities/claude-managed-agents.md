@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-26
+**Актуально на:** 2026-08-27
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -76,6 +76,14 @@
 
 **Ресурсы сессии меняются на лету (`CMA_explore_unfamiliar_codebase`).** Новый метод — `sessions.resources.add()`: файл добавляется агенту **посреди уже идущей сессии**, без пересоздания session. В демонстрации агент сначала расследует код, находит пробел в контексте, и только тогда приложение подкладывает недостающий файл (`DEPLOY_HISTORY.md`) — то есть метод рассчитан на подгрузку по ходу расследования, а не только на монтирование всего заранее при создании сессии.
 
+## Cookbook: версионирование промпта и живой мониторинг субагентов (2026-08-27, официальный репозиторий)
+
+Девятый и десятый notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-versioning-monitoring]]) — впервые показывают сценарий применения фактов, ранее записанных на странице одной строкой.
+
+**Версионирование и откат (`CMA_prompt_versioning_and_rollback`).** `agents.update()` не перезаписывает конфигурацию, а создаёт новую неизменяемую версию с инкрементированным номером; старые версии остаются доступны через `agents.versions.list()`. Ключевая деталь, которой раньше не было на странице: при создании сессии `agent=AGENT_ID` (строка) молча берёт **последнюю** версию, а `agent={"type": "agent", "id": AGENT_ID, "version": N}` **закрепляет** конкретную. Откат — не redeploy, а смена числа в этом объекте.
+
+**Живой мониторинг субагентов (`CMA_watch_subagents_live`).** Сводит вместе три примитива, документированных раньше порознь (event deltas на уровне субагента, `initial_events`, `effort` в конфигурации модели) на одном примере — координатор с двумя специалистами разного эффорта и доступа к `web_search`. Новая находка: **дельты — best-effort превью, не источник истины** — «may stop under load», гарантированно полный текст приходит только финальным `agent.message`; ноутбук явно проверяет, что накопленный из дельт текст — префикс финального. Уточнение к разделу «Multiagent orchestration» выше: ростер специалистов координатора закрепляется на момент **его** создания — обновление специалиста отдельно координатор не подхватывает, нужно обновить самого координатора.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -126,6 +134,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
