@@ -5,6 +5,20 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-08-28] ingest | Автономный разведчик новостей: `--restricted`, TTL кэша на агента, `/claude-api cost-optimize`
+
+Плановый прогон рутины 1 (новости, раз в 3 дня). Окно — с прошлой записи того же разведчика (08-25, [[claude-code-changelog-snapshot-2026-08-25]]). Сессия синхронизировала `origin/main` хуком `SessionStart`, но осталась в detached HEAD (тот же паттерн, что и в прошлых прогонах) — исправлено первым действием `git checkout main && git pull`, репозиторий обновлён fast-forward на 29 коммитов.
+
+**Проверено: официальный `CHANGELOG.md` Claude Code (через `WebFetch` на `raw.githubusercontent.com` — прямой `curl` из Bash снова отклонён разрешениями окружения самой сессии) и Claude Platform release notes.** Вышли **2.1.246–2.1.250** (2.1.249 в файле отсутствует). Платформенные release notes за 26–27.08 тоже проверены и найдены, но не взяты — Compliance API вне беты, Admin API в `ant` CLI/SDK, personal/service account keys, снятие бета-заголовков Files/Skills API в очередной партии SDK: всё организационное/enterprise, не пересекается ни с одной практикой этой вики.
+
+**Взят: [[claude-code-changelog-snapshot-2026-08-28]].** Порог пройден версией **2.1.248** (без headline-анонса) и одним пунктом 2.1.247: (1) **`--restricted`/`CLAUDE_CODE_RESTRICTED=1`** — новый явный режим запуска, а не точечный bypass-фикс: убирает исполнение кода/команд и `WebFetch`, запирает файловые инструменты в рабочей директории, отказывается от `bypassPermissions`, игнорирует settings-файлы; ни флагом, ни конфигом снаружи не ослабляется. Дополнено в [[ai-security-by-design]] отдельным разделом. (2) **`experimental.cacheTtl`** — TTL промпт-кэша на уровне одного агента в его frontmatter, гранулярность на ступень ниже находки 08-25 (`promptCacheTtl`/`subagentPromptCacheTtl` — TTL по классу «диалог»/«субагенты»). (3) **`/claude-api cost-optimize`** — встроенная команда, профилирующая расход конкретного проекта на Claude API теми же рычагами (кэш, гигиена токенов, batch, effort, модель), что уже задокументированы чеклистом [[claude-api-cost-optimization]] почти дословно тем же порядком — не новое знание, а подтверждение, что записанная методология не устарела и формализована вендором в инструмент. Обе (2) и (3) дополнены в [[claude-api-cost-optimization]].
+
+**Малое, зафиксировано на [[claude-code]], не разбирается отдельно:** cross-session messaging расширен на Bedrock/Vertex/Foundry и конфигурации без телеметрии (не противоречит уже записанному межмашинному `SendMessage` 08-10 — расширяет канал на деплойменты, где он раньше не работал); Auto mode вкладка в `/permissions`; server-managed settings diagnostics; `claude self-hosted-runner --client-label`; `SendFeedback`-инструмент; `/usage-credits` для Enterprise через AWS Marketplace.
+
+Новая страница: [[claude-code-changelog-snapshot-2026-08-28]] (источник). Дополнены [[claude-code]] (раздел «Обновление 2.1.246–2.1.250», «Актуально на» → 08-28), [[ai-security-by-design]] (раздел про `--restricted`), [[claude-api-cost-optimization]] (раздел «Дополнение 2026-08-28»). Обновлён `wiki/index.md`.
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check claude-code-changelog-snapshot-2026-08-28` — пройдено перед коммитом.
+
 ## [2026-08-28] ingest | Managed Agents cookbooks: MongoDB Atlas data path и экономика координатора
 
 Ежедневный процесс закрытия пробелов (пятница, обычный порядок — не воскресенье, особый прогон не применяется). Сессия стартовала в detached HEAD (тот же паттерн, что 08-24…08-27) — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 27 коммитов.
