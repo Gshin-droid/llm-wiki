@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-27
+**Актуально на:** 2026-08-28
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -84,6 +84,14 @@
 
 **Живой мониторинг субагентов (`CMA_watch_subagents_live`).** Сводит вместе три примитива, документированных раньше порознь (event deltas на уровне субагента, `initial_events`, `effort` в конфигурации модели) на одном примере — координатор с двумя специалистами разного эффорта и доступа к `web_search`. Новая находка: **дельты — best-effort превью, не источник истины** — «may stop under load», гарантированно полный текст приходит только финальным `agent.message`; ноутбук явно проверяет, что накопленный из дельт текст — префикс финального. Уточнение к разделу «Multiagent orchestration» выше: ростер специалистов координатора закрепляется на момент **его** создания — обновление специалиста отдельно координатор не подхватывает, нужно обновить самого координатора.
 
+## Cookbook: MongoDB Atlas как data path и цена координации «дорого/дёшево» (2026-08-28, официальный репозиторий)
+
+Одиннадцатый и двенадцатый notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-mongodb-planbig]]).
+
+**Интеграция с внешней БД (`CMA_with_mongodb_atlas`).** Три равноправных способа подвести data path к managed-агенту — общий паттерн для любой внешней системы, не только MongoDB: **host-side custom tool** (секрет БД у приложения, сессия останавливается на `requires_action`, хост сам выполняет запрос и шлёт `user.custom_tool_result` — рекомендуемый по умолчанию), **`pymongo`/клиент внутри self-hosted sandbox** (секрет живёт в сэндбоксе, доступно только на своей инфраструктуре), **self-hosted MCP-сервер за HTTPS** (регистрируется как `mcp_toolset`). Продемонстрирован сквозной пример на fraud review: гейт по AP2 (Agent Payments Protocol, `github.com/google-agentic-commerce/AP2`) — подписанные Checkout/Payment Mandate обязаны быть провалидированы `verify_mandates` до любого поведенческого анализа, отказ немедленный при провале любого из трёх условий (signature/constraints/double-spend); количественные пороги обязательной эскалации человеку (сумма $4,900–$4,999, ≥$50,000, обнаруженное кольцо, уверенность агента 75–85%) заданы в системном промпте, не платформой.
+
+**Экономика координатора (`CMA_plan_big_execute_small`).** Первое цифровое подтверждение выгоды паттерна «дорогая модель планирует, дешёвые выполняют» на этой странице: команда координатор (`claude-fable-5`) + воркеры (`claude-sonnet-5`) — **≈2.5× дешевле и ≈3× быстрее** сольного прогона той же задачи одной дорогой моделью, 84–98% входных токенов команды посчитаны по цене воркера. Координатор без собственных тулов — только поле `multiagent` — источник называет это определяющим свойством роли. Новый параметр сессии — `budget={"type": "limit", "max_list_cost": {...}}`, жёсткий потолок суммарной стоимости всей команды на уровне создания сессии; новая метрика `usage.list_cost` на сессии и на каждом потоке. Новое событие `agent.thread_message_sent` (координатор → воркер) дополняет уже известное `agent.thread_message_received`. **Не подтверждено отдельно:** ноутбук использует `environments.create(config={"type": "anthropic_cloud", ...})` — везде раньше на этой странице и в других кусках тип облачного environment был `"cloud"`; расхождение не разрешено, требует отдельной проверки по официальной документации.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -134,6 +142,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)

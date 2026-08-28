@@ -45,7 +45,7 @@ _(люди, компании, инструменты)_
 - [[superpowers]] — TDD-ориентированный набор скиллов с автообнаружением, лёгкая альтернатива GSD; автор Jesse Vincent (obra), 270k+ звёзд, 11 хостов установки (допроверка 08-12)
 - [[nikita-efimov]] — автор разбора автоматизаций Claude Desktop
 - [[prostodevops]] — DevOps-образовательный канал
-- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19/08-20 — production-паттерн (webhooks), memory stores, human-in-the-loop и мультиагентная координация по официальным cookbook'ам
+- [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19…08-28 — production-паттерн (webhooks), memory stores, human-in-the-loop, мультиагентная координация, версионирование, MongoDB Atlas data path и экономика координатора по официальным cookbook'ам
 - [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
 - [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; установлен 2026-07-27
 - [[mattpocock-skills]] — пак скиллов Matt Pocock: пайплайн grilling→spec→tickets→implement, tracer-bullet нарезка; установлен 2026-07-27
@@ -130,6 +130,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[claude-cookbook-managed-agents-mongodb-planbig]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): три способа подключить внешнюю БД (host-side custom tool / in-sandbox / self-hosted MCP), AP2-протокол платежей агента, координатор без своих тулов дал ≈2.5× дешевле/≈3× быстрее сольного прогона, новый параметр сессии `budget`/метрика `usage.list_cost`
 - [[claude-cookbook-managed-agents-versioning-monitoring]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): закрепление версии агента при создании сессии (`agent={"type": "agent", "id": ..., "version": N}`) против неявной последней версии, откат через смену номера; живой мониторинг мультиагентной команды — дельты best-effort, гарантированно полный текст только в финальном `agent.message`
 - [[claude-cookbook-managed-agents-iterate-explore]] — официальные notebook'ы Claude Cookbooks (`managed_agents/`): канонический паттерн стриминга событий сессии, `sessions.resources.add()` — подгрузка ресурса посреди уже идущей сессии
 - [[claude-code-changelog-snapshot-2026-08-25]] — официальный changelog Claude Code (в. 2.1.241–2.1.245): раздельный TTL промпт-кэша (`promptCacheTtl`/`subagentPromptCacheTtl` — час на основном диалоге, 5 минут на субагентах), разбивка `/usage` по `/loop`-циклам; платформенные release notes за то же окно проверены и пусты
