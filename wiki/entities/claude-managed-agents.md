@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-28
+**Актуально на:** 2026-08-29
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -92,6 +92,14 @@
 
 **Экономика координатора (`CMA_plan_big_execute_small`).** Первое цифровое подтверждение выгоды паттерна «дорогая модель планирует, дешёвые выполняют» на этой странице: команда координатор (`claude-fable-5`) + воркеры (`claude-sonnet-5`) — **≈2.5× дешевле и ≈3× быстрее** сольного прогона той же задачи одной дорогой моделью, 84–98% входных токенов команды посчитаны по цене воркера. Координатор без собственных тулов — только поле `multiagent` — источник называет это определяющим свойством роли. Новый параметр сессии — `budget={"type": "limit", "max_list_cost": {...}}`, жёсткий потолок суммарной стоимости всей команды на уровне создания сессии; новая метрика `usage.list_cost` на сессии и на каждом потоке. Новое событие `agent.thread_message_sent` (координатор → воркер) дополняет уже известное `agent.thread_message_received`. **Не подтверждено отдельно:** ноутбук использует `environments.create(config={"type": "anthropic_cloud", ...})` — везде раньше на этой странице и в других кусках тип облачного environment был `"cloud"`; расхождение не разрешено, требует отдельной проверки по официальной документации.
 
+## Cookbook: advisor-примитив и потолок расходов сессии (2026-08-29, официальный репозиторий)
+
+Тринадцатый и четырнадцатый notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-advisor-budget]]) — раскрывают детали за двумя фактами, до этого известными на странице одной строкой.
+
+**Advisor, полное раскрытие («Multiagent orchestration» выше знал только одну строку).** Задаётся в том же ростере, что специалисты: `multiagent={"type": "coordinator", "agents": [{"type": "advisor", "model": ADVISOR_MODEL}]}`, но не специалист — максимум один advisor на ростер, занимает зарезервированное имя `anthropic.advisor`. Вызывается синхронно внутри хода, без явного вопроса от рабочей модели — платформа сама передаёт advisor весь диалог до момента вызова целиком. Фиксируется на сессию при её создании, смена advisor'а у агента не подхватывается уже идущей сессией. Токены advisor'а биллятся отдельно от рабочей модели, и лимита на консультацию у самого примитива нет — единственная защита от расхода это `budget` сессии (см. ниже). Новые типы событий: `session.thread_created`/`session.thread_status_running`/`session.thread_status_idle`/`session.thread_status_terminated` с `agent_name: anthropic.advisor`, `agent.thread_message_received` с `from_agent_name: anthropic.advisor`; у треда `thread.agent.type = "advisor"`, в отличие от снапшота полноценного Agent-ресурса у специалиста.
+
+**Потолок расходов сессии (`CMA_cap_session_spend`), уточнение к разделу выше.** `budget` — параметр **любой** сессии, не только координаторской команды, как можно было понять из прошлого куска: `sessions.create(..., budget={"type": "limit", "max_list_cost": {"currency": "USD", "amount": "10"}})`. При достижении потолка — `idle` со `stop_reason.type == "budget_reached"`, возможен небольшой перерасход (потолок проверяется между запросами модели, не внутри одного). Состояние сохраняется полностью, `sessions.update()` поднимает потолок без перезапуска. Задаётся только при создании сессии, снятие (`budget=None`) необратимо, понижение ниже уже потраченного отклоняется, модель без публичной list-цены роняет создание с `model_not_budgetable`.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -142,6 +150,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
