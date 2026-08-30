@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-29 (1 запись) · след. запуск 08:00 (08.30)</div>
+      <div class="mono">обновлено 2026-08-30 (2 записи) · след. запуск 08:00 (08.31)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">183</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">82</span><span class="l">sources</span></div>
@@ -358,16 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-29</span>
+      <span class="section-note">2 записи · 2026-08-30</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Managed Agents cookbooks: advisor-примитив и потолок расходов сессии</div>
-        <div class="news-body">Ежедневное закрытие пробелов — продолжен пункт бэклога (14/16, до вчерашних 12/16). Взяты <code>CMA_consult_an_advisor</code> (синхронная консультация внутри хода, <code>anthropic.advisor</code> максимум один на ростер, без своего лимита на консультацию) и <code>CMA_cap_session_spend</code> (уточнение: <code>budget</code>/<code>max_list_cost</code> — параметр любой сессии, не только координаторской команды).</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-advisor-budget.md">claude-cookbook-managed-agents-advisor-budget<span class="badge-new">новое</span></a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents<span class="badge-new">обновлено</span></a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">сверка с сырьём: claude-code</div>
+        <div class="news-body">Второе дело воскресного прогона. Два самых свежих раздела страницы (changelog 2.1.241–2.1.245 и 2.1.246–2.1.250) сверены построчно с локальными raw-файлами обоих снапшотов — совпало всё, ни одного расхождения. Остальные 20 разделов страницы (07-09…08-22) не сверены в этот прогон — следующая сверка возьмёт другую страницу или более старые разделы этой же.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Механический проход: четыре продукта сняты, три новых просрочены</div>
+        <div class="news-body">Первое дело того же прогона. 191 страница, 0 битых ссылок и сирот. `antigravity-ide`/`cursor`/`graphify`/`notebooklm` вышли из-под счётчика свежести («не используется», решение 08-24); впервые просрочены `context7`, `claude-skills`, `opencode`. Итоговый список из 6 продуктов — в бэклоге. Список заблокированных доменов без изменений, `github.com` снова отклонён как ложное срабатывание.</div>
+        <div class="news-links"></div>
       </article>
 
     </div>
@@ -423,7 +430,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 08-29 — advisor-примитив и потолок расходов сессии</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 08-29 — advisor-примитив и потолок расходов сессии</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
@@ -571,7 +578,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-versioning-monitoring.md"><span class="tree-name">claude-cookbook-managed-agents-versioning-monitoring</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: закрепление версии агента при создании сессии против неявной последней, живой мониторинг мультиагентной команды — дельты best-effort</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-mongodb-planbig.md"><span class="tree-name">claude-cookbook-managed-agents-mongodb-planbig</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: три способа data path к внешней системе (host-side/in-sandbox/MCP), AP2-протокол платежей, координатор ≈2.5× дешевле/≈3× быстрее сольного прогона</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-28</span><span class="tree-desc">changelog Claude Code 2.1.246–2.1.250: режим минимальных привилегий --restricted, TTL промпт-кэша на уровне агента, /claude-api cost-optimize</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-advisor-budget.md"><span class="tree-name">claude-cookbook-managed-agents-advisor-budget</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: advisor-примитив как синхронная консультация внутри хода, budget/max_list_cost — параметр любой сессии</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-advisor-budget.md"><span class="tree-name">claude-cookbook-managed-agents-advisor-budget</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: advisor-примитив как синхронная консультация внутри хода, budget/max_list_cost — параметр любой сессии</span></a>
       </div>
     </details>
 
