@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-28
+**Актуально на:** 2026-08-31
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]], [[claude-code-changelog-snapshot-2026-08-25]], [[claude-code-changelog-snapshot-2026-08-28]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]], [[claude-code-changelog-snapshot-2026-08-25]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -228,3 +228,12 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **Cross-session messaging расширен на Bedrock/Vertex/Foundry и конфигурации без телеметрии** (2.1.248) — не противоречит уже описанному межмашинному `SendMessage` (2.1.224–2.1.225, "Обновление 2.1.224–2.1.226" выше), а расширяет тот же канал на деплойменты, где он раньше не работал вовсе.
 - Малое: Auto mode вкладка в `/permissions` (2.1.246), server-managed settings diagnostics (2.1.248), `claude self-hosted-runner --client-label` (2.1.248), `SendFeedback`-инструмент для черновика фидбека (2.1.247), `/usage-credits` для Enterprise через AWS Marketplace (2.1.248, организационное).
 - Платформенные release notes 26–27.08 проверены отдельно: Compliance API вне беты, Admin API в CLI/SDK, personal/service account keys, снятие бета-заголовков Files/Skills API — все организационные/enterprise, без веса для практики этой вики.
+
+### Обновление 2.1.251 (2026-08-31, [[claude-code-changelog-snapshot-2026-08-31]])
+Одна версия без headline-анонса, но с самой плотной пачкой security-фиксов за всё окно наблюдения (пять независимых находок сразу) и тремя добавлениями практического веса:
+
+- **Пять bypass-фиксов в одной версии** — symlink swap в файловых инструментах после проверки разрешения (гонка во времени), path traversal в командах плагина маркетплейса, project settings обходили managed-settings-контроль над beta-трейсингом и логированием сырых тел API-запросов, Workflow tool читал `scriptPath` до проверки разрешений, Grep/Glob не применяли `Read(...)` deny-правила к файлам через симлинк. Разобрано подробнее в [[ai-security-by-design]].
+- **`PreModelSwitch`/`PostModelSwitch` hook-события** — первые хуки, привязанные к смене модели внутри сессии (можно заблокировать/подтвердить/аннотировать); `SessionStart`-резюме получает возраст сессии и оценку стоимости пере-кэширования.
+- **Видимость спенд-лимита и промпт-кэша** — Spend limit bar в `/usage`, per-session строка hit ratio/misses/warm-cold кэша в `/cost`. Дополнено в [[claude-api-cost-optimization]].
+- Малое: live-стриминг тулкоплов foreground-субагента в Remote Control (фоновые — по-прежнему только статус), CLI-команды `attach`/`logs`/`stop`/`respawn`/`rm` в `claude --help`.
+- Платформенные release notes проверены отдельно — новых записей после 27.08 нет.
