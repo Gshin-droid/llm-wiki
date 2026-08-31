@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-30 (2 записи) · след. запуск 08:00 (08.31)</div>
+      <div class="mono">обновлено 2026-08-31 (1 запись) · след. запуск 08:00 (09.01)</div>
     </div>
   </header>
 
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 2026-08-30</span>
+      <span class="section-note">1 запись · 2026-08-31</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">сверка с сырьём: claude-code</div>
-        <div class="news-body">Второе дело воскресного прогона. Два самых свежих раздела страницы (changelog 2.1.241–2.1.245 и 2.1.246–2.1.250) сверены построчно с локальными raw-файлами обоих снапшотов — совпало всё, ни одного расхождения. Остальные 20 разделов страницы (07-09…08-22) не сверены в этот прогон — следующая сверка возьмёт другую страницу или более старые разделы этой же.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Механический проход: четыре продукта сняты, три новых просрочены</div>
-        <div class="news-body">Первое дело того же прогона. 191 страница, 0 битых ссылок и сирот. `antigravity-ide`/`cursor`/`graphify`/`notebooklm` вышли из-под счётчика свежести («не используется», решение 08-24); впервые просрочены `context7`, `claude-skills`, `opencode`. Итоговый список из 6 продуктов — в бэклоге. Список заблокированных доменов без изменений, `github.com` снова отклонён как ложное срабатывание.</div>
-        <div class="news-links"></div>
+        <div class="news-title">Допроверка «Актуально на»: claude-skills</div>
+        <div class="news-body">Единственная первая содержательная сверка из трёх кандидатов бэклога (`context7`/`claude-skills`/`opencode`) — взята за доступность `platform.claude.com`. Страница выросла за месяц: Skills API (`/v1/skills`), AWS/Microsoft Foundry, три несинхронизированные поверхности, точные лимиты полей SKILL.md по спецификации, Skill content scanning для Enterprise. Прежние находки 07-29 (лимит description на claude.ai, «Edit with Claude») этой страницей не подтверждены и не опровергнуты.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a></div>
       </article>
 
     </div>
@@ -409,7 +402,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/paragonzone.md"><span class="tree-name">paragonzone</span><span class="tree-desc">канал про ИИ-инструменты; разбор безопасности вайбкодинг-проектов на собственном стенде</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; допроверка 08-31 — Skills API, AWS/Microsoft Foundry, три несинхронизированные поверхности</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; сверена по официальному README</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей</span></a>
