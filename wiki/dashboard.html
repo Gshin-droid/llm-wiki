@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-31 (1 запись) · след. запуск 08:00 (09.01)</div>
+      <div class="mono">обновлено 2026-08-31 (2 записи) · след. запуск 08:00 (09.01)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">183</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">0</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">184</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">82</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">83</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-08-31</span>
+      <span class="section-note">2 записи · 2026-08-31</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Автономный разведчик новостей: пять bypass-фиксов в 2.1.251, hook-события смены модели, видимость кэша/спенд-лимита</div>
+        <div class="news-body">Changelog Claude Code 2.1.251 — крупнейшая пачка bypass-фиксов отслеживаемой серии (пять независимых находок за одну версию): symlink-гонка в файловых инструментах, path traversal в командах плагина, обход managed-settings-контроля над трейсингом, преждевременное чтение scriptPath у Workflow tool, Grep/Glob без deny-правил через симлинк. Плюс первые hook-события смены модели (PreModelSwitch/PostModelSwitch) и штатная видимость спенд-лимита/промпт-кэша в /usage и /cost.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-31.md">claude-code-changelog-snapshot-2026-08-31</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -488,7 +495,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">82</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">83</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -572,6 +579,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-mongodb-planbig.md"><span class="tree-name">claude-cookbook-managed-agents-mongodb-planbig</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: три способа data path к внешней системе (host-side/in-sandbox/MCP), AP2-протокол платежей, координатор ≈2.5× дешевле/≈3× быстрее сольного прогона</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-28</span><span class="tree-desc">changelog Claude Code 2.1.246–2.1.250: режим минимальных привилегий --restricted, TTL промпт-кэша на уровне агента, /claude-api cost-optimize</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-advisor-budget.md"><span class="tree-name">claude-cookbook-managed-agents-advisor-budget</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: advisor-примитив как синхронная консультация внутри хода, budget/max_list_cost — параметр любой сессии</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-31.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-31</span><span class="tree-desc">changelog Claude Code 2.1.251: пять bypass-фиксов в одной версии (крупнейшая пачка серии), PreModelSwitch/PostModelSwitch, видимость спенд-лимита и промпт-кэша</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
