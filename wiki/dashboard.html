@@ -342,23 +342,23 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-08-31 (2 записи) · след. запуск 08:00 (09.01)</div>
+      <div class="mono">обновлено 2026-08-31 (4 записи) · след. запуск 08:00 (09.01)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">184</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">187</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">4</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">37</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">83</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">38</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">85</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 2026-08-31</span>
+      <span class="section-note">4 записи · 2026-08-31</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
@@ -375,6 +375,20 @@
         <div class="news-title">Допроверка «Актуально на»: claude-skills</div>
         <div class="news-body">Единственная первая содержательная сверка из трёх кандидатов бэклога (`context7`/`claude-skills`/`opencode`) — взята за доступность `platform.claude.com`. Страница выросла за месяц: Skills API (`/v1/skills`), AWS/Microsoft Foundry, три несинхронизированные поверхности, точные лимиты полей SKILL.md по спецификации, Skill content scanning для Enterprise. Прежние находки 07-29 (лимит description на claude.ai, «Edit with Claude») этой страницей не подтверждены и не опровергнуты.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Разведчик практики: RAG с нуля до продакшна</div>
+        <div class="news-body">Разбор RAG (Retrieval Augmented Generation): конвейер чанки→эмбеддинги→векторная база, пять продвинутых техник (гибридный поиск, parent document, multi-query, реранкинг, семантическое разбиение), оценка качества Ragas, продакшн-слой (кэш/мониторинг/приватность). Новая концепт-страница закрывает пробел — RAG раньше был только контрастом к паттерну этой вики, без разбора устройства. ⭐ Топ-находка.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/rag-retrieval-augmented-generation.md">rag-retrieval-augmented-generation</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/berezhnitsky-rag-explained.md">berezhnitsky-rag-explained</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Разведчик практики: контекст-первый вайбкодинг из кейсов GPT-5.6/Fable 5</div>
+        <div class="news-body">Слабый, промо-нагруженный источник (не-Claude модели, агрегатор Abacus, большинство кейсов с чужих слов) — но два метода воспроизводимы и не завязаны на инструмент: контекст-первый вход (недели заметок до одного полного промпта вместо промпта с нуля) и перенос кейса из другой профессии как способ отбора задач. Дополнены vibecoding-full-workflow и vibecoding-task-selection.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-gpt56-fable5-cases.md">web3nity-gpt56-fable5-cases</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md">vibecoding-full-workflow</a></div>
       </article>
 
     </div>
@@ -452,7 +466,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">37</span></summary>
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">38</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">пять операций ведения вики (Ingest/Query/Project/Practice/Lint)</span></a>
@@ -491,11 +505,12 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/geo-ai-answer-visibility.md"><span class="tree-name">geo-ai-answer-visibility</span><span class="tree-desc">GEO: видимость в ответах ИИ-поисковиков — общий механизм и асимметрия видео</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/rag-retrieval-augmented-generation.md"><span class="tree-name">rag-retrieval-augmented-generation</span><span class="tree-desc">сам механизм RAG: конвейер, пять продвинутых техник, оценка качества Ragas, продакшн-слой</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">83</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">85</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -580,6 +595,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-28</span><span class="tree-desc">changelog Claude Code 2.1.246–2.1.250: режим минимальных привилегий --restricted, TTL промпт-кэша на уровне агента, /claude-api cost-optimize</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-advisor-budget.md"><span class="tree-name">claude-cookbook-managed-agents-advisor-budget</span><span class="tree-desc">официальные notebook'ы Claude Cookbooks: advisor-примитив как синхронная консультация внутри хода, budget/max_list_cost — параметр любой сессии</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-31.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-31</span><span class="tree-desc">changelog Claude Code 2.1.251: пять bypass-фиксов в одной версии (крупнейшая пачка серии), PreModelSwitch/PostModelSwitch, видимость спенд-лимита и промпт-кэша</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/berezhnitsky-rag-explained.md"><span class="tree-name">berezhnitsky-rag-explained</span><span class="tree-desc">RAG с нуля до продакшна: конвейер, пять продвинутых техник, оценка качества Ragas, три уровня кэша</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-gpt56-fable5-cases.md"><span class="tree-name">web3nity-gpt56-fable5-cases</span><span class="tree-desc">10 кейсов GPT-5.6 Sol/Fable 5 через Abacus; взято два метода — контекст-первый вход, перенос кейса из другой профессии</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
