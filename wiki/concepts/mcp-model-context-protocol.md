@@ -71,10 +71,22 @@
 
 Отдельно показан риск, общий для сторонних MCP-серверов, обвязывающих desktop-приложения: деструктивная команда («закрыть все документы») выполняется без запроса подтверждения, предупреждение о потере несохранённых данных приходит постфактум. Не свойство MCP как протокола — конкретной реализации без explicit confirmation перед разрушающим вызовом; стоит проверять при оценке нового стороннего сервера этого класса.
 
+## Дорожная карта после 2026-07-28 (добавлено 2026-09-01, [[mcp-roadmap-2026-08-22]])
+
+Официальный пост 22.08.2026 — не спецификация, а пять приоритетных направлений на будущее. В отличие от разделов выше (уже свершившиеся изменения), это план без committed сроков для большинства пунктов:
+
+1. **Agentic messaging primitives** — Tasks (уже описан выше) должен повзрослеть до полноценной интеграции (SEP-2663), плюс server-initiated события поверх `subscriptions/listen`.
+2. **HTTP-native transport unification** — унификация вокруг Streamable HTTP (удалённые серверы) и stdio (локальные), поверх уже принятой stateless-архитектуры.
+3. **Agent identity и enterprise-security** — новый пласт: агент как облачная нагрузка, а не человек в браузере, требует стандартного распознавания идентичности и делегирования полномочий субагентам. Механизмы: DPoP (RFC 9449), Workload Identity Federation, ID-JAG grant, расширение Enterprise-Managed Authorization, token exchange — совместно с рабочими группами IETF OAuth и WIMSE.
+4. **Improved primitives** — обработка результата `tools/call` не стандартизирована; планируется **progressive discovery** — сервер отдаёт каталог тулов постепенно, а не целиком сразу. Смежно с уже записанным правилом «MCP vs скилл по частоте» (раздел выше) — там про отложенную загрузку на стороне клиента ([[claude-code]]), здесь про экономию на стороне сервера; разные слои одной проблемы.
+5. **SDK developer experience** — conformance-тестирование, эргономика API, документация; отдельно отмечена ценность реализаций, понятных агентам, которые сами пишут код против SDK.
+
+Enterprise-Managed Authorization (упомянута выше со ссылкой на InfoQ, не первоисточник) этим постом подтверждена независимо как активное направление работы — но точной даты релиза по-прежнему нет.
+
 ## Не путать со Skills
 Механизмы часто смешивают (см. [[romaray-top-5-skills]] — вторичный источник, перечисляющий MCP-серверы и скиллы одним списком). Разбор различий — на странице [[claude-skills]].
 
 ## Связи
-- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]]
+- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]]
 - Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]]
 - Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]], [[claude-api-cost-optimization]]
