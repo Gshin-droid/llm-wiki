@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-08-29
+**Актуально на:** 2026-09-01
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -100,6 +100,14 @@
 
 **Потолок расходов сессии (`CMA_cap_session_spend`), уточнение к разделу выше.** `budget` — параметр **любой** сессии, не только координаторской команды, как можно было понять из прошлого куска: `sessions.create(..., budget={"type": "limit", "max_list_cost": {"currency": "USD", "amount": "10"}})`. При достижении потолка — `idle` со `stop_reason.type == "budget_reached"`, возможен небольшой перерасход (потолок проверяется между запросами модели, не внутри одного). Состояние сохраняется полностью, `sessions.update()` поднимает потолок без перезапуска. Задаётся только при создании сессии, снятие (`budget=None`) необратимо, понижение ниже уже потраченного отклоняется, модель без публичной list-цены роняет создание с `model_not_budgetable`.
 
+## Cookbook: скиллы из репозитория и гео-пиннинг инференса (2026-09-01, официальный репозиторий)
+
+Пятнадцатый и шестнадцатый, последние гайдовые notebook'ы того же пункта бэклога ([[claude-cookbook-managed-agents-skills-geo]]) — гайдовая часть директории `managed_agents/` закрыта полностью, 16/16.
+
+**Скиллы из смонтированного репозитория (`CMA_use_skills_from_a_repo`).** Когда сессия монтирует ресурс `github_repository` (`resources=[{"type": "github_repository", "url": ..., "authorization_token": ..., "checkout": {...}}]`), харнес сканирует корневую `.claude/skills/` этого репозитория **при старте сессии** и вписывает найденные скиллы (имя, `description`, путь в sandbox) в системный промпт — без загрузки в Skills API, без поля `skills` на агенте, без версионирования отдельно от репозитория. Модель читает `SKILL.md` встроенным `read`, когда запрос совпадает с `description`, тем же путём, что скилл читается локально в Claude Code.
+
+**Гео-пиннинг инференса (`CMA_pin_inference_geo`).** Новое поле `model.inference_geo` в определении агента (`model={"id": MODEL, "inference_geo": "us"}`) фиксирует географию обработки запросов к модели прямо в объекте агента, валидируется против data residency policy воркспейса и проверяется на каждом ходу, не только при создании. Два допустимых значения — `"global"`/`"us"`. Переопределяется на уровне одной сессии через `agent_with_overrides` без изменения самого агента. `agents.update()` заменяет `model` целиком — передача `model` без `inference_geo` снимает пин, не сохраняет его.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -150,6 +158,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-code-changelog-snapshot-2026-08-22]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
