@@ -342,32 +342,32 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-02 (1 запись) · след. запуск 08:00 (09.03)</div>
+      <div class="mono">обновлено 2026-09-03 (1 запись) · след. запуск 08:00 (09.04)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">190</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">191</span><span class="l">страниц</span></div>
     <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">38</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">88</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">89</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-09-02</span>
+      <span class="section-note">1 запись · 2026-09-03</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">Managed Agents cookbooks: первый applied-пример (Data Analyst Agent)</div>
-        <div class="news-body">Первый из трёх applied-примеров (не гайдовых CMA_*): агент превращает CSV в HTML-отчёт с графиками plotly. Вся бизнес-логика в system prompt, а не в параметрах платформы; файловый контракт вход/выход через фиксированный путь /mnt/session/outputs/; впервые показано поле packages у environment. Остаток пункта — 2 applied-примера (slack_data_bot, sre_incident_responder).</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-data-analyst.md">claude-cookbook-managed-agents-data-analyst</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
+        <div class="news-title">Managed Agents cookbooks: второй applied-пример (Slack Data Bot)</div>
+        <div class="news-body">Slack-бот на Bolt for Python оборачивает уже существующего агента-аналитика по закреплённым id+version — не создаёт агента заново. Session = Slack-тред: follow-up в том же треде продолжает ту же сессию. Впервые показана обработка session.status_terminated — сообщение в тред со ссылкой на трейс вместо тихого обрыва. Остаток пункта — 1 applied-пример (sre_incident_responder).</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-slack-bot.md">claude-cookbook-managed-agents-slack-bot</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
       </article>
 
     </div>
@@ -423,7 +423,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-02 — гайдовая часть cookbook'ов закрыта 16/16, первый applied-пример (Data Analyst Agent)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-03 — гайдовая часть cookbook'ов закрыта 16/16, applied 2/3 (Data Analyst Agent, Slack Data Bot)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
@@ -489,7 +489,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">88</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">89</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -578,7 +578,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/web3nity-gpt56-fable5-cases.md"><span class="tree-name">web3nity-gpt56-fable5-cases</span><span class="tree-desc">10 кейсов GPT-5.6 Sol/Fable 5 через Abacus; взято два метода — контекст-первый вход, перенос кейса из другой профессии</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-skills-geo.md"><span class="tree-name">claude-cookbook-managed-agents-skills-geo</span><span class="tree-desc">Managed Agents cookbooks: скиллы из смонтированного репозитория без загрузки в Skills API, гео-пиннинг инференса model.inference_geo — гайдовая часть закрыта 16/16</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-roadmap-2026-08-22.md"><span class="tree-name">mcp-roadmap-2026-08-22</span><span class="tree-desc">официальный блог MCP (22.08): дорожная карта на пять направлений — agentic messaging, транспорт, agent identity/enterprise-security, progressive discovery, SDK DX</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-data-analyst.md"><span class="tree-name">claude-cookbook-managed-agents-data-analyst</span><span class="tree-desc">Managed Agents cookbooks: первый applied-пример — CSV → HTML-отчёт, вся логика в system prompt, файловый контракт /mnt/session/outputs/, поле packages у environment</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-data-analyst.md"><span class="tree-name">claude-cookbook-managed-agents-data-analyst</span><span class="tree-desc">Managed Agents cookbooks: первый applied-пример — CSV → HTML-отчёт, вся логика в system prompt, файловый контракт /mnt/session/outputs/, поле packages у environment</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-slack-bot.md"><span class="tree-name">claude-cookbook-managed-agents-slack-bot</span><span class="tree-desc">Managed Agents cookbooks: второй applied-пример — Slack-бот на Bolt оборачивает готового агента по закреплённым id+version, session = Slack-тред, обработка session.status_terminated</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
