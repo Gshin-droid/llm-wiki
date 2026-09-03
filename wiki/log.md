@@ -5,6 +5,20 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-03] ingest | Managed Agents cookbooks: второй applied-пример (Slack Data Bot)
+
+Ежедневный процесс закрытия пробелов (четверг, обычный порядок — не воскресенье). Сессия стартовала в detached HEAD (тот же паттерн, что почти во всех прогонах с 08-24) — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 11 коммитов.
+
+**Взят единственный автономно закрываемый пункт бэклога** — «Managed Agents cookbooks», applied 1/3 после 09-02, остаток — `slack_data_bot` и `sre_incident_responder`; прошлая запись прямо называла `slack_data_bot` логичным следующим шагом (надстройка над Data Analyst Agent). Остальные открытые пункты бэклога либо ждут решения человека или календарной даты (DeepSeek Harness — ежемесячный цикл, ближайшая проверка после 09-24), либо требуют физического действия вне досягаемости рутины (CAD/3D-печать — печать как приёмка), либо упираются в уже отмеченный `EGRESS_BLOCKED`.
+
+**Взят `slack_data_bot.ipynb`.** Прямой `curl` из Bash отклонён разрешениями окружения самой сессии (тот же паттерн, что 08-27/08-28/08-29) — прочитан через `WebFetch` на `raw.githubusercontent.com` с явным требованием дословных цитат кода и markdown-ячеек.
+
+Находки: (1) **готовый агент подключается по закреплённым `id`+`version`, а не создаётся заново** — первый на странице источника пример, что пиннинг версии ([[claude-cookbook-managed-agents-versioning-monitoring]], 08-27) в продакшн-обвязке используется по умолчанию, не как демонстрация примитива; (2) **session = Slack-тред** — словарь `thread_ts → session.id` в памяти процесса, follow-up в том же треде продолжает ту же сессию через `sessions.events.send`, не пересоздаёт; файл из Slack сначала переливается в Files API и лишь потом монтируется в сессию тем же контрактом, что в первом applied-примере; (3) **обработка `session.status_terminated` показана впервые** — `relay_stream()` на этом событии шлёт в тред сообщение со ссылкой на трейс сессии вместо тихого обрыва, `agent.tool_use`/`agent.message`/`session.status_idle` тоже разобраны по отдельности; (4) Files API у managed-agents session scope всё ещё под бета-флагом `managed-agents-2026-04-01` на дату нотбука — конкретика, которой не было в прошлых кусках.
+
+Новая страница: [[claude-cookbook-managed-agents-slack-bot]] (источник). Дополнена [[claude-managed-agents]] (раздел «Cookbook: Slack Data Bot, второй applied-пример», «Актуально на» → 09-03). Обновлён `wiki/index.md`. Обновлён `wiki/gaps-backlog.md` — прогресс пункта: applied 2/3, остаток — `sre_incident_responder` (последний из трёх).
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check claude-cookbook-managed-agents-slack-bot` — пройдено перед коммитом.
+
 ## [2026-09-02] ingest | Managed Agents cookbooks: первый applied-пример (Data Analyst Agent)
 
 Ежедневный процесс закрытия пробелов (среда, обычный порядок — не воскресенье). Сессия стартовала в detached HEAD (тот же паттерн, что почти во всех прогонах с 08-24) — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 9 коммитов.

@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-02
+**Актуально на:** 2026-09-03
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -117,6 +117,16 @@
 **Файловый контракт вход/выход.** Входной датасет — `resources=[{"type": "file", "file_id": dataset.id, "mount_path": MOUNT_PATH}]`; результат обязан лечь в `/mnt/session/outputs/report.html` — только этот путь персистится и становится доступен обратно через Files API, всё остальное теряется вместе с сессией. Environment впервые на этой странице показывает поле `packages: {"pip": ["pandas", "plotly"]}` — зависимости ставятся при сборке контейнера, не в рантайме агентом.
 
 **Модель нотбука — `claude-sonnet-4-6`**, не входит в семейство Opus/Sonnet 5, которое видно в остальных кусках этого пункта бэклога — зафиксировано как факт конкретного примера, не как общая рекомендация платформы.
+
+## Cookbook: Slack Data Bot, второй applied-пример (2026-09-03, официальный репозиторий)
+
+Второй из трёх applied-примеров того же пункта бэклога ([[claude-cookbook-managed-agents-slack-bot]]), прямая надстройка над первым ([[claude-cookbook-managed-agents-data-analyst]]) — тот же агент-аналитик оборачивается в Slack-бота на Bolt for Python. В отличие от прошлых кусков, здесь агент/environment/toolset не создаются — бот подключается к уже существующему агенту по закреплённым `id`+`version` (`ANALYST_AGENT_ID`/`ANALYST_AGENT_VERSION` из переменных окружения), тем же паттерном пиннинга версии, что в [[claude-cookbook-managed-agents-versioning-monitoring]], но здесь показан как продакшн-дисциплина по умолчанию, а не демонстрация примитива.
+
+**Session = Slack-тред.** `thread_sessions: dict[str, str]` связывает `thread_ts` с `session.id`: упоминание бота создаёт сессию, ответ в том же треде продолжает её через `sessions.events.send`, а не пересоздаёт. Файл из Slack сначала переливается в Files API (`files.upload`) и только потом монтируется в сессию тем же контрактом `resources=[{"type": "file", ...}]`, что и в первом applied-примере — Slack не отдельный канал загрузки, а внешний источник, приводимый к общему контракту.
+
+**Обработка `session.status_terminated` показана впервые.** `relay_stream()` читает `sessions.events.stream` построчно: `agent.tool_use` → сообщение о прогрессе (один раз), `agent.message` → накопление финального текста, `session.status_idle` → штатное завершение цикла, `session.status_terminated` → отдельная ветка с сообщением в тред и ссылкой на трейс сессии вместо тихого обрыва. Files API в связке с session scope у managed agents всё ещё под бета-флагом `managed-agents-2026-04-01` на дату нотбука.
+
+Остаётся один applied-пример пункта — `sre_incident_responder`.
 
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
