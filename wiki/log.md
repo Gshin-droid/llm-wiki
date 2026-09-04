@@ -5,6 +5,22 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-04] ingest | Managed Agents cookbooks: третий applied-пример (SRE Incident Responder) — пункт закрыт полностью
+
+Ежедневный процесс закрытия пробелов (пятница, обычный порядок — не воскресенье). Сессия стартовала в detached HEAD (тот же паттерн, что почти во всех прогонах с 08-24) — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 13 коммитов.
+
+**Взят единственный автономно закрываемый пункт бэклога** — «Managed Agents cookbooks», applied 2/3 после 09-03, остаток — последний applied-пример `sre_incident_responder`, названный логичным следующим шагом прошлой записью. Остальные открытые пункты либо ждут решения человека или календарной даты (DeepSeek Harness — ежемесячный цикл, ближайшая проверка после 09-24), либо требуют физического действия вне досягаемости рутины (CAD/3D-печать — печать как приёмка), либо упираются в уже отмеченный `EGRESS_BLOCKED`.
+
+**Взят `sre_incident_responder.ipynb`.** Прочитан через `WebFetch` на `raw.githubusercontent.com` двумя заходами с явным требованием дословных цитат кода и markdown-ячеек.
+
+Находки: (1) **PagerDuty/GitHub/Datadog — заглушки на локальных фикстурах**, нотбук сам это называет прямым текстом — честно обозначенная граница демонстрации, не платформенный примитив; (2) **Skill через Skills API upload**, а не через смонтированный репозиторий, как в [[claude-cookbook-managed-agents-skills-geo]] — первый на странице показанный в работающем коде вызов Skills API (`skills=[{"type": "custom", "skill_id": ..., "version": ...}]`), раньше эндпоинт был известен только как факт спецификации ([[claude-skills]]); (3) **три отдельных кастомных тула под рабочий процесс PR** (`open_pull_request`/`request_approval`/`merge_pull_request`) вместо единого `escalate()`/`decide()` из [[claude-cookbook-managed-agents-hitl-multiagent]], approval получен через **polling** событийного лога (`run_until_approval_or_end()`), а не стриминг — нотбук отдельно подтверждает, что контракт ответа идентичен продакшн-версии со Slack-кнопками; (4) **`limited`-networking environment** — сеть агента сужена до нуля выбором типа environment (три ресурса через Files API по фиксированным путям, внешние репозитории не клонируются), в отличие от `allowed_domains`/`blocked_domains` из более раннего куска; (5) модель нотбука — `claude-opus-4-6`, факт примера, не общая рекомендация; (6) финал — PR реально смёржен, `"Status: MERGED (PR #1)"`, memory limit контейнера увеличен 128Mi → 512Mi.
+
+**Пункт бэклога «Managed Agents cookbooks» закрыт этим нотбуком полностью — 16/16 гайдовых + 3/3 applied.** Заведён 2026-08-17, закрывался ежедневно почти без пропусков с 08-19 по 09-04 (18 дней).
+
+Новая страница: [[claude-cookbook-managed-agents-sre-incident]] (источник). Дополнена [[claude-managed-agents]] (раздел «Cookbook: SRE Incident Responder, третий applied-пример — пункт закрыт 16/16+3/3», «Актуально на» → 09-04). Обновлён `wiki/index.md`. Обновлён `wiki/gaps-backlog.md` — пункт вычеркнут из открытых, перенесён в закрытые (16/16 + 3/3, 2026-09-04).
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check claude-cookbook-managed-agents-sre-incident` — пройдено перед коммитом.
+
 ## [2026-09-03] ingest | Managed Agents cookbooks: второй applied-пример (Slack Data Bot)
 
 Ежедневный процесс закрытия пробелов (четверг, обычный порядок — не воскресенье). Сессия стартовала в detached HEAD (тот же паттерн, что почти во всех прогонах с 08-24) — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 11 коммитов.

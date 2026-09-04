@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-03
+**Актуально на:** 2026-09-04
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -127,6 +127,16 @@
 **Обработка `session.status_terminated` показана впервые.** `relay_stream()` читает `sessions.events.stream` построчно: `agent.tool_use` → сообщение о прогрессе (один раз), `agent.message` → накопление финального текста, `session.status_idle` → штатное завершение цикла, `session.status_terminated` → отдельная ветка с сообщением в тред и ссылкой на трейс сессии вместо тихого обрыва. Files API в связке с session scope у managed agents всё ещё под бета-флагом `managed-agents-2026-04-01` на дату нотбука.
 
 Остаётся один applied-пример пункта — `sre_incident_responder`.
+
+## Cookbook: SRE Incident Responder, третий applied-пример — пункт закрыт 16/16+3/3 (2026-09-04, официальный репозиторий)
+
+Третий и последний applied-пример того же пункта бэклога ([[claude-cookbook-managed-agents-sre-incident]]) — этим нотбуком пункт «Managed Agents cookbooks» закрыт полностью. Сценарий: продакшн-алерт (PagerDuty/GitHub/Datadog — заглушки на локальных фикстурах) будит агента, тот читает логи и рантбук, чинит Kubernetes-манифест, открывает PR и ждёт одобрения человека перед мёржем.
+
+**Skill через Skills API upload, а не через смонтированный репозиторий.** Отличается от [[claude-cookbook-managed-agents-skills-geo]] (харнес сканирует `.claude/skills/` подключённого `github_repository`) — здесь скилл создаётся программно и передаётся агенту при создании через `skills=[{"type": "custom", "skill_id": skill.id, "version": skill.latest_version}]`. Первый на странице показанный в работающем коде вызов Skills API (раньше — только факт спецификации на [[claude-skills]]).
+
+**Три отдельных кастомных тула вместо единого примитива под рабочий процесс PR** — `open_pull_request`, `request_approval`, `merge_pull_request`, в отличие от `escalate()`/`decide()` из [[claude-cookbook-managed-agents-hitl-multiagent]]. Approval получен через **polling**, не стриминг: `run_until_approval_or_end()` опрашивает событийный лог до вызова `request_approval` или конца хода; ответ человека уходит как `user.custom_tool_result`. Нотбук отдельно уточняет, что контракт ответа идентичен продакшн-версии со Slack-кнопками — polling здесь учебное упрощение.
+
+**`limited`-networking environment** — три ресурса (логи, K8s-манифест, рантбук) смонтированы через Files API по фиксированным путям, внешние репозитории не клонируются; сеть сужена до нуля выбором типа environment, не `allowed_domains`. Модель нотбука — `claude-opus-4-6` (факт примера, не общая рекомендация). Финал: `"Status: MERGED (PR #1)"`, memory limit увеличен 128Mi → 512Mi.
 
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
