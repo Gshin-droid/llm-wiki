@@ -31,7 +31,7 @@
 **Раскатка в продуктах Claude (2026-07-31, не первоисточник — см. оговорку в [[mcp-2026-07-28-spec-final]]):** по поисковым сниппетам анонса Anthropic (прямой фетч `claude.com/blog` вернул 403, как и раньше для этого домена) — Claude расширяет поддержку до stateless core/усиленного OAuth-OIDC/Apps и Tasks, плюс новые коннектор-фичи: embedded UI, enterprise-managed auth, observability и **MCP tunnels** (research preview) — подключение к MCP-серверам внутри приватной сети без публичного интернета и входящих firewall-правил. Раскатка «по продуктам постепенно», точных сроков в доступных сниппетах нет — не проверено первоисточником, кандидат в `wiki/gaps-backlog.md`, если понадобятся детали.
 
 ## Как используется в этой вики / у пользователя
-- [[claude-code]]: MCP-серверы — мост к внешним сервисам прямо из диалога; `claude mcp login/logout` (появилось в версии 2.1.186, см. [[claude-code-changelog-snapshot-2026-07]]) — CLI-аутентификация без интерактивного меню.
+- [[claude-code]]: MCP-серверы — мост к внешним сервисам прямо из диалога; `claude mcp login/logout` (появилось в версии 2.1.186, см. [[claude-code-changelog-snapshot-2026-07]]) — CLI-аутентификация без интерактивного меню. **`managedMcpServers` (2.1.259, 2026-09, [[claude-fable-5-1-launch]])** — организация может раздать HTTP/SSE MCP-серверы всем пользователям управляемой настройкой (тот же формат записи, что `.mcp.json`); записи, называющие локальную команду вместо HTTP/SSE endpoint, пропускаются — способ подключения "сверху" от организации, отдельный от пользовательской лестницы подключения ниже.
 - [[claude-agent-sdk]]: MCP — одна из шести капабилити SDK "из коробки" (`mcp_servers` опция), пример из официальной документации — подключение Playwright MCP для браузерной автоматизации.
 - [[obsidian]]: один из двух способов подключить Obsidian к Claude Code — через MCP-сервер (второй — прямой файловый доступ).
 - [[maxim-bashkardinov]] / [[bashkardinov-obsidian-claude-guide]]: гайд именно про MCP-подключение Obsidian для документации кодового проекта.
@@ -87,6 +87,6 @@ Enterprise-Managed Authorization (упомянута выше со ссылко�
 Механизмы часто смешивают (см. [[romaray-top-5-skills]] — вторичный источник, перечисляющий MCP-серверы и скиллы одним списком). Разбор различий — на странице [[claude-skills]].
 
 ## Связи
-- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]]
+- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]], [[claude-fable-5-1-launch]]
 - Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]]
 - Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]], [[claude-api-cost-optimization]]

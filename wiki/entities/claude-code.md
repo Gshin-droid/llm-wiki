@@ -1,7 +1,7 @@
 # Claude Code
 
 **Тип:** инструмент (CLI-агент от Anthropic)
-**Актуально на:** 2026-08-31
+**Актуально на:** 2026-09-04
 
 ## Что это
 CLI-инструмент для работы с LLM-агентом (Anthropic Claude) прямо в терминале/IDE. В [[persistent-wiki-pattern|паттерне персональной вики]] выступает "программистом", который читает источники, пишет и поддерживает wiki-слой markdown-файлов по правилам из [[CLAUDE.md]].
@@ -16,7 +16,7 @@ CLI-инструмент для работы с LLM-агентом (Anthropic Cl
 Claude Code — инструмент для терминала/IDE (уровни 4-5 в [[five-levels-of-claude-mastery]]), в отличие от [[claude-projects]] (память под роль в браузере), [[claude-skills]] (переносимые умения) и [[claude-cowork]] (агент с доступом к файлам компьютера, без терминала). Ещё один сосед — **[[claude-agent-sdk]]**: та же связка agent loop + инструменты + context management, но как библиотека Python/TypeScript для встраивания в собственные CI/CD и продакшн-приложения, а не CLI для интерактивной разработки. Многие команды используют оба: CLI повседневно, SDK — в продакшне; конфигурация (`.claude/skills`, `CLAUDE.md`, plugins) читается одинаково в обоих.
 
 ## Связи
-- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]], [[claude-code-changelog-snapshot-2026-08-25]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]]
+- Источники: [[karpathy-jarvis-personal-ai-memory]], [[karpathy-skills-claude-md]], [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[romaray-claude-watch-video]], [[nikita-vels-claude-code-30-concepts]], [[claude-code-changelog-snapshot-2026-07]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-20]], [[anthropic-long-running-agent-harness]], [[anthropic-context-engineering-claude-5]], [[claude-code-memory-docs]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-self-hosted-environments-docs]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-22]], [[claude-code-changelog-snapshot-2026-08-25]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[claude-fable-5-1-launch]]
 - Концепты: [[context-engineering-claude-5]], [[persistent-wiki-pattern]], [[ingest-query-lint]], [[llm-coding-guidelines]], [[five-levels-of-claude-mastery]], [[claude-watch-skill]], [[10k-website-checklist]], [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[claude-memory-tool]], [[agentic-sdlc-frameworks]], [[claude-desktop-automation-modes]]
 - Смежные функции: [[claude-projects]], [[claude-skills]], [[claude-cowork]], [[claude-agent-sdk]]
 - Альтернатива: [[cursor]], [[opencode]] (open source, мультипровайдерный)
@@ -237,3 +237,17 @@ Haiku — простые задачи; Sonnet — "золотая середин
 - **Видимость спенд-лимита и промпт-кэша** — Spend limit bar в `/usage`, per-session строка hit ratio/misses/warm-cold кэша в `/cost`. Дополнено в [[claude-api-cost-optimization]].
 - Малое: live-стриминг тулкоплов foreground-субагента в Remote Control (фоновые — по-прежнему только статус), CLI-команды `attach`/`logs`/`stop`/`respawn`/`rm` в `claude --help`.
 - Платформенные release notes проверены отдельно — новых записей после 27.08 нет.
+
+### Обновление 2.1.257–2.1.260 + запуск Claude Fable 5.1 (2026-09-01, [[claude-fable-5-1-launch]])
+Главное событие окна — 1 сентября 2026 Anthropic выпустила **Claude Fable 5.1** (`claude-fable-5-1`), преемника Fable 5, синхронно с Claude Code v2.1.257. Тот же паттерн, что у запуска Opus 5 24.07.2026 ([[claude-opus-5-launch]]), но меньше по масштабу — дефолтной моделью самого CLI остаётся Opus 5, обновляется верхняя ступень линейки ("Fable — самые тяжёлые/длинные автономные задачи", раздел "Модели и Effort" выше). Цена не изменилась ($10/$50 за MTok), контекст 1M, thinking adaptive **всегда включён** (в отличие от Opus 5, где отключение до `high` допустимо — на Fable 5.1 такой опции нет вообще). Кэш-чтение на Fable 5.1 стоит 0.025× базовой input-цены ($0.25/MTok) — ниже стандартных 0.1× у остальной линейки, впервые модель с собственным коэффициентом. Тем же анонсом вышла **Claude Mythos 5.1** (`claude-mythos-5-1`) — "for Project Glasswing participants", содержание программы источник не раскрывает, зафиксировано как открытый вопрос.
+
+**2.1.257:**
+- Fable 5.1 доступна в `/model`-picker.
+- **Containment Escape rule для auto mode** — облачные запросы metadata-credential, обход egress, cross-tenant доступ больше не auto-approve по умолчанию, если среда явно не пометила их ожидаемыми. Продолжение серии точечных сужений auto mode — см. [[ai-security-by-design]].
+
+**2.1.259:**
+- **`managedMcpServers`** — управляемая настройка: организация раздаёт HTTP/SSE MCP-серверы всем пользователям тем же форматом записи, что `.mcp.json`; записи, называющие локальную команду вместо HTTP/SSE endpoint, пропускаются — закрывает очевидный вектор (managed-конфиг не может тихо подсунуть исполнение произвольной команды). Дополняет [[mcp-model-context-protocol]].
+
+**2.1.258/2.1.260:** рутинные фиксы (совместимость с macOS 12, diff panel в fullscreen, диагностика промпт-кэш-миссов в `/cost`, `/reload-plugins` для headless) — без изменения практической механики.
+
+Полный разбор с точными цитатами моделей и release notes — [[claude-fable-5-1-launch]].

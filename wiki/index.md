@@ -6,7 +6,7 @@
 _(люди, компании, инструменты)_
 
 - [[andrej-karpathy]] — автор метода/гиста, лежащего в основе паттерна персональной вики
-- [[claude-code]] — CLI-агент Anthropic, движок этой вики
+- [[claude-code]] — CLI-агент Anthropic, движок этой вики; допроверка 09-04: запуск Claude Fable 5.1 (v2.1.257), Containment Escape rule auto mode, `managedMcpServers`
 - [[obsidian]] — markdown-редактор с графом связей, IDE для просмотра вики
 - [[obsidian-web-clipper]] — расширение браузера для сохранения статей; установлено и используется с 2026-07-07 (31 файл в `raw/web-clipped/`)
 - [[antigravity-ide]] — альтернативная IDE для запуска Claude Code (не используется)
@@ -126,12 +126,14 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-auto-mode-default]] — официальная документация: с 14.08.2026 auto mode становится дефолтным режимом разрешений для новых сессий на Pro/Max/Team вместо Manual; не переопределяет уже заданный пользователем или организацией дефолт
 - [[claude-code-changelog-snapshot-2026-08-13]] — changelog v2.1.227–2.1.231: hardening скиллов, синхронизированных с claude.ai (больше не перекрывают локальные команды, тело не исполняет `!`/`@` на машине пользователя), сэндбокс IPv6 fail-closed, `/commit-push-pr` больше не авто-одобряет опасные git-флаги, self-hosted runner получил server-supplied хуки
 - [[berezhnitsky-rag-explained]] — RAG с нуля до продакшна за один разбор: конвейер, пять продвинутых техник (гибридный поиск, parent document, multi-query, реранкинг, семантическое разбиение), фреймворк оценки качества Ragas, три уровня кэша — закрывает пробел: RAG упоминался на десятке страниц вики только как контраст, без разбора устройства
+- [[claude-fable-5-1-launch]] — официальный запуск Claude Fable 5.1 (01.09.2026, $10/$50 за MTok без изменений, 1M контекст, thinking всегда включён, отдельная сниженная ставка кэша 0.025×) синхронно с Claude Code v2.1.257; плюс новая Claude Mythos 5.1 для нераскрытого "Project Glasswing", security-фикс auto mode (Containment Escape) и org-level `managedMcpServers`
 
 - [[berezhnitsky-agent-memory-lies]] — пять вопросов к памяти агента и почему вики врёт незаметно: заброшенная структурная база стареет пробелами, заброшенная вики — порчей пересказа; прямо по этой вики, два правила из него внесены в `CLAUDE.md` 2026-08-07 (якорь к источнику, еженедельная сверка страницы с сырьём)
 - [[chroma-context-rot]] — допроверка по официальному репозиторию авторов: точность GPT-4.1 падает со 100% до 18% уже на 10 000 токенах контекста (пример из первых рук, не пересказ), два порядка раньше заявленного лимита окна
 - [[claude-code-self-hosted-environments-docs]] — официальный практический гайд (concept + quickstart): environment/runner/session, раннер запирается на одного пользователя, сеть только исходящая — но инференс модели всё равно у Anthropic, self-hosting не открывает Bedrock/GCP/Foundry/LLM gateway; закрывает пробел, открытый тем же днём changelog-снапшотом
 
 ### Все источники
+- [[claude-fable-5-1-launch]] — официальные models overview/release notes Claude Platform + CHANGELOG.md Claude Code (в. 2.1.257–2.1.260): запуск Claude Fable 5.1 (01.09.2026, преемник Fable 5, та же цена, 1M контекст, thinking adaptive без возможности отключить, кэш-чтение 0.025×), новая Claude Mythos 5.1 для "Project Glasswing" (не раскрыто), Containment Escape rule для auto mode, `managedMcpServers`
 - [[claude-cookbook-managed-agents-sre-incident]] — официальный notebook Claude Cookbooks (`managed_agents/`), третий и последний applied-пример: PagerDuty-алерт → чтение логов/рантбука → PR → одобрение человека → мёрж; Skill через Skills API upload (не репозиторий), три кастомных тула вместо единого HITL-примитива, approval через polling событийного лога, `limited`-networking environment — пункт бэклога закрыт полностью, 16/16 гайдовых + 3/3 applied
 - [[claude-cookbook-managed-agents-slack-bot]] — официальный notebook Claude Cookbooks (`managed_agents/`), второй applied-пример: Slack-бот на Bolt for Python оборачивает уже существующего агента-аналитика (закреплённые `id`+`version`), session = Slack-тред, обработка `session.status_terminated` с трейс-ссылкой
 - [[claude-cookbook-managed-agents-data-analyst]] — официальный notebook Claude Cookbooks (`managed_agents/`), первый applied-пример (не гайдовый): CSV → HTML-отчёт с графиками, вся логика в system prompt, файловый контракт вход/выход через `/mnt/session/outputs/`, поле `packages` у environment
