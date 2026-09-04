@@ -342,23 +342,23 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-04 (1 запись) · след. запуск 08:00 (09.05)</div>
+      <div class="mono">обновлено 2026-09-04 (2 записи) · след. запуск 08:00 (09.05)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">192</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">193</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">53</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">38</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">90</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">91</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 2026-09-04</span>
+      <span class="section-note">2 записи · 2026-09-04</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
@@ -368,6 +368,13 @@
         <div class="news-title">Managed Agents cookbooks: третий applied-пример (SRE Incident Responder) — пункт закрыт полностью</div>
         <div class="news-body">Агент читает алерт (PagerDuty/GitHub/Datadog — заглушки на фикстурах), логи и рантбук, чинит Kubernetes-манифест, открывает PR и ждёт одобрения человека перед мёржем — PR реально смёржен. Skill через Skills API upload (не репозиторий), три отдельных кастомных тула вместо единого HITL-примитива, approval через polling событийного лога, `limited`-networking environment. Пункт бэклога «Managed Agents cookbooks» закрыт полностью — 16/16 гайдовых + 3/3 applied.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-sre-incident.md">claude-cookbook-managed-agents-sre-incident</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Запуск Claude Fable 5.1 + Claude Code v2.1.257–2.1.260</div>
+        <div class="news-body">1 сентября Anthropic выпустила Claude Fable 5.1 ($10/$50 за MTok — без изменений, 1M контекст, thinking всегда включён, кэш-чтение по сниженной ставке 0.025×) синхронно с Claude Code v2.1.257, плюс новая Claude Mythos 5.1 для нераскрытого «Project Glasswing». Из changelog взяты Containment Escape rule для auto mode и org-level `managedMcpServers`.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-fable-5-1-launch.md">claude-fable-5-1-launch</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
       </article>
 
     </div>
@@ -390,7 +397,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; допроверка 09-04 — запуск Claude Fable 5.1, Containment Escape rule auto mode, managedMcpServers</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -462,7 +469,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам; дополнена дорожной картой 22.08 (agent identity, progressive discovery)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам; допроверка 09-04 — managedMcpServers, org-level провижининг</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator для целых приложений</span></a>
@@ -489,7 +496,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">90</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">91</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -581,6 +588,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-data-analyst.md"><span class="tree-name">claude-cookbook-managed-agents-data-analyst</span><span class="tree-desc">Managed Agents cookbooks: первый applied-пример — CSV → HTML-отчёт, вся логика в system prompt, файловый контракт /mnt/session/outputs/, поле packages у environment</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-slack-bot.md"><span class="tree-name">claude-cookbook-managed-agents-slack-bot</span><span class="tree-desc">Managed Agents cookbooks: второй applied-пример — Slack-бот на Bolt оборачивает готового агента по закреплённым id+version, session = Slack-тред, обработка session.status_terminated</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-sre-incident.md"><span class="tree-name">claude-cookbook-managed-agents-sre-incident</span><span class="tree-desc">Managed Agents cookbooks: третий и последний applied-пример — PagerDuty-алерт → PR → одобрение человека → мёрж, Skill через Skills API upload, polling событийного лога; пункт закрыт 16/16+3/3</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-fable-5-1-launch.md"><span class="tree-name">claude-fable-5-1-launch</span><span class="tree-desc">запуск Claude Fable 5.1 (01.09) + Claude Code v2.1.257–2.1.260: $10/$50 без изменений, 1M контекст, кэш 0.025×, Claude Mythos 5.1 для Project Glasswing, Containment Escape rule, managedMcpServers</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
