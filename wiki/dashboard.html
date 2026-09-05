@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-05 (2 записи) · след. запуск 08:00 (09.06)</div>
+      <div class="mono">обновлено 2026-09-05 (3 записи) · след. запуск 08:00 (09.06)</div>
     </div>
   </header>
 
@@ -358,7 +358,7 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · довезены за 09-01 и 09-03</span>
+      <span class="section-note">3 записи · довезены за 09-01, 09-03, плюс сегодняшний lint</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
@@ -375,6 +375,13 @@
         <div class="news-title">Sepia — скилл, снимающий с текста признаки машинной прозы</div>
         <div class="news-body">Рекламный анонс без ссылки разобран по первоисточнику (MIT, 1&nbsp;280★ за четыре дня), и три утверждения поста разошлись с репозиторием — громкая цифра 93,2% оказалась macro-F1 классификатора на художественной прозе, а не «точностью распознавания ИИ-текстов». Главное взятое: детекция после переписывания поверхностного стиля не падает (93,2%&nbsp;→&nbsp;93,9%), то есть чистка тире и слов-маркеров бесполезна в принципе; четыре приёма, не зависящих от языка, перенесены в новый концепт.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/geekneural-sepia-de-ai-skill.md">geekneural-sepia-de-ai-skill</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-text-structural-tells.md">ai-text-structural-tells</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md">sepia</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/humanizer-ru-skill-refactor.md">humanizer-ru-skill-refactor</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Допроверка по первоисточнику: claude-artifacts</div>
+        <div class="news-body">Ежедневное закрытие пробелов взяло самую давно не сверявшуюся продуктовую страницу (48 дней без содержательной сверки). Официальная документация выросла: на странице вики не было вообще трёх разделов — комментарии на артефакте (тот же механизм, которым эта сессия сама пользуется), режим <code>/design</code> для канвас-мокапов, и четыре способа отключить артефакты на своей стороне; все ранее записанные цифры и условия подтвердились без изменений.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md">claude-artifacts</a></div>
       </article>
 
     </div>
@@ -485,7 +492,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 09-05 — комментарии на артефакте, /design канвас-режим, отключение на своей стороне</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; правило спуска и критерий «инвариант или эвристика»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md"><span class="tree-name">agent-harness</span><span class="tree-desc">обвязка между моделью и работой: агент = модель + харнес, восемь частей, пять болей, внутренний и внешний харнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/spatiotemporal-composability.md"><span class="tree-name">spatiotemporal-composability</span><span class="tree-desc">обратимые компоненты: почему свод правил умеет только расти и что даёт возможность снять плагин без следа</span></a>
