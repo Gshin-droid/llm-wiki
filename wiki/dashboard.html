@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-05 (5 записей) · след. запуск 08:00 (09.06)</div>
+      <div class="mono">обновлено 2026-09-05 (6 записей) · след. запуск 08:00 (09.06)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · довезены за 09-01, 09-03, плюс сегодняшние lint, practice и query</span>
+      <span class="section-note">6 записей · довезены за 09-01, 09-03, плюс сегодняшние lint, practice и два query</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">query</span>
+        <div class="news-title">Голосовой ввод на смартчасах: два разных механизма под одним названием</div>
+        <div class="news-body">Продолжение того же разбора на устройстве с предельно малыми ресурсами. Офлайн-управление голосом на часах работает без телефона, но это не диктовка, а закрытый список команд из настроек: задача «отнести короткое окно звука к одному из N известных классов», на выходе номер команды, и порядок ресурсов — десятки килобайт. Свободная диктовка на часах не считается вовсе: уходит на телефон и в облако. Закрывающий довод — вся ОС часов весит около 55&nbsp;МБ и рассчитана на устройства от нескольких килобайт RAM.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pochemu-klaviatura-vesit-malo.md">pochemu-klaviatura-vesit-malo</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/dictum-golosovaya-diktovka.md">dictum-golosovaya-diktovka</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">query</span>
@@ -641,7 +648,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md"><span class="tree-name">ustroystvo-agentnoy-obolochki</span><span class="tree-desc">как устроен агент внутри: цикл, журнал как источник, что оттуда берём</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md"><span class="tree-name">karta-shvov-nashey-obvyazki</span><span class="tree-desc">фаза цикла → чем вмешиваться → чем платишь; куда класть новое правило</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pochemu-klaviatura-vesit-malo.md"><span class="tree-name">pochemu-klaviatura-vesit-malo</span><span class="tree-desc">почему клавиатура на телефоне весит мало, а веса диктовки — сотни мегабайт: модели в клавиатуре нет вовсе, 80 МБ на язык против наших 216, и что из приёмов сжатия применимо</span><span class="badge-new">new</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pochemu-klaviatura-vesit-malo.md"><span class="tree-name">pochemu-klaviatura-vesit-malo</span><span class="tree-desc">почему клавиатура на телефоне весит мало, а веса диктовки — сотни мегабайт: модели в клавиатуре нет вовсе, 80 МБ на язык против наших 216; смартчасы как предельный случай — список команд вместо диктовки</span><span class="badge-new">new</span></a>
       </div>
     </details>
 
