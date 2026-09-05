@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-05 (3 записи) · след. запуск 08:00 (09.06)</div>
+      <div class="mono">обновлено 2026-09-05 (4 записи) · след. запуск 08:00 (09.06)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">200</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">7</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">201</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">10</span><span class="l">новых за сутки</span></div>
     <div class="stat"><span class="n">55</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">41</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">92</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · довезены за 09-01, 09-03, плюс сегодняшний lint</span>
+      <span class="section-note">4 записи · довезены за 09-01, 09-03, плюс сегодняшние lint и practice</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Обрезка словаря модели и слепое пятно замера на границах предложений</div>
+        <div class="news-body">У многоязычной модели три четверти веса — таблица векторов словаря на сотню языков; если вход закрыт алфавитом в 71 знак, недостижимые строки выбрасываются целиком и качество не падает вовсе: 1061 МБ превратились в 107 при тех же F1 и той же скорости. Вторая находка того же дня — набор из одиночных фраз не проверяет границ между предложениями: общая доля верных заглавных показывала 97 %, а начала предложений были верны в 72 % на русском и 67 % на казахском.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md">obrezka-slovarya-modeli</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md">asr-benchmark-traps</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/dictum-golosovaya-diktovka.md">dictum-golosovaya-diktovka</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">project</span>
@@ -473,7 +480,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-text-structural-tells.md"><span class="tree-name">ai-text-structural-tells</span><span class="tree-desc">почему чистка тире и слов-маркеров не делает текст человеческим: детекция после стилевой правки не падает (93,2% → 93,9%); четыре приёма, не зависящих от языка</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">три способа, которыми замер модели распознавания речи врёт: эталон в обучающей выборке, эталон требует невозможных символов, жанр материала не тот</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; допроверка 09-01 — граница доверия, объявленная внутри самого скилла, а не уровнем выше</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
@@ -609,7 +617,7 @@
       <summary><span class="drawer-label">Projects</span><span class="drawer-desc">рабочие проекты пользователя</span><span class="drawer-count">4</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/devkit-conveyer-razrabotki.md"><span class="tree-name">devkit-conveyer-razrabotki</span><span class="tree-desc">свой конвейер разработки: «инструмент обязан доказать, что смотрел» — учёт охвата и канарейка, склейка готового, отброшенные альтернативы</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/dictum-golosovaya-diktovka.md"><span class="tree-name">dictum-golosovaya-diktovka</span><span class="tree-desc">своя голосовая диктовка для Windows: знаки препинания разметочной моделью, две проверки текста, дефисы поимённым списком; замеры вместо ощущений</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/dictum-golosovaya-diktovka.md"><span class="tree-name">dictum-golosovaya-diktovka</span><span class="tree-desc">своя голосовая диктовка для Windows: знаки препинания разметочной моделью, две проверки текста, дефисы поимённым списком; 05-09 — обрезка чужой модели вместо обучения своей</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/jarvis-personal-wiki.md"><span class="tree-name">jarvis-personal-wiki</span><span class="tree-desc">сама эта вики как проект: структура, решения, статус</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/humanizer-ru-skill-refactor.md"><span class="tree-name">humanizer-ru-skill-refactor</span><span class="tree-desc">эксперимент: монолитный скилл разложен по многофайловой архитектуре, A/B-замеры; допроверка 09-01 — сравнение с чужим аналогом Sepia</span><span class="badge-new">обновлено</span></a>
       </div>
