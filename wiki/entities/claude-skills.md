@@ -49,8 +49,15 @@
 
 **"Edit with Claude" (правка многофайлового скилла на месте, находка 07-29) страница не упоминает вовсе** — не расхождение (это обзорная страница, не гайд по интерфейсу), но и не переподтверждение; если попадётся более узкая официальная страница про сам процесс редактирования, стоит свериться с ней отдельно.
 
+## Экосистема вокруг одной задачи: «убрать признаки ИИ» (2026-09-01, [[geekneural-sepia-de-ai-skill]])
+
+Наблюдение, полезное при поиске готового решения. У задачи «сделать ИИ-текст похожим на человеческий» в открытом доступе не один скилл, а **десятки конкурирующих**, с почти совпадающими описаниями и разной глубиной: от списка слов-маркеров в одном markdown-файле до [[sepia]] с исследовательской базой и одиннадцатью файлами правил. Звёзды при этом ничего не говорят о качестве: у Sepia 1 280 звёзд при четырёх днях жизни репозитория.
+
+Практический вывод для правила «сначала искать чужое»: в этой нише поиск даёт не «нашлось / не нашлось», а **список из десятка кандидатов, который надо отсеивать самому** — по границам применимости (язык, жанр), по наличию механической проверки и по тому, откуда взяты цифры. Причём отсев необходим и когда чужое действительно лучше: Sepia сильнее в правилах и слабее в проверке, поэтому итог сравнения оказался не «заменить», а «перенести три приёма» (см. [[humanizer-ru-skill-refactor]]).
+
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]]
-- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]]
+- Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]], [[ai-text-structural-tells]]
+- Сущность: [[sepia]]
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.

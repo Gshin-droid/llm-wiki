@@ -139,8 +139,20 @@ Enterprise > Personal (`~/.claude/skills/`) > Project (`.claude/skills/`) > Plug
 ## Универсальность принципа
 Работает везде, где есть кастомная "обёртка" над моделью, не только в Claude Code: ChatGPT (Custom GPT + uploaded files как tools), Gemini (Gems), Cursor/Windsurf (`.cursorrules` + agents + скрипты в проекте), n8n/Make (workflow-шаблоны = композиция узлов), Vercel AI SDK (tool calling + system prompts в коде). Общий принцип: не начинать каждую сессию с нуля.
 
+## Маршрутная таблица вместо «прочитай всё» (2026-09-01, [[geekneural-sepia-de-ai-skill]])
+
+Живой пример progressive disclosure на чужом скилле. `SKILL.md` у [[sepia]] — не свод правил, а **диспетчер**: таблица «тип текста → какие файлы грузить и в каком порядке», плюс таблица «операция → её контракт». Одиннадцать файлов правил лежат рядом, но за один вызов открываются два-три. Пол активации ~7 КБ вместо суммарных ~70 КБ базы правил.
+
+Два решения оттуда, применимых к своим скиллам:
+
+- **Обёртки-точки входа.** Кроме основного скилла, четыре скилла-однострочника по ~1 КБ (`sepia-write`, `sepia-review`, `sepia-refactor`, `sepia-recreate`). Операция выбирается именем вызова, а не разбором формулировки пользователя — то есть неоднозначность снимается до того, как модель начала гадать.
+- **Раздел про границу доверия внутри `SKILL.md`.** Для скилла, работающего с чужим контентом, — см. [[ai-security-by-design]].
+
+Ограничение, которое здесь уже измерено: маршрутизация окупается не сама по себе. Замер 2026-07-29 ([[humanizer-ru-skill-refactor]]) показал, что наивный вынос правил по файлам вышел на 12% дороже монолита из-за лишних ходов агента, и выигрыш появился только когда файлы перестали открываться вовсе. У Sepia ходов на маршрут два-три — но замера этого никто не делал, звёзды репозитория о стоимости не говорят.
+
 ## Связи
-- Источники: [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[bohomolov-skill-architecture]], [[anthropic-context-engineering-claude-5]]
+- Источники: [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[bohomolov-skill-architecture]], [[anthropic-context-engineering-claude-5]], [[geekneural-sepia-de-ai-skill]]
+- Сущность: [[sepia]] — чужой скилл, разобранный как образец маршрутизации
 - Концепт: [[context-engineering-claude-5]] — место скиллов среди остальных слоёв контекста
 - Сущность: [[claude-skills]]
 - Концепт: [[five-levels-of-claude-mastery]] (скиллы — третий уровень владения)
