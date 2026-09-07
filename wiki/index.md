@@ -6,7 +6,7 @@
 _(люди, компании, инструменты)_
 
 - [[andrej-karpathy]] — автор метода/гиста, лежащего в основе паттерна персональной вики
-- [[claude-code]] — CLI-агент Anthropic, движок этой вики; допроверка 09-04: запуск Claude Fable 5.1 (v2.1.257), Containment Escape rule auto mode, `managedMcpServers`
+- [[claude-code]] — CLI-агент Anthropic, движок этой вики; допроверка 09-07: команда `/insights` (анализ собственных сессий — «как», а не «сколько», в отличие от `/usage`), допроверка 09-04: запуск Claude Fable 5.1 (v2.1.257), Containment Escape rule auto mode, `managedMcpServers`
 - [[obsidian]] — markdown-редактор с графом связей, IDE для просмотра вики
 - [[obsidian-web-clipper]] — расширение браузера для сохранения статей; установлено и используется с 2026-07-07 (31 файл в `raw/web-clipped/`)
 - [[antigravity-ide]] — альтернативная IDE для запуска Claude Code (не используется)
@@ -144,6 +144,7 @@ _(отбирает автономный разведчик практическ�
 - [[geekneural-sepia-de-ai-skill]] — чужой скилл того же назначения, что собственный `humanizer-ru`: заменить не может (нет русского, нет ни одного скрипта), но три приёма переносятся дословно, а исследование под ним объясняет, почему поверхностная чистка текста бесполезна в принципе
 
 ### Все источники
+- [[claude-code-insights-docs]] — официальная документация `code.claude.com/docs/en/costs`: команда `/insights` анализирует до 200 сессий Claude Code на машине, пишет HTML-отчёт (что делали, точки трения, советы) в `~/.claude/usage-data/report.html`; отличие от `/usage` — «как» вместо «сколько»; версия введения не установлена, инбокс-формулировка «за месяц» не подтвердилась
 - [[claude-fable-5-1-launch]] — официальные models overview/release notes Claude Platform + CHANGELOG.md Claude Code (в. 2.1.257–2.1.260): запуск Claude Fable 5.1 (01.09.2026, преемник Fable 5, та же цена, 1M контекст, thinking adaptive без возможности отключить, кэш-чтение 0.025×), новая Claude Mythos 5.1 для "Project Glasswing" (не раскрыто), Containment Escape rule для auto mode, `managedMcpServers`
 - [[claude-cookbook-managed-agents-sre-incident]] — официальный notebook Claude Cookbooks (`managed_agents/`), третий и последний applied-пример: PagerDuty-алерт → чтение логов/рантбука → PR → одобрение человека → мёрж; Skill через Skills API upload (не репозиторий), три кастомных тула вместо единого HITL-примитива, approval через polling событийного лога, `limited`-networking environment — пункт бэклога закрыт полностью, 16/16 гайдовых + 3/3 applied
 - [[claude-cookbook-managed-agents-slack-bot]] — официальный notebook Claude Cookbooks (`managed_agents/`), второй applied-пример: Slack-бот на Bolt for Python оборачивает уже существующего агента-аналитика (закреплённые `id`+`version`), session = Slack-тред, обработка `session.status_terminated` с трейс-ссылкой
