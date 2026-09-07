@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-06 (2 записи) · след. запуск 08:00 (09.07)</div>
+      <div class="mono">обновлено 2026-09-07 (1 запись) · след. запуск 08:00 (09.08)</div>
     </div>
   </header>
 
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · воскресный прогон — механический проход и сверка с сырьём</span>
+      <span class="section-note">1 запись · будний прогон — закрытие пробела бэклога</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">сверка с сырьём: ai-security-by-design</div>
-        <div class="news-body">Первая содержательная сверка страницы, собранной из 16+ источников и правленной автономной рутиной почти на каждом снапшоте changelog с 07-19. Все проверенные числа и дословные цитаты (CVE-Bench, deepfake, ToxicSkills, восемь цитат changelog, счётчик плагинов DeepSeek) совпали с raw-файлами без расхождений; найдены два непроверенных места — деталь про хуки в frontmatter агентов без якоря в сыром changelog, и неполный список источников в footer'е страницы. Оба — в бэклог, не починены на месте.</div>
+        <div class="news-title">Закрытие пробела gaps-backlog: два расхождения ai-security-by-design</div>
+        <div class="news-body">Оба расхождения, найденные воскресной сверкой с сырьём (09-06), закрыты. Формулировка про workspace trust для хуков в frontmatter агентов подтверждена дословно официальной документацией (code.claude.com/docs/en/hooks, sub-agents) — расхождения по содержанию не было, только пропущенный якорь к первоисточнику. Footer «Источник» дополнен четырьмя пропущенными инлайн-цитатами.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Механический проход: три новых просроченных, старый список без движения</div>
-        <div class="news-body">209 страниц, 16 находок, битых ссылок и сирот нет. Три страницы впервые пересекли порог 30 дней без сверки — два концепта без строки «Тип» (mcp-model-context-protocol, geo-ai-answer-visibility) и claude-agent-sdk; список из прошлого прохода (claude-projects, obsidian, context7, opencode) остался без движения. Список повторяющихся заблокированных доменов пересчитан, github.com в нём подтверждён как известное ложное срабатывание.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
       </article>
 
     </div>
@@ -469,7 +462,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; допроверка 09-01 — граница доверия, объявленная внутри самого скилла, а не уровнем выше</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; сверка с сырьём 09-06/допроверка 09-07 — оба найденных расхождения закрыты, footer источника дополнен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
