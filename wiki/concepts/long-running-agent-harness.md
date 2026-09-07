@@ -25,6 +25,12 @@ GAN-инспирация буквальная: генератор и оценщ�
 
 Источник прочитан не напрямую (403 на `anthropic.com/engineering/...`, включая допроверку через архив) — реконструирован по совпадению нескольких независимых пересказов, см. оговорку на [[anthropic-long-running-agent-harness]].
 
+## Дополнение (2026-09-07): независимая чужая реализация того же примитива
+
+[[planning-with-files]] (открытый MIT-скилл, 60+ поддерживаемых агентов, найден через инбокс-наводку — [[planning-with-files-review]]) реализует Agent-Maintained Handoff отдельно от Anthropic и с другой формой: не один `PROGRESS.md` + git-коммиты, а три файла (`task_plan.md`/`findings.md`/`progress.md`) с lifecycle hooks, переинжектящими план на каждый ход. Общая мысль дословно совпадает с обоснованием этого примитива — «Context Window = RAM / Filesystem = Disk».
+
+Два элемента там, которых нет в паттерне Anthropic выше: **hash attestation** (SHA-256 на теле плана, расхождение — отказ инъекции с флагом `[PLAN TAMPERED]`, а не тихая порча) и **gated mode** (гейт завершения по всем фазам сразу, со встроенной защитой от stall) — оба ближе к Default-FAIL Contract примитива №1 по духу (принуждение доказательствами вместо доверия к самоотчёту агента), но применены к самому файлу плана, а не к результатам тестов. Заявленные автором цифры (восстановление за 5,0 ходов против 13,3 у агента без плана) не проверены независимо — см. оговорку на странице сущности.
+
 ## Быстрый путь: команда `/goal`
 Встроенная в [[claude-code]] альтернатива без кастомных хуков и файла-контракта: одна строка с критерием завершения (`/goal every feature in PROGRESS.md is implemented, committed, and its tests pass`), отдельная быстрая модель сама проверяет выполнение после каждого хода. Работает в Claude Code, headless (`claude -p`) и Remote Control.
 
@@ -41,4 +47,4 @@ GAN-инспирация буквальная: генератор и оценщ�
 [[anthropic-long-running-agent-harness]]
 
 ## Связи
-[[claude-memory-tool]], [[claude-code]], [[claude-agent-sdk]], [[vibecoding-full-workflow]]
+[[claude-memory-tool]], [[claude-code]], [[claude-agent-sdk]], [[vibecoding-full-workflow]], [[planning-with-files]]
