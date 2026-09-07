@@ -37,6 +37,12 @@ async for message in query(prompt="Find and fix the bug in auth.py",
 - **[[claude-memory-tool]]** — тот же принцип "файлы вместо контекста", но как встроенный тул Messages API (`memory_20250818`) — не нужно даже писать собственный `Read`/`Write`-based механизм.
 - **[[long-running-agent-harness]]** — три примитива для многосессионной работы поверх уже перечисленных Hooks/Субагентов: Default-FAIL Contract через `PreToolUse`, Fresh-Context Evaluator через отдельный `query()`-вызов без Write/Edit, Agent-Maintained Handoff через `Stop`-хук + git.
 
+## Cookbook: Scheduled Repository Reviewer — read-only агент на cron (2026-09-07, [[claude-cookbook-scheduled-repository-reviewer]])
+
+Официальный recipe строит полностью автономного ревьюера кода поверх SDK: `allowed_tools=["Read","Glob","Grep"]` (нет shell, нет сети — «content the reviewer reads has nowhere to go but the reply itself»), `PreToolUse`-хук с path confinement (запрет чтения вне репозитория, включая через symlink) как второй слой поверх allowlist, и `disallowed_tools` на служебную директорию как независимый третий. Непрерывность между запланированными прогонами — родная функция SDK **`resume`/`session_id`**, не самодельный файл-хендофф: cold run сканирует репозиторий целиком (`max_turns=40`, `max_budget_usd=2.00`), follow-up возобновляет ту же сессию с более узким бюджетом и structured-output схемой, добавляющей `previous_review_id`/`resolved`. Скрипт не доверяет собственному успешному ответу — отдельно сверяет заявленную моделью непрерывность с файлом состояния и маркирует `RESUME-LINK-BROKEN`, если находки разошлись.
+
+Третий на этой вики механизм пережить обрыв контекста между прогонами одной и той же задачи, наряду с `PROGRESS.md`+git из [[long-running-agent-harness]] и тремя файлами [[planning-with-files]] — здесь носитель памяти самый тонкий: только `session_id`, файл на диске нужен лишь чтобы его найти.
+
 ## Закрытый пробел: биллинг Agent SDK с 15 июня 2026 (было "Открытый вопрос", проверено 2026-07-15)
 Ранее здесь стоял открытый вопрос: вторичные статьи утверждали, что с 15.06.2026 метрика Agent SDK/`claude -p` отделена от лимитов подписки Claude Code. Проверка через официальные источники ([Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) на 15 июня 2026 — запись только про ретайр моделей Sonnet 4/Opus 4, ни слова про биллинг; [официальный Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) — тоже не упоминает разделение) **не подтвердила заявленное изменение как вступившее в силу**. Ретроспективно вторичные источники (независимо друг от друга — codersera, digitalapplied, vantagepoint, usagebox, pravinkumar и др.) сходятся на одном и том же уточнении: Anthropic анонсировала разделение биллинга 14 мая 2026 (отдельный доллар-номинированный кредит для Pro/Max/Team/Enterprise: ~$20/$100/$200 в месяц), но **поставила изменение на паузу 15 июня 2026** — то есть в день, когда оно должно было вступить в силу. Anthropic Agent SDK/`claude -p`/сторонние приложения по факту продолжают тянуть из лимитов подписки, как и раньше; обещанный отдельный кредит не выдаётся, пока Anthropic не объявит новую дату.
 
@@ -49,6 +55,6 @@ async for message in query(prompt="Find and fix the bug in auth.py",
 См. также `wiki/gaps-backlog.md` — пункт 1 закрыт этой записью.
 
 ## Связи
-- Источники: [[claude-agent-sdk-overview]]
-- Сущности: [[claude-code]], [[claude-managed-agents]]
-- Концепты: [[mcp-model-context-protocol]]
+- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]]
+- Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]]
+- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]]

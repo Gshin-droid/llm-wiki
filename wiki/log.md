@@ -5,6 +5,18 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-07] ingest | Автономный разведчик практик: Scheduled Repository Reviewer (Claude Agent SDK Cookbook)
+
+Второй источник того же прогона рутины 2. После разбора наводки из инбокса (см. запись ниже) очередь `raw/` опустела (`ingest.py pending` — 0), а мандат рутины требует активный поиск, а не только обработку очереди — запущен целевой поисковый прогон по темам вики (Claude Code, Claude API, MCP, agentic workflows, RAG, вайбкодинг) за окно с прошлого содержательного прогона рутины 2 (08-31).
+
+**Независимые блоги за неделю проверить не удалось** — сетевой прокси окружения пропускает из результатов поиска только `github.com` и `platform.claude.com`/`code.claude.com`, остальные домены (Pixelmojo, dev.to и т.п.) не открылись; заголовки в выдаче без подтверждённого содержимого не включены как находки. Из достижимого — три официальных материала Anthropic вышли почти одним днём (03.09.2026): `ant apply` (уже взят рутиной новостей тем же числом, см. запись выше — не задваивается), Claude Commerce Agents blueprint (архитектурный паттерн, отмечен лидом в `wiki/gaps-backlog.md`, не разобран содержательно) и — взято в этот прогон — recipe **Build a Scheduled Repository Reviewer** из `claude-cookbooks` (`claude_agent_sdk/`, запись в `registry.yaml` датирована 08-26, merge в main 09-03).
+
+**Прочитаны напрямую** ноутбук, companion-скрипт `scheduled_review.py` и `claude_agent_sdk/README.md` через `raw.githubusercontent.com` и поиск по коду GitHub. Материал точно по мандату рутины: не анонс, а полный воспроизводимый паттерн автономного планового прогона агента — той же формы задачи, которой занимается сама эта вики. Read-only ревьюер репозитория (`Read`/`Glob`/`Grep`, никакого shell/сети — обоснование дословное: «content the reviewer reads has nowhere to go but the reply itself»), path confinement в три независимых слоя (allowlist + императивный `PreToolUse`-хук + `disallowed_tools` на служебную директорию), непрерывность между запланированными прогонами через родную функцию SDK `resume`/`session_id`, а не через самодельный файл-хендофф — третий на этой вики механизм той же задачи, наряду с `PROGRESS.md`+git из [[long-running-agent-harness]] и тремя файлами [[planning-with-files]] (разобран в этом же прогоне, см. ниже). Скрипт не доверяет собственному успешному ответу — отдельно сверяет заявленную моделью непрерывность с файлом состояния, помечая расхождение `RESUME-LINK-BROKEN`.
+
+Новая страница: [[claude-cookbook-scheduled-repository-reviewer]] (источник). Дополнены [[claude-agent-sdk]] (новый раздел с cookbook-примером), [[ai-security-by-design]] (новый раздел про обоснование read-only через отсутствие канала эксфильтрации и три независимых слоя path confinement) и [[long-running-agent-harness]] (третий механизм непрерывности). Обновлён `wiki/index.md` (⭐ Топ-находки и «Все источники»). Лид про Claude Commerce Agents blueprint — в `wiki/gaps-backlog.md`, не начат.
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check claude-cookbook-scheduled-repository-reviewer` — пройдено перед коммитом.
+
 ## [2026-09-07] ingest | Автономный разведчик практик: скилл Planning with Files
 
 Плановый прогон рутины 2 (практики, понедельник). Сессия стартовала уже на `main`, `git pull` не принёс новых коммитов — репозиторий актуален. `python .claude/skills/wiki-ingest/scripts/ingest.py pending` показал единственную неразобранную позицию — ровно ту, что рутина новостей 09-07 сознательно оставила себе: `raw/inbox-assistant/2026-09-04-я-протестировал-много-claude-code-скиллов...md` (source_id ai-assistant #24), вопрос «как этим пользоваться», а не «что вышло».
