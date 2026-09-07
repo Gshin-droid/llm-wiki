@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-04
+**Актуально на:** 2026-09-07
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -138,6 +138,18 @@
 
 **`limited`-networking environment** — три ресурса (логи, K8s-манифест, рантбук) смонтированы через Files API по фиксированным путям, внешние репозитории не клонируются; сеть сужена до нуля выбором типа environment, не `allowed_domains`. Модель нотбука — `claude-opus-4-6` (факт примера, не общая рекомендация). Финал: `"Status: MERGED (PR #1)"`, memory limit увеличен 128Mi → 512Mi.
 
+## `ant apply` — ресурсы как код (2026-09-03, официальная документация [[ant-apply-managed-agents-docs]])
+
+Первый в этой вики случай, когда ресурсы Managed Agents создаются не построчным вызовом SDK (как во всех cookbook-разборах выше), а декларативно: версия 1.30.0 `ant` CLI добавила `ant apply` — Terraform-style workflow. Агент/environment/memory store/deployment описываются файлом (Markdown с YAML frontmatter для агента и deployment, чистый YAML для environment и memory store; skill — директория с `SKILL.md`) в репозитории; `ant apply` считает разницу с уже применённым состоянием, печатает план, применяет после подтверждения и пишет **`claude-lock.json`** — коммитится вместе с файлами, хранит на каждый ресурс `kind`/`id`/`version`/`hash` (что отправлено) и `remote_hash` (что вернул API).
+
+**Ресурсы ссылаются друг на друга относительным путём к файлу**, не ID — `ant apply` создаёт их в порядке зависимостей, сам подставляет ID и закрепляет версию на момент прогона (правка `reviewer.md` обновляет всё, что на него ссылается, в том же прогоне). Ссылка на ресурс не под управлением файлов — просто ID или сырой объект API; skill дополнительно можно сослаться GitHub URL (`.../tree/<branch>/<dir>`) — закрепляется на коммит до `--upgrade`.
+
+**Конфликт с ручной правкой через Console — жёсткий отказ, не тихий перезапись.** Расхождение `hash`/`remote_hash` (кто-то поменял ресурс не через эти файлы) даёт `refusing to apply` вместо применения плана; `--force` — осознанный обход. Удаление файла не удаляет ресурс без явного `--prune`. Инструмент не может «усыновить» ресурс, созданный вручную в Console — управляется только то, что уже в lockfile'е.
+
+**В CI:** без терминала команда требует `--yes`; `--dry-run` на pull request показывает план ревьюерам без применения; аутентификация — Workload Identity Federation, а не хранимый ключ, и команда отказывается работать при несовпадении организации/воркспейса с lockfile'ом.
+
+Не заменяет паттерн SDK-вызовов из раздела «Практический пример» ниже, а даёт альтернативный путь провижининга тех же ресурсов — для конфигурации, которая должна жить под git-review, а не собираться рантайм-логикой приложения. Не проверено: доступен ли `ant apply` для self-hosted environments — документация источника этого не уточняет.
+
 ## Домен-фильтр web_search/web_fetch и self-hosted memory stores (2026-08-19, официальные release notes)
 
 Два точечных расширения из того же окна, что и cookbook-разборы выше, но не из cookbook, а напрямую из release notes:
@@ -188,6 +200,6 @@ with client.beta.sessions.events.stream(session.id) as stream:
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)

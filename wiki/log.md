@@ -5,6 +5,18 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-07] ingest | Автономный разведчик новостей: `ant apply` для Managed Agents
+
+Второй источник того же прогона рутины 1. Найден побочно при допроверке `platform.claude.com/docs/en/release-notes/api` за окно 09-01…09-07 (см. предыдущую запись лога) — единственная находка того окна, не сводящаяся к уже разобранному запуску Fable 5.1/Mythos 5.1: запись «3 сентября 2026» называет версию 1.30.0 `ant` CLI с новой подкомандой `ant apply`.
+
+**Официальная `platform.claude.com/docs/en/cli-sdks-libraries/cli/apply` прочитана целиком.** `ant apply` — Terraform-style workflow для [[claude-managed-agents]]: агенты/environments/skills/memory stores/deployments описываются файлами (Markdown/YAML) в репозитории вместо построчных вызовов SDK (единственный паттерн, разобранный во всех 16+3 cookbook'ах этой страницы до сих пор). Ресурсы ссылаются друг на друга относительным путём к файлу, не ID; `claude-lock.json` коммитится вместе с файлами и хранит `hash`/`remote_hash` на каждый ресурс — расхождение ловит и правку файла, и правку «в обход» через Console, и в этом случае `ant apply` **отказывается применять план**, а не тихо перезаписывает (`refusing to apply`, обход только явным `--force`). CI-паттерн — `--dry-run` на pull request, `--yes` без терминала, аутентификация через Workload Identity Federation.
+
+**Не додумано:** доступность `ant apply` для self-hosted environments (отдельная опция продукта, см. [[claude-managed-agents]]) документация источника не уточняет — оставлено открытым вопросом, не проверялось отдельно.
+
+Дополнена [[claude-managed-agents]] (новый раздел «`ant apply` — ресурсы как код», «Актуально на» → 09-07). Новая страница: [[ant-apply-managed-agents-docs]] (источник). Обновлён `wiki/index.md`.
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check ant-apply-managed-agents-docs` — пройдено перед коммитом.
+
 ## [2026-09-07] ingest | Автономный разведчик новостей: команда /insights
 
 Плановый прогон рутины 1 (новости). Сессия стартовала в detached HEAD — исправлено `git checkout main && git pull`, репозиторий обновлён fast-forward на 29 коммитов. Окно — с прошлой записи того же разведчика (09-04, [[claude-fable-5-1-launch]]).
