@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-07
+**Актуально на:** 2026-09-08
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -196,10 +196,14 @@ with client.beta.sessions.events.stream(session.id) as stream:
 
 **Итог:** страничная дата у Vaults (2026-06-30) была верной с самого начала; ошибка была только в дате webhooks agent/deployment/deployment-run — исправлена на 2026-06-30 в разделе «Обновления с 2026-07-22» выше. Дата raw-файла (07-02) для обоих фактов не подтвердилась — сам raw-файл не правится (сырьё неизменяемо), расхождение с ним фиксируется здесь как факт истории, а не как повод сомневаться в исправленной дате.
 
+## Эталонный блюпринт: Commerce Agents — один из трёх равноправных рантаймов (2026-09-08, [[claude-commerce-agents-blueprint]])
+
+Официальный открытый блюпринт [[commerce-agents]] (шоппинг-агент + агент-мерчант) использует Managed Agents не как продакшн-стадию после прототипа на Agent SDK (типичный путь, описанный выше в разделе «Когда использовать»), а как один из трёх *одновременно* поддерживаемых рантаймов наряду с Messages API и Agent SDK — вся тройка держится на общем `core`-пакете и общем исполнителе тула. На Managed Agents роль исполняется через MCP-сервер, смонтированный манифестом, а host approval gate (человек одобряет staged-изменение мерчанта) реализован платформенным `always_ask`-промптом на тул `apply_change` — тот же контракт, что у SDK-консоли (`y/N`) и у портала на Messages API-пути, просто выраженный через существующий примитив платформы, а не через кастомный `escalate()`/`decide()` (как в [[claude-cookbook-managed-agents-hitl-multiagent]]).
+
 ## Ограничения
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]]
-- Сущности: [[claude-agent-sdk]], [[claude-code]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]], [[claude-commerce-agents-blueprint]]
+- Сущности: [[claude-agent-sdk]], [[claude-code]], [[commerce-agents]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)

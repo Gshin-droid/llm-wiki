@@ -1,7 +1,7 @@
 # Claude Agent SDK
 
 **Тип:** инструмент (библиотека Python/TypeScript от Anthropic)
-**Актуально на:** 2026-08-05 (биллинг допроверен третий раз, статус без изменений, источник косвенно усилен)
+**Актуально на:** 2026-09-08 (добавлен эталонный блюпринт Commerce Agents; биллинг в последний раз допроверен 08-05, статус без изменений)
 
 ## Что это
 Библиотека, дающая программный доступ к тому же agent loop, встроенным инструментам и context management, что работают внутри [[claude-code]] — "Claude Code как библиотека". В отличие от CLI, встраивается в собственное приложение разработчика: свой процесс, своя инфраструктура, session state в JSONL на диске.
@@ -43,6 +43,10 @@ async for message in query(prompt="Find and fix the bug in auth.py",
 
 Третий на этой вики механизм пережить обрыв контекста между прогонами одной и той же задачи, наряду с `PROGRESS.md`+git из [[long-running-agent-harness]] и тремя файлами [[planning-with-files]] — здесь носитель памяти самый тонкий: только `session_id`, файл на диске нужен лишь чтобы его найти.
 
+## Эталонный блюпринт: Commerce Agents — один агент, три рантайма (2026-09-08, [[claude-commerce-agents-blueprint]])
+
+Официальный открытый блюпринт [[commerce-agents]] использует Agent SDK как один из трёх равноправных рантаймов торгового агента (наряду с Messages API и Managed Agents) — не прототип, мигрирующий дальше, а постоянный путь наравне с остальными. Здесь SDK даёт консольный интерфейс (человек подтверждает staged-изменения мерчанта прямо в консоли, `y/N`) и сам ведёт цикл хода без дополнительного кода вокруг. Показательно, что safety-гейты (fencing, provenance, host approval) вынесены в общий исполнитель тула `commerce_common/execution.py`, а не привязаны к конкретному рантайму — SDK-путь получает те же гарантии, что Messages API и Managed Agents, бесплатно.
+
 ## Закрытый пробел: биллинг Agent SDK с 15 июня 2026 (было "Открытый вопрос", проверено 2026-07-15)
 Ранее здесь стоял открытый вопрос: вторичные статьи утверждали, что с 15.06.2026 метрика Agent SDK/`claude -p` отделена от лимитов подписки Claude Code. Проверка через официальные источники ([Claude Platform release notes](https://platform.claude.com/docs/en/release-notes/overview) на 15 июня 2026 — запись только про ретайр моделей Sonnet 4/Opus 4, ни слова про биллинг; [официальный Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) — тоже не упоминает разделение) **не подтвердила заявленное изменение как вступившее в силу**. Ретроспективно вторичные источники (независимо друг от друга — codersera, digitalapplied, vantagepoint, usagebox, pravinkumar и др.) сходятся на одном и том же уточнении: Anthropic анонсировала разделение биллинга 14 мая 2026 (отдельный доллар-номинированный кредит для Pro/Max/Team/Enterprise: ~$20/$100/$200 в месяц), но **поставила изменение на паузу 15 июня 2026** — то есть в день, когда оно должно было вступить в силу. Anthropic Agent SDK/`claude -p`/сторонние приложения по факту продолжают тянуть из лимитов подписки, как и раньше; обещанный отдельный кредит не выдаётся, пока Anthropic не объявит новую дату.
 
@@ -55,6 +59,6 @@ async for message in query(prompt="Find and fix the bug in auth.py",
 См. также `wiki/gaps-backlog.md` — пункт 1 закрыт этой записью.
 
 ## Связи
-- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]]
-- Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]]
+- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]]
+- Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]], [[commerce-agents]]
 - Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]]
