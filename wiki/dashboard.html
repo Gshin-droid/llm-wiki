@@ -342,60 +342,32 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-07 (5 записей) · след. запуск 08:00 (09.08)</div>
+      <div class="mono">обновлено 2026-09-08 (1 запись) · след. запуск 08:00 (09.09)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">206</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">новых за сутки</span></div>
-    <div class="stat"><span class="n">56</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">208</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">57</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">96</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">97</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · будний прогон закрытия пробела + разведчик новостей + разведчик практик</span>
+      <span class="section-note">1 запись · ежедневный процесс закрытия пробела (будний прогон)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">ant apply — Managed Agents как инфраструктура-как-код</div>
-        <div class="news-body">Второй источник рутины новостей: версия 1.30.0 ant CLI (03.09) добавила Terraform-style workflow для Managed Agents — агенты/environments/skills/memory stores/deployments файлами в репозитории + claude-lock.json, вместо построчных вызовов SDK. Жёсткий отказ применять план при правке ресурса «в обход», через Console.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/ant-apply-managed-agents-docs.md">ant-apply-managed-agents-docs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md">claude-managed-agents</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Автономный разведчик новостей: команда /insights</div>
-        <div class="news-body">Наводка из необработанного инбокса ассистента проверена по официальной документации: /insights анализирует до 200 сессий Claude Code на машине (не «месяц», как утверждал пересказ), пишет HTML-отчёт о том, как вы работаете — в отличие от /usage, который считает сколько потрачено. Версия введения команды не установлена.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-insights-docs.md">claude-code-insights-docs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробела gaps-backlog: два расхождения ai-security-by-design</div>
-        <div class="news-body">Оба расхождения, найденные воскресной сверкой с сырьём (09-06), закрыты. Формулировка про workspace trust для хуков в frontmatter агентов подтверждена дословно официальной документацией (code.claude.com/docs/en/hooks, sub-agents) — расхождения по содержанию не было, только пропущенный якорь к первоисточнику. Footer «Источник» дополнен четырьмя пропущенными инлайн-цитатами.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Разведчик практик: скилл Planning with Files</div>
-        <div class="news-body">Личный отзыв из инбокса без ссылки — проверен по репозиторию OthmanAdi (MIT, 60+ агентов). Три файла на диске (task_plan/findings/progress) вместо контекста, hash attestation против порчи плана, gated mode; независимая реализация примитива Agent-Maintained Handoff.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md">planning-with-files</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/planning-with-files-review.md">planning-with-files-review</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Разведчик практик: Scheduled Repository Reviewer (Claude Agent SDK Cookbook)</div>
-        <div class="news-body">Официальный recipe Anthropic — read-only ревьюер репозитория на cron, обоснование инструментов через отсутствие канала эксфильтрации, path confinement в три независимых слоя, непрерывность через родной resume_session_id вместо самодельного файла-хендоффа. Прямо применимо к собственной практике автономных рутин этой вики.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-scheduled-repository-reviewer.md">claude-cookbook-scheduled-repository-reviewer</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md">claude-agent-sdk</a></div>
+        <div class="news-title">Закрытие пробела gaps-backlog: Claude Commerce Agents blueprint</div>
+        <div class="news-body">Официальный эталонный блюпринт Anthropic (github.com/anthropics/commerce-agents) прочитан напрямую: один агент (шоппинг/мерчант) на трёх рантаймах — Messages API, Agent SDK, Managed Agents — через общий исполнитель тула. Safety-гейты (fencing, provenance, host approval) зашиты в исполнитель, а не в промпт, поэтому держатся одинаково на всех трёх путях — обратная сторона паттерна read-only агента из cookbook 09-07.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md">claude-commerce-agents-blueprint</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md">commerce-agents</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
       </article>
 
     </div>
@@ -414,7 +386,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">56</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">57</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -432,7 +404,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-projects.md"><span class="tree-name">claude-projects</span><span class="tree-desc">функция Claude.ai: память/контекст под конкретную роль</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md"><span class="tree-name">sepia</span><span class="tree-desc">открытый (MIT) скилл «убрать признаки машинного письма»: 11 файлов правил, 4 операции, ни одного скрипта; русского нет</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/geekneural.md"><span class="tree-name">geekneural</span><span class="tree-desc">Telegram-канал, наводка на Sepia; при сверке с репозиторием три расхождения — брать наводкой, не фактом</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; допроверка 09-01 — у задачи «убрать признаки ИИ» десятки конкурирующих скиллов, звёзды о качестве не говорят; 09-07 связь с planning-with-files</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; сверена по официальному README</span></a>
@@ -453,8 +425,9 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer: read-only агент на cron, path confinement, resume_session_id</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-04 — Managed Agents cookbooks закрыты полностью, 16/16 гайдовых + 3/3 applied (Data Analyst Agent, Slack Data Bot, SRE Incident Responder)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-04 — Managed Agents cookbooks закрыты 16/16+3/3; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
@@ -491,7 +464,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; сверка с сырьём 09-06/допроверка 09-07 — оба расхождения закрыты; 09-07 — read-only через отсутствие канала эксфильтрации, три слоя path confinement</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 09-07 — read-only через отсутствие канала эксфильтрации; 09-08 — гейты записи (provenance + host approval) в общем исполнителе тула</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта</span></a>
@@ -524,7 +497,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">96</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">97</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -618,10 +591,11 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/geekneural-sepia-de-ai-skill.md"><span class="tree-name">geekneural-sepia-de-ai-skill</span><span class="tree-desc">разбор Sepia по репозиторию, а не по анонсу: устройство скилла, четыре операции, граница доверия внутри SKILL.md; три расхождения поста с первоисточником</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-managed-agents-sre-incident.md"><span class="tree-name">claude-cookbook-managed-agents-sre-incident</span><span class="tree-desc">Managed Agents cookbooks: третий и последний applied-пример — PagerDuty-алерт → PR → одобрение человека → мёрж, Skill через Skills API upload, polling событийного лога; пункт закрыт 16/16+3/3</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-fable-5-1-launch.md"><span class="tree-name">claude-fable-5-1-launch</span><span class="tree-desc">запуск Claude Fable 5.1 (01.09) + Claude Code v2.1.257–2.1.260: $10/$50 без изменений, 1M контекст, кэш 0.025×, Claude Mythos 5.1 для Project Glasswing, Containment Escape rule, managedMcpServers</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-insights-docs.md"><span class="tree-name">claude-code-insights-docs</span><span class="tree-desc">официальная документация: команда /insights анализирует до 200 сессий Claude Code на машине, HTML-отчёт в ~/.claude/usage-data/report.html — «как» вы работаете, а не «сколько» потратили</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/ant-apply-managed-agents-docs.md"><span class="tree-name">ant-apply-managed-agents-docs</span><span class="tree-desc">официальная документация: ant apply — Managed Agents как инфраструктура-как-код, ресурсы файлами в репозитории + claude-lock.json, отказ применять план при ручной правке через Console</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/planning-with-files-review.md"><span class="tree-name">planning-with-files-review</span><span class="tree-desc">наводка из инбокса без ссылки на открытый скилл персистентного файлового планирования — репозиторий прочитан напрямую, механика оказалась шире одного абзаца поста</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-scheduled-repository-reviewer.md"><span class="tree-name">claude-cookbook-scheduled-repository-reviewer</span><span class="tree-desc">официальный recipe Claude Agent SDK Cookbook: read-only ревьюер репозитория на cron, three-layer path confinement, непрерывность через resume_session_id</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-insights-docs.md"><span class="tree-name">claude-code-insights-docs</span><span class="tree-desc">официальная документация: команда /insights анализирует до 200 сессий Claude Code на машине, HTML-отчёт в ~/.claude/usage-data/report.html — «как» вы работаете, а не «сколько» потратили</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/ant-apply-managed-agents-docs.md"><span class="tree-name">ant-apply-managed-agents-docs</span><span class="tree-desc">официальная документация: ant apply — Managed Agents как инфраструктура-как-код, ресурсы файлами в репозитории + claude-lock.json, отказ применять план при ручной правке через Console</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/planning-with-files-review.md"><span class="tree-name">planning-with-files-review</span><span class="tree-desc">наводка из инбокса без ссылки на открытый скилл персистентного файлового планирования — репозиторий прочитан напрямую, механика оказалась шире одного абзаца поста</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-scheduled-repository-reviewer.md"><span class="tree-name">claude-cookbook-scheduled-repository-reviewer</span><span class="tree-desc">официальный recipe Claude Agent SDK Cookbook: read-only ревьюер репозитория на cron, three-layer path confinement, непрерывность через resume_session_id</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md"><span class="tree-name">claude-commerce-agents-blueprint</span><span class="tree-desc">официальный эталонный блюпринт торгового агента: один агент на трёх рантаймах через общий commerce-common, safety-гейты в исполнителе тула — обратная сторона read-only паттерна из cookbook 09-07</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
