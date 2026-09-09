@@ -38,7 +38,7 @@ _(люди, компании, инструменты)_
 - [[claude-statusline]] — statusline-скрипт для Claude Code CLI (лимиты, директория, git-ветка)
 - [[claude-agent-sdk]] — библиотека Python/TypeScript для встраивания agent loop Claude Code в свои приложения
 - [[woome-ai]] — автор видео про контент-фермы Claude Code + Дзен
-- [[opencode]] — open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code
+- [[opencode]] — open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09: точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, `AGENTS.md` официально фолбэчит на `CLAUDE.md`
 - [[zproger]] — автор обзора OpenCode
 - [[vladilen-minin]] — автор кейсов GSD/Superpowers
 - [[gsd-get-shit-done]] — spec-driven агентский фреймворк полного SDLC, мультихост; допроверка 08-12: проект переехал в GSD Core (`open-gsd/gsd-core`), старый репозиторий архивирован
