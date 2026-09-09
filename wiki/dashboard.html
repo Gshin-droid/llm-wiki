@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-09 (1 запись) · след. запуск 08:00 (09.10)</div>
+      <div class="mono">обновлено 2026-09-09 (2 записи) · след. запуск 08:00 (09.10)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">208</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">57</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">210</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">58</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">97</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">98</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · ежедневный процесс закрытия пробела (будний прогон)</span>
+      <span class="section-note">2 записи · разбор Apache Maka и ежедневный процесс закрытия пробела</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (ingest/project/query/decision/lint/config/practice), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Apache Maka: журнал как источник состояния</div>
+        <div class="news-body">Разбор семи официальных документов обвязки Apache Maka по наводке из инбокса. Новый концепт заводить не стали — идея уже была в вики глубже, поэтому Maka записана как вторая независимая реализация инварианта «видно — значит записано». Дописаны три механики, которых не было: сжатие контекста без переписывания истории, фиксация намерения до действия (T1/T2) и парковка вместо слепого повтора. Отсюда же четыре правила уровня всех проектов.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md">apache-maka</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/apache-maka-architecture-docs.md">apache-maka-architecture-docs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md">invariant-vidno-znachit-zapisano</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -386,7 +393,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">57</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">58</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -434,6 +441,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md"><span class="tree-name">apache-maka</span><span class="tree-desc">обвязка в инкубаторе Apache: состояние выводится из журнала, T1/T2, парковка недоказанного</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны все компоненты вплоть до цикла агента, полная трасса рассуждений отдаётся пользователю; developer preview</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзоров OpenCode и DeepSeek Harness; презумпция — брать как повод, факты сверять отдельно</span></a>
@@ -497,7 +505,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">97</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">98</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bereznitsky-harness-engineering.md"><span class="tree-name">bereznitsky-harness-engineering</span><span class="tree-desc">харнес-инжиниринг на живых агентах: принцип Хашимото, четыре функции OpenAI, семь слоёв, три уровня проверки; допроверены Gartner/Черни/Auto Research</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-jarvis-personal-ai-memory.md"><span class="tree-name">karpathy-jarvis-personal-ai-memory</span><span class="tree-desc">метод Карпати: Claude Code + Obsidian как персональная AI-память</span></a>
@@ -595,6 +603,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/ant-apply-managed-agents-docs.md"><span class="tree-name">ant-apply-managed-agents-docs</span><span class="tree-desc">официальная документация: ant apply — Managed Agents как инфраструктура-как-код, ресурсы файлами в репозитории + claude-lock.json, отказ применять план при ручной правке через Console</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/planning-with-files-review.md"><span class="tree-name">planning-with-files-review</span><span class="tree-desc">наводка из инбокса без ссылки на открытый скилл персистентного файлового планирования — репозиторий прочитан напрямую, механика оказалась шире одного абзаца поста</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-scheduled-repository-reviewer.md"><span class="tree-name">claude-cookbook-scheduled-repository-reviewer</span><span class="tree-desc">официальный recipe Claude Agent SDK Cookbook: read-only ревьюер репозитория на cron, three-layer path confinement, непрерывность через resume_session_id</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/apache-maka-architecture-docs.md"><span class="tree-name">apache-maka-architecture-docs</span><span class="tree-desc">семь официальных документов Apache Maka: журнал как канон, T1/T2, четыре объяснения пропавшего результата</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md"><span class="tree-name">claude-commerce-agents-blueprint</span><span class="tree-desc">официальный эталонный блюпринт торгового агента: один агент на трёх рантаймах через общий commerce-common, safety-гейты в исполнителе тула — обратная сторона read-only паттерна из cookbook 09-07</span><span class="badge-new">новое</span></a>
       </div>
     </details>
