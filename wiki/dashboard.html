@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-08 (1 запись) · след. запуск 08:00 (09.09)</div>
+      <div class="mono">обновлено 2026-09-09 (1 запись) · след. запуск 08:00 (09.10)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">208</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">новых за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">57</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">97</span><span class="l">sources</span></div>
@@ -364,10 +364,10 @@
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Закрытие пробела gaps-backlog: Claude Commerce Agents blueprint</div>
-        <div class="news-body">Официальный эталонный блюпринт Anthropic (github.com/anthropics/commerce-agents) прочитан напрямую: один агент (шоппинг/мерчант) на трёх рантаймах — Messages API, Agent SDK, Managed Agents — через общий исполнитель тула. Safety-гейты (fencing, provenance, host approval) зашиты в исполнитель, а не в промпт, поэтому держатся одинаково на всех трёх путях — обратная сторона паттерна read-only агента из cookbook 09-07.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md">claude-commerce-agents-blueprint</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md">commerce-agents</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Допроверка по первоисточнику: opencode</div>
+        <div class="news-body">Официальный `opencode.ai` заблокирован сетевым прокси окружения, но `github.com/sst/opencode` оказался первоисточником сам по себе — документация лежит прямо в репозитории. Найдена точная версия (1.3.0) снятия встроенных OAuth-плагинов подписки Claude, контраст с ChatGPT Plus/GitHub Copilot/GitLab Duo (подключаются подпиской «с нулевой настройкой») и уточнение, что `AGENTS.md` официально фолбэчит на `CLAUDE.md` при миграции.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md">opencode</a></div>
       </article>
 
     </div>
@@ -427,13 +427,13 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-04 — Managed Agents cookbooks закрыты 16/16+3/3; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны все компоненты вплоть до цикла агента, полная трасса рассуждений отдаётся пользователю; developer preview</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзоров OpenCode и DeepSeek Harness; презумпция — брать как повод, факты сверять отдельно</span></a>
