@@ -1,7 +1,7 @@
 # Claude Skills
 
 **Тип:** функция продукта (Claude.ai / Claude Code)
-**Актуально на:** 2026-08-31
+**Актуально на:** 2026-09-10
 
 ## Что это
 Переносимая папка с инструкцией (`SKILL.md`) и опциональными скриптами/референсами, которая один раз устанавливается и "прокачивает" Claude в конкретной области — не разовая задача, а устойчивое умение, применимое в разных проектах и чатах. Вызывается командой `/` или подключается автоматически, когда Claude решает, что скилл релевантен задаче (см. архитектуру progressive disclosure в [[skill-authoring-practical-rules]]). Официально — открытый стандарт [Agent Skills](https://agentskills.io), не привязан к одному инструменту.
@@ -55,9 +55,13 @@
 
 Практический вывод для правила «сначала искать чужое»: в этой нише поиск даёт не «нашлось / не нашлось», а **список из десятка кандидатов, который надо отсеивать самому** — по границам применимости (язык, жанр), по наличию механической проверки и по тому, откуда взяты цифры. Причём отсев необходим и когда чужое действительно лучше: Sepia сильнее в правилах и слабее в проверке, поэтому итог сравнения оказался не «заменить», а «перенести три приёма» (см. [[humanizer-ru-skill-refactor]]).
 
+## `/skill-doctor` — диагностика собственных скиллов (2026-09-10, [[claude-code-changelog-snapshot-2026-09-10]])
+
+Claude Code 2.1.261 добавил команду `/skill-doctor`: *"identify unused skills and their context cost"*. Первый штатный инструмент под вопрос, который [[skill-authoring-practical-rules]] решала только вручную — сколько скилл стоит в окне контекста и вызывался ли он вообще. Не установлено changelog'ом: считает ли команда стоимость по фактическому размеру `SKILL.md`+`references/` или по эвристике, и какой критерий у «unused» (отсутствие вызова в истории сессий или отсутствие триггерных совпадений с запросами). Не проверялась предметно в прогоне новостного разведчика — годится как задача рутине хвостов.
+
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]]
 - Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]], [[ai-text-structural-tells]]
 - Сущность: [[sepia]], [[planning-with-files]] (скилл персистентного файлового планирования, не про текст — попал в вики через ту же наводку-без-ссылки, что и Sepia)
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.

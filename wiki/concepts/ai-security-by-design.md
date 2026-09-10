@@ -186,8 +186,19 @@ Path confinement реализован тремя независимыми сло
 
 Общий принцип с записью 09-07 шире, чем «read-only агент»: канал наружу (эксфильтрация) и канал внутрь-с-эффектом (запись) требуют разного вида запирания — первому нужно физическое отсутствие пути, второму физическое отсутствие пути невозможно (запись — это и есть смысл агента), поэтому вместо этого нужна независимая от модели проверка происхождения данных и явное согласие человека, оба вне текста диалога.
 
+## Третий фикс того же узла контейнмента плагинов/маркетплейса (2026-09-10, [[claude-code-changelog-snapshot-2026-09-10]])
+
+Продолжение серии, отслеживаемой на этой странице с 07-19 — но в этот раз повтор на **одном и том же узле**, а не новый класс бага. 08-31 уже фиксировался path traversal в командах плагина маркетплейса (раздел выше). В окне 2.1.261–2.1.267 тот же узел дал ещё два фикса:
+
+- **2.1.265**: *"Fixed plugin path backslash bypassing containment checks"* — обратный слеш в пути плагина обходил проверку контейнмента, написанную под `/`-разделитель; платформенно-специфичный вариант того же обхода.
+- **2.1.267**: *"Fixed marketplace entry path bypass vulnerability on macOS and Linux"* — путь в записи маркетплейса обходил проверку уже на других платформах; changelog не раскрывает механизм, в отличие от прежних находок серии.
+
+Три независимых фикса на одном узле («путь плагина/маркетплейса выходит за границу директории») за полтора месяца, каждый раз новый вектор обхода (path traversal → backslash → неназванный) или новая платформа. Это не то же самое, что размер пачки 08-31 (пять находок разных узлов в одной версии) — здесь важен повтор одного и того же узла, а не ширина: контейнмент плагинов оказался поверхностью, которую закрывают по частям, и предсказать следующий вектор по уже пофикшенным нельзя.
+
+Дополнено из [[claude-code-changelog-snapshot-2026-09-10]].
+
 ## Источник
-[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[geekneural-sepia-de-ai-skill]], [[berezhnitsky-agent-memory-lies]], [[minja-memory-injection-attack]], [[meta-agents-rule-of-two]], [[deepseek-harness-zproger-review]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]]
+[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[geekneural-sepia-de-ai-skill]], [[berezhnitsky-agent-memory-lies]], [[minja-memory-injection-attack]], [[meta-agents-rule-of-two]], [[deepseek-harness-zproger-review]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-code-changelog-snapshot-2026-09-10]]
 
 ## Связи
 Пересекается с практикой вайбкодинга ([[vibecoding-full-workflow]], [[supabase]]) — секреты на бэкенде, а не на фронтенде — это прямое применение принципа минимизации поверхности атаки. Также напрямую применимо к [[persistent-wiki-pattern]] и операции Ingest.
