@@ -47,7 +47,7 @@ _(люди, компании, инструменты)_
 - [[prostodevops]] — DevOps-образовательный канал
 - [[claude-managed-agents]] — hosted agent harness Anthropic: agent/environment/session/events, память/мультиагентность/self-hosted sandboxes поверх Claude API; допроверка 08-19…09-04 — production-паттерн (webhooks), memory stores, human-in-the-loop, мультиагентная координация, версионирование, MongoDB Atlas data path и экономика координатора, advisor и потолок расходов сессии, скиллы из репозитория и гео-пиннинг инференса, три applied-примера (Data Analyst Agent, Slack Data Bot, SRE Incident Responder) по официальным cookbook'ам — пункт бэклога закрыт полностью, гайдовая 16/16, applied 3/3; допроверка 09-07: `ant apply` — ресурсы (агенты/environments/skills/memory stores/deployments) как файлы в репозитории + `claude-lock.json`, Terraform-style workflow вместо построчных вызовов SDK
 - [[web3nity]] — автор методологии «презентация через ИИ-агента» (YouTube + Telegram)
-- [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; установлен 2026-07-27
+- [[context7]] — сервис/MCP-сервер Upstash с актуальной документацией библиотек; установлен 2026-07-27, допроверка 09-10: версия пакета 3.2.5→4.0.7, официальный ручной MCP-путь сместился на удалённый эндпоинт `mcp.context7.com`
 - [[mattpocock-skills]] — пак скиллов Matt Pocock: пайплайн grilling→spec→tickets→implement, tracer-bullet нарезка; установлен 2026-07-27
 - [[exa]] — поисковый API + официальный MCP для ИИ-агентов, neural search; оценён по бэклогу, не установлен
 - [[marina-mogilko]] — предприниматель, автор выступления про пять уровней внедрения ИИ в бизнес
