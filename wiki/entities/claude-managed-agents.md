@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-08
+**Актуально на:** 2026-09-13
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -200,10 +200,16 @@ with client.beta.sessions.events.stream(session.id) as stream:
 
 Официальный открытый блюпринт [[commerce-agents]] (шоппинг-агент + агент-мерчант) использует Managed Agents не как продакшн-стадию после прототипа на Agent SDK (типичный путь, описанный выше в разделе «Когда использовать»), а как один из трёх *одновременно* поддерживаемых рантаймов наряду с Messages API и Agent SDK — вся тройка держится на общем `core`-пакете и общем исполнителе тула. На Managed Agents роль исполняется через MCP-сервер, смонтированный манифестом, а host approval gate (человек одобряет staged-изменение мерчанта) реализован платформенным `always_ask`-промптом на тул `apply_change` — тот же контракт, что у SDK-консоли (`y/N`) и у портала на Messages API-пути, просто выраженный через существующий примитив платформы, а не через кастомный `escalate()`/`decide()` (как в [[claude-cookbook-managed-agents-hitl-multiagent]]).
 
+## Обновления с 2026-09-10 ([[claude-managed-agents-auto-permission-policy]])
+
+**Третий тип permission policy — `auto`.** Рядом с уже известными `always_allow`/`always_ask` (жёстко заданными заранее) появился `auto`: сервер сам решает по каждому вызову инструмента отдельно — выполнить, отклонить (клиент не может переопределить отказ) или поставить на паузу как при `always_ask`. Ни один toolset не включает его по умолчанию, задаётся явно на toolset целиком или на отдельный тул. Официальная документация прямо называет `auto` **не** заменой человеческого контроля — если вызов нужно проверять человеком до исполнения, требуется именно `always_ask`. Источник «намерения пользователя» для решения сервера — только `user.message`-события, не результаты тулов/веб-страниц/MCP-ответов; но непроверенный ввод конечного пользователя, ретранслированный в `user.message`, тоже читается как намерение — разработчику нужно самому не превращать это поле в канал для чужого текста.
+
+**`ant beta:sessions connect`** — подключение терминала к уже идущей сессии вживую: следование за транскриптом, отправка сообщений, прерывание, и главное — интерактивный ответ на паузу подтверждения (`always_ask`/`auto`-indeterminate) без необходимости писать код `user.tool_confirmation` самому. `--web` открывает тот же сеанс в браузерном session viewer Console через локальный процесс `ant` (credentials не покидают CLI).
+
 ## Ограничения
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]], [[claude-commerce-agents-blueprint]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]], [[claude-commerce-agents-blueprint]], [[claude-managed-agents-auto-permission-policy]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]], [[commerce-agents]]
 - Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
