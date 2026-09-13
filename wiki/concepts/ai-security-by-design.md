@@ -197,8 +197,18 @@ Path confinement реализован тремя независимыми сло
 
 Дополнено из [[claude-code-changelog-snapshot-2026-09-10]].
 
+## Утечки секретов и права доступа при распаковке плагинов (2026-09-13, [[claude-code-changelog-snapshot-2026-09-13]])
+
+Тот же узел (плагины/маркетплейс), что уже три раза подряд давал находки про выход за границу директории (раздел выше), в окне 2.1.268–2.1.269 дал смежный, но отдельный класс — **секрет светится там, где ему нельзя быть**, а не путь выходит за периметр:
+
+- Токен/пароль из URL git-источника плагина попадал в текст ошибки установки/обновления (2.1.268).
+- Секрет, подставленный вместо плейсхолдера `${VAR}` в MCP-конфиге, светился в выводе `/mcp`, `/plugin`, `claude mcp list`/`get` — то есть именно в командах, предназначенных для диагностики того же конфига (2.1.268).
+- Распакованный для сессии архив плагина был читаем другими локальными пользователями, наследовал world-writable биты из самого архива, а файлы прошлой распаковки переживали новую (2.1.269) — три независимых находки на одной операции.
+
+**Побочная находка того же окна — цена самого security-фикса.** Ужесточение схемы Artifact-инструмента в 2.1.265 (та же версия, что закрыла backslash-обход контейнмента плагинов, см. раздел выше) содержало regex, который сторонние Anthropic-совместимые эндпоинты (`ANTHROPIC_BASE_URL`) отклоняли — все ходы на таких эндпоинтах падали с HTTP 400 три версии подряд, пока не починили в 2.1.268. Прямая иллюстрация того, что у сужения поверхности атаки есть не только польза (закрытый обход), но и риск сломать легитимный трафик, если правило написано шире, чем нужно — тот же компромисс, что уже отмечен 08-16 про откат Bash-изменений Cygwin/input redirections.
+
 ## Источник
-[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[geekneural-sepia-de-ai-skill]], [[berezhnitsky-agent-memory-lies]], [[minja-memory-injection-attack]], [[meta-agents-rule-of-two]], [[deepseek-harness-zproger-review]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-code-changelog-snapshot-2026-09-10]]
+[[berezhnitsky-attack-for-3-dollars]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[geekneural-sepia-de-ai-skill]], [[berezhnitsky-agent-memory-lies]], [[minja-memory-injection-attack]], [[meta-agents-rule-of-two]], [[deepseek-harness-zproger-review]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]]
 
 ## Связи
 Пересекается с практикой вайбкодинга ([[vibecoding-full-workflow]], [[supabase]]) — секреты на бэкенде, а не на фронтенде — это прямое применение принципа минимизации поверхности атаки. Также напрямую применимо к [[persistent-wiki-pattern]] и операции Ingest.
