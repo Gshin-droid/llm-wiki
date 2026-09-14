@@ -83,6 +83,39 @@
 
 Enterprise-Managed Authorization (упомянута выше со ссылкой на InfoQ, не первоисточник) этим постом подтверждена независимо как активное направление работы — но точной даты релиза по-прежнему нет.
 
+## Практическая сторона: проектирование и защита сервера (добавлено 2026-09-14, [[mcp-for-beginners-curriculum]])
+
+Разделы выше описывают протокол со стороны спецификации. Единственный практический материал на странице до этого момента, [[web3nity-mcp-guide]], учил *подключать* чужие серверы, не *строить* свои. Курикулум Microsoft «MCP for Beginners» закрывает эту сторону — выборочно, два блока.
+
+**Дизайн тула.** Единственная ответственность на тул вместо монолитных многофункциональных; схема параметров с ограничениями (`minimum`/`maximum`, `enum`) и дефолтами, не просто типы. Минимальный паттерн (Python, декоратор скрывает протокольную обвязку):
+
+```python
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("Calculator")
+
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    """Add two numbers"""
+    return a + b
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**Retry различает эффектные и read-only операции** — то, что "stateless на уровне протокола" (раздел выше) означает на практике при проектировании: «generic retry loops are unsafe for tools that create tickets, payments, messages, deployments, or other real-world effects — a response can be lost after the effect commits». Эффектным операциям нужен ключ идемпотентности и сверка авторитетного состояния перед повтором; голый exponential backoff годится только read-only.
+
+**Логирование** — нативный log-механизм MCP депрекирован спецификацией (см. список deprecated выше): писать в `stderr` для stdio-диагностики, метрики/трейсы — через OpenTelemetry.
+
+## Три угрозы авторизации MCP (добавлено 2026-09-14, [[mcp-for-beginners-curriculum]])
+
+Раздел выше («MCP-сервер как канал стороннего контента») разбирает кейс ContextCrush — доверие к чужому *содержимому*, которое сервер подаёт агенту. Курикулум называет отдельный, смежный класс: доверие к чужой *аутентификации*.
+
+- **Tool poisoning / «rug pull»** — удалённый сервер меняет метаданные/описание тула уже после того, как пользователь его одобрил; нужен мониторинг изменений дескрипторов, не только проверка при первом подключении.
+- **Token passthrough** — сервер принимает клиентский токен и пересылает его downstream API без валидации `audience`-claim: рвётся аудит, обходятся рейт-лимиты апстрима. Спецификация дословно: «MCP servers MUST NOT accept tokens not explicitly issued for the MCP server».
+- **Confused deputy** — сервер как OAuth-прокси между клиентом и третьей стороной, атакующий использует уже существующий cookie согласия, чтобы обойти экран авторизации; митигация — явное согласие на каждый динамически зарегистрированный клиент, OAuth 2.1 + PKCE, строгая валидация redirect URI.
+
+Подробнее, включая session hijacking/избыточные права/supply chain — [[ai-security-by-design]].
+
 ## Допроверка 2026-09-11 (ежедневный процесс закрытия пробелов)
 
 Первая содержательная сверка страницы за полтора месяца (07-31 → сейчас) — переустановка даты происходила и раньше (07-31 сама была правкой без нового ingest), но именно проверка «не вышло ли новой версии/поста» делается впервые с 08-22. `modelcontextprotocol.io` заблокирован сетевым прокси окружения, но официальный `github.com/modelcontextprotocol/modelcontextprotocol` — первоисточник сам по себе: спецификация и блог лежат прямо в репозитории (`schema/`, `blog/content/posts/`), прочитаны напрямую через `raw.githubusercontent.com`.
@@ -97,6 +130,6 @@ Enterprise-Managed Authorization (упомянута выше со ссылко�
 Механизмы часто смешивают (см. [[romaray-top-5-skills]] — вторичный источник, перечисляющий MCP-серверы и скиллы одним списком). Разбор различий — на странице [[claude-skills]].
 
 ## Связи
-- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]], [[claude-fable-5-1-launch]]
-- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]]
+- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]], [[claude-fable-5-1-launch]], [[mcp-for-beginners-curriculum]]
+- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]], [[mcp-for-beginners]]
 - Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]], [[claude-api-cost-optimization]]
