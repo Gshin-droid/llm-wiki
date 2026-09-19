@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-18 (1 запись) · след. запуск 08:00 (09.19)</div>
+      <div class="mono">обновлено 2026-09-19 (1 запись) · след. запуск 08:00 (09.20)</div>
     </div>
   </header>
 
@@ -358,16 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · допроверка по первоисточнику: superpowers</span>
+      <span class="section-note">1 запись · допроверка по первоисточнику: claude-statusline</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка по первоисточнику: superpowers</div>
-        <div class="news-body">Официальный репозиторий `obra/superpowers` подтвердил рост без расхождений с прошлой сверкой 08-12: звёзды 270.8k → 288.2k, список хостов установки расширился 11 → 14 (Devin CLI, Grok Build CLI, Hermes Agent), двухступенчатое ревью subagent-driven-development — без изменений.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/superpowers.md">superpowers</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
+        <div class="news-title">Допроверка по первоисточнику: claude-statusline</div>
+        <div class="news-body">Репозиторий `nilbuild/claude-statusline` (через WebFetch — прямой git/curl отклонён окружением) подтвердил отсутствие изменений с 08-13: версия по-прежнему 1.0.6, последний коммит по-прежнему 2026-04-03 — проект неактивен пять с половиной месяцев подряд.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md">claude-statusline</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
       </article>
 
     </div>
@@ -424,7 +424,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/shubin-danila.md"><span class="tree-name">shubin-danila</span><span class="tree-desc">автор обзора ландшафта LLM-памяти</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI; допроверка 09-19 — без изменений с 08-13, версия 1.0.6, проект неактивен с 2026-04-03</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-10 — permission policy auto, ant sessions connect; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
@@ -478,7 +478,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator; 09-07 — два независимых чужих аналога Agent-Maintained Handoff (planning-with-files, resume_session_id из cookbook)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-task-selection.md"><span class="tree-name">vibecoding-task-selection</span><span class="tree-desc">отбор задач для вайбкодинга: рамка «четвёртый вариант», критерии, каталог из 11 инструментов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны; 09-15 — дефолт размера прогона снижен 15→10, подтверждено системным промптом сессии</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes; 09-17 — академическая таксономия MAST (14 отказов, 3 категории) поверх известных failure modes</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes; 09-17 — академическая таксономия MAST (14 отказов, 3 категории) поверх известных failure modes</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-content-farming-workflow.md"><span class="tree-name">ai-content-farming-workflow</span><span class="tree-desc">техника контент-фермы через ИИ-агента: скрапинг, «система» файлов вместо промта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
@@ -501,7 +501,7 @@
     <details class="drawer">
       <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">104</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-auto-permission-policy.md"><span class="tree-name">claude-managed-agents-auto-permission-policy</span><span class="tree-desc">Managed Agents: permission policy auto (сервер решает по каждому вызову, явно не человеческий чекпоинт) + ant beta:sessions connect</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-14.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-14</span><span class="tree-desc">changelog Claude Code 2.1.271: дефолт Dynamic Workflows 15→10, omitClaudeMd для субагентов, per-command allowed_domains</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-13.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-13</span><span class="tree-desc">changelog Claude Code 2.1.268–2.1.270: claude plugin eval, /goal больше не замирает молча, утечки секретов плагинов</span></a>
