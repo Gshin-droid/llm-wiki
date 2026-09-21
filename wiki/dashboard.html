@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-21 (2 записи) · след. запуск 08:00 (09.22)</div>
+      <div class="mono">обновлено 2026-09-21 (3 записи) · след. запуск 08:00 (09.22)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">218</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">59</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">220</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">60</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">105</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">106</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · ежедневный процесс закрытия пробелов: две допроверки по первоисточнику</span>
+      <span class="section-note">3 записи · разведчик практик (еженедельно) + две допроверки по первоисточнику</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">разведчик практик: Admin API Claude Console (cookbook)</div>
+        <div class="news-body">Официальный notebook Claude Cookbooks (`misc/admin_api.ipynb`, добавлен 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами организации через `client.beta.organization.*`. Первый практический разбор API-поверхности, известной вики только фактом «вышла из беты» (08-19). Не топ-находка — рассчитан на многопользовательскую организацию, у пользователя вики Console соло.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md">claude-cookbook-admin-api</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md">claude-admin-api</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -393,7 +400,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">59</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">60</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -454,6 +461,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; сервер MCP допроверен по первоисточнику — риск шире, чем известная «команда закрытия»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -506,7 +514,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">105</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">106</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-auto-permission-policy.md"><span class="tree-name">claude-managed-agents-auto-permission-policy</span><span class="tree-desc">Managed Agents: permission policy auto (сервер решает по каждому вызову, явно не человеческий чекпоинт) + ant beta:sessions connect</span></a>
@@ -613,6 +621,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md"><span class="tree-name">claude-commerce-agents-blueprint</span><span class="tree-desc">официальный эталонный блюпринт торгового агента: один агент на трёх рантаймах через общий commerce-common, safety-гейты в исполнителе тула — обратная сторона read-only паттерна из cookbook 09-07</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md"><span class="tree-name">mcp-for-beginners-curriculum</span><span class="tree-desc">официальный курикулум Microsoft: дизайн тула, retry для эффектных операций, три угрозы авторизации MCP (tool poisoning, token passthrough, confused deputy) — закрывает практический пробел на mcp-model-context-protocol</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/plugin4shell-vulnerability.md"><span class="tree-name">plugin4shell-vulnerability</span><span class="tree-desc">уязвимость раскрыта независимой лабораторией AIR Security (17.09): обход SHA-пиннинга плагинов в Claude Code/Codex/Copilot/Gemini CLI; связанный фикс подтверждён официальным CHANGELOG.md Claude Code (2.1.277)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md"><span class="tree-name">claude-cookbook-admin-api</span><span class="tree-desc">официальный notebook Claude Cookbooks (misc/admin_api.ipynb, 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами через client.beta.organization.*; первый практический разбор API, известной вики только фактом с 08-19</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
