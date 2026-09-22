@@ -342,26 +342,47 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-22 (7 записей) · след. запуск 08:00 (09.23)</div>
+      <div class="mono">обновлено 2026-09-22 (10 записей) · след. запуск 08:00 (09.23)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">237</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">28</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">69</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">241</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">35</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">70</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">44</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">112</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">115</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">7 записей · разбор инбокса ассистента: шесть источников за прогон, плюс закрытие бэклога zep-graphiti</span>
+      <span class="section-note">10 записей · разбор инбокса ассистента и статьи с Habr: девять источников за прогон, плюс закрытие бэклога zep-graphiti</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Habr про DeepSeek Harness — эксплуатация, проверенная по репозиторию</div>
+        <div class="news-body">Профили как упорядоченная стопка patch-слоёв, четыре режима запуска, песочница fail-closed с эскалацией на одобрение человека. Из пяти утверждений статьи два искажены, одно в опасную сторону. Отдельная находка: инструмент ralph не проверяет отчёты раундов независимо — крайний пример для инварианта записи. Habr открывается по AMP-адресу.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-deepseek-harness-plugins.md">habr-deepseek-harness-plugins</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md">invariant-vidno-znachit-zapisano</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Google AX — среда выполнения агентов поверх Kubernetes</div>
+        <div class="news-body">Агент объявлен отдельным родом нагрузки: Task, Workspace, Gateway, Model плюс suspend/resume. Инструмент не берём — нужен кластер; берём идею сетевого allowlist как несущего примитива изоляции. Попутно: вторичные публикации вокруг релиза противоречивы и похожи на сгенерированные.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-ax-agent-runtime.md">google-ax-agent-runtime</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md">google-ax</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Двадцать проектов на Jev API — каталог применений модели решений</div>
+        <div class="news-body">Четыре проекта из двадцати — обвязка для агентов-кодеров, и три реализуют уже записанные у нас правила: сжатие контекста удалением вместо пересказа, калиброванное сито с замеренным порогом и двумя неотключаемыми предохранителями, сторож с отказом по отсутствию записи. Чужая формулировка нашего правила: блокировать может только факт.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md">jev-ecosystem-projects</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md">kalibrovka-uverennosti-resheniy</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -428,7 +449,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">69</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">70</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -499,6 +520,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose, в React Native ещё собирается</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; цена входа — кластер</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -553,7 +575,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">112</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">115</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-auto-permission-policy.md"><span class="tree-name">claude-managed-agents-auto-permission-policy</span><span class="tree-desc">Managed Agents: permission policy auto (сервер решает по каждому вызову, явно не человеческий чекпоинт) + ant beta:sessions connect</span></a>
@@ -667,6 +689,9 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md"><span class="tree-name">jev-skill-suggestion-mod</span><span class="tree-desc">перечень скиллов стоит токенов каждую сессию: −5 496 на набор из 40, приём штатный</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-quick-tunnel.md"><span class="tree-name">cloudflare-quick-tunnel</span><span class="tree-desc">пять ограничений быстрого туннеля, которых нет в популярной однострочной подсказке</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/m3e-canvas-prompt-generator.md"><span class="tree-name">m3e-canvas-prompt-generator</span><span class="tree-desc">инструмент, производящий референс вместо ТЗ прозой; словарь макета тянет за собой стек</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-deepseek-harness-plugins.md"><span class="tree-name">habr-deepseek-harness-plugins</span><span class="tree-desc">эксплуатация dsh: профили как стопка слоёв, четыре режима запуска, песочница fail-closed; два утверждения статьи из пяти искажены</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-ax-agent-runtime.md"><span class="tree-name">google-ax-agent-runtime</span><span class="tree-desc">агент как отдельный род нагрузки: четыре примитива Google и suspend/resume; берём идеи, а не инструмент</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md"><span class="tree-name">jev-ecosystem-projects</span><span class="tree-desc">каталог применений модели решений: 20 проектов, четыре из них — обвязка для агентов-кодеров, три реализуют уже записанные у нас правила</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
