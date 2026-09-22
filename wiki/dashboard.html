@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-21 (3 записи) · след. запуск 08:00 (09.22)</div>
+      <div class="mono">обновлено 2026-09-22 (1 запись) · след. запуск 08:00 (09.23)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">220</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">60</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">42</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">106</span><span class="l">sources</span></div>
@@ -358,30 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · разведчик практик (еженедельно) + две допроверки по первоисточнику</span>
+      <span class="section-note">1 запись · закрытие бэклога — происхождение имён полей zep-graphiti</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">разведчик практик: Admin API Claude Console (cookbook)</div>
-        <div class="news-body">Официальный notebook Claude Cookbooks (`misc/admin_api.ipynb`, добавлен 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами организации через `client.beta.organization.*`. Первый практический разбор API-поверхности, известной вики только фактом «вышла из беты» (08-19). Не топ-находка — рассчитан на многопользовательскую организацию, у пользователя вики Console соло.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md">claude-cookbook-admin-api</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md">claude-admin-api</a></div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">допроверка: zep-graphiti — противоречие найдено</div>
-        <div class="news-body">Официальный код репозитория (`graphiti_core/edges.py`) не содержит полей `valid_from`/`valid_until`/`recorded_at`, которые страница называет с момента создания — реальные имена `valid_at`/`invalid_at`/`created_at`/`expired_at`. Механизм bi-temporal рёбер подтверждён, расхождение только в именах атрибутов; зафиксировано на странице, не удалено.</div>
+        <div class="news-title">закрытие бэклога: происхождение неверных имён полей zep-graphiti</div>
+        <div class="news-body">Raw-файл источника [[shubin-llm-memory-landscape]] дословно называет `valid_from`/`valid_until`/`recorded_at` — страница унаследовала имена от источника, не исказила при ингесте. История коммитов `getzep/graphiti`: `recorded_at` не встречалось никогда, `valid_from`/`valid_to` убраны ещё в августе 2024, за 21 месяц до публикации Habr-поста. Неточность самого источника, не расхождение «код обогнал вики».</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md">zep-graphiti</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">допроверка: mem0 — без расхождений</div>
-        <div class="news-body">README `mem0ai/mem0` сверен построчно с разделом «New Memory Algorithm» — совпадает дословно, отсутствие graph-хранилища подтверждено повторно целевым поиском. Новое: версия пакета PyPI 2.1.0, 65.7k★.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md">mem0</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
       </article>
 
     </div>
@@ -430,8 +416,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/qaisar-kurmangaliev.md"><span class="tree-name">qaisar-kurmangaliev</span><span class="tree-desc">автор полного курса по Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/neiroprosveshchenie.md"><span class="tree-name">neiroprosveshchenie</span><span class="tree-desc">автор техники «просмотра» видео через Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/memora.md"><span class="tree-name">memora</span><span class="tree-desc">MCP-сервер памяти для агентов; допроверка 09-14 — дефолт эмбеддингов сменился на OpenAI, версия v0.4.0, tool profiles 43/19/12</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 09-21 — без расхождений, версия PyPI 2.1.0, 65.7k★</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; допроверка 09-21 — противоречие: страница называет несуществующие поля valid_from/valid_until/recorded_at, в коде valid_at/invalid_at/created_at</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 09-21 — без расхождений, версия PyPI 2.1.0, 65.7k★</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT); флагман сместился в coding-агента с памятью (Letta Code)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/maxim-bashkardinov.md"><span class="tree-name">maxim-bashkardinov</span><span class="tree-desc">автор гайда Obsidian+Claude через MCP для документации проекта</span></a>
@@ -461,7 +447,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; сервер MCP допроверен по первоисточнику — риск шире, чем известная «команда закрытия»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
       </div>
     </details>
 
@@ -621,7 +607,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md"><span class="tree-name">claude-commerce-agents-blueprint</span><span class="tree-desc">официальный эталонный блюпринт торгового агента: один агент на трёх рантаймах через общий commerce-common, safety-гейты в исполнителе тула — обратная сторона read-only паттерна из cookbook 09-07</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md"><span class="tree-name">mcp-for-beginners-curriculum</span><span class="tree-desc">официальный курикулум Microsoft: дизайн тула, retry для эффектных операций, три угрозы авторизации MCP (tool poisoning, token passthrough, confused deputy) — закрывает практический пробел на mcp-model-context-protocol</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/plugin4shell-vulnerability.md"><span class="tree-name">plugin4shell-vulnerability</span><span class="tree-desc">уязвимость раскрыта независимой лабораторией AIR Security (17.09): обход SHA-пиннинга плагинов в Claude Code/Codex/Copilot/Gemini CLI; связанный фикс подтверждён официальным CHANGELOG.md Claude Code (2.1.277)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md"><span class="tree-name">claude-cookbook-admin-api</span><span class="tree-desc">официальный notebook Claude Cookbooks (misc/admin_api.ipynb, 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами через client.beta.organization.*; первый практический разбор API, известной вики только фактом с 08-19</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md"><span class="tree-name">claude-cookbook-admin-api</span><span class="tree-desc">официальный notebook Claude Cookbooks (misc/admin_api.ipynb, 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами через client.beta.organization.*; первый практический разбор API, известной вики только фактом с 08-19</span></a>
       </div>
     </details>
 
