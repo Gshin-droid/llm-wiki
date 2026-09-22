@@ -63,9 +63,17 @@ Claude Code 2.1.261 добавил команду `/skill-doctor`: *"identify un
 
 Claude Code 2.1.269: *"run a plugin's eval suite against Claude Code and get scored, reproducible results (JSON + HTML report)"*. Дополняет `/skill-doctor` (09-10) с другой стороны жизненного цикла: тот считает стоимость/использование уже установленного скилла на стороне пользователя, этот проверяет плагин формальным сьютом тестов на стороне автора, до публикации. Не раскрыто changelog'ом: формат eval-сьюта и что именно проверяется (поведение скилла, MCP-конфиг, permission-hooks).
 
+## Перечень скиллов сам стоит токенов (2026-09-22, [[jev-skill-suggestion-mod]])
+
+Claude Code отправляет модели листинг всех установленных скиллов каждую сессию — имя плюс однострочное описание. Цена растёт линейно с числом скиллов: по замеру автора стороннего мода, скрытие листинга на наборе из **40 скиллов** дало **−5 496 входных токенов** по биллингу API (не по оценке `/context`).
+
+Штатный механизм, которым это делается, — статус `user-invocable-only` в `~/.claude/settings.json`: скилл остаётся установленным и вызывается по `/имя`, но из листинга для модели исчезает и перестаёт учитываться `/context`. Мод поверх этого подставляет в запрос ровно один подходящий скилл, выбранный внешним классификатором; сам приём — прятать листинг и открывать по требованию — стороннего мода не требует.
+
+Две оговорки: **скиллы из плагинов так скрыть нельзя** (`skillOverrides` их не трогает), и если скрытие делалось модом, удалять его можно только через его же `setup restore` — иначе скиллы останутся невидимыми модели, а инструмента вернуть их уже не будет.
+
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]]
 - Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]], [[ai-text-structural-tells]]
 - Сущность: [[sepia]], [[planning-with-files]] (скилл персистентного файлового планирования, не про текст — попал в вики через ту же наводку-без-ссылки, что и Sepia)
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.
