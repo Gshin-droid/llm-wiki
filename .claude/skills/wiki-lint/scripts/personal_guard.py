@@ -50,6 +50,17 @@ import sys
 # 13.08.2026, та же регулярка в lint_wiki.py).
 DISK_PATH = re.compile(r"(?<![A-Za-z])[A-Za-z]:[\\/]|/home/|/Users/|/c/my_")
 MARKER = "[путь-осознанно]"
+# Общесистемные папки Windows личного не выдают: они одинаковы на любой
+# машине и не содержат ни имени учётной записи, ни устройства диска. Без
+# этого сторож краснел на любой заметке про чужую уязвимость: ночная рутина
+# новостей цитирует пути из описаний CVE и про маркер-исключение не знает
+# (случай 22.09.2026, CVE-2026-35603 с путём ProgramData). Список намеренно
+# короткий: только корневые папки самой системы — домашняя папка сюда не
+# входит и ловится как раньше.
+SYSTEM_PATH = re.compile(
+    r"(?<![A-Za-z])[A-Za-z]:[\\/](?:ProgramData|Windows|Program Files)",
+    re.IGNORECASE,
+)
 # Сторож содержит примеры путей в докстроке, в self-test и в комментарии своего
 # workflow — на себя он ругаться не должен, иначе первый же его коммит красный.
 # Исключение именно по этим двум путям, а не по расширению или папке: любой
@@ -88,7 +99,11 @@ def parse_diff(diff_text):
 
 
 def violations_in(pairs):
-    return [(f, ln) for f, ln in pairs if f not in SELF and DISK_PATH.search(ln)]
+    return [
+        (f, ln)
+        for f, ln in pairs
+        if f not in SELF and DISK_PATH.search(ln) and not SYSTEM_PATH.search(ln)
+    ]
 
 
 def message(sha):
@@ -169,6 +184,19 @@ def selftest():
     # Оба написания разделителя и обе домашние папки — находка.
     for line in (r"C:\my_projects\jarvis", "C:/Users/кто-то", "/home/user/.claude", "/c/my_x"):
         assert violations_in([("a.md", line)]), line
+
+    # Общесистемные папки — не находка: одинаковы на любой машине, личного нет.
+    # Оба написания разделителя: находка 22.09.2026 пришла с обратным слэшем,
+    # а первая редакция списка ловила только прямой.
+    for line in (
+        r"эскалация через C:\ProgramData\ClaudeCode\ в Claude Code",
+        "C:/ProgramData/ClaudeCode/",
+        r"фикс — перенос в C:\Program Files",
+        r"C:\Windows\System32",
+    ):
+        assert violations_in([("a.md", line)]) == [], line
+    # Домашняя папка исключением не становится, даже с системным именем внутри.
+    assert violations_in([("a.md", r"C:\Users\кто-то\ProgramData")])
 
     # Объявленное исключение снимает отказ, но только в квадратных скобках.
     def decide(bad_found, msg):
