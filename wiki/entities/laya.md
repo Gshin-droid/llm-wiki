@@ -30,9 +30,13 @@
 
 **Русского языка в опубликованных замерах нет** — до собственного замера применение к русским текстам остаётся гипотезой.
 
+## Третий инструмент того же класса (2026-09-23)
+
+[[openjev-verdict-2]] (149,6M, Apache 2.0) заявляет превосходство над Laya на собственном тестовом наборе (77,10% против 76,60%) — цифра авторская, не независимая, см. [[openjev-verdict-2-repo-review]]. В конвейер не идёт по тому же решению 2026-09-22, что и [[jev-typesafe]]. Отдельная находка: openJev обучен тем же методом RLCD, что и Laya — первое независимое подтверждение, что метод используется не одним проектом.
+
 ## Связи
 
-- Источники в вики: [[laya-local-decision-engine]], [[laya-jev-lab-measurements]]
+- Источники в вики: [[laya-local-decision-engine]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]]
 - Концепты: [[kalibrovka-uverennosti-resheniy]]
 - Практики: [[delegirovanie-deshevym-modelyam]]
-- Сущности: [[jev-typesafe]]
+- Сущности: [[jev-typesafe]], [[openjev-verdict-2]]

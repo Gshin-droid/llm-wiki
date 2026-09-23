@@ -39,8 +39,12 @@
 
 Страница остаётся в вики как точка отсчёта и как объяснение, почему проекты экосистемы устроены именно так: значительная их часть спроектирована вокруг вызова к этому API, и при переносе логики на локальную модель это место придётся менять.
 
+## Третий инструмент того же класса (2026-09-23)
+
+[[openjev-verdict-2]] заявляет 77,10% против 72,70% у TypeSafe Jev 1.13.0 на собственном тестовом наборе автора — не независимая проверка, тот же класс заявления, что и сравнения на этой странице. См. [[openjev-verdict-2-repo-review]].
+
 ## Связи
 
-- Источники в вики: [[laya-local-decision-engine]], [[jev-skill-suggestion-mod]], [[jev-ecosystem-projects]], [[laya-jev-lab-measurements]]
-- Сущности: [[laya]]
+- Источники в вики: [[laya-local-decision-engine]], [[jev-skill-suggestion-mod]], [[jev-ecosystem-projects]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]]
+- Сущности: [[laya]], [[openjev-verdict-2]]
 - Концепты: [[kalibrovka-uverennosti-resheniy]]

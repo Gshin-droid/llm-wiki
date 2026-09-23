@@ -342,109 +342,39 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-22 (12 записей) · след. запуск 08:00 (09.23)</div>
+      <div class="mono">обновлено 2026-09-23 (2 записи) · след. запуск 08:00 (09.24)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">242</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">38</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">70</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">244</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">8</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">71</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">44</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">116</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">117</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">12 записей · разбор инбокса, статьи с Habr и независимых замеров: десять источников за прогон, плюс закрытие бэклога zep-graphiti, плюс сводка новостей 09-22</span>
+      <span class="section-note">2 записи · ежедневное закрытие пробелов: openJev-verdict-2.0 проверен по первоисточнику, AMP-адрес Habr не работает из облачного прогона</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: Grok 4.7, отключение Sora API, закон РФ №243-ФЗ</div>
-        <div class="news-body">xAI выпустила Grok 4.7 (2,1 трлн параметров, та же цена, сразу в Cursor/Copilot/xAI API); OpenAI отключает Sora API 24.09 без преемника — жёсткий обрыв через два дня. Регуляторный пункт вне окна: российский закон №243-ФЗ (в силе с 01.09.2026) взят в вики впервые — с уточнением, что обязательная маркировка ИИ-контента из него на деле отложена до 01.03.2027, а не действует уже сейчас, вопреки распространённому пересказу.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-09-22.md">novosti-2026-09-22</a></div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">laya-jev-lab — независимые замеры моделей решений, и решение по ступени 0.5</div>
-        <div class="news-body">Локальная модель решений даёт 57% точности при 7,6 мс против 78% при 588 мс у облачной; каскад с порогом 0,60 достаёт точность облака, решая 45% потока локально. Решение: облачную модель не используем вовсе, ступень 0.5 остаётся локальной, эскалация идёт вверх по существующей лестнице. Взят чеклист пригодности задачи: спрашивать о факте, а не об оценке; короткий вход; дешёвая ошибка; свой замеренный порог.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-jev-lab-measurements.md">laya-jev-lab-measurements</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md">kalibrovka-uverennosti-resheniy</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Habr про DeepSeek Harness — эксплуатация, проверенная по репозиторию</div>
-        <div class="news-body">Профили как упорядоченная стопка patch-слоёв, четыре режима запуска, песочница fail-closed с эскалацией на одобрение человека. Из пяти утверждений статьи два искажены, одно в опасную сторону. Отдельная находка: инструмент ralph не проверяет отчёты раундов независимо — крайний пример для инварианта записи. Habr открывается по AMP-адресу.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-deepseek-harness-plugins.md">habr-deepseek-harness-plugins</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md">invariant-vidno-znachit-zapisano</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Google AX — среда выполнения агентов поверх Kubernetes</div>
-        <div class="news-body">Агент объявлен отдельным родом нагрузки: Task, Workspace, Gateway, Model плюс suspend/resume. Инструмент не берём — нужен кластер; берём идею сетевого allowlist как несущего примитива изоляции. Попутно: вторичные публикации вокруг релиза противоречивы и похожи на сгенерированные.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-ax-agent-runtime.md">google-ax-agent-runtime</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md">google-ax</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Двадцать проектов на Jev API — каталог применений модели решений</div>
-        <div class="news-body">Четыре проекта из двадцати — обвязка для агентов-кодеров, и три реализуют уже записанные у нас правила: сжатие контекста удалением вместо пересказа, калиброванное сито с замеренным порогом и двумя неотключаемыми предохранителями, сторож с отказом по отсутствию записи. Чужая формулировка нашего правила: блокировать может только факт.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md">jev-ecosystem-projects</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md">kalibrovka-uverennosti-resheniy</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">NVIDIA SoL-Pi — обвязка, найденная автоматическим перебором</div>
-        <div class="news-body">Четыре механизма, отобранные автоматическими циклами исследования, срезают 44,7–49,0% токенов агента при качестве на уровне базовой обвязки (EdgeBench, 51 задача, GPT-5.6 Sol и Opus 5). Исправление обоих постов-наводок: SoL-Pi работает только поверх харнеса Pi и модом к Claude Code не является.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-sol-pi-harness.md">nvidia-sol-pi-harness</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md">sol-pi</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md">agent-harness</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">NVIDIA PAIR — маршрутизатор локального инференса</div>
-        <div class="news-body">Раздаёт запросы к локальным моделям между машинами одной сети через Ollama-совместимый адрес. Главное уточнение: каждый запрос исполняется целиком на одном узле, видеопамять машин не складывается — потолок размера модели второй машиной не поднимается.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-pair-personal-ai-router.md">nvidia-pair-personal-ai-router</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md">nvidia-pair</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Laya — локальный движок типизированных решений</div>
-        <div class="news-body">Модель на 0,3–0,5B выдаёт не текст, а решение: вероятность, выбор или оценку за один проход сети и 33 мс. Отсюда новая ступень 0.5 в лестнице делегирования и новый концепт калибровки — с предельным примером: 0,000 точности при 95,2% уверенности.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-local-decision-engine.md">laya-local-decision-engine</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md">laya</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md">kalibrovka-uverennosti-resheniy</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Мод jev-skill-suggestion — перечень скиллов убирают из контекста</div>
-        <div class="news-body">Листинг всех установленных скиллов уходит модели каждую сессию и стоит токенов: −5 496 на наборе из 40. Приём «спрятать листинг» штатный (user-invocable-only), мод для него не обязателен; с API-ключом во внешний сервис уходит текст каждого запроса пользователя.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md">jev-skill-suggestion-mod</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md">skill-authoring-practical-rules</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Cloudflare Quick Tunnel — локальный сайт наружу одной командой</div>
-        <div class="news-body">Публичный HTTPS-адрес локальному серверу без аккаунта и проброса портов. Разбор документации сделан ради границ, которых нет в популярной подсказке: только разработка, нет SLA, 200 одновременных запросов, нет SSE, адрес меняется при каждом запуске.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-quick-tunnel.md">cloudflare-quick-tunnel</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md">cloudflare-tunnel</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">M3E Canvas — макет в браузере, промпт для агента на выходе</div>
-        <div class="news-body">Инструмент выдаёт не код, а задание на естественном языке — машина по производству референса. Отсюда первый в вики концепт дизайнерской ветки и правило: словарь макета проверяется на совместимость со стеком проекта до передачи задания.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/m3e-canvas-prompt-generator.md">m3e-canvas-prompt-generator</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/maket-kak-tz-dlya-agenta.md">maket-kak-tz-dlya-agenta</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md">material-3-expressive</a></div>
+        <div class="news-title">Закрытие пробела: openJev-verdict-2.0 — заявка проверена по первоисточнику</div>
+        <div class="news-body">README прочитан целиком: заявленное превосходство над laya и jev-typesafe (77,10% против 76,60%/72,70%) — авторский тестовый набор и авторский скрипт оценки, независимой проверки нет. Установлено происхождение цифры «151M» из записи бэклога — она относится к предшественнику (Verdict 1.0, 26,10% точности), а не к модели, которую сравнивают. Метод RLCD совпал с методом laya. Инструмент не берём, решение о моделях решений не меняется.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/openjev-verdict-2-repo-review.md">openjev-verdict-2-repo-review</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md">openjev-verdict-2</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md">kalibrovka-uverennosti-resheniy</a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">закрытие бэклога: происхождение неверных имён полей zep-graphiti</div>
-        <div class="news-body">Raw-файл источника [[shubin-llm-memory-landscape]] дословно называет `valid_from`/`valid_until`/`recorded_at` — страница унаследовала имена от источника, не исказила при ингесте. История коммитов `getzep/graphiti`: `recorded_at` не встречалось никогда, `valid_from`/`valid_to` убраны ещё в августе 2024, за 21 месяц до публикации Habr-поста. Неточность самого источника, не расхождение «код обогнал вики».</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md">zep-graphiti</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
+        <div class="news-title">Закрытие пробела: Habr AMP-адрес из автономного прогона — заблокирован</div>
+        <div class="news-body">Один фетч того же адреса, что читался из локальной сессии 22.09, — EGRESS_BLOCKED из этого облачного прогона. habr.com остаётся недоступным источником для всех автономных рутин, даже по AMP-пути; читается только локально. Повторных заходов на этот домен рутины больше не делают.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a></div>
       </article>
 
     </div>
@@ -463,7 +393,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">70</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">71</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -494,7 +424,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/neiroprosveshchenie.md"><span class="tree-name">neiroprosveshchenie</span><span class="tree-desc">автор техники «просмотра» видео через Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/memora.md"><span class="tree-name">memora</span><span class="tree-desc">MCP-сервер памяти для агентов; допроверка 09-14 — дефолт эмбеддингов сменился на OpenAI, версия v0.4.0, tool profiles 43/19/12</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 09-21 — без расхождений, версия PyPI 2.1.0, 65.7k★</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT); флагман сместился в coding-агента с памятью (Letta Code)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/maxim-bashkardinov.md"><span class="tree-name">maxim-bashkardinov</span><span class="tree-desc">автор гайда Obsidian+Claude через MCP для документации проекта</span></a>
@@ -525,16 +455,17 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md"><span class="tree-name">sol-pi</span><span class="tree-desc">расширение NVlabs к харнесу Pi: −45…49% токенов агента, четыре механизма найдены автоматическим перебором; не мод к Claude Code</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose, в React Native ещё собирается</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; цена входа — кластер</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md"><span class="tree-name">sol-pi</span><span class="tree-desc">расширение NVlabs к харнесу Pi: −45…49% токенов агента, четыре механизма найдены автоматическим перебором; не мод к Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 09-23 — третий конкурент openJev-verdict-2.0 заявляет превосходство, не независимо</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md"><span class="tree-name">openjev-verdict-2</span><span class="tree-desc">третья модель типизированных решений (149,6M, Apache 2.0), заявляет превосходство над laya и jev-typesafe на собственном тестовом наборе — не независимо</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose, в React Native ещё собирается</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; цена входа — кластер</span></a>
       </div>
     </details>
 
@@ -583,13 +514,13 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала; 09-14 — снят домысел про «машиночитаемую причину остановки», не подтверждённый источником</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/rag-retrieval-augmented-generation.md"><span class="tree-name">rag-retrieval-augmented-generation</span><span class="tree-desc">сам механизм RAG: конвейер, пять продвинутых техник, оценка качества Ragas, продакшн-слой</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md"><span class="tree-name">kalibrovka-uverennosti-resheniy</span><span class="tree-desc">уверенность модели как измеримая величина (ECE), а не интуиция; почему нельзя ветвить конвейер по некалиброванной уверенности</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/maket-kak-tz-dlya-agenta.md"><span class="tree-name">maket-kak-tz-dlya-agenta</span><span class="tree-desc">референс вместо ТЗ прозой: четыре вида референса, три беды прозы, три границы приёма</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md"><span class="tree-name">kalibrovka-uverennosti-resheniy</span><span class="tree-desc">уверенность модели как измеримая величина (ECE), а не интуиция; 09-23 — калибровка как инфраструктура, которая тоже ломается (кейс openJev)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/maket-kak-tz-dlya-agenta.md"><span class="tree-name">maket-kak-tz-dlya-agenta</span><span class="tree-desc">референс вместо ТЗ прозой: четыре вида референса, три беды прозы, три границы приёма</span></a>
       </div>
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">116</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">117</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-auto-permission-policy.md"><span class="tree-name">claude-managed-agents-auto-permission-policy</span><span class="tree-desc">Managed Agents: permission policy auto (сервер решает по каждому вызову, явно не человеческий чекпоинт) + ant beta:sessions connect</span></a>
@@ -697,16 +628,17 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md"><span class="tree-name">mcp-for-beginners-curriculum</span><span class="tree-desc">официальный курикулум Microsoft: дизайн тула, retry для эффектных операций, три угрозы авторизации MCP (tool poisoning, token passthrough, confused deputy) — закрывает практический пробел на mcp-model-context-protocol</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/plugin4shell-vulnerability.md"><span class="tree-name">plugin4shell-vulnerability</span><span class="tree-desc">уязвимость раскрыта независимой лабораторией AIR Security (17.09): обход SHA-пиннинга плагинов в Claude Code/Codex/Copilot/Gemini CLI; связанный фикс подтверждён официальным CHANGELOG.md Claude Code (2.1.277)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md"><span class="tree-name">claude-cookbook-admin-api</span><span class="tree-desc">официальный notebook Claude Cookbooks (misc/admin_api.ipynb, 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами через client.beta.organization.*; первый практический разбор API, известной вики только фактом с 08-19</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-sol-pi-harness.md"><span class="tree-name">nvidia-sol-pi-harness</span><span class="tree-desc">четыре механизма обвязки срезают 45–49% токенов при том же качестве; $8,75–13,50 экономии в час</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-pair-personal-ai-router.md"><span class="tree-name">nvidia-pair-personal-ai-router</span><span class="tree-desc">локальный вывод как сетевой ресурс: один Ollama-совместимый адрес на все машины дома</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-local-decision-engine.md"><span class="tree-name">laya-local-decision-engine</span><span class="tree-desc">необычно честный README: раздел ограничений подробнее раздела достижений</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md"><span class="tree-name">jev-skill-suggestion-mod</span><span class="tree-desc">перечень скиллов стоит токенов каждую сессию: −5 496 на набор из 40, приём штатный</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-quick-tunnel.md"><span class="tree-name">cloudflare-quick-tunnel</span><span class="tree-desc">пять ограничений быстрого туннеля, которых нет в популярной однострочной подсказке</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/m3e-canvas-prompt-generator.md"><span class="tree-name">m3e-canvas-prompt-generator</span><span class="tree-desc">инструмент, производящий референс вместо ТЗ прозой; словарь макета тянет за собой стек</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-deepseek-harness-plugins.md"><span class="tree-name">habr-deepseek-harness-plugins</span><span class="tree-desc">эксплуатация dsh: профили как стопка слоёв, четыре режима запуска, песочница fail-closed; два утверждения статьи из пяти искажены</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-ax-agent-runtime.md"><span class="tree-name">google-ax-agent-runtime</span><span class="tree-desc">агент как отдельный род нагрузки: четыре примитива Google и suspend/resume; берём идеи, а не инструмент</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md"><span class="tree-name">jev-ecosystem-projects</span><span class="tree-desc">каталог применений модели решений: 20 проектов, четыре из них — обвязка для агентов-кодеров, три реализуют уже записанные у нас правила</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-jev-lab-measurements.md"><span class="tree-name">laya-jev-lab-measurements</span><span class="tree-desc">единственный независимый замер моделей типизированных решений: локальная против облачной, каскад, чеклист пригодности задачи, два отозванных автором вывода</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-sol-pi-harness.md"><span class="tree-name">nvidia-sol-pi-harness</span><span class="tree-desc">четыре механизма обвязки срезают 45–49% токенов при том же качестве; $8,75–13,50 экономии в час</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-pair-personal-ai-router.md"><span class="tree-name">nvidia-pair-personal-ai-router</span><span class="tree-desc">локальный вывод как сетевой ресурс: один Ollama-совместимый адрес на все машины дома</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-local-decision-engine.md"><span class="tree-name">laya-local-decision-engine</span><span class="tree-desc">необычно честный README: раздел ограничений подробнее раздела достижений</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md"><span class="tree-name">jev-skill-suggestion-mod</span><span class="tree-desc">перечень скиллов стоит токенов каждую сессию: −5 496 на набор из 40, приём штатный</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-quick-tunnel.md"><span class="tree-name">cloudflare-quick-tunnel</span><span class="tree-desc">пять ограничений быстрого туннеля, которых нет в популярной однострочной подсказке</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/m3e-canvas-prompt-generator.md"><span class="tree-name">m3e-canvas-prompt-generator</span><span class="tree-desc">инструмент, производящий референс вместо ТЗ прозой; словарь макета тянет за собой стек</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-deepseek-harness-plugins.md"><span class="tree-name">habr-deepseek-harness-plugins</span><span class="tree-desc">эксплуатация dsh: профили как стопка слоёв, четыре режима запуска, песочница fail-closed; два утверждения статьи из пяти искажены</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-ax-agent-runtime.md"><span class="tree-name">google-ax-agent-runtime</span><span class="tree-desc">агент как отдельный род нагрузки: четыре примитива Google и suspend/resume; берём идеи, а не инструмент</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md"><span class="tree-name">jev-ecosystem-projects</span><span class="tree-desc">каталог применений модели решений: 20 проектов, четыре из них — обвязка для агентов-кодеров, три реализуют уже записанные у нас правила</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-jev-lab-measurements.md"><span class="tree-name">laya-jev-lab-measurements</span><span class="tree-desc">единственный независимый замер моделей типизированных решений: локальная против облачной, каскад, чеклист пригодности задачи, два отозванных автором вывода</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/openjev-verdict-2-repo-review.md"><span class="tree-name">openjev-verdict-2-repo-review</span><span class="tree-desc">репозиторий openJev-verdict-2.0 по первоисточнику: заявленное превосходство над laya/jev-typesafe авторское, не независимое; установлено происхождение цифры «151M»</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
