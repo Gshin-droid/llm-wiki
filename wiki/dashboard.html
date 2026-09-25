@@ -342,17 +342,17 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-25 (2 записи) · след. запуск 08:00 (09.26)</div>
+      <div class="mono">обновлено 2026-09-25 (3 записи) · след. запуск 08:00 (09.26)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">245</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">246</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">7</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">71</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">44</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">118</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">119</span><span class="l">sources</span></div>
   </div>
 
   <section>
@@ -362,6 +362,13 @@
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Облачные сессии Claude Code: механика по официальной документации и расхождение анонса с ней</div>
+        <div class="news-body">Сессия исполняется в виртуалке Anthropic, переживает закрытие ноутбука и управляется с любого устройства: <code>--cloud</code> клонирует GitHub-remote, а не локальную папку, <code>-p --cloud &lt;id&gt;</code> досылает указание с любой машины, <code>--teleport</code> тянет работу обратно в терминал — и только в эту сторону. Каждый прогон Cloud Routine и есть облачная сессия, то есть рутины этой вики работали так всегда. Отсев секретов при заливке архива обещан только для macOS/Linux/WSL. Объявленной в анонсе команды <code>/claim-credit</code> не существует — ответ дал трекер, не документация.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-cloud-sessions-docs.md">claude-code-cloud-sessions-docs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -397,7 +404,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 09-17 — уязвимость Plugin4Shell (обход SHA-пиннинга плагинов, задевает и Codex/Copilot/Gemini CLI), связанный фикс в 2.1.277</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 09-25 — облачные сессии вышли из preview: механика <code>--cloud</code>/<code>--teleport</code>, рутины исполняются как облачные сессии, отсев секретов на Windows не обещан</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -520,7 +527,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">117</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">119</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mast-multi-agent-failure-taxonomy.md"><span class="tree-name">mast-multi-agent-failure-taxonomy</span><span class="tree-desc">официальный репозиторий Berkeley-исследования (Cemri и соавторы): таксономия из 14 отказов мультиагентных систем в 3 категориях; цифры прогона не подтверждены — arXiv/датасет заблокированы</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-managed-agents-auto-permission-policy.md"><span class="tree-name">claude-managed-agents-auto-permission-policy</span><span class="tree-desc">Managed Agents: permission policy auto (сервер решает по каждому вызову, явно не человеческий чекпоинт) + ant beta:sessions connect</span></a>
@@ -631,6 +638,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-sol-pi-harness.md"><span class="tree-name">nvidia-sol-pi-harness</span><span class="tree-desc">четыре механизма обвязки срезают 45–49% токенов при том же качестве; $8,75–13,50 экономии в час</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-pair-personal-ai-router.md"><span class="tree-name">nvidia-pair-personal-ai-router</span><span class="tree-desc">локальный вывод как сетевой ресурс: один Ollama-совместимый адрес на все машины дома; 09-24 — README и docs/ прочитаны напрямую, версия 0.1.5, упорядоченный failover-список узлов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-local-decision-engine.md"><span class="tree-name">laya-local-decision-engine</span><span class="tree-desc">необычно честный README: раздел ограничений подробнее раздела достижений</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-cloud-sessions-docs.md"><span class="tree-name">claude-code-cloud-sessions-docs</span><span class="tree-desc">облачные сессии по официальной документации: <code>--cloud</code>/<code>--teleport</code>/досыл <code>-p --cloud</code> с любой машины, передача односторонняя, клонируется remote а не локальная папка, отсев секретов обещан только для macOS/Linux/WSL; плюс прецедент «анонс против документации» — команды /claim-credit не существует</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md"><span class="tree-name">jev-skill-suggestion-mod</span><span class="tree-desc">перечень скиллов стоит токенов каждую сессию: −5 496 на набор из 40, приём штатный; 09-25 — исходник прочитан, settings.json правит модель, флаг CLAUDE_CODE_ENABLE_FUNCTION_HOOKS официальной документацией не подтверждён</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-quick-tunnel.md"><span class="tree-name">cloudflare-quick-tunnel</span><span class="tree-desc">пять ограничений быстрого туннеля, которых нет в популярной однострочной подсказке</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/m3e-canvas-prompt-generator.md"><span class="tree-name">m3e-canvas-prompt-generator</span><span class="tree-desc">инструмент, производящий референс вместо ТЗ прозой; словарь макета тянет за собой стек</span></a>
