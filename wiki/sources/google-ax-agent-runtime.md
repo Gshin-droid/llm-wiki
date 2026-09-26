@@ -45,9 +45,22 @@ AX — среда выполнения **агента как рода нагру
 
 ## Что не взято / лиды
 
-- **Agent Substrate**, нижележащая среда исполнения, не разбирался: отдельный ли это продукт Google, открыт ли он, обязателен ли. Без этого непонятна цена входа. Лид в [[gaps-backlog]].
 - Устройство планировщика и то, как именно работает контрольная точка состояния, README подробно не описывает.
 - Заявления вторичных источников про графовый движок, типизированные сообщения по protobuf и центральный планировщик — **не проверены и в вики не внесены** (см. ниже).
+
+## Допроверка 2026-09-26 (ежедневный процесс закрытия пробелов): Agent Substrate
+
+Пункт бэклога «Agent Substrate: что это и обязателен ли он» (заведён 22.09) закрыт. README `google/ax` дал прямую ссылку на репозиторий `github.com/agent-substrate/substrate` — его README прочитан напрямую (`raw.githubusercontent.com`), плюс страница репозитория.
+
+**Отдельный проект, не часть организации Google на GitHub.** Репозиторий живёт под организацией `agent-substrate`, а не `google`; лицензия Apache 2.0; 3,8k звёзд, 443 форка. README называет `google/ax` лишь одним из примеров экосистемы («Agent Executor: … built on Agent Substrate») — прямой принадлежности Google в самом README нет, ни подтвердить, ни опровергнуть её этим документом нельзя (`CONTRIBUTING.md`/`GOVERNANCE.md`/`MAINTAINERS.md` в репозитории есть, построчно не читались).
+
+**Обязателен, не одна из опций.** README `google/ax` дословно: *«Substrate must be running in your cluster before you deploy AX»* — Control API (`api.ate-system.svc.cluster.local:443`) это предусловие развёртывания. Есть ли альтернативные совместимые бэкенды, README Agent Substrate не поднимает вообще — вопрос замены остаётся без ответа в доступных источниках.
+
+**Что это.** Дословно: *«Agent Substrate is a secure-by-default agent execution runtime engineered to run millions of sandboxes with 10x higher density than standard container runtimes»* — маппинг «акторов» (приложений вроде агентов) на меньший набор готовых «воркеров». Зависимость от Kubernetes не убирает, а добавляет к ней свой слой: дословно *«leverages Kubernetes for the infrastructure provisioning and worker lifecycle management (Kubernetes Pods)»*.
+
+**Зрелость** та же, что уже была известна у `ax`: pre-1.0, дословно *«not making any guarantees about backward compatibility at this stage»*.
+
+**Вывод для цены входа.** Оценка «нужен кластер Kubernetes + Control API Agent Substrate» на [[google-ax]] по сути не меняется, но уточняется: Substrate — обязательный слой планирования поверх того же кластера, а не третья опциональная зависимость; вопрос замены его чем-то другим остаётся открытым за отсутствием ответа в первоисточнике.
 
 ## Оценка источника
 

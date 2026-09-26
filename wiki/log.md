@@ -5,6 +5,22 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-26] lint | Закрытие пробела: Agent Substrate — отдельный обязательный проект, не подтверждённый как Google
+
+Ежедневный процесс закрытия пробелов, суббота, обычный порядок (не воскресенье). Взят пункт бэклога «Agent Substrate: что это и обязателен ли он» (заведён 22.09 при разборе [[google-ax-agent-runtime]]) — единственный открытый вопрос страницы [[google-ax]], без которого не считалась настоящая цена входа.
+
+**Метод.** README `google/ax` дал прямую ссылку на репозиторий `github.com/agent-substrate/substrate` — его README прочитан напрямую через `raw.githubusercontent.com`, плюс страница репозитория (звёзды/форки, наличие CONTRIBUTING/GOVERNANCE/MAINTAINERS).
+
+**Отдельный проект, принадлежность Google не подтверждена.** Репозиторий живёт под организацией `agent-substrate`, а не `google`; лицензия Apache 2.0, 3,8k★/443 форка. README называет `google/ax` лишь одним из примеров экосистемы («Agent Executor: … built on Agent Substrate») — прямого заявления о принадлежности Google в самом README нет, ни подтвердить, ни опровергнуть её этим документом нельзя.
+
+**Обязателен, не опция.** README `google/ax` дословно: «Substrate must be running in your cluster before you deploy AX» — Control API это предусловие развёртывания, не одна из альтернатив. Есть ли другие совместимые бэкенды — README Agent Substrate вопрос не поднимает вообще, остаётся без ответа в доступных источниках.
+
+**Что это и зрелость.** Дословно: «Agent Substrate is a secure-by-default agent execution runtime engineered to run millions of sandboxes with 10x higher density than standard container runtimes» — маппинг «акторов» на «воркеров». Зависимость от Kubernetes не снимает, а добавляет свой слой поверх неё: дословно «leverages Kubernetes for the infrastructure provisioning and worker lifecycle management (Kubernetes Pods)». Pre-1.0, дословно «not making any guarantees about backward compatibility at this stage» — та же незрелость, что уже была известна у самого `ax`.
+
+**Страницы.** Дополнены [[google-ax-agent-runtime]] (новый раздел «Допроверка 2026-09-26: Agent Substrate») и [[google-ax]] (новый раздел «Agent Substrate», «Актуально на» сдвинута на 26.09 после сверки с первоисточником). Новых страниц не создано — допроверка существующего источника, обратные ссылки из entities/concepts не требуются. Пункт бэклога закрыт с деталями, строка индекса обновлена.
+
+**Безопасность.** README `agent-substrate/substrate` прочитан целиком, инструкций агенту не найдено. Ничего не устанавливалось, код не выполнялся.
+
 ## [2026-09-25] ingest | Claude Code changelog 2.1.274–2.1.282: серия фиксов надёжности возобновления сессии, `"attribution": false`, классификатор auto mode на сервере
 
 Ярус 2 рутины 1, следом за сводкой [[novosti-2026-09-25]]. Первое сплошное закрытие разрыва после снапшота 09-14 (2.1.271) — часть версий диапазона (2.1.277, 2.1.280) уже попадала в вики точечно через [[plugin4shell-vulnerability]] и [[claude-opus-5-5-launch]]. Разбор не построчный (несколько сотен пунктов в диапазоне, в основном рутинные UI-фиксы) — отобраны находки с весом для практики.
