@@ -5,6 +5,32 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-09-27] lint | сверка с сырьём: deepseek-harness — противоречие найдено
+
+Второе дело воскресного прогона (первое — механический проход, запись ниже). Среди страниц, ни разу не проходивших этот процесс (прежде сверены только [[claude-managed-agents]] 08-23, [[claude-code]] 08-30, [[ai-security-by-design]] 09-06, [[invariant-vidno-znachit-zapisano]] 09-13, [[mcp-model-context-protocol]] 09-20), по правилу приоритета (два и более источника + правки автономной рутины) взята [[deepseek-harness]]: собрана минимум из двух источников ([[deepseek-harness-zproger-review]] + [[habr-deepseek-harness-plugins]] + прямое чтение README/SAFETY.md/`docs/architecture.md`/`docs/capability-seams.md`/`packages/goal`/`packages/workflow` репозитория) и правилась автономной рутиной минимум четыре раза (08-24, 09-22, 09-25, 09-26 — самая свежая правка среди всех кандидатов на сегодня).
+
+**Метод.** Прямой фетч (`WebFetch`, `raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/...`) `README.md`, `SAFETY.md`, `docs/architecture.md`, `docs/capability-seams.md`. Ключевую таблицу `docs/capability-seams.md` запросил дважды независимыми формулировками, чтобы отсечь риск нестабильной суммаризации большого файла — тот же паттерн, что уже подводил на `graphify` (08-23) и `gsd-get-shit-done` (09-16).
+
+**Подтвердилось дословно, без расхождений:** «DeepSeek Harness is in developer preview and iterating rapidly», «THERE WILL BE COMPATIBILITY-BREAKING CHANGES» (README); «It has not undergone a security audit and must not be treated as secure or production-ready», «Even correctly enforced restrictions cannot protect resources that the project is allowed to access» (SAFETY.md); «Model-visible means logged. A runtime invariant checks model requests are reconstructable from the log», `deriveMessages()` как проекция истории модели из журнала (docs/architecture.md).
+
+**Расхождение найдено.** Раздел страницы «Два привилегированных центра всё-таки есть» (правка 08-24) и вводный абзац утверждают, что среди сменных компонентов — **реестр инструментов (`ctx.tools`)**, а несменны только цикл и журнал. Таблица `docs/capability-seams.md` (`ctx key | Role | Owner-tag`) двумя независимыми фетчами дала одно и то же: `ctx.tools` помечен **`core`, не `seam`** — тем же тегом, что `ctx.sessions` (журнал, уже верно названный несменяемым). Тем же core-тегом помечены `ctx.agents` и `ctx.systemPrompt`, которых страница вообще не упоминает в терминах сменности. `Seam`-тегом (сменные) помечены `ctx.llm`, `ctx.sandbox`, `ctx.approval` — эта часть страницы подтвердилась. Итог: сама допроверка 08-24, заявленная как исправление по первоисточнику, содержит собственную неточность в другую сторону.
+
+Зафиксировано на странице [[deepseek-harness]] новым разделом «Противоречия» — текст 08-24 не переписан, сверка находит, не чинит. Пункт в `wiki/gaps-backlog.md` — открытый вопрос: изменился ли источник после 08-24, или допроверка 08-24 сама прочитала таблицу неточно; следующая проверка читает сырой текст таблицы построчно, а не пересказом, и заодно проверяет `ctx.agents`/`ctx.systemPrompt`.
+
+**Безопасность.** Все четыре документа прочитаны целиком (выборочно по разделам), инструкций агенту не найдено. Ничего не устанавливалось, код не выполнялся.
+
+## [2026-09-27] lint | Механический проход: 12 просроченных дат, два новых пункта в списке
+
+Воскресный прогон рутины 3 (хвосты). Сессия стартовала не на ветке (`HEAD` открепился после `SessionStart`-хука) — исправлено `git checkout main && git pull origin main`, репозиторий обновлён fast-forward на 16 коммитов.
+
+`python .claude/skills/wiki-lint/scripts/lint_wiki.py`: 260 страниц, 24 находки. Битых `[[wiki-links]]` и страниц-сирот нет.
+
+**Просроченное «Актуально на» (12), без изменений в целом с 09-20-остатка плюс два новых.** `claude-projects`/`obsidian` (82 дн. каждая) без движения с 07-07; `geo-ai-answer-visibility` (57 дн.); пять повторных истечений порога у страниц, допроверенных в августе (`letta` 48 дн., `obsidian-web-clipper` 45 дн., `pinecone`/`supabase` 44 дн., `claude-cowork` 43 дн., `multica` 41 дн.); `paragonzone` (40 дн., ещё не сверена по первоисточнику). Два новых для этого списка: `freecad` (33 дн.) и `mattpocock-skills` (32 дн.) — обе даты «Актуально на» происходят не от сверки страницы целиком с первоисточником, а от смежных событий (шаг 1 допроверки MCP-сервера на `freecad`, практическая проба пака на живом проекте на `mattpocock-skills`); обеим нужна настоящая допроверка репозитория. Все двенадцать занесены одним пунктом в `wiki/gaps-backlog.md` (обновление существующего пункта, не новый список).
+
+**Повторяющиеся безрезультатные заходы (11 доменов)** — без изменений к списку 09-20: `support.claude.com` (10), `claude.com` (9), `arxiv.org` (8), `github.com` (7), `web.archive.org` (5), `exa.ai`/`docs.exa.ai` (4 каждый), `api.github.com` (3), `huggingface.co` (3), `r.jina.ai` (3), `alphaxiv.org` (3). `github.com`/`api.github.com` — известное ложное срабатывание (см. `wiki/gaps-backlog.md`), реального нового заблокированного домена нет.
+
+Переход ко второму делу воскресного прогона — сверка одной страницы с сырьём, см. запись выше.
+
 ## [2026-09-26] lint | Закрытие пробела: dsh — goal-состояние в журнале сессии, `workflow` подтверждён как реальный инструмент
 
 Ежедневный процесс закрытия пробелов, суббота, второй пункт прогона. Взят пункт бэклога «dsh: плагины авторской цепочки и goal-инструменты не проверены» (заведён 22.09 при разборе [[habr-deepseek-harness-plugins]]) — из трёх частей закрыты две.
