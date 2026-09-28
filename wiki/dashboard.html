@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-28 (9 записей) · след. запуск 08:00 (09.29)</div>
+      <div class="mono">обновлено 2026-09-28 (10 записей) · след. запуск 08:00 (09.29)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">252</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">24</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">253</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">28</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">72</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">123</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">124</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">9 записей · 28.09: сводка новостей (Claude Code 2.1.283, California AI Transparency Act, Texas TRAIGA), руководство по Opus 5.5, правила внешнего вида «по месту», разбор подборки фронтенд-ресурсов и исходника Impeccable, интерфейс VS Code, отбор переписки, чистка путей, Pi</span>
+      <span class="section-note">10 записей · 28.09: cookbook про команду агентов под давлением времени, сводка новостей (Claude Code 2.1.283, California AI Transparency Act, Texas TRAIGA), руководство по Opus 5.5, правила внешнего вида «по месту», разбор подборки фронтенд-ресурсов и исходника Impeccable, интерфейс VS Code, отбор переписки, чистка путей, Pi</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Разведчик практик: команда агентов под давлением времени и бюджета (cookbook)</div>
+        <div class="news-body">Официальный notebook Claude Cookbooks (22.09.2026): lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера <code>[elapsed Ns / бюджет]</code> перед каждым ходом без порчи кэша, два рычага (фраза давления vs голый бюджет). Применимо к agent-teams/dynamic-workflows этой вики. Отдельно разоблачён лид «apex-protocol»: совпадение названия с чужим крипто-проектом, моста между Superpowers/GSD/ECC/Ralph не существует.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md">claude-cookbook-latency-multi-agent</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md">agent-teams</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md">dynamic-workflows</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -546,8 +553,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/long-running-agent-harness.md"><span class="tree-name">long-running-agent-harness</span><span class="tree-desc">два харнесса: три примитива многосессионного прогресса + GAN-inspired Planner-Generator-Evaluator; 09-07 — два независимых чужих аналога Agent-Maintained Handoff (planning-with-files, resume_session_id из cookbook)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-task-selection.md"><span class="tree-name">vibecoding-task-selection</span><span class="tree-desc">отбор задач для вайбкодинга: рамка «четвёртый вариант», критерии, каталог из 11 инструментов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны; 09-15 — дефолт размера прогона снижен 15→10, подтверждено системным промптом сессии</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes; 09-17 — академическая таксономия MAST (14 отказов, 3 категории) поверх известных failure modes</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны; 09-28 — приём общего секундомера из cookbook про латентность переносим и сюда</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes; 09-28 — cookbook про общий секундомер команды, не чувствующей время по умолчанию (pressure vs budget)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-content-farming-workflow.md"><span class="tree-name">ai-content-farming-workflow</span><span class="tree-desc">техника контент-фермы через ИИ-агента: скрапинг, «система» файлов вместо промта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
@@ -571,7 +578,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">123</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">124</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-25.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-25</span><span class="tree-desc">changelog Claude Code 2.1.274–2.1.282: серия фиксов надёжности возобновления сессии (тихое обрезание ответа прокси), <code>attribution: false</code>, классификатор auto mode на сервере, продолжение bypass-фиксов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-opus-5-5-launch.md"><span class="tree-name">claude-opus-5-5-launch</span><span class="tree-desc">запуск Claude Opus 5.5 (22.09): $4/$20 за MTok, cache read $0.20, дефолт Opus на Pro/Team Standard; девять приёмов промптинга с замеренным эффектом</span></a>
@@ -696,6 +703,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vibe-coding-frontend-references.md"><span class="tree-name">vibe-coding-frontend-references</span><span class="tree-desc">пост-подборка фронтенд-ресурсов для Opus 5.5 (DESIGN.md, 21st.dev, Impeccable…); взят механизм DESIGN.md, готовый блок для CLAUDE.md не взят, пять каталогов не проверены</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opus-5-5-rukovodstvo-claude-code.md"><span class="tree-name">opus-5-5-rukovodstvo-claude-code</span><span class="tree-desc">руководство Anthropic по Opus 5.5 для Claude и Claude Code: задача с наблюдаемым критерием «готово», TASKS.md против сжатия контекста, помеченное сообщение автоматически уходит более старой модели</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-28</span><span class="tree-desc">changelog Claude Code 2.1.283: deniedModels/availableModelsMatch:"exact" для организаций, /doctor prompt-audit — аудит CLAUDE.md/скиллов на приёмы под устаревшие модели</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md"><span class="tree-name">claude-cookbook-latency-multi-agent</span><span class="tree-desc">официальный cookbook (22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера, pressure vs budget, честные границы применимости</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
