@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-28 (5 записей) · след. запуск 08:00 (09.29)</div>
+      <div class="mono">обновлено 2026-09-28 (6 записей) · след. запуск 08:00 (09.29)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · 28.09: разбор подборки фронтенд-ресурсов и исходника Impeccable, интерфейс VS Code, отбор переписки, чистка путей, Pi</span>
+      <span class="section-note">6 записей · 28.09: правила внешнего вида «по месту», разбор подборки фронтенд-ресурсов и исходника Impeccable, интерфейс VS Code, отбор переписки, чистка путей, Pi</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Правила внешнего вида вынесены «по месту»</div>
+        <div class="news-body">Всё про фронтенд грузится только при работе с файлами интерфейса (правило с <code>paths:</code>), в глобальном файле — крючок в две строки. Проверено свежими сессиями в обе стороны.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/design-md-yakor-stilya.md">design-md-yakor-stilya</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
