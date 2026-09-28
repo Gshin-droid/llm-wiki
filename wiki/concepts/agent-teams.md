@@ -65,7 +65,13 @@
 ## Не путать с cross-session `SendMessage` (2.1.224, [[claude-code-changelog-snapshot-2026-08-10]])
 Mailbox тиммейтов выше — связь внутри одной команды одной сессии. С 2.1.224 `SendMessage`/`ListAgents` — отдельный, более широкий механизм: любая сессия Claude Code может написать любой другой сессии на любой из машин пользователя, вне контекста team. Разобран в [[claude-desktop-automation-modes]].
 
+## Команда не чувствует время — приём с общими часами (добавлено 2026-09-28, [[claude-cookbook-latency-multi-agent]])
+
+Официальный cookbook (не про сам Claude Code Agent Teams, а про такую же архитектуру lead+helpers, собранную с нуля на сыром Messages API) называет причину известного здесь failure mode «lead не торопится»: ни у одного агента команды по умолчанию нет сигнала, сколько времени уже прошло. Дословно источника: *«nothing in any agent's context says how long the person asking has been waiting, or how long they are willing to wait»*.
+
+Механизм переносим на любую мультиагентную систему, включая Agent Teams и [[dynamic-workflows]]: перед каждым вызовом модели к последнему сообщению дописывается строка `[elapsed 252s]` (с бюджетом — `[elapsed 252s / 600s]`), не ломающая промпт-кэш. Дальше — выбор одного из двух независимых рычагов, не обоих сразу: **pressure** (фраза «время важно, не трать его без необходимости») действует всегда; **budget** (только цифры остатка без единого слова) оставляет решение самому агенту. Авторы явно предупреждают: budget не годится для задач короче пары минут, а эффект не проверен полностью на Opus 5 и старее — ускорение всегда проверяется на качестве ответа, а не берётся на веру.
+
 ## Связи
-- Источник: [[claude-code-agent-teams-docs]]
+- Источник: [[claude-code-agent-teams-docs]], [[claude-cookbook-latency-multi-agent]]
 - Сущность: [[claude-code]]
 - Смежные концепты: [[long-running-agent-harness]] (harness для одиночного долгого агента; хуки TaskCompleted — командный аналог Default-FAIL), [[skill-authoring-practical-rules]], [[five-levels-of-claude-mastery]] (teams — верхний уровень зрелости), [[dynamic-workflows]] (2026-07-15) — соседняя колонка той же официальной таблицы сравнения: team держит план через lead-агента по ходу диалога, workflow — через скрипт; team подходит, когда peers должны спорить друг с другом, workflow — когда задача больше одной сессии или нужен воспроизводимый quality-паттерн
