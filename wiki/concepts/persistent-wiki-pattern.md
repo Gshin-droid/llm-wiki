@@ -61,4 +61,4 @@
 [[karpathy-jarvis-personal-ai-memory]], [[mastodont-claude-obsidian-video]] (первичное видео с разбором ограничений), [[karpathy-llm-wiki-gist]] (оригинальный первоисточник паттерна), [[berezhnitsky-agent-memory-lies]] (граница применимости по числу писателей и способ протухания)
 
 ## Применение
-Эта текущая вики (`C:\jarvis`) реализует этот паттерн — см. [[jarvis-personal-wiki]] и операции [[ingest-query-lint]].
+Эта вики реализует этот паттерн — см. [[jarvis-personal-wiki]] и операции [[ingest-query-lint]].
