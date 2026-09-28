@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-27 (2 записи) · след. запуск 08:00 (09.28)</div>
+      <div class="mono">обновлено 2026-09-28 (1 запись) · след. запуск 08:00 (09.29)</div>
     </div>
   </header>
 
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · воскресный прогон: механический проход + сверка с сырьём deepseek-harness</span>
+      <span class="section-note">1 запись · ежедневный процесс закрытия пробелов: Pi (pi-coding-agent)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Механический проход: 12 просроченных дат, два новых пункта в списке</div>
-        <div class="news-body">260 страниц, 24 находки, битых ссылок и сирот нет. Просроченных «Актуально на» — 12: <code>claude-projects</code>/<code>obsidian</code> без движения с 07-07, пять повторных истечений порога у страниц, допроверенных в августе, и два новых для списка — <code>freecad</code>/<code>mattpocock-skills</code>. Повторяющиеся заблокированные домены без изменений к 09-20.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Сверка с сырьём: deepseek-harness — противоречие найдено</div>
-        <div class="news-body">Прямой повторный фетч <code>docs/capability-seams.md</code> показал: реестр инструментов (<code>ctx.tools</code>) в источнике помечен <code>core</code>, а не <code>seam</code> — тогда как правка страницы 08-24 назвала его сменным компонентом. Зафиксировано разделом «Противоречия», не исправлено — сверка находит, не чинит.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
+        <div class="news-title">Закрытие пробела: Pi (pi-coding-agent) — лицензия, версия, провайдеры через запасные первоисточники</div>
+        <div class="news-body">Пункт бэклога был помечен «локально» из-за 403 на <code>npmjs.com</code>, но закрыт из автономного прогона: <code>registry.npmjs.org</code> и репозиторий <code>github.com/earendil-works/pi</code> хватило. MIT, версия 0.87.1 (22.09.2026), широкий список провайдеров моделей (включая любой OpenAI-совместимый эндпоинт), монетизации у самого инструмента нет.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md">pi-coding-agent</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
       </article>
 
     </div>
@@ -442,7 +435,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md"><span class="tree-name">apache-maka</span><span class="tree-desc">обвязка в инкубаторе Apache: состояние выводится из журнала, T1/T2, парковка недоказанного</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны все компоненты вплоть до цикла агента, полная трасса рассуждений отдаётся пользователю; 09-27 — сверка с сырьём нашла противоречие: <code>ctx.tools</code> в источнике помечен <code>core</code>, а не <code>seam</code>, вопреки правке 08-24</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны все компоненты вплоть до цикла агента, полная трасса рассуждений отдаётся пользователю; 09-27 — сверка с сырьём нашла противоречие: <code>ctx.tools</code> в источнике помечен <code>core</code>, а не <code>seam</code>, вопреки правке 08-24</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзоров OpenCode и DeepSeek Harness; презумпция — брать как повод, факты сверять отдельно</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vladilen-minin.md"><span class="tree-name">vladilen-minin</span><span class="tree-desc">автор кейсов GSD/Superpowers</span></a>
@@ -456,7 +449,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md"><span class="tree-name">sol-pi</span><span class="tree-desc">расширение NVlabs к харнесу Pi: −45…49% токенов агента, четыре механизма найдены автоматическим перебором; не мод к Claude Code</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi; допроверка 09-28 — MIT, версия 0.87.1, широкий список провайдеров, монетизации у самого Pi нет</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета 0.1.5): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает; 09-24 — упорядоченный failover-список узлов, конфигурация через приложение</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 09-25 — версия 0.3.20 читает до 8 192 токенов, надёжно примерно до 4 000</span></a>
