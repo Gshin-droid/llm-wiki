@@ -1,7 +1,7 @@
 # Letta (бывший MemGPT)
 
 **Тип:** инструмент (см. "Допроверка 2026-08-10" — на момент ingest 07-07 описан как memory-as-OS framework, актуальный флагманский продукт сместился в сторону coding-агента с памятью)
-**Актуально на:** 2026-08-10
+**Актуально на:** 2026-09-29
 
 ## Что это (по состоянию на ingest 2026-07-07)
 Память по метафоре операционной системы: main context = RAM (жёсткий лимит, обычно 16-32K токенов), recall storage = swap (полный лог сообщений), archival storage = disk (агент сам решает, что туда выгружать через свои function calls). Ключевое отличие от Mem0/Zep: управление памятью — не отдельный сервис, а операция, которой владеет сам агент. ([[shubin-llm-memory-landscape]])
@@ -24,8 +24,18 @@
 
 **Не подтверждено первоисточником:** ни один из двух текущих README дословно не повторяет метафору "main context = RAM, recall storage = swap, archival storage = disk" — она не опровергнута прямо (могла остаться внутренним устройством, просто не вынесенным в README верхнего уровня), но и не переподтверждена. Старое описание оставлено с пометкой "по состоянию на 07-07", не переписано и не удалено. Токен-лимиты, детали function-calls управления архивом и прямое сравнение с Mem0/Zep в текущих README не встречены — `docs.letta.com` заблокирован сетевым прокси окружения (`EGRESS_BLOCKED`), допроверить эти детали не удалось.
 
+## Допроверка 2026-09-29: репозиторий перестроен — legacy V1 ушёл на отдельную ветку `archive`
+
+Ежедневный процесс закрытия пробелов, обычный порядок (не воскресенье). Очередная сверка списка просроченных «Актуально на» (48 дн. на 09-27, без движения с 08-10) — тот же приоритет, что уже приводил к сверкам `mem0`/`zep-graphiti`. Прочитаны напрямую (`raw.githubusercontent.com`, дважды с требованием дословного текста) README `github.com/letta-ai/letta` и `github.com/letta-ai/letta-code`.
+
+**Не расхождение, а перестройка репозитория с 08-10.** Тогда главная ветка `letta-ai/letta` сама описывала себя как *legacy Letta server* и документировала быстрый старт V1 SDK (`@letta-ai/letta-client`, Node.js 22.19+, модели Anthropic/OpenAI/zAI) прямо в README. Сейчас главная ветка — не quickstart, а редирект: дословно «Letta (f.k.a. MemGPT) is actively developed. The current source code lives in `letta-ai/letta-code`». Старый V1 API-сервер переехал на отдельную именованную ветку **`archive`** («retired Letta V1 API server», теги и релизы сохранены «for reproducibility»). Детали V1 SDK-квикстарта, которые допроверка 08-10 читала с главной ветки, в текущем README главной ветки уже не найти — они либо ушли в `archive`, либо в документацию; сама ветка `archive` этим прогоном не открывалась, отдельным пунктом не заводится, малозначимо (V1 официально сдан в архив).
+
+**Новое, чего страница не знала.** Флагман `letta-ai/letta-code` описывает себя дословно как «a stateful agent harness for creating agents that are more like people than tools» — формулировка почти совпадает с записанной 08-10 («stateful agents that are like people, with memory, identity, and the ability to learn and adapt»), не расхождение. Сверх известного: поиск по истории сообщений («message search»), субагенты для координации нескольких агентов (то же слово «subagents», что уже упоминала запись 08-10, но здесь явно названо «multi-agent coordination»), планирование через «heartbeats and crons», **экспорт/импорт AgentFile объявлен deprecated**, выбор между Letta Cloud (по умолчанию) и локальным запуском при первом старте, поддержка ключей произвольных LLM-провайдеров (не только Anthropic/OpenAI), community-пакеты для Arch Linux (AUR) и Nix.
+
+**По-прежнему не подтверждено.** Метафора «main context = RAM, recall storage = swap, archival storage = disk» — не встречена ни в одном из двух README и сейчас, как и 08-10. Токен-лимиты main context и спецификация function calls для архивации — тоже нет ни в одном README. `docs.letta.com` — один заход, снова `EGRESS_BLOCKED`, повторно не пробовать.
+
 ## Источники
-[[shubin-llm-memory-landscape]] (метафора OS-памяти, 07-07), официальные `github.com/letta-ai/letta` и `github.com/letta-ai/letta-code` (допроверка 08-10, прочитаны напрямую)
+[[shubin-llm-memory-landscape]] (метафора OS-памяти, 07-07), официальные `github.com/letta-ai/letta` и `github.com/letta-ai/letta-code` (допроверка 08-10 и 09-29, прочитаны напрямую)
 
 ## Связи
 [[llm-memory-landscape]], [[mem0]], [[zep-graphiti]]
