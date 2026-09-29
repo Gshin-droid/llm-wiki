@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-29 (4 записи) · след. запуск 08:00 (09.30)</div>
+      <div class="mono">обновлено 2026-09-29 (5 записей) · след. запуск 08:00 (09.30)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">257</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">8</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">9</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">126</span><span class="l">sources</span></div>
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">4 записи · 29.09: CLM-8B против Jev, Whiteboard от dev.fast, отсев инбокса ассистента, сверка letta</span>
+      <span class="section-note">5 записей · 29.09: строка состояния в плагине VS Code, CLM-8B против Jev, Whiteboard от dev.fast, отсев инбокса ассистента, сверка letta</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Строка состояния не отображается в плагине VS Code</div>
+        <div class="news-body">Поле <code>statusLine</code> работает только при запуске <code>claude</code> в терминале; у плагина своя строка с таймером кэша, моделью и усилием. Подтверждено запросом anthropics/claude-code#92853.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md">claude-statusline</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -445,7 +452,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/shubin-danila.md"><span class="tree-name">shubin-danila</span><span class="tree-desc">автор обзора ландшафта LLM-памяти</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI; допроверка 09-19 — без изменений с 08-13, версия 1.0.6, проект неактивен с 2026-04-03</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI; допроверка 09-19 — без изменений с 08-13, версия 1.0.6, проект неактивен с 2026-04-03</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-10 — permission policy auto, ant sessions connect; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
