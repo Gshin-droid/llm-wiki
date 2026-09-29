@@ -342,26 +342,47 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-29 (1 запись) · след. запуск 08:00 (09.30)</div>
+      <div class="mono">обновлено 2026-09-29 (4 записи) · след. запуск 08:00 (09.30)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">253</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">4</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">72</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">257</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">8</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">124</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">126</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 29.09: сверка letta с первоисточником — репозиторий перестроен, legacy V1 ушёл на ветку archive</span>
+      <span class="section-note">4 записи · 29.09: CLM-8B против Jev, Whiteboard от dev.fast, отсев инбокса ассистента, сверка letta</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">CLM-8B — контрастивная модель решений против Jev</div>
+        <div class="news-body">Четвёртая «модель решений»: ситуацию и варианты кодирует раздельно и кэширует векторы вариантов — заявлено до 9× быстрее Jev. Замеры авторские, роль проверяющего — на 30–38 задачах. Нужна Qwen3-8B на видеокарте через vLLM; не ставим, под наши задачи остаётся Laya.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md">clm-8b-contrastive-system-one</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md">clm-8b</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Whiteboard (dev.fast) — агент объясняет свою работу схемами</div>
+        <div class="news-body">Холст, где агент рисует схемы изменения, смысловой дифф и журнал решений со ссылками в код. Инструмент не берём (телеметрия по умолчанию, вход просит <code>repo</code>); берём логику — схема в отчёте и пункт «решил сам, без спроса».</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/whiteboard-devfast-agent-review-canvas.md">whiteboard-devfast-agent-review-canvas</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whiteboard-devfast.md">whiteboard-devfast</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Инбокс ассистента 26–28.09: отсев без разбора</div>
+        <div class="news-body">Шесть материалов закрыты решением «не разбираем»: дубль про Google AX, скилл промо-роликов, мод боковой панели через <code>npx</code>, устаревший доклад Бориса Черни, Qwen-Image-2.1 (отложено до локальной пробы), личная переписка.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/log.md">log</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -386,7 +407,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">72</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">74</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -452,14 +473,16 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi; допроверка 09-28 — MIT, версия 0.87.1, широкий список провайдеров, монетизации у самого Pi нет</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета 0.1.5): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает; 09-24 — упорядоченный failover-список узлов, конфигурация через приложение</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 09-25 — версия 0.3.20 читает до 8 192 токенов, надёжно примерно до 4 000</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 09-25 — версия 0.3.20 читает до 8 192 токенов, надёжно примерно до 4 000</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md"><span class="tree-name">openjev-verdict-2</span><span class="tree-desc">третья модель типизированных решений (149,6M, Apache 2.0), заявляет превосходство над laya и jev-typesafe на собственном тестовом наборе — не независимо</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose, в React Native ещё собирается</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; 09-26 — Agent Substrate (обязательная нижележащая среда) отдельный открытый проект, не org Google, сам pre-1.0</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md"><span class="tree-name">impeccable</span><span class="tree-desc">дизайнерские команды для агента (polish, distill, bolder) + хуки + скачиваемый движок; разбор исходника: закачка проверяется суммой, статистика включена по умолчанию, ставить только в проект и с DO_NOT_TRACK</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whiteboard-devfast.md"><span class="tree-name">whiteboard-devfast</span><span class="tree-desc">агент рисует схемы своей работы и журнал решений со ссылками в код; не ставим</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md"><span class="tree-name">clm-8b</span><span class="tree-desc">четвёртая модель решений: раздельные векторы ситуации и вариантов, кэш; не ставим, Laya легче</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -497,7 +520,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 09-05 — комментарии на артефакте, /design канвас-режим, отключение на своей стороне</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; правило спуска и критерий «инвариант или эвристика»; 09-13 — тихий сбой без отчёта на примере фикса /goal</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; правило спуска и критерий «инвариант или эвристика»; 09-13 — тихий сбой без отчёта на примере фикса /goal</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md"><span class="tree-name">agent-harness</span><span class="tree-desc">обвязка между моделью и работой: агент = модель + харнес, восемь частей, пять болей, внутренний и внешний харнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/spatiotemporal-composability.md"><span class="tree-name">spatiotemporal-composability</span><span class="tree-desc">обратимые компоненты: почему свод правил умеет только расти и что даёт возможность снять плагин без следа</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-app-security.md"><span class="tree-name">vibecoding-app-security</span><span class="tree-desc">безопасность того, что собрал агент: пять классов дыр с самопроверкой, деградация кода при итерациях, граница «свои данные / чужие»</span></a>
@@ -515,7 +538,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">124</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">126</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-25.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-25</span><span class="tree-desc">changelog Claude Code 2.1.274–2.1.282: серия фиксов надёжности возобновления сессии (тихое обрезание ответа прокси), <code>attribution: false</code>, классификатор auto mode на сервере, продолжение bypass-фиксов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-opus-5-5-launch.md"><span class="tree-name">claude-opus-5-5-launch</span><span class="tree-desc">запуск Claude Opus 5.5 (22.09): $4/$20 за MTok, cache read $0.20, дефолт Opus на Pro/Team Standard; девять приёмов промптинга с замеренным эффектом</span></a>
@@ -641,6 +664,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opus-5-5-rukovodstvo-claude-code.md"><span class="tree-name">opus-5-5-rukovodstvo-claude-code</span><span class="tree-desc">руководство Anthropic по Opus 5.5 для Claude и Claude Code: задача с наблюдаемым критерием «готово», TASKS.md против сжатия контекста, помеченное сообщение автоматически уходит более старой модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-28</span><span class="tree-desc">changelog Claude Code 2.1.283: deniedModels/availableModelsMatch:"exact" для организаций, /doctor prompt-audit — аудит CLAUDE.md/скиллов на приёмы под устаревшие модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md"><span class="tree-name">claude-cookbook-latency-multi-agent</span><span class="tree-desc">официальный cookbook (22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера, pressure vs budget, честные границы применимости</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/whiteboard-devfast-agent-review-canvas.md"><span class="tree-name">whiteboard-devfast-agent-review-canvas</span><span class="tree-desc">Whiteboard от dev.fast: инструмент не берём, берём схему в отчёте и пункт «решил сам, без спроса»</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md"><span class="tree-name">clm-8b-contrastive-system-one</span><span class="tree-desc">CLM-8B против Jev: кэш вариантов, роль проверяющего; замеры авторские и на 30–38 задачах</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
