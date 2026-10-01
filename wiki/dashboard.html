@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-09-30 (1 запись) · след. запуск 08:00 (10.01)</div>
+      <div class="mono">обновлено 2026-10-01 (2 записи) · след. запуск 08:00 (10.02)</div>
     </div>
   </header>
 
@@ -358,16 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 30.09: закрытие пробела фронтенд-каталогов (21st.dev частично, четыре блокированы)</span>
+      <span class="section-note">2 записи · 01.10: react-native-paper (фундамент в alpha) и попытка Cloudflare (домен заблокирован)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробела: пять фронтенд-каталогов — 21st.dev через запасной репозиторий, четыре заблокированы</div>
-        <div class="news-body">Все пять URL поста (Refero Styles, 21st.dev, Component Gallery, Kinetics, whatships) вернули <code>EGRESS_BLOCKED</code> при прямом фетче — новый кластер блокировки. 21st.dev закрыт частично через открытые репозитории <code>serafimcloud/21st</code> и <code>21st-dev/magic-mcp</code>: цифра «12 000+ компонентов» официальным README не подтверждена, платный уровень существует, MCP требует API-ключ. Остальные четыре — без открытого репозитория-запасного, остаются заблокированы.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vibe-coding-frontend-references.md">vibe-coding-frontend-references</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
+        <div class="news-title">Закрытие пробела: react-native-paper и Material 3 Expressive — фундамент в alpha, видимые компоненты всё ещё PR</div>
+        <div class="news-body">Список пул-реквестов и релизов <code>callstack/react-native-paper</code> прочитан напрямую: токены темы/движения/типографики и компонент FAB смёржены и вошли в пререлиз 6.0.0-alpha.0 (15.06.2026), а минимум десять видимых компонентов (Carousel, Card, Button, Appbar, Menu и другие) остаются открытыми PR. Для переноса макета M3E Canvas в React Native это и есть решающий факт.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md">material-3-expressive</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Попытка закрытия: Cloudflare named tunnels — домен заблокирован, запасного первоисточника нет</div>
+        <div class="news-body"><code>developers.cloudflare.com</code> вернул <code>EGRESS_BLOCKED</code>; в отличие от прежних похожих случаев, открытый репозиторий <code>cloudflare/cloudflared</code> не оказался запасным первоисточником — README лишь ссылается обратно на тот же заблокированный домен. Один заход сделан, повторно не пробовать.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog.md</a></div>
       </article>
 
     </div>
@@ -457,7 +464,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md"><span class="tree-name">openjev-verdict-2</span><span class="tree-desc">третья модель типизированных решений (149,6M, Apache 2.0), заявляет превосходство над laya и jev-typesafe на собственном тестовом наборе — не независимо</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose, в React Native ещё собирается</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose; допроверка 10-01 — в React Native фундамент вышел в пререлиз 6.0.0-alpha.0, видимые компоненты всё ещё открытыми PR</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; 09-26 — Agent Substrate (обязательная нижележащая среда) отдельный открытый проект, не org Google, сам pre-1.0</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md"><span class="tree-name">impeccable</span><span class="tree-desc">дизайнерские команды для агента (polish, distill, bolder) + хуки + скачиваемый движок; разбор исходника: закачка проверяется суммой, статистика включена по умолчанию, ставить только в проект и с DO_NOT_TRACK</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whiteboard-devfast.md"><span class="tree-name">whiteboard-devfast</span><span class="tree-desc">агент рисует схемы своей работы и журнал решений со ссылками в код; не ставим</span></a>
@@ -639,7 +646,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md"><span class="tree-name">jev-ecosystem-projects</span><span class="tree-desc">каталог применений модели решений: 20 проектов, четыре из них — обвязка для агентов-кодеров, три реализуют уже записанные у нас правила; 09-24 — исходник Canny прочитан, не устанавливается</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/laya-jev-lab-measurements.md"><span class="tree-name">laya-jev-lab-measurements</span><span class="tree-desc">единственный независимый замер моделей типизированных решений: локальная против облачной, каскад, чеклист пригодности задачи, два отозванных автором вывода</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/openjev-verdict-2-repo-review.md"><span class="tree-name">openjev-verdict-2-repo-review</span><span class="tree-desc">репозиторий openJev-verdict-2.0 по первоисточнику: заявленное превосходство над laya/jev-typesafe авторское, не независимое; установлено происхождение цифры «151M»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vibe-coding-frontend-references.md"><span class="tree-name">vibe-coding-frontend-references</span><span class="tree-desc">пост-подборка фронтенд-ресурсов для Opus 5.5 (DESIGN.md, 21st.dev, Impeccable…); допроверка 09-30 — 21st.dev закрыт через запасной репозиторий, остальные четыре каталога заблокированы сетевым фильтром</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vibe-coding-frontend-references.md"><span class="tree-name">vibe-coding-frontend-references</span><span class="tree-desc">пост-подборка фронтенд-ресурсов для Opus 5.5 (DESIGN.md, 21st.dev, Impeccable…); допроверка 09-30 — 21st.dev закрыт через запасной репозиторий, остальные четыре каталога заблокированы сетевым фильтром</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opus-5-5-rukovodstvo-claude-code.md"><span class="tree-name">opus-5-5-rukovodstvo-claude-code</span><span class="tree-desc">руководство Anthropic по Opus 5.5 для Claude и Claude Code: задача с наблюдаемым критерием «готово», TASKS.md против сжатия контекста, помеченное сообщение автоматически уходит более старой модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-28</span><span class="tree-desc">changelog Claude Code 2.1.283: deniedModels/availableModelsMatch:"exact" для организаций, /doctor prompt-audit — аудит CLAUDE.md/скиллов на приёмы под устаревшие модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md"><span class="tree-name">claude-cookbook-latency-multi-agent</span><span class="tree-desc">официальный cookbook (22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера, pressure vs budget, честные границы применимости</span></a>
