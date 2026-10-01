@@ -342,26 +342,40 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-01 (2 записи) · след. запуск 08:00 (10.02)</div>
+      <div class="mono">обновлено 2026-10-01 (4 записи) · след. запуск 08:00 (10.02)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">257</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">258</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">3</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">126</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">127</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 01.10: react-native-paper (фундамент в alpha) и попытка Cloudflare (домен заблокирован)</span>
+      <span class="section-note">4 записи · 01.10: сводка новостей, разбор changelog Claude Code, react-native-paper и попытка Cloudflare</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude Code changelog 2.1.284–286 — Claude Sonnet 5.5 по умолчанию, allowedProviders, отключаемый WebFetch</div>
+        <div class="news-body">Claude Sonnet 5.5 стала дефолтной моделью Sonnet (цена не изменилась, контекст 1M, на 30%+ быстрее); новая managed-настройка <code>allowedProviders</code> ограничивает API-провайдеров для организаций, <code>CLAUDE_CODE_DISABLE_WEB_FETCH</code> убирает WebFetch целиком. Ярус 2 рутины новостей, следом за сводкой того же дня.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-01.md">claude-code-changelog-snapshot-2026-10-01</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">news</span>
+        <div class="news-title">Сводка новостей: GPT-6.1 Sol, Claude Sonnet 5.5, CART Act Коннектикута</div>
+        <div class="news-body">Шесть находок за окно 28.09–01.10: GPT-6.1 Sol от OpenAI (почти Astra за 1/5 цены, дефолт в Codex/Copilot), Claude Sonnet 5.5, ограниченный предпросмотр Gemini 4 Argon, повторное открытие ChatGPT Pro с новой формулой квоты и часть CART Act Коннектикута (whistleblower-защита frontier-разработчиков), вступившая в силу сегодня.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-01.md">novosti-2026-10-01</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -397,7 +411,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 09-25 — облачные сессии вышли из preview (<code>--cloud</code>/<code>--teleport</code>); changelog 2.1.274–2.1.282 — фиксы надёжности возобновления сессии (тихое обрезание ответа прокси), <code>attribution: false</code>, auto mode классификатор на сервере</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-01 — changelog 2.1.284–2.1.286: Claude Sonnet 5.5 стала дефолтной моделью Sonnet, <code>allowedProviders</code> для организаций, отключаемый <code>CLAUDE_CODE_DISABLE_WEB_FETCH</code></span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -524,7 +538,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">126</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">127</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-25.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-25</span><span class="tree-desc">changelog Claude Code 2.1.274–2.1.282: серия фиксов надёжности возобновления сессии (тихое обрезание ответа прокси), <code>attribution: false</code>, классификатор auto mode на сервере, продолжение bypass-фиксов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-opus-5-5-launch.md"><span class="tree-name">claude-opus-5-5-launch</span><span class="tree-desc">запуск Claude Opus 5.5 (22.09): $4/$20 за MTok, cache read $0.20, дефолт Opus на Pro/Team Standard; девять приёмов промптинга с замеренным эффектом</span></a>
@@ -652,6 +666,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md"><span class="tree-name">claude-cookbook-latency-multi-agent</span><span class="tree-desc">официальный cookbook (22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера, pressure vs budget, честные границы применимости</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/whiteboard-devfast-agent-review-canvas.md"><span class="tree-name">whiteboard-devfast-agent-review-canvas</span><span class="tree-desc">Whiteboard от dev.fast: инструмент не берём, берём схему в отчёте и пункт «решил сам, без спроса»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md"><span class="tree-name">clm-8b-contrastive-system-one</span><span class="tree-desc">CLM-8B против Jev: кэш вариантов, роль проверяющего; замеры авторские и на 30–38 задачах</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-01.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-01</span><span class="tree-desc">changelog Claude Code 2.1.284–2.1.286: Claude Sonnet 5.5 — дефолтная модель Sonnet; allowedProviders для организаций; отключаемый CLAUDE_CODE_DISABLE_WEB_FETCH; claude --desktop</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
