@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-03 (1 запись) · след. запуск 08:00 (10.04)</div>
+      <div class="mono">обновлено 2026-10-04 (2 записи) · след. запуск 08:00 (10.05)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">258</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">127</span><span class="l">sources</span></div>
@@ -358,16 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 03.10: попытка закрытия Jev (TypeSafe) — домен документации заблокирован</span>
+      <span class="section-note">2 записи · 04.10 (воскресный прогон): механический проход + сверка с сырьём claude-desktop-automation-modes</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Попытка закрытия: Jev (TypeSafe) — домен документации заблокирован целиком, открытый SDK не замещает цифры</div>
-        <div class="news-body"><code>docs.typesafe.ai</code> и <code>typesafe.ai</code> — <code>EGRESS_BLOCKED</code> целиком (как и <code>typesafe-ai.github.io</code>, <code>openrouter.ai</code>). Найден ранее неизвестный вики официальный SDK (<code>github.com/typesafe-ai</code>, 11 репозиториев), но в отличие от Chroma/context7/opencode README и changelog не содержат ни тарифа, ни задержки, ни границ применимости — только ссылку обратно на тот же заблокированный домен. Тариф $0,042/1M, задержка 236–276 мс по-прежнему известны только со слов конкурента Laya.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md">jev-typesafe</a></div>
+        <div class="news-title">сверка с сырьём: claude-desktop-automation-modes — расхождений не найдено</div>
+        <div class="news-body">Старейшая страница вики (ingest 10.07), ни разу не проходившая сверку с сырьём: собрана из пяти источников (видео + четыре официальных документа Claude Code) и правилась автономной рутиной минимум пять раз. Все утверждения, включая версионные привязки и дословную формулировку security-механизма триггеров рутин, подтвердились — правка страницы не потребовалась.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md">claude-desktop-automation-modes</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Механический проход: 12 просроченных дат (sepia — новый), повторяющиеся домены без изменений</div>
+        <div class="news-body">273 страницы, 25 находок, битых ссылок и сирот нет. Список просроченных «Актуально на» не изменился по составу против 09-27, кроме одного нового пункта — <code>sepia</code> впервые пересёк 30-дневный порог. Список заблокированных доменов (support.claude.com, arxiv.org, claude.com и другие) без изменений.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
       </article>
 
     </div>
@@ -453,7 +460,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета 0.1.5): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает; 09-24 — упорядоченный failover-список узлов, конфигурация через приложение</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 10-02 — название метода RLCD не ведёт к первоисточнику, омоним другого метода</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов; 10-03 — docs.typesafe.ai заблокирован целиком, официальный SDK найден, но тариф/задержку не содержит</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya и классификатор мода скиллов; 10-03 — docs.typesafe.ai заблокирован целиком, официальный SDK найден, но тариф/задержку не содержит</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md"><span class="tree-name">openjev-verdict-2</span><span class="tree-desc">третья модель типизированных решений (149,6M, Apache 2.0), заявляет превосходство над laya и jev-typesafe на собственном тестовом наборе — не независимо; 10-02 — метод RLCD общий с laya только по названию</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span></a>
