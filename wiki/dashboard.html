@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-07 (3 записи) · след. запуск 08:00 (08.10)</div>
+      <div class="mono">обновлено 2026-10-08 (2 записи) · след. запуск 08:00 (09.10)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">275</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">4</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">262</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">131</span><span class="l">sources</span></div>
@@ -358,30 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 07.10: сводка новостей + полный разбор Claude Code changelog + ежедневное закрытие пробелов (obsidian-web-clipper)</span>
+      <span class="section-note">2 записи · 08.10: ежедневное закрытие пробелов — допроверка multica (лицензия) + допроверка freecad-mcp (риск execute_code)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude Code changelog 2.1.289–2.1.292 — батч из восьми permission-bypass фиксов</div>
-        <div class="news-body">Шестой узел серии bypass-находок: Windows-вариант обхода защиты от <code>rm</code> через 8.3-короткое имя (та же категория, что <code>bash -c</code>-обёртка из прошлого снапшота), обход подтверждения для чтения по сетевым UNC-путям, TOCTOU в чтении notebook/PDF через подменённый симлинк, наследование одобрения мода на вложенную shell-команду.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md">claude-code-changelog-snapshot-2026-10-07</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: security-батч Claude Code 2.1.289–292, Mistral Large 4, GitLab AI Gateway RCE</div>
-        <div class="news-body">Окно 04–07.10.2026. GitLab CVE-2026-90970 (CVSS 9.9) взята вне обычного окна как подтверждение гипотезы о потере событий закрытого окна — гипотеза подтвердилась, бэклог обновлён вторым примером (OpenAI отказалась от GPT-6.1 Astra, найдено только сейчас).</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-07.md">novosti-2026-10-07</a><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Допроверка: multica — лицензия не чистый Apache 2.0, рост цифр</div>
+        <div class="news-body">Повторное истечение порога «Актуально на» (08-17 → 10-08), первая содержательная сверка с момента создания страницы. Рост подтверждён (46.2k→52.1k звёзд, 20→26 агентов). Находка: лицензия — собственная Multica License (Apache 2.0 + запрет хостинга для третьих лиц без коммерческой лицензии), не permissive open source, как было записано.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md">multica</a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка: obsidian-web-clipper — версия без изменений, troubleshooting-документ переехал на заблокированный домен</div>
-        <div class="news-body">Повторное истечение порога «Актуально на» (08-13 → 10-07). Версия расширения всё ещё 1.7.1, механизм legacyMode/буфер обмена подтверждён повторно без расхождений. Находка: <code>docs/Troubleshoot Web Clipper.md</code> из репозитория исчез — README теперь ссылается только на <code>help.obsidian.md/web-clipper/troubleshoot</code>, который дал <code>EGRESS_BLOCKED</code> — открытый вопрос о пороге версии приложения Obsidian теперь недостижим для автономных прогонов не временно, а по новой причине.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md">obsidian-web-clipper</a></div>
+        <div class="news-title">Допроверка: freecad-mcp — риск execute_code усилен, не снят</div>
+        <div class="news-body">Повторное истечение порога (08-25 → 10-08). Список тулов вырос 12→17 — добавились два новых пути исполнения произвольного кода (<code>execute_code_async</code>, <code>execute_code_headless</code>) сверх <code>execute_code</code>, ни для одного подтверждения деструктивных действий нет. Прежний вывод страницы не опровергнут, а усилен.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md">freecad</a></div>
       </article>
 
     </div>
@@ -404,14 +397,14 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-07 — changelog 2.1.289–2.1.292: батч из восьми permission-bypass фиксов (Windows-вариант обхода <code>rm</code>, UNC-пути, TOCTOU через symlink)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-07 — changelog 2.1.289–2.1.292: батч из восьми permission-bypass фиксов (Windows-вариант обхода <code>rm</code>, UNC-пути, TOCTOU через symlink)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования; официальный MCP-сервер и self-hosted опция (не используется)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати; продукт — self-hostable платформа делегирования задач 20 агентам</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати; продукт — source-available (Multica License, не чистый Apache 2.0) платформа делегирования задач 26 агентам; допроверка 10-08</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/comrad404.md"><span class="tree-name">comrad404</span><span class="tree-desc">автор канала обзоров ИИ-инструментов; разбор харнеса, необычно добросовестный для формата</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/paragonzone.md"><span class="tree-name">paragonzone</span><span class="tree-desc">канал про ИИ-инструменты; разбор безопасности вайбкодинг-проектов на собственном стенде</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ii-mastodont.md"><span class="tree-name">ii-mastodont</span><span class="tree-desc">автор видео-разбора метода Карпати (18М просмотров)</span></a>
@@ -458,7 +451,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-efimov.md"><span class="tree-name">nikita-efimov</span><span class="tree-desc">автор разбора автоматизаций Claude Desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/prostodevops.md"><span class="tree-name">prostodevops</span><span class="tree-desc">DevOps-образовательный канал</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/marina-mogilko.md"><span class="tree-name">marina-mogilko</span><span class="tree-desc">предприниматель, автор выступления про пять уровней внедрения ИИ в бизнес</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; сервер MCP допроверен по первоисточнику — риск шире, чем известная «команда закрытия»</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; допроверка 10-08 — список тулов 12→17, два новых пути исполнения кода (execute_code_async/headless), подтверждения деструктивных действий всё ещё нет</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
@@ -495,7 +488,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-07 — шестой узел серии: батч из восьми permission-bypass фиксов разом, включая Windows-вариант обхода <code>rm</code> и TOCTOU через symlink</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-07 — шестой узел серии: батч из восьми permission-bypass фиксов разом, включая Windows-вариант обхода <code>rm</code> и TOCTOU через symlink</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
@@ -663,7 +656,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md"><span class="tree-name">clm-8b-contrastive-system-one</span><span class="tree-desc">CLM-8B против Jev: кэш вариантов, роль проверяющего; замеры авторские и на 30–38 задачах</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-01.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-01</span><span class="tree-desc">changelog Claude Code 2.1.284–2.1.286: Claude Sonnet 5.5 — дефолтная модель Sonnet; allowedProviders для организаций; отключаемый CLAUDE_CODE_DISABLE_WEB_FETCH; claude --desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-04.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-04</span><span class="tree-desc">changelog Claude Code 2.1.287–2.1.288: Claude Mods — не изолированные плагины-перехватчики событий; критический фикс обхода защиты «всегда спрашивать» перед <code>rm</code> в <code>bash -c</code>/<code>sh -c</code> под <code>bypassPermissions</code> (номер версии фикса расходится между источниками)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-07</span><span class="tree-desc">changelog Claude Code 2.1.289–2.1.292: батч из восьми permission-bypass фиксов разом — Windows 8.3-короткое имя для <code>rm</code>, UNC-пути, TOCTOU через symlink в чтении notebook/PDF, наследование одобрения мода на вложенную shell-команду</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-07</span><span class="tree-desc">changelog Claude Code 2.1.289–2.1.292: батч из восьми permission-bypass фиксов разом — Windows 8.3-короткое имя для <code>rm</code>, UNC-пути, TOCTOU через symlink в чтении notebook/PDF, наследование одобрения мода на вложенную shell-команду</span></a>
       </div>
     </details>
 
