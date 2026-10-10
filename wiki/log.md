@@ -5,6 +5,18 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-10-10] ingest | Claude Haiku 5.5 — запуск + Claude Code 2.1.293–2.1.296
+
+Ярус 2 рутины 1 (новости), тем же прогоном следом за сводкой [[novosti-2026-10-10]]. Первоисточники — `anthropic.com/news` (анонс Claude Haiku 5.5, 07.10.2026) и `raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`, прочитаны напрямую точечными запросами.
+
+**Взято.** Claude Haiku 5.5 — новая дефолтная модель линейки Haiku, 1M контекст (впервые для Haiku в этой вики), синхронный дефолт в Claude Code 2.1.293. Claude Code 2.1.294 — фикс обхода блокирующих инструкционных хуков `prompt`/`agent` на `Stop`/`SubagentStop`: седьмой узел серии bypass-находок в [[ai-security-by-design]], но новый класс — судейство текстового правила моделью, а не анализ файлового пути (все шесть прошлых узлов были про последнее). Claude Code 2.1.296 — цена чтения кэша Sonnet 5.5 снижена с $0.20 до $0.10 за млн токенов, дополнено в [[claude-api-cost-optimization]]. Малое из 2.1.295/2.1.296 (`onFailure: "block"` для хуков, Program Status Protocol, `allow_large` у Read, `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL`) — на странице [[claude-haiku-5-5-launch]] и в разделе Claude Code.
+
+**Не взято.** Организационные/инфраструктурные пункты (managed policies gateway, предел описаний MCP-тулов, autoCompactWindow) и полный текст официального анонса Haiku 5.5 (цена не подтверждена этим прогоном — страница `anthropic.com/news` отдала только заголовок в общем списке, не полный пост) — см. раздел «Что не взято» на странице источника; цена — кандидат в `wiki/gaps-backlog.md`, если понадобится точно.
+
+**Затронуто.** Страница источника [[claude-haiku-5-5-launch]]; сущность [[claude-code]] (новый раздел, «Актуально на» → 10-10, дополнен раздел «Модели и Effort»); концепты [[ai-security-by-design]] (седьмой узел серии), [[claude-api-cost-optimization]] (дополнение про цену кэша); строка в `wiki/index.md` (Entities → claude-code, Все источники).
+
+`python .claude/skills/wiki-ingest/scripts/ingest.py check claude-haiku-5-5-launch` — пройдено.
+
 ## [2026-10-10] news | Сводка новостей: GPT-6 с Intelligent UI в ChatGPT, Claude Haiku 5.5 + security-фикс хуков Claude Code, обновление Usage Policy Anthropic
 
 Десятый прогон рутины 1 (новости), окно 07.10–10.10.2026 со времени прошлой сводки [[novosti-2026-10-07]]. Сессия стартовала в detached HEAD (тот же сбой `SessionStart`-хука — `git pull` без ветки) — исправлено `git checkout main && git pull origin main`, репозиторий обновлён fast-forward на 14 коммитов.
