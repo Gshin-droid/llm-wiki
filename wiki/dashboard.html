@@ -342,23 +342,23 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-10 (1 запись) · след. запуск 08:00 (10.11)</div>
+      <div class="mono">обновлено 2026-10-10 (3 записи) · след. запуск 08:00 (10.11)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">262</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">4</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">263</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">131</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">132</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 10.10: ежедневное закрытие пробелов — допроверка Impeccable (запрос roll, хук SessionStart)</span>
+      <span class="section-note">3 записи · 10.10: сводка новостей (GPT-6 Intelligent UI, Claude Haiku 5.5, Usage Policy Anthropic) + полный разбор Claude Code 2.1.293–296; ежедневное закрытие пробелов — допроверка Impeccable</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
@@ -368,6 +368,20 @@
         <div class="news-title">Закрытие пробела: Impeccable — запрос roll и хук SessionStart прочитаны по исходнику</div>
         <div class="news-body">Пункт бэклога с тегом «локально» (09-28) закрыт прямым <code>git clone</code> репозитория, тот же приём, что уже сработал у pi-coding-agent. Запрос <code>GET /roll</code> передаёт только scope/key/reroll/mode/grain/platform — без кода и путей, как и уже известный <code>ping_chosen</code>. SessionStart-хук сети не касается вовсе — пишет id сессии в локальный файл.</div>
         <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md">impeccable</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">news</span>
+        <div class="news-title">Сводка новостей: GPT-6 с Intelligent UI в ChatGPT, Claude Haiku 5.5 + security-фикс хуков, Usage Policy Anthropic</div>
+        <div class="news-body">Три находки окна 07–10.10: глобальный раскат GPT-6/Intelligent UI в ChatGPT (по пересказам), Claude Haiku 5.5 (1M контекст) с фиксом обхода блокирующих инструкционных хуков в Claude Code, обновление Usage Policy Anthropic (слежка, оружие, жестокое обращение с моделью — вступает 12.11).</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-10.md">novosti-2026-10-10</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude Haiku 5.5 — запуск + Claude Code 2.1.293–2.1.296</div>
+        <div class="news-body">Новая дефолтная модель Haiku (1M контекст) синхронно с CLI. Седьмой узел серии bypass-находок, новый класс — судейство инструкционных хуков <code>Stop</code>/<code>SubagentStop</code>, не анализ файлового пути. Цена чтения кэша Sonnet 5.5 снижена с $0.20 до $0.10/MTok.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md">claude-haiku-5-5-launch</a></div>
       </article>
 
     </div>
@@ -390,7 +404,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-07 — changelog 2.1.289–2.1.292: батч из восьми permission-bypass фиксов (Windows-вариант обхода <code>rm</code>, UNC-пути, TOCTOU через symlink)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-10 — changelog 2.1.293–2.1.296: дефолт Claude Haiku 5.5 (1M контекст), фикс обхода блокирующих инструкционных хуков, цена кэша Sonnet 5.5 $0.20→$0.10</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -481,7 +495,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-07 — шестой узел серии: батч из восьми permission-bypass фиксов разом, включая Windows-вариант обхода <code>rm</code> и TOCTOU через symlink</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-10 — седьмой узел серии, новый класс: обход судейства инструкционных хуков <code>Stop</code>/<code>SubagentStop</code>, не анализ файлового пути</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
@@ -507,7 +521,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-data-layer-core-files.md"><span class="tree-name">ai-data-layer-core-files</span><span class="tree-desc">четыре core-файла о себе, метод сбора через интервью, граница делегирования агентам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/context-engineering-claude-5.md"><span class="tree-name">context-engineering-claude-5</span><span class="tree-desc">официальные правила Anthropic под поколение 5: правила→суждение, CLAUDE.md/скиллы/references</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/geo-ai-answer-visibility.md"><span class="tree-name">geo-ai-answer-visibility</span><span class="tree-desc">GEO: видимость в ответах ИИ-поисковиков — общий механизм и асимметрия видео</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md"><span class="tree-name">claude-api-cost-optimization</span><span class="tree-desc">официальный чеклист экономии стоимости вызова Claude API — рычаг, дополняющий маршрутизацию между моделями; 10-10 — цена чтения кэша Sonnet 5.5 снижена с $0.20 до $0.10/MTok</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/invariant-vidno-znachit-zapisano.md"><span class="tree-name">invariant-vidno-znachit-zapisano</span><span class="tree-desc">инвариант «видно модели — значит записано»: восстановимость решения из журнала; 09-14 — снят домысел про «машиночитаемую причину остановки», не подтверждённый источником</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/rag-retrieval-augmented-generation.md"><span class="tree-name">rag-retrieval-augmented-generation</span><span class="tree-desc">сам механизм RAG: конвейер, пять продвинутых техник, оценка качества Ragas, продакшн-слой</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md"><span class="tree-name">kalibrovka-uverennosti-resheniy</span><span class="tree-desc">уверенность модели как измеримая величина (ECE), а не интуиция; 10-02 — название RLCD не цитата первоисточника, омоним другого опубликованного метода</span></a>
@@ -517,7 +531,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">131</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">132</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-okf-open-knowledge-format.md"><span class="tree-name">google-okf-open-knowledge-format</span><span class="tree-desc">официальная спецификация Google Cloud (Apache 2.0): markdown-директория с зарезервированными <code>index.md</code>/<code>log.md</code>, провенанс и статус жизненного цикла — независимо формализует архитектуру этой вики, не упоминая Карпати/wiki/RAG</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/dsh-tui-terminal-plugin.md"><span class="tree-name">dsh-tui-terminal-plugin</span><span class="tree-desc">community-плагин терминального интерфейса для DeepSeek Harness: ставится без пересборки из исходников, опциональный backend на Claude Agent SDK, default-профиль <code>danger-full-access</code>+<code>never</code> у «рекомендованного лидером» плагина</span></a>
@@ -650,6 +664,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-01.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-01</span><span class="tree-desc">changelog Claude Code 2.1.284–2.1.286: Claude Sonnet 5.5 — дефолтная модель Sonnet; allowedProviders для организаций; отключаемый CLAUDE_CODE_DISABLE_WEB_FETCH; claude --desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-04.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-04</span><span class="tree-desc">changelog Claude Code 2.1.287–2.1.288: Claude Mods — не изолированные плагины-перехватчики событий; критический фикс обхода защиты «всегда спрашивать» перед <code>rm</code> в <code>bash -c</code>/<code>sh -c</code> под <code>bypassPermissions</code> (номер версии фикса расходится между источниками)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-07</span><span class="tree-desc">changelog Claude Code 2.1.289–2.1.292: батч из восьми permission-bypass фиксов разом — Windows 8.3-короткое имя для <code>rm</code>, UNC-пути, TOCTOU через symlink в чтении notebook/PDF, наследование одобрения мода на вложенную shell-команду</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md"><span class="tree-name">claude-haiku-5-5-launch</span><span class="tree-desc">запуск Claude Haiku 5.5 (1M контекст) + Claude Code 2.1.293–2.1.296: фикс обхода блокирующих инструкционных хуков (новый класс bypass-находок), снижение цены кэш-чтения Sonnet 5.5</span><span class="badge-new">new</span></a>
       </div>
     </details>
 
