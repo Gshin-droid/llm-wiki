@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-10-11] lint | Итоги
+
+Воскресный прогон рутины 3 (хвосты), механический проход. Сессия стартовала в detached HEAD (`SessionStart`-хук упал на `git pull` без ветки) — исправлено `git checkout main && git pull origin main`, репозиторий обновлён fast-forward на 17 коммитов.
+
+`python .claude/skills/wiki-lint/scripts/lint_wiki.py`: 281 страница, 28 находок. Битых `[[ссылок]]` и страниц-сирот — **нет**. Просроченных «Актуально на» — **13**: без движения с прошлого списка `claude-projects`/`obsidian` (96 дн.), `geo-ai-answer-visibility` (71 дн.), `paragonzone` (54 дн.); повторное истечение порога у `pinecone`/`supabase` (58 дн.), `claude-cowork` (57 дн.), `concepts/claude-artifacts.md` (36 дн.), `claude-agent-sdk` (33 дн.), `opencode` (32 дн.), `context7` (31 дн.); два новых, ни разу не допроверявшихся по первоисточнику: `planning-with-files` (34 дн.) и `apache-maka` (32 дн.). Список прошлой недели (`obsidian-web-clipper`, `multica`, `freecad`, `mattpocock-skills`) закрыт в промежутке 10-07…10-09, выбыл. Все 13 — пунктом в `wiki/gaps-backlog.md` (раздел «Entity-страницы с просроченной пометкой "Актуально на"», подпись «Свежий список механического прохода 2026-10-11»), не чинились на месте.
+
+Повторяющиеся безрезультатные заходы — **15 доменов**, четыре новых против списка 10-04: `openai.com`, `raw.githubusercontent.com`, `openrouter.ai`, `cursor.com` (по 3 прогона каждый). `github.com`/`api.github.com`/`raw.githubusercontent.com` — известное ложное срабатывание (успешно читаются в этом же логе многократно, см. записи ниже). `openai.com`/`openrouter.ai`/`cursor.com` глазами не проверены в этот прогон — задача на следующий воскресный проход, в этот заходы не делались.
+
+Путей с диска в `settings.json` не найдено. Второе обязательное дело воскресенья (сверка одной страницы с сырьём) — следующим коммитом этого же прогона.
+
 ## [2026-10-10] ingest | Claude Haiku 5.5 — запуск + Claude Code 2.1.293–2.1.296
 
 Ярус 2 рутины 1 (новости), тем же прогоном следом за сводкой [[novosti-2026-10-10]]. Первоисточники — `anthropic.com/news` (анонс Claude Haiku 5.5, 07.10.2026) и `raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`, прочитаны напрямую точечными запросами.
