@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (17 записей) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-12 (20 записей) · след. запуск 08:00 (10.13)</div>
     </div>
   </header>
 
@@ -358,10 +358,31 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">17 записей · 12.10: поиск дублей инбокса (bge-m3); cache-control (кэш — час на подписке), EmbeddingGemma 2; haiku = 5.5 после обновления (до него 4.5); Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
+      <span class="section-note">20 записей · 12.10: OSS Scanner, цены и кредиты Haiku 5.5, оговорки конфиденциальности; поиск дублей инбокса (bge-m3); cache-control (кэш — час на подписке), EmbeddingGemma 2; haiku = 5.5 после обновления (до него 4.5); Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">decision</span>
+        <div class="news-title">Политика конфиденциальности Anthropic — оговорки в корзины, история об аресте не подтверждена</div>
+        <div class="news-body">Отказ от обучения не распространяется на переписку, помеченную для проверки безопасности; передача данных властям предусмотрена. Облачный чат — не личный дневник. Новые правила использования уже в сводке 10.10.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Haiku 5.5: полный текст анонса — цены, месячные API-кредиты Max/Team</div>
+        <div class="news-body">Цена двумя ступенями: промпт до 100 тыс. токенов впятеро дешевле, чем свыше. Месячные API-кредиты — Max 5x $100, Max 20x $200, Team до $500, на любых моделях; «только облачные сессии» из обсуждения анонсу противоречит.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md">claude-haiku-5-5-launch</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md">claude-api-cost-optimization</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Anthropic OSS Scanner — бесплатное сканирование открытых проектов</div>
+        <div class="news-body">С 08.10 модели Anthropic сканируют критичные открытые проекты и шлют отчёты без проверки человеком. Нам не подходит по критериям; берём логику — проверяющий агент без сети, цепочка агентов, маркировка непроверенного. Проверка на практике — в бэклоге.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-oss-scanner.md">anthropic-oss-scanner</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">config</span>
