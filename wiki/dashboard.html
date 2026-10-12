@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (3 записи) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-12 (6 записей) · след. запуск 08:00 (10.13)</div>
     </div>
   </header>
 
@@ -358,10 +358,32 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 12.10: сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
+      <span class="section-note">6 записей · 12.10: Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">decision</span>
+        <div class="news-title">claude.dev — анонс блога Anthropic без отдельной страницы</div>
+        <div class="news-body">Сайт сверен: технический блог инженеров Anthropic, документация остаётся отдельно. Две статьи уже в вики, восемь поставлены в бэклог очередью на разбор.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">CMU 11-768 AI Agents — открытый курс по агентам</div>
+        <div class="news-body">Курс ведёт от обвязки через оценку к обучению модели. Берём как учебный план без блока RL; первое задание — своя обвязка ReAct со сжатием контекста — кандидат на практику.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cmu-11-768-ai-agents-kurs.md">cmu-11-768-ai-agents-kurs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md">agent-harness</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Hindsight — агентная память с выводами</div>
+        <div class="news-body">Пост сверен с кодом плагина: память подкладывается в контекст на каждое сообщение и пишется сама после ответа. Не ставим; берём механизм «наблюдение с доказательствами и счётчиком подтверждений».</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/hindsight-agentnaya-pamyat.md">hindsight-agentnaya-pamyat</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/hindsight.md">hindsight</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md">agent-memory-five-questions</a></div>
+      </article>
+
 
       <article class="news-card">
         <span class="news-stamp">config</span>
