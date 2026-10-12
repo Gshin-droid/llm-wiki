@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (16 записей) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-12 (17 записей) · след. запуск 08:00 (10.13)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">16 записей · 12.10: cache-control (кэш — час на подписке), EmbeddingGemma 2; haiku = 5.5 после обновления (до него 4.5); Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
+      <span class="section-note">17 записей · 12.10: поиск дублей инбокса (bge-m3); cache-control (кэш — час на подписке), EmbeddingGemma 2; haiku = 5.5 после обновления (до него 4.5); Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">config</span>
+        <div class="news-title">Поиск дублей инбокса в ingest.py pending: текст всегда, смысл — через bge-m3</div>
+        <div class="news-body">Список неразобранного метит «дубль #N» по совпадению текста и «похоже по смыслу» через уже стоящую bge-m3 (порог 0.80). Без Ollama — строка «пропущена», материал идёт дальше. Проба на 55 постах нашла все три известных дубля.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/embeddinggemma-2-model-card.md">embeddinggemma-2-model-card</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
