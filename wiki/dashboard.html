@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (1 запись) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-12 (2 записи) · след. запуск 08:00 (10.13)</div>
     </div>
   </header>
 
@@ -358,10 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 12.10: допроверка planning-with-files</span>
+      <span class="section-note">2 записи · 12.10: срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">Срок над неделимой операцией: проверять всю цепочку, а не первый попавшийся</div>
+        <div class="news-body">Синхронизация через git дважды брошена посреди rebase: после первого раза убрали срок у git в скрипте, а срок самого хука остался. Новый п. 17 свода: над неделимой операцией не должно висеть ни одного срока; лечить уходом обёртки раньше срока, а не поднятием; разбор брошенного переноса — с сохранения тайника.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
