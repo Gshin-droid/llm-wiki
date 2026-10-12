@@ -235,6 +235,10 @@
 
 Практическая оговорка: сам код ставится только поверх [[pi-coding-agent]] и к [[claude-code]] не применим. Переносимы здесь **механизмы, а не пакет**.
 
+## Дополнение (2026-10-12): как обвязке учат в университете — [[cmu-11-768-ai-agents-kurs]]
+
+Курс CMU 11-768 строит обучение агентам в порядке «обвязка → оценка → обучение модели с подкреплением». Первое задание — самому написать то, что внутри у [[claude-code]]: цикл ReAct (наблюдение, рассуждение, действие), применение навыков, сжатие контекста и программный вызов инструментов. Ценно как проверка понимания восьми частей харнеса выше: написанный своими руками цикл показывает, какие из них делает модель, а какие — код вокруг неё.
+
 ## Источники
 - [[comrad404-what-is-harness]] — разбор понятия целиком
 - [[nvidia-sol-pi-harness]] — четыре механизма, найденные автоматическим перебором; экономия, измеренная в $/час
@@ -242,5 +246,5 @@
 - Первоисточник кейса +13,7 пункта: официальный блог LangChain, «Improving Deep Agents with harness engineering» (проверен напрямую 2026-08-18)
 
 ## Связи
-- Концепты: [[verification-three-levels]] (три уровня проверки, критерий инварианта, чеклист к своей обвязке), [[spatiotemporal-composability]], [[long-running-agent-harness]] (частный случай — харнес для многосессионных задач, три примитива Anthropic), [[context-engineering-claude-5]], [[chroma-context-rot]], [[ai-security-by-design]], [[agent-teams]], [[mcp-model-context-protocol]], [[agent-memory-five-questions]]
+- Концепты: [[verification-three-levels]] (три уровня проверки, критерий инварианта, чеклист к своей обвязке), [[spatiotemporal-composability]], [[long-running-agent-harness]] (частный случай — харнес для многосессионных задач, три примитива Anthropic), [[context-engineering-claude-5]], [[chroma-context-rot]], [[ai-security-by-design]], [[agent-teams]], [[mcp-model-context-protocol]], [[agent-memory-five-questions]], [[cmu-11-768-ai-agents-kurs]] (учебный курс: обвязка → оценка → RL)
 - Сущности: [[claude-code]], [[claude-agent-sdk]], [[cursor]], [[claude-skills]]
