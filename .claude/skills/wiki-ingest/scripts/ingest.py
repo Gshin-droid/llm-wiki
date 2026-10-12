@@ -66,6 +66,78 @@ def pending(root):
     return out
 
 
+INBOX = Path("raw") / "inbox-assistant"
+OLLAMA_URL = "http://localhost:11434"
+EMBED_MODEL = "bge-m3"  # уже стоит в Ollama у ai-assistant, своей модели не заводим
+# Замер 2026-10-12 на 55 постах: дословные дубли — 1.00, посты на одну тему — 0.82–0.87,
+# соседи по каталогу — 0.78. Подсказка, а не запрет: материал из списка не убирается.
+SIMILAR_AT = 0.80
+
+
+def inbox_posts(root):
+    """{путь: (номер поста, нормализованный текст)} по всем постам инбокса, разобранным тоже:
+    дубль нового поста обычно лежит среди старых."""
+    out = {}
+    d = root / INBOX
+    for f in sorted(d.glob("*.md")) if d.is_dir() else []:
+        raw = f.read_text(encoding="utf-8")
+        m = re.search(r"^source: ai-assistant (#\d+)", raw, re.M)
+        body = re.sub(r"\A---.*?\n---", "", raw, flags=re.S)
+        out[f"{INBOX.as_posix()}/{f.name}"] = (m.group(1) if m else f.name, " ".join(body.lower().split()))
+    return out
+
+
+def exact_duplicates(items, posts):
+    """{неразобранный: [номера постов с тем же текстом]}."""
+    by_text = {}
+    for path, (_, text) in posts.items():
+        by_text.setdefault(text, []).append(path)
+    return {i: [posts[p][0] for p in by_text[posts[i][1]] if p != i]
+            for i in items if i in posts and len(by_text[posts[i][1]]) > 1}
+
+
+def ollama_embedder(url=OLLAMA_URL, model=EMBED_MODEL):
+    """Функция «тексты → векторы», или None, если Ollama не отвечает или модели нет."""
+    import json
+    import urllib.request
+    try:
+        with urllib.request.urlopen(f"{url}/api/tags", timeout=2) as r:
+            names = [m["name"].split(":")[0] for m in json.load(r)["models"]]
+    except Exception:
+        return None
+    if model not in names:
+        return None
+
+    def embed(texts):
+        req = urllib.request.Request(f"{url}/api/embed", headers={"Content-Type": "application/json"},
+                                     data=json.dumps({"model": model, "input": [t[:4000] for t in texts]}).encode())
+        with urllib.request.urlopen(req, timeout=300) as r:
+            return json.load(r)["embeddings"]
+    return embed
+
+
+def similar(items, posts, embed, skip):
+    """{неразобранный: (номер поста, оценка)} — самый похожий другой пост от SIMILAR_AT.
+    skip — дословные дубли, уже показанные отдельно."""
+    import math
+    paths = list(posts)
+    vecs = dict(zip(paths, embed([posts[p][1] for p in paths])))
+
+    def cos(a, b):
+        return sum(x * y for x, y in zip(a, b)) / (math.hypot(*a) * math.hypot(*b) or 1)
+    out = {}
+    for i in items:
+        if i not in vecs:
+            continue
+        cands = [(cos(vecs[i], vecs[p]), p) for p in paths
+                 if p != i and posts[p][0] not in skip.get(i, [])]
+        if cands:
+            score, p = max(cands)
+            if score >= SIMILAR_AT:
+                out[i] = (posts[p][0], score)
+    return out
+
+
 def check(root, slug, today):
     """today=None — не требовать записи именно за сегодня (в CI страница могла
     приехать коммитом позавчерашнего прогона), достаточно упоминания в логе."""
@@ -175,7 +247,38 @@ def self_test():
         assert check(r, "statya-x", None) == ["в wiki/log.md нет записи об этой странице"]
 
     self_test_added()
+    self_test_duplicates()
     print("self-test ok")
+
+
+def self_test_duplicates():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        r = Path(tmp)
+        d = r / INBOX
+        d.mkdir(parents=True)
+        post = "---\nsource: ai-assistant #{n}\ncaptured: {c}\n---\n\n# {t}\n\n{t}\n"
+        (d / "a.md").write_text(post.format(n=32, c="2026-09-22", t="Мод экономит токены"), encoding="utf-8")
+        # Тот же текст с другой шапкой и пробелами — дубль: шапка в сравнение не входит.
+        (d / "b.md").write_text(post.format(n=61, c="2026-10-05", t="Мод  экономит токены"), encoding="utf-8")
+        (d / "c.md").write_text(post.format(n=62, c="2026-10-07", t="Модель эмбеддингов"), encoding="utf-8")
+        posts = inbox_posts(r)
+        b, c = f"{INBOX.as_posix()}/b.md", f"{INBOX.as_posix()}/c.md"
+        assert exact_duplicates([b, c], posts) == {b: ["#32"]}, exact_duplicates([b, c], posts)
+
+        # Векторы подменены: c ближе к a, чем порог; дубль b для c не в счёт.
+        fake = {"мод": [1.0, 0.0], "модель": [0.9, 0.3]}
+        embed = lambda texts: [fake["модель"] if "модель" in t else fake["мод"] for t in texts]
+        got = similar([c], posts, embed, {})
+        assert got[c][0] in ("#32", "#61") and got[c][1] >= SIMILAR_AT, got
+        far = lambda texts: [[0.0, 1.0] if "модель" in t else [1.0, 0.0] for t in texts]
+        assert similar([c], posts, far, {}) == {}
+        # Дубль, показанный отдельно, не повторяется как «похоже».
+        got = similar([b], posts, embed, {b: ["#32"]})
+        assert got[b][0] == "#62", got
+
+    # Ollama недоступна — не ошибка, а None: разбор идёт дальше.
+    assert ollama_embedder("http://127.0.0.1:9") is None
 
 
 def self_test_added():
@@ -222,11 +325,26 @@ def main():
 
     if args.command == "pending":
         items = pending(root)
+        posts = inbox_posts(root)
+        dups = exact_duplicates(items, posts)
+        embed = ollama_embedder() if any(i in posts for i in items) else None
+        try:
+            near = similar(items, posts, embed, dups) if embed else {}
+        except Exception as e:  # упавшая Ollama не должна задерживать разбор
+            embed, near = None, {}
+            print(f"(смысловая проверка оборвалась: {e})")
         print(f"Неразобранного сырья: {len(items)}")
         for i in items:
             print(f"  {i}")
+            if i in dups:
+                print(f"      ↳ дубль {', '.join(dups[i])} — текст совпадает")
+            if i in near:
+                print(f"      ↳ похоже по смыслу на {near[i][0]} ({near[i][1]:.2f})")
         if not items:
             print("Всё сырьё в raw/ имеет страницу в wiki/sources/.")
+        elif any(i in posts for i in items):
+            print(f"Смысловая проверка: {EMBED_MODEL}, порог {SIMILAR_AT}" if embed
+                  else f"Смысловая проверка пропущена: Ollama не отвечает или нет {EMBED_MODEL}")
         return 0
 
     if args.command == "check":
