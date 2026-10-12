@@ -52,4 +52,4 @@ Embedding-поиск не всегда склеивает семантическ
 [[shubin-llm-memory-landscape]], [[berezhnitsky-agent-memory-lies]]
 
 ## Связи
-[[llm-memory-landscape]], [[agent-memory-five-questions]], [[zep-graphiti]], [[letta]]
+[[llm-memory-landscape]], [[agent-memory-five-questions]], [[zep-graphiti]], [[letta]], [[hindsight]] (делает выводы из фактов, а не только хранит)
