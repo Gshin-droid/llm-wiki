@@ -6,7 +6,7 @@
 **Автор:** OthmanAdi
 **Лицензия:** MIT
 **Репозиторий:** https://github.com/OthmanAdi/planning-with-files
-**Актуально на:** 2026-09-07
+**Актуально на:** 2026-10-12
 
 ## Три файла
 
@@ -55,6 +55,18 @@
 
 Frontmatter `SKILL.md` (across всех host-вариантов репозитория) содержит явные security-заявления прямо в поле `description`, которое видит агент при авто-подключении: «no network upload path», `session-catchup.py --metadata` читает только локальные записи сессий **того же проекта** и отдаёт агрегированные счётчики, `--replay` — «bounded nonce-framed excerpts», gated mode «never runs commands declared in Markdown». Формулировка выглядит как прямой ответ на класс претензий, которым посвящена [[claude-skills]] → «Безопасность: цепочка поставок скиллов» (ToxicSkills, эксфильтрация через скилл, инструкции, замаскированные под markdown) — не подтверждено напрямую (нет issue/раздела «зачем эти формулировки» в прочитанном), но сама защитная риторика внутри поля, которое обычно просто описывает функцию, не техника защиты — редкость среди разобранных вики скиллов.
 
+## Допроверка 2026-10-12
+
+Первая содержательная сверка с ingest (09-07 → сейчас, 35 дней) — не только переустановка даты. `raw.githubusercontent.com/OthmanAdi/planning-with-files/master/CHANGELOG.md` (ветка `master`, не `main` — на `main` файл отдал 404) и страница репозитория прочитаны напрямую.
+
+**Рост, не расхождение.** Версия **3.17.0 → 3.24.0** (семь патч-релизов за 33 дня, темп подтверждается повторно). Звёзды **26,7k → 27,4k**, форки **2,2k → 2,3k**.
+
+**Находка — официальный плагин для [[deepseek-harness]], которого страница не знала.** Релиз 3.23.0 (06.10.2026) добавил пакет `dsh-planning-with-files` 1.0.1 — цитата из заметок: «stamps the producer-owned `plugin:planning-with-files` source required by DSH V4». Раньше список хостов на этой странице называл только Claude Code/Codex CLI/Pi/Hermes Agent/OpenCode — DeepSeek Harness в нём не было вообще, хотя страница [[deepseek-harness]] уже отдельно разбирает экосистему его плагинов. Плюс два новых нативных хоста: **Qoder CLI** (3.24.0, с пометкой «Qoder IDE hook behavior remains unverified» — оговорка самого автора) и **OpenCode 2** (`opencode-planning-with-files` 1.2.0, 3.22.0, различает v1/v2 ключ манифеста `plugin`/`plugins`).
+
+**Подтверждено без расхождений:** hash attestation (3.21.0 добавил только новые флаги `--target root`/`--target <plan-id>`, сама механика не изменилась), защитная формулировка описания npm-пакета (3.20.7: «discloses selected project planning context and the absence of a network upload path» — то же утверждение «no network upload path», что страница уже цитировала). Gated mode и autonomous mode — без изменений в прочитанных релизах.
+
+**Не проверено в этот заход:** заявленные замеры автора (96,7%/3 из 3/289 мс) — релизы их не касаются, отдельной переоценки не требуют.
+
 ## Источники в вики
 
 - [[planning-with-files-review]]
@@ -62,4 +74,4 @@ Frontmatter `SKILL.md` (across всех host-вариантов репозито
 ## Связи
 
 - Концепты: [[long-running-agent-harness]] (Agent-Maintained Handoff — тот же паттерн, независимая реализация), [[chroma-context-rot]] (обоснование «зачем» — деградация модели с ростом контекста), [[verification-three-levels]] (hash attestation — инвариант против порчи плана; протокол трёх попыток — эвристика, не инвариант), [[claude-api-cost-optimization]] (стабильность префикса ради кэша)
-- Сущности: [[claude-skills]], [[claude-code]], [[gsd-get-shit-done]], [[superpowers]] (родственные агентские SDLC-фреймворки с похожей идеей файла-плана, не пересекались напрямую)
+- Сущности: [[claude-skills]], [[claude-code]], [[gsd-get-shit-done]], [[superpowers]] (родственные агентские SDLC-фреймворки с похожей идеей файла-плана, не пересекались напрямую), [[deepseek-harness]] (официальный плагин `dsh-planning-with-files`, допроверка 10-12)
