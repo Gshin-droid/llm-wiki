@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (8 записей) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-12 (11 записей) · след. запуск 08:00 (10.13)</div>
     </div>
   </header>
 
@@ -358,10 +358,32 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">8 записей · 12.10: счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
+      <span class="section-note">11 записей · 12.10: Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">decision</span>
+        <div class="news-title">«You should know» и два поста о Jev — дополнениями</div>
+        <div class="news-body">Команда включения мода сверена; по трекеру он не работает во вкладке Code настольного приложения и тратит лимит незаметно для /usage. Jev: два новых проекта и урок про установку навыков с флагом «без подтверждения».</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md">jev-ecosystem-projects</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Карпати: ASD-STE100 и ступени понятности ответов ИИ</div>
+        <div class="news-body">Контролируемый английский авиамехаников, схема, HTML, видео. Английские навыки не ставим; принципы переносимы на русский — кандидат в правила оформления ответов.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-asd-ste100-ponyatnye-otvety.md">karpathy-asd-ste100-ponyatnye-otvety</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md">andrej-karpathy</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Bug Hunt Bench — Sonnet 5.5 дорог только на max</div>
+        <div class="news-body">Проверено по сырым данным: втрое дороже Opus 5.5 только на максимальном уровне усилий, на high наравне. Ступени лестницы исполнителей — пары «модель + уровень усилий».</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bughunt-bench-sonnet-5-5.md">bughunt-bench-sonnet-5-5</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
+      </article>
+
 
       <article class="news-card">
         <span class="news-stamp">decision</span>
