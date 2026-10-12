@@ -327,6 +327,7 @@ _(отбирает автономный разведчик практическ�
 - [[claude-code-changelog-snapshot-2026-08-22]] — changelog Claude Code (в. 2.1.236–2.1.240, `/claude-api upgrade` под миграцию SDK) + официальные Claude Platform release notes: Python SDK v1.0 (breaking changes), новый browser use tool, computer use tool вышел из беты, разом out-of-beta Files/Agent Skills/Admin API, домен-фильтр web_search/web_fetch и self-hosted memory stores у Managed Agents
 - [[claude-cookbook-latency-multi-agent]] — официальный cookbook Claude Cookbooks (`patterns/agents/latency_multi_agent.ipynb`, PR #885, 22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию, штамп `[elapsed Ns / budget]` перед каждым ходом без порчи кэша, два независимых рычага (pressure-фраза vs голый бюджет), честные границы применимости — не для коротких задач, эффект не проверен на Opus 5 и старее
 - [[prompt-cache-control-mod]] — мод-счётчик промпт-кэша из `claude-code-templates`, исходник прочитан: не ставим (дублирует `/usage` → `Prompt cache (main)`); главное — срок жизни кэша зависит от оплаты: час на подписке в пределах плана, пять минут на API-ключе и кредитах, по документации Claude Code
+- [[embeddinggemma-2-model-card]] — открытая мультимодальная модель эмбеддингов Google (740 млн, модульно: только текст ≈270 млн), карточка сверена: кандидат для локального смыслового поиска по личным данным; не в float16, русский не заявлен, «обходит вдвое крупные» из поста не подтверждено
 
 ## Projects
 _(рабочие проекты: вайбкодинг, интеграции ИИ, агенты)_
