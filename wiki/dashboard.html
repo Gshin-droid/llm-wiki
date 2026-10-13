@@ -342,176 +342,32 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-12 (21 запись) · след. запуск 08:00 (10.13)</div>
+      <div class="mono">обновлено 2026-10-13 (1 запись) · след. запуск 08:00 (10.14)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">263</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">74</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">271</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">132</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">139</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">21 запись · 12.10: OSS Scanner, цены и кредиты Haiku 5.5, оговорки конфиденциальности; поиск дублей инбокса (bge-m3); cache-control (кэш — час на подписке), EmbeddingGemma 2; haiku = 5.5 после обновления (до него 4.5); Bug Hunt Bench, Карпати/ASD-STE100, You should know и Jev; счётчик подтверждений у правил, задание CMU в план; Hindsight, курс CMU 11-768, claude.dev в бэклог; сводки обсуждений в инбоксе — наводки; срок над неделимой операцией (практики, п. 17); допроверка planning-with-files; разведка практики — тихо</span>
+      <span class="section-note">1 запись · 13.10: закрытие пробела — реестр инструментов dsh (<code>ctx.tools</code>) оказался <code>core</code>, не <code>seam</code>, исправлена неточность собственной правки 08-24</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Разведка практики: материал не найден, тихо</div>
-        <div class="news-body">Еженедельный прогон рутины практик — целенаправленный веб-поиск по темам вики (Claude Code, MCP, Agent SDK, context engineering, agent memory, production-кейсы) за окно с 05.10 не нашёл нового материала, проходящего порог: SEO-пересказы без первоисточника, материал старше окна или уже разобранное.</div>
-        <div class="news-links"></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Политика конфиденциальности Anthropic — оговорки в корзины, история об аресте не подтверждена</div>
-        <div class="news-body">Отказ от обучения не распространяется на переписку, помеченную для проверки безопасности; передача данных властям предусмотрена. Облачный чат — не личный дневник. Новые правила использования уже в сводке 10.10.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Haiku 5.5: полный текст анонса — цены, месячные API-кредиты Max/Team</div>
-        <div class="news-body">Цена двумя ступенями: промпт до 100 тыс. токенов впятеро дешевле, чем свыше. Месячные API-кредиты — Max 5x $100, Max 20x $200, Team до $500, на любых моделях; «только облачные сессии» из обсуждения анонсу противоречит.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md">claude-haiku-5-5-launch</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md">claude-api-cost-optimization</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Anthropic OSS Scanner — бесплатное сканирование открытых проектов</div>
-        <div class="news-body">С 08.10 модели Anthropic сканируют критичные открытые проекты и шлют отчёты без проверки человеком. Нам не подходит по критериям; берём логику — проверяющий агент без сети, цепочка агентов, маркировка непроверенного. Проверка на практике — в бэклоге.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-oss-scanner.md">anthropic-oss-scanner</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">config</span>
-        <div class="news-title">Поиск дублей инбокса в ingest.py pending: текст всегда, смысл — через bge-m3</div>
-        <div class="news-body">Список неразобранного метит «дубль #N» по совпадению текста и «похоже по смыслу» через уже стоящую bge-m3 (порог 0.80). Без Ollama — строка «пропущена», материал идёт дальше. Проба на 55 постах нашла все три известных дубля.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/embeddinggemma-2-model-card.md">embeddinggemma-2-model-card</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">EmbeddingGemma 2 — открытая мультимодальная модель эмбеддингов</div>
-        <div class="news-body">Карточка Google сверена: 740 млн параметров модульно (только текст ≈270 млн), текст, код, картинки, видео и звук в одном пространстве. «Обходит вдвое крупные» из поста не подтверждено; считать не в float16; русский поимённо не заявлен. Кандидат для локального смыслового поиска.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/embeddinggemma-2-model-card.md">embeddinggemma-2-model-card</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/rag-retrieval-augmented-generation.md">rag-retrieval-augmented-generation</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Мод prompt-cache-control — счётчик промпт-кэша; срок кэша зависит от оплаты</div>
-        <div class="news-body">Исходник прочитан, сетевых вызовов нет. Пост говорит о 5-минутном кэше, а на подписке основной диалог кэшируется на час; 5 минут — у API-ключа, кредитов и субагентов. Не ставим: дублирует встроенный /usage.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/prompt-cache-control-mod.md">prompt-cache-control-mod</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-api-cost-optimization.md">claude-api-cost-optimization</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Повторный пост о моде jev-skill-suggestion — без разбора</div>
-        <div class="news-body">Дословный повтор поста от 22.09, мод уже разобран по исходнику.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md">jev-skill-suggestion-mod</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">practice</span>
-        <div class="news-title">Перепроверка псевдонима haiku после обновления плагина — Haiku 5.5</div>
-        <div class="news-body">В плагине VS Code 2.1.296 субагент на haiku — claude-haiku-5-5. Терминальный claude остался на 2.1.284, там не проверялось.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">practice</span>
-        <div class="news-title">Псевдоним haiku у субагента ведёт на Haiku 4.5, а не 5.5; починка свода делегирования</div>
-        <div class="news-body">На Claude Code 2.1.284 псевдоним haiku — старый Haiku 4.5 (1–2 бага из 105 против 11–22 у Haiku 5.5); после обновления перепроверять. Свод делегирования, стёртый ошибкой скрипта, восстановлен.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">«You should know» и два поста о Jev — дополнениями</div>
-        <div class="news-body">Команда включения мода сверена; по трекеру он не работает во вкладке Code настольного приложения и тратит лимит незаметно для /usage. Jev: два новых проекта и урок про установку навыков с флагом «без подтверждения».</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md">jev-ecosystem-projects</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Карпати: ASD-STE100 и ступени понятности ответов ИИ</div>
-        <div class="news-body">Контролируемый английский авиамехаников, схема, HTML, видео. Английские навыки не ставим; принципы переносимы на русский — кандидат в правила оформления ответов.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/karpathy-asd-ste100-ponyatnye-otvety.md">karpathy-asd-ste100-ponyatnye-otvety</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md">andrej-karpathy</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Bug Hunt Bench — Sonnet 5.5 дорог только на max</div>
-        <div class="news-body">Проверено по сырым данным: втрое дороже Opus 5.5 только на максимальном уровне усилий, на high наравне. Ступени лестницы исполнителей — пары «модель + уровень усилий».</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/bughunt-bench-sonnet-5-5.md">bughunt-bench-sonnet-5-5</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/delegirovanie-deshevym-modelyam.md">delegirovanie-deshevym-modelyam</a></div>
-      </article>
-
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Счётчик подтверждений у правил — из Hindsight в общие правила</div>
-        <div class="news-body">Правило, выросшее из случая, несёт даты подтверждений; повторный случай дописывает дату, а не заводит второе правило. Без подтверждений за полгода — кандидат на снятие.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/hindsight-agentnaya-pamyat.md">hindsight-agentnaya-pamyat</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Задание 1 курса CMU 11-768 — в план практики</div>
-        <div class="news-body">Решено пробовать: своя обвязка ReAct, сжатие контекста, программный вызов инструментов. План из пяти шагов в бэклоге: чужой код читается до установки, песочница и модель выбираются с ценой.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cmu-11-768-ai-agents-kurs.md">cmu-11-768-ai-agents-kurs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
-      </article>
-
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">claude.dev — анонс блога Anthropic без отдельной страницы</div>
-        <div class="news-body">Сайт сверен: технический блог инженеров Anthropic, документация остаётся отдельно. Две статьи уже в вики, восемь поставлены в бэклог очередью на разбор.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">CMU 11-768 AI Agents — открытый курс по агентам</div>
-        <div class="news-body">Курс ведёт от обвязки через оценку к обучению модели. Берём как учебный план без блока RL; первое задание — своя обвязка ReAct со сжатием контекста — кандидат на практику.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cmu-11-768-ai-agents-kurs.md">cmu-11-768-ai-agents-kurs</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md">agent-harness</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Hindsight — агентная память с выводами</div>
-        <div class="news-body">Пост сверен с кодом плагина: память подкладывается в контекст на каждое сообщение и пишется сама после ответа. Не ставим; берём механизм «наблюдение с доказательствами и счётчиком подтверждений».</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/hindsight-agentnaya-pamyat.md">hindsight-agentnaya-pamyat</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/hindsight.md">hindsight</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md">agent-memory-five-questions</a></div>
-      </article>
-
-
-      <article class="news-card">
-        <span class="news-stamp">config</span>
-        <div class="news-title">Инбокс ассистента: материалы «сводки обсуждений» — наводки, первоисточник ищется при разборе</div>
-        <div class="news-body">Новый вход в инбокс — пересказ открытого чата практиков. Правило разбора: такой пункт всегда наводка; факт проверяется по первоисточнику (не нашёлся — в вики не идёт), опыт участника — практической проверкой.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/CLAUDE.md">CLAUDE.md</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">practice</span>
-        <div class="news-title">Срок над неделимой операцией: проверять всю цепочку, а не первый попавшийся</div>
-        <div class="news-body">Синхронизация через git дважды брошена посреди rebase: после первого раза убрали срок у git в скрипте, а срок самого хука остался. Новый п. 17 свода: над неделимой операцией не должно висеть ни одного срока; лечить уходом обёртки раньше срока, а не поднятием; разбор брошенного переноса — с сохранения тайника.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка: planning-with-files — официальный плагин для deepseek-harness</div>
-        <div class="news-body">Версия выросла 3.17.0→3.24.0 (семь патч-релизов за месяц). Релиз 3.23.0 добавил официальный плагин <code>dsh-planning-with-files</code> для DeepSeek Harness — первый в вики случай, когда уже разобранный сторонний инструмент получает плагин к харнесу, а не наоборот. Hash attestation и защитная формулировка npm-описания подтверждены без расхождений.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md">planning-with-files</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a></div>
+        <div class="news-title">Закрытие пробела — реестр инструментов dsh (ctx.tools) core, не seam</div>
+        <div class="news-body">Два независимых фетча <code>docs/capability-seams.md</code> подтвердили находку сверки 09-27: реестр инструментов (ctx.tools) помечен ролью core, не seam — та же роль, что у журнала (ctx.sessions). Правка страницы 08-24, называвшая реестр сменным, была неточна; расхождение шло от вступительной прозы <code>docs/architecture.md</code>, а не от смены источника со временем.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a></div>
       </article>
 
     </div>
@@ -579,7 +435,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md"><span class="tree-name">apache-maka</span><span class="tree-desc">обвязка в инкубаторе Apache: состояние выводится из журнала, T1/T2, парковка недоказанного</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны все компоненты вплоть до цикла агента, полная трасса рассуждений отдаётся пользователю; 09-27 — сверка с сырьём нашла противоречие: <code>ctx.tools</code> в источнике помечен <code>core</code>, а не <code>seam</code>, вопреки правке 08-24; 10-05 — community-плагин ставится без пересборки из исходников, default-профиль <code>danger-full-access</code>+<code>never</code> у «рекомендованного» плагина; 10-12 — официальный плагин <code>dsh-planning-with-files</code> переносит сторонний инструмент на dsh</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны провайдер модели, исполнитель кода, песочница и права, интерфейс, хранилище; несменны цикл, журнал и реестр инструментов (<code>ctx.tools</code> — <code>core</code>, не <code>seam</code>); 09-27 — сверка с сырьём нашла противоречие с правкой 08-24; 10-13 — закрыто по первоисточнику: ошибка была в правке 08-24; 10-05 — community-плагин ставится без пересборки из исходников, default-профиль <code>danger-full-access</code>+<code>never</code> у «рекомендованного» плагина; 10-12 — официальный плагин <code>dsh-planning-with-files</code> переносит сторонний инструмент на dsh</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзоров OpenCode и DeepSeek Harness; презумпция — брать как повод, факты сверять отдельно</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vladilen-minin.md"><span class="tree-name">vladilen-minin</span><span class="tree-desc">автор кейсов GSD/Superpowers</span></a>
