@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-15 (1 запись) · след. запуск 08:00 (10.16)</div>
+      <div class="mono">обновлено 2026-10-16 (1 запись) · след. запуск 08:00 (10.17)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">273</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">6</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">140</span><span class="l">sources</span></div>
@@ -358,16 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 15.10: закрытие пробелов — исходник fast-jev-compaction и допроверка context7 (версия 4.4.1)</span>
+      <span class="section-note">1 запись · 16.10: закрытие пробелов — допроверка pinecone и supabase по первоисточникам</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробелов — fast-jev-compaction (исходник) и context7 (допроверка версии 4.4.1)</div>
-        <div class="news-body">Разбор кода <code>fast-jev-compaction</code> (не только README) подтвердил саммари каталога, но нашёл упущенный нюанс: состояние, которое видит Jev-судья, само деградирует под лимитом токенов — и второе независимое использование недокументированного флага <code>CLAUDE_CODE_ENABLE_FUNCTION_HOOKS</code>. Отдельно — context7 допроверен по GitHub (сайт недостижим): версия 4.0.7→4.4.1, OAuth-укрепление хостед-транспорта, новый параметр <code>language</code>.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-ecosystem-projects.md">jev-ecosystem-projects</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/jev-skill-suggestion-mod.md">jev-skill-suggestion-mod</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md">context7</a></div>
+        <div class="news-title">Закрытие пробелов — допроверка pinecone и supabase по первоисточникам</div>
+        <div class="news-body">Продолжение пункта бэклога про просроченные «Актуально на» (08-07): обе страницы были просрочены с 08-14, обе сверены через официальные GitHub-репозитории (сайты недостижимы). Pinecone MCP — уточнение: работает только с индексами с integrated inference. Supabase — найдена собственная лицензия Apache 2.0 (не только у компонентов) и более широкий список community-библиотек.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md">pinecone</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md">supabase</a></div>
       </article>
 
     </div>
@@ -394,7 +394,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования; официальный MCP-сервер и self-hosted опция (не используется)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования (не используется); 10-16 — официальный MCP работает только с индексами integrated inference, self-hosted Nexus README не упомянут</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати; продукт — source-available (Multica License, не чистый Apache 2.0) платформа делегирования задач 26 агентам; допроверка 10-08</span></a>
@@ -407,7 +407,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов; 10-12 — допроверка: версия 3.17.0→3.24.0, официальный плагин <code>dsh-planning-with-files</code> для deepseek-harness</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; допроверка 09-13 — claude plugin eval: официальный тест-раннер для плагинов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; сверена по официальному README</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
@@ -429,7 +429,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-10 — permission policy auto, ant sessions connect; 09-08 — один из трёх рантаймов блюпринта Commerce Agents</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек; допроверка 10-15 — версия пакета 4.0.7→4.4.1, OAuth-укрепление хостед-транспорта, новый параметр language</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек; допроверка 10-15 — версия пакета 4.0.7→4.4.1, OAuth-укрепление хостед-транспорта, новый параметр language</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка; 10-09 — допроверка: манифест 22→27, реорганизован в engineering/productivity, два скилла пропали</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
