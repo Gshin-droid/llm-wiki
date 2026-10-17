@@ -18,7 +18,7 @@ _(люди, компании, инструменты)_
 - [[ii-mastodont]] — автор видео-разбора метода Карпати (18М просмотров)
 - [[claude-projects]] — функция Claude.ai: память/контекст под конкретную роль
 - [[claude-skills]] — переносимые "умения" для Claude; допроверка 09-13: `claude plugin eval` — официальный тест-раннер eval-сьюта плагина со скорингом (Claude Code 2.1.269); допроверка 09-10: `/skill-doctor` — диагностика неиспользуемых скиллов и их стоимости в контексте (Claude Code 2.1.261); допроверка 08-31: Skills API (`/v1/skills`), AWS/Microsoft Foundry, три несинхронизированные поверхности, точные лимиты полей SKILL.md
-- [[claude-cowork]] — режим "агент за компьютером" (Desktop, с 08-2026 также web/mobile)
+- [[claude-cowork]] — режим "агент за компьютером" (Desktop, с 08-2026 также web/mobile); допроверка 10-17: четыре платформы (+ боковая панель Claude in Chrome), на Pro/Max уже не бета, на Team/Enterprise бета, Compliance API вышел из беты 08-26 и с 10-15 отдаёт текст Instructions for Claude/Global instructions
 - [[supabase]] — Backend-as-a-Service для вайбкодинг-проектов; допроверка 10-16: сам продукт лицензирован Apache 2.0 (не только компоненты), community-библиотеки шире известного
 - [[openrouter]] — агрегатор нейросетевых моделей; допроверка 09-15: официальный Agent SDK (`@openrouter/agent`, `callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства
 - [[ai-proryv]] — автор видео про 5 уровней владения Claude
