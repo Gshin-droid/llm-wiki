@@ -342,26 +342,40 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-19 (1 запись) · след. запуск 08:00 (10.20)</div>
+      <div class="mono">обновлено 2026-10-19 (3 записи) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">274</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">275</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">8</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">141</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">142</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 19.10: допроверка mcp-for-beginners по первоисточнику</span>
+      <span class="section-note">3 записи · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode и наводки об оркестрации</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Auto mode по умолчанию: данные безопасности из анонса Anthropic и случай со стёртым диском C:</div>
+        <div class="news-body">Полный текст анонса, который 13.08 не открылся: в слепом эксперименте люди поймали 13,6% опасных команд, классификатор — 89%; откат к ручным подтверждениям после 3/20 блокировок, проверка видимости репозитория перед push. Вывод для вики — человек на третьем уровне проверки измеримо слаб, бэкап защищает от агента, только если агент до него не дотягивается.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-safety-data.md">claude-code-auto-mode-safety-data</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Четыре наводки практиков об оркестрации и контроле агентов — рассмотрены, страниц не заводим</div>
+        <div class="news-body">Эскалация после 3 итераций, окупаемость оркестрации, линтеры вместо ИИ-проверки — уже есть в своде. По документации: хук SubagentStart ничего не блокирует, только добавляет текст — «субагент только читает» через него остаётся забором.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -390,7 +404,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-15 — changelog 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов, MCP-редиректы), тихий пропуск шага у Dynamic Workflows-агентов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-15 — changelog 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов, MCP-редиректы), тихий пропуск шага у Dynamic Workflows-агентов</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -499,7 +513,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 09-05 — комментарии на артефакте, /design канвас-режим, отключение на своей стороне</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; 10-15 — третий пример тихого сбоя: Dynamic Workflows-агент отчитался успехом при пропущенном шаге; 09-13 — соседний подвид, отсутствие отчёта (/goal)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; 10-15 — третий пример тихого сбоя: Dynamic Workflows-агент отчитался успехом при пропущенном шаге; 09-13 — соседний подвид, отсутствие отчёта (/goal)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md"><span class="tree-name">agent-harness</span><span class="tree-desc">обвязка между моделью и работой: агент = модель + харнес, восемь частей, пять болей, внутренний и внешний харнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/spatiotemporal-composability.md"><span class="tree-name">spatiotemporal-composability</span><span class="tree-desc">обратимые компоненты: почему свод правил умеет только расти и что даёт возможность снять плагин без следа</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-app-security.md"><span class="tree-name">vibecoding-app-security</span><span class="tree-desc">безопасность того, что собрал агент: пять классов дыр с самопроверкой, деградация кода при итерациях, граница «свои данные / чужие»</span></a>
@@ -593,7 +607,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-agent-memory-mcp.md"><span class="tree-name">memora-agent-memory-mcp</span><span class="tree-desc">репозиторий Memora как первоисточник: авария «эмбеддинги не считались месяцами», принципы против петли пересказа, цепочки замещения</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/meta-agents-rule-of-two.md"><span class="tree-name">meta-agents-rule-of-two</span><span class="tree-desc">официальный пост Meta (31.10.2025): точная формулировка «правила двух», граница «в рамках одной сессии», human-in-the-loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-openrouter-embeddings-dating.md"><span class="tree-name">memora-openrouter-embeddings-dating</span><span class="tree-desc">официальный GitHub-репозиторий OpenRouter: эндпоинт эмбеддингов датирован 2025-12-06, на 8+ месяцев раньше релизных заметок Memora</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-default.md"><span class="tree-name">claude-code-auto-mode-default</span><span class="tree-desc">официальная документация: с 14.08.2026 auto mode — дефолтный режим разрешений для новых сессий на Pro/Max/Team</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-default.md"><span class="tree-name">claude-code-auto-mode-default</span><span class="tree-desc">официальная документация: с 14.08.2026 auto mode — дефолтный режим разрешений для новых сессий на Pro/Max/Team; 10-19 — блог-источник закрыт</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-safety-data.md"><span class="tree-name">claude-code-auto-mode-safety-data</span><span class="tree-desc">статья Anthropic об auto mode по умолчанию: человек ловит 13,6% опасных команд против 89% у классификатора, откат после 3/20 блокировок; случай со стёртым диском C:</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-13.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-13</span><span class="tree-desc">снапшот changelog (в. 2.1.227–2.1.231): hardening скиллов claude.ai, сэндбокс IPv6 fail-closed, /commit-push-pr без авто-одобрения опасных флагов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-16.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-16</span><span class="tree-desc">снапшот changelog (в. 2.1.232–2.1.233): форк субагента наследует диалог по умолчанию, @-упоминание cross-session, продолжение серии bypass-фиксов, первое упоминание GitLab</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nikita-vels-claude-code-full-course.md"><span class="tree-name">nikita-vels-claude-code-full-course</span><span class="tree-desc">трёхчасовая версия курса (апрель 2026), разобрана по дельте: критерий «MCP или скилл» по частоте, обмен агентов через папку Runtime</span></a>
@@ -669,7 +684,7 @@
     <details class="drawer">
       <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">9</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
