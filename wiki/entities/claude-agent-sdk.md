@@ -1,7 +1,7 @@
 # Claude Agent SDK
 
 **Тип:** инструмент (библиотека Python/TypeScript от Anthropic)
-**Актуально на:** 2026-09-08 (добавлен эталонный блюпринт Commerce Agents; биллинг в последний раз допроверен 08-05, статус без изменений)
+**Актуально на:** 2026-10-19 (зарегистрирована критическая уязвимость pip-пакета, сверено с первоисточником; биллинг в последний раз допроверен 08-05, статус без изменений)
 
 ## Что это
 Библиотека, дающая программный доступ к тому же agent loop, встроенным инструментам и context management, что работают внутри [[claude-code]] — "Claude Code как библиотека". В отличие от CLI, встраивается в собственное приложение разработчика: свой процесс, своя инфраструктура, session state в JSONL на диске.
@@ -62,7 +62,13 @@ Community-плагин терминального интерфейса для к
 
 См. также `wiki/gaps-backlog.md` — пункт 1 закрыт этой записью.
 
+## Критическая уязвимость: впрыск аргументов через `resume` (2026-10-19, CVE-2026-96620, [[claude-agent-sdk-resume-argument-injection]])
+
+Pip-пакет `claude-agent-sdk` младше версии **0.2.121** передавал значение опции `resume` (и `session_id`) в CLI Claude Code без проверки; значение с ведущим дефисом CLI читал как отдельный флаг. Контролируя это значение, можно было впрыснуть `--mcp-config` и определить вредоносный MCP-сервер, который выполнял произвольные команды уже при старте CLI — **минуя `allowed_tools` и permission-контроль самого SDK**, потому что впрыск происходит на уровне CLI-процесса раньше, чем отрабатывает agent loop. CVSS v4 9.2 (Critical). Патч — версия 0.2.121, обновиться нужно независимо от того, встроена ли защита приложения на уровне `allowed_tools`.
+
+**Правило для любого приложения на SDK:** если значение `resume`/`session_id` приходит снаружи (из URL, от пользователя, из БД), оно обязано пройти проверку формата (запрет ведущего дефиса) до передачи в SDK — сам факт «это просто ID» не делает его безопасным, форма передачи (аргумент CLI) делает его кодом. Полный разбор — [[claude-agent-sdk-resume-argument-injection]].
+
 ## Связи
-- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]]
+- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]]
 - Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]], [[commerce-agents]]
 - Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]]
