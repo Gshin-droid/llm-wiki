@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-18 (2 записи) · след. запуск 08:00 (10.19)</div>
+      <div class="mono">обновлено 2026-10-19 (1 запись) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">274</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">0</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">141</span><span class="l">sources</span></div>
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 18.10: воскресный прогон — механический проход + сверка с сырьём llm-memory-landscape</span>
+      <span class="section-note">1 запись · 19.10: допроверка mcp-for-beginners по первоисточнику</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Сверка с сырьём: llm-memory-landscape — расхождений не найдено</div>
-        <div class="news-body">Три задачи памяти, четыре формы хранения (⅓ против ~95%) и контраст с Pinecone подтверждены дословно по raw-файлам Шубина и Березницкого. Побочно: raw-файлы источника hindsight-agentnaya-pamyat не найдены ни на диске, ни в истории git — пункт в бэклоге.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md">llm-memory-landscape</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Воскресный прогон — механический проход</div>
-        <div class="news-body">294 страницы, 30 находок. 15 просроченных «Актуально на» (было 8) — семь новых/повторных: mcp-model-context-protocol, claude-managed-agents, claude-skills, memora, openrouter, gsd-get-shit-done, mcp-for-beginners. Повторяющиеся безрезультатные заходы — 15 доменов, без изменений к списку 10-11.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a></div>
+        <div class="news-title">Допроверка mcp-for-beginners — без изменений, лид про microsoft/skills закрыт</div>
+        <div class="news-body">Changelog курикулума не получил записей после 09-09 — ничего не изменилось с ingest, выросли только звёзды/форки (17.2k→17.5k). Открытый лид про возможное дублирование с `microsoft/skills`/`mcp-builder` закрыт отрицательно: разные материалы, общего авторства и ссылок друг на друга нет.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md">mcp-for-beginners</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md">mcp-for-beginners-curriculum</a></div>
       </article>
 
     </div>
@@ -453,7 +446,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/marina-mogilko.md"><span class="tree-name">marina-mogilko</span><span class="tree-desc">предприниматель, автор выступления про пять уровней внедрения ИИ в бизнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; допроверка 10-08 — список тулов 12→17, два новых пути исполнения кода (execute_code_async/headless), подтверждения деструктивных действий всё ещё нет</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.2k★, живой</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.5k★, живой; допроверка 10-19 — без изменений с ingest, лид про дублирование с microsoft/skills закрыт отрицательно</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md"><span class="tree-name">sol-pi</span><span class="tree-desc">расширение NVlabs к харнесу Pi: −45…49% токенов агента, четыре механизма найдены автоматическим перебором; не мод к Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi; допроверка 09-28 — MIT, версия 0.87.1, широкий список провайдеров, монетизации у самого Pi нет</span></a>
@@ -635,7 +628,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-scheduled-repository-reviewer.md"><span class="tree-name">claude-cookbook-scheduled-repository-reviewer</span><span class="tree-desc">официальный recipe Claude Agent SDK Cookbook: read-only ревьюер репозитория на cron, three-layer path confinement, непрерывность через resume_session_id</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/apache-maka-architecture-docs.md"><span class="tree-name">apache-maka-architecture-docs</span><span class="tree-desc">семь официальных документов Apache Maka: журнал как канон, T1/T2, четыре объяснения пропавшего результата</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-commerce-agents-blueprint.md"><span class="tree-name">claude-commerce-agents-blueprint</span><span class="tree-desc">официальный эталонный блюпринт торгового агента: один агент на трёх рантаймах через общий commerce-common, safety-гейты в исполнителе тула — обратная сторона read-only паттерна из cookbook 09-07</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md"><span class="tree-name">mcp-for-beginners-curriculum</span><span class="tree-desc">официальный курикулум Microsoft: дизайн тула, retry для эффектных операций, три угрозы авторизации MCP (tool poisoning, token passthrough, confused deputy) — закрывает практический пробел на mcp-model-context-protocol</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mcp-for-beginners-curriculum.md"><span class="tree-name">mcp-for-beginners-curriculum</span><span class="tree-desc">официальный курикулум Microsoft: дизайн тула, retry для эффектных операций, три угрозы авторизации MCP (tool poisoning, token passthrough, confused deputy) — закрывает практический пробел на mcp-model-context-protocol; 10-19 — лид про дублирование с microsoft/skills закрыт отрицательно</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/plugin4shell-vulnerability.md"><span class="tree-name">plugin4shell-vulnerability</span><span class="tree-desc">уязвимость раскрыта независимой лабораторией AIR Security (17.09): обход SHA-пиннинга плагинов в Claude Code/Codex/Copilot/Gemini CLI; связанный фикс подтверждён официальным CHANGELOG.md Claude Code (2.1.277)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-admin-api.md"><span class="tree-name">claude-cookbook-admin-api</span><span class="tree-desc">официальный notebook Claude Cookbooks (misc/admin_api.ipynb, 18.09): управление пользователями/воркспейсами/ключами/сервис-аккаунтами через client.beta.organization.*; первый практический разбор API, известной вики только фактом с 08-19</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nvidia-sol-pi-harness.md"><span class="tree-name">nvidia-sol-pi-harness</span><span class="tree-desc">четыре механизма обвязки срезают 45–49% токенов при том же качестве; $8,75–13,50 экономии в час</span></a>
