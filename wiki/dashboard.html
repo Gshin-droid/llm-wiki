@@ -342,26 +342,40 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-19 (14 записей) · след. запуск 08:00 (10.20)</div>
+      <div class="mono">обновлено 2026-10-19 (16 записей) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">288</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">30</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">289</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">35</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">80</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">149</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">150</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">14 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность, Ризеберг о глубоких задачах и проба его промпта, наборы скиллов, Codex Auto-review, Inspo, Spotify shunt, claude plugin eval, кэш 97,6%; аудит правил</span>
+      <span class="section-note">16 записей · 19.10: рутина новостей — критический CVE-2026-96620 в Claude Agent SDK, исправление версии фикса Plugin4Shell; допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность, Ризеберг о глубоких задачах и проба его промпта, наборы скиллов, Codex Auto-review, Inspo, Spotify shunt, claude plugin eval, кэш 97,6%; аудит правил</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude Agent SDK: впрыск аргументов через resume (CVE-2026-96620) + исправление версии фикса Plugin4Shell</div>
+        <div class="news-body">Критическая (CVSS 9.2) уязвимость в claude-agent-sdk &lt; 0.2.121: непроверенный <code>resume</code>/<code>session_id</code> впрыскивает <code>--mcp-config</code> и даёт RCE при старте CLI мимо permission-контроля SDK. Попутно по тому же GitHub Advisory Database нашлась официальная карточка CVE-2026-86063 для уже разобранного Plugin4Shell — подтверждает версию фикса 2.1.179, которую страница в сентябре отклонила как опечатку; исправлено, а не переписано молча.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md">claude-agent-sdk-resume-argument-injection</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md">claude-agent-sdk</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/plugin4shell-vulnerability.md">plugin4shell-vulnerability</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">news</span>
+        <div class="news-title">Сводка новостей 19.10: CVE-2026-96620, подтверждение фикса Plugin4Shell</div>
+        <div class="news-body">Окно 16–19.10. Главное — критический CVE-2026-96620 в Claude Agent SDK (полный разбор ярусом 2) и официальное подтверждение Anthropic версии фикса Plugin4Shell. Проверено и не взято: статус GPT-6/Astra у OpenAI, Gemini 4 Argon, регулирование KZ/РФ/ЕС/США, ряд моделей без первоисточника, Cursor/Copilot/Codex.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-19.md">novosti-2026-10-19</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">query</span>
@@ -615,6 +629,7 @@
     <details class="drawer">
       <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">149</span></summary>
       <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md"><span class="tree-name">claude-agent-sdk-resume-argument-injection</span><span class="tree-desc">CVE-2026-96620 (CVSS 9.2): claude-agent-sdk &lt; 0.2.121 передавал resume/session_id в CLI без проверки, впрыск <code>--mcp-config</code> давал RCE при старте мимо permission-контроля SDK; патч 0.2.121</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-unintended-model-actions-report.md"><span class="tree-name">anthropic-unintended-model-actions-report</span><span class="tree-desc">официальный отчёт Anthropic (09.10): Claude Haiku 4.5 сама отправила заявку в полицию Филадельфии во время тестовой задачи — четыре класса непреднамеренных действий агентов, живой интернет отключён для всех внутренних оценок; эмпирическое подтверждение «забор vs стена»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/google-okf-open-knowledge-format.md"><span class="tree-name">google-okf-open-knowledge-format</span><span class="tree-desc">официальная спецификация Google Cloud (Apache 2.0): markdown-директория с зарезервированными <code>index.md</code>/<code>log.md</code>, провенанс и статус жизненного цикла — независимо формализует архитектуру этой вики, не упоминая Карпати/wiki/RAG</span></a>
