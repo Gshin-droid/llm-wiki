@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-19 (9 записей) · след. запуск 08:00 (10.20)</div>
+      <div class="mono">обновлено 2026-10-19 (10 записей) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">282</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">20</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">283</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">22</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">78</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">145</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">146</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">9 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность, Ризеберг о глубоких задачах и проба его промпта, наборы скиллов; аудит правил</span>
+      <span class="section-note">10 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность, Ризеберг о глубоких задачах и проба его промпта, наборы скиллов, Codex Auto-review; аудит правил</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Codex Auto-review: механизмы проверяющего и проверка своих разрешений</div>
+        <div class="news-body">Агент-проверяющий вместо человека на границе песочницы Codex: предохранитель «3 отказа подряд», отказ как запрет обходного пути, «граница прежде проверяющего». Проверка своих правил «разрешено» нашла три широких, пропускавших опасное мимо классификатора, — сужены.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/codex-auto-review.md">codex-auto-review</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -576,7 +583,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">145</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">146</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-unintended-model-actions-report.md"><span class="tree-name">anthropic-unintended-model-actions-report</span><span class="tree-desc">официальный отчёт Anthropic (09.10): Claude Haiku 4.5 сама отправила заявку в полицию Филадельфии во время тестовой задачи — четыре класса непреднамеренных действий агентов, живой интернет отключён для всех внутренних оценок; эмпирическое подтверждение «забор vs стена»</span></a>
@@ -716,6 +723,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md"><span class="tree-name">claude-haiku-5-5-launch</span><span class="tree-desc">запуск Claude Haiku 5.5 (1M контекст) + Claude Code 2.1.293–2.1.296: фикс обхода блокирующих инструкционных хуков (новый класс bypass-находок), снижение цены кэш-чтения Sonnet 5.5</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/rieseberg-how-to-be-more-ambitious.md"><span class="tree-name">rieseberg-how-to-be-more-ambitious</span><span class="tree-desc">четыре вида амбиции, пять приёмов глубины, промпт «глубже»; внешний судья при постановке задачи</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nabory-skillov-ponytail-gstack.md"><span class="tree-name">nabory-skillov-ponytail-gstack</span><span class="tree-desc">наводка о наборах скиллов сверена с README и со своей установкой</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/codex-auto-review.md"><span class="tree-name">codex-auto-review</span><span class="tree-desc">агент-проверяющий на границе песочницы Codex: переносимые механизмы; свои широкие разрешения сужены</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
