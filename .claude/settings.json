@@ -6,7 +6,7 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "echo \"[SessionStart] syncing wiki from origin...\"; git -C \"${CLAUDE_PROJECT_DIR:-.}\" pull 2>&1 || echo \"[SessionStart] git pull failed (offline or conflict) - continuing without blocking\"",
+            "command": "echo \"[SessionStart] syncing wiki from origin...\"; d=\"${CLAUDE_PROJECT_DIR:-.}\"; git -C \"$d\" symbolic-ref -q HEAD >/dev/null || git -C \"$d\" checkout -q main 2>&1; git -C \"$d\" pull 2>&1 || echo \"[SessionStart] git pull failed (offline or conflict) - continuing without blocking\"",
             "timeout": 30,
             "statusMessage": "Синхронизация вики с GitHub..."
           }
