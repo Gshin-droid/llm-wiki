@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-19 (5 записей) · след. запуск 08:00 (10.20)</div>
+      <div class="mono">обновлено 2026-10-19 (6 записей) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">276</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">277</span><span class="l">страниц</span></div>
     <div class="stat"><span class="n">9</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">142</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">143</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">5 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки об оркестрации, каталог инструментов; аудит правил</span>
+      <span class="section-note">6 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность; аудит правил</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Безопасность из инбокса: скилл аудита Cloudflare, AgentCloak, LLM Firewall</div>
+        <div class="news-body">Скилл Cloudflare целиком не ставим (дорог, нужна песочница, валидаторы не работают на Windows), но берём механизмы: журнал покрытия, порог «нет пострадавшего — не находка», «попробуй опровергнуть», три вердикта. AgentCloak бесполезен для кириллицы — берём логику обратимой псевдонимизации.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-security-audit-skill.md">cloudflare-security-audit-skill</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md">katalog-instrumentov-iz-inboksa</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">config</span>
@@ -623,6 +630,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/memora-openrouter-embeddings-dating.md"><span class="tree-name">memora-openrouter-embeddings-dating</span><span class="tree-desc">официальный GitHub-репозиторий OpenRouter: эндпоинт эмбеддингов датирован 2025-12-06, на 8+ месяцев раньше релизных заметок Memora</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-default.md"><span class="tree-name">claude-code-auto-mode-default</span><span class="tree-desc">официальная документация: с 14.08.2026 auto mode — дефолтный режим разрешений для новых сессий на Pro/Max/Team; 10-19 — блог-источник закрыт</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-auto-mode-safety-data.md"><span class="tree-name">claude-code-auto-mode-safety-data</span><span class="tree-desc">статья Anthropic об auto mode по умолчанию: человек ловит 13,6% опасных команд против 89% у классификатора, откат после 3/20 блокировок; случай со стёртым диском C:</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/cloudflare-security-audit-skill.md"><span class="tree-name">cloudflare-security-audit-skill</span><span class="tree-desc">скилл Cloudflare для аудита безопасности агентами: журнал покрытия, критик покрытия, три вердикта; механизмы взяты в связку</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-13.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-13</span><span class="tree-desc">снапшот changelog (в. 2.1.227–2.1.231): hardening скиллов claude.ai, сэндбокс IPv6 fail-closed, /commit-push-pr без авто-одобрения опасных флагов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-08-16.md"><span class="tree-name">claude-code-changelog-snapshot-2026-08-16</span><span class="tree-desc">снапшот changelog (в. 2.1.232–2.1.233): форк субагента наследует диалог по умолчанию, @-упоминание cross-session, продолжение серии bypass-фиксов, первое упоминание GitLab</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nikita-vels-claude-code-full-course.md"><span class="tree-name">nikita-vels-claude-code-full-course</span><span class="tree-desc">трёхчасовая версия курса (апрель 2026), разобрана по дельте: критерий «MCP или скилл» по частоте, обмен агентов через папку Runtime</span></a>
