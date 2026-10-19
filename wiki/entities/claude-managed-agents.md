@@ -1,7 +1,7 @@
 # Claude Managed Agents
 
 **Тип:** продукт (hosted agent harness, часть Claude Developer Platform, beta)
-**Актуально на:** 2026-09-13
+**Актуально на:** 2026-10-19 (добавлена OpenTelemetry-трассировка, публичная бета с 2026-10-14)
 
 ## Что это
 Полностью управляемый Anthropic harness для запуска Claude как автономного агента: sandbox, event log и agent loop уже готовы на стороне Anthropic, разработчик только определяет агента (модель/system prompt/tools/MCP/skills) и обменивается событиями через REST API + Server-Sent Events. В отличие от [[claude-agent-sdk]] — не библиотека для встраивания в свою инфраструктуру, а хостед-сервис: своей инфраструктуры/sandbox строить не нужно.
@@ -206,10 +206,14 @@ with client.beta.sessions.events.stream(session.id) as stream:
 
 **`ant beta:sessions connect`** — подключение терминала к уже идущей сессии вживую: следование за транскриптом, отправка сообщений, прерывание, и главное — интерактивный ответ на паузу подтверждения (`always_ask`/`auto`-indeterminate) без необходимости писать код `user.tool_confirmation` самому. `--web` открывает тот же сеанс в браузерном session viewer Console через локальный процесс `ant` (credentials не покидают CLI).
 
+## Observability: трассировка через OpenTelemetry (2026-10-14, публичная бета, [[claude-agent-observability-platform]])
+
+Добавить OTel destination в Claude Console — каждый ход агента, вызов модели и tool use экспортируется как стандартная трасса (OpenTelemetry GenAI semantic conventions: latency, число токенов, ID), совместимая с любым OTLP-инструментом. Три применения: отладка в существующем стеке (Grafana Cloud, Honeycomb, Sentry, Splunk), улучшение агента по продакшн-трассам (Arize AI, Braintrust, Datadog, Langfuse, LangSmith, New Relic, PostHog), учёт использования по организации (Databricks Unity Gateway). Клиентские примеры (self-reported): Ramp (Reflect — скоринг трасс, автофикс повторяющихся сбоев, −10–20% токенов/+30% скорость сессий), FloQast (аудит по одной временной шкале: промпт-версия + вызовы + latency + расход), Foxglove/Sterling Labs. Полный разбор паттерна и связь с лестницей доверия — [[agent-observability]].
+
 ## Ограничения
 Beta-статус (заголовки `managed-agents-2026-04-01` / `agent-memory-2026-07-22`). Stateful по дизайну (session state хранится на сервере Anthropic) — из-за этого **не подходит под Zero Data Retention и HIPAA BAA**. MCP tunnels и Dreams — более узкий research preview, нужен отдельный запрос доступа.
 
 ## Связи
-- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]], [[claude-commerce-agents-blueprint]], [[claude-managed-agents-auto-permission-policy]]
+- Источники: [[claude-managed-agents-overview]], [[claude-cookbook-managed-agents-production-memory]], [[claude-cookbook-managed-agents-hitl-multiagent]], [[claude-cookbook-managed-agents-issue-outcome-grader]], [[claude-cookbook-managed-agents-iterate-explore]], [[claude-cookbook-managed-agents-versioning-monitoring]], [[claude-cookbook-managed-agents-mongodb-planbig]], [[claude-cookbook-managed-agents-advisor-budget]], [[claude-cookbook-managed-agents-skills-geo]], [[claude-cookbook-managed-agents-data-analyst]], [[claude-code-changelog-snapshot-2026-08-22]], [[ant-apply-managed-agents-docs]], [[claude-commerce-agents-blueprint]], [[claude-managed-agents-auto-permission-policy]], [[claude-agent-observability-platform]]
 - Сущности: [[claude-agent-sdk]], [[claude-code]], [[commerce-agents]]
-- Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов)
+- Концепты: [[claude-memory-tool]] (разграничение client-side memory tool vs server-side memory store), [[mcp-model-context-protocol]] (MCP-серверы как один из tool-типов), [[agent-observability]]

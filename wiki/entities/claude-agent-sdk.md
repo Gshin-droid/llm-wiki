@@ -68,7 +68,11 @@ Pip-пакет `claude-agent-sdk` младше версии **0.2.121** пере
 
 **Правило для любого приложения на SDK:** если значение `resume`/`session_id` приходит снаружи (из URL, от пользователя, из БД), оно обязано пройти проверку формата (запрет ведущего дефиса) до передачи в SDK — сам факт «это просто ID» не делает его безопасным, форма передачи (аргумент CLI) делает его кодом. Полный разбор — [[claude-agent-sdk-resume-argument-injection]].
 
+## Трассировка через OpenTelemetry — автоматически (2026-10-14, [[claude-agent-observability-platform]])
+
+В отличие от Managed Agents/Messages API (нужно добавить OTel destination в Console вручную) — у Agent SDK трассы модель-вызовов, tool use и MCP экспортируются **автоматически**, без дополнительной настройки. Полный разбор паттерна «трасса → проверка надёжности → расширение доступа» — [[agent-observability]].
+
 ## Связи
-- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]]
+- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]], [[claude-agent-observability-platform]]
 - Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]], [[commerce-agents]]
-- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]]
+- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]], [[agent-observability]]
