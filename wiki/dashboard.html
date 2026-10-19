@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-19 (6 записей) · след. запуск 08:00 (10.20)</div>
+      <div class="mono">обновлено 2026-10-19 (7 записей) · след. запуск 08:00 (10.20)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">277</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">9</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">75</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">279</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">16</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">76</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">45</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">143</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">144</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">6 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность; аудит правил</span>
+      <span class="section-note">7 записей · 19.10: допроверка mcp-for-beginners, разбор инбокса — auto mode, наводки, каталог, безопасность, Ризеберг о глубоких задачах; аудит правил</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Феликс Ризеберг: как ставить модели более амбициозные задачи</div>
+        <div class="news-body">Четыре вида амбиции и пять приёмов глубины от инженера Anthropic; главное — промпт «глубже» и «внешний судья»: что, кроме нас с моделью, подтвердит результат, спрашивать при постановке задачи. Чужой скилл /be-ambitious не ставим.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/rieseberg-how-to-be-more-ambitious.md">rieseberg-how-to-be-more-ambitious</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/felix-rieseberg.md">felix-rieseberg</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md">verification-three-levels</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -421,7 +428,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">75</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">76</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -497,6 +504,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md"><span class="tree-name">impeccable</span><span class="tree-desc">дизайнерские команды для агента (polish, distill, bolder) + хуки + скачиваемый движок; 10-10 — запрос roll и SessionStart-хук прочитаны: без кода и путей, хук сети не касается</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whiteboard-devfast.md"><span class="tree-name">whiteboard-devfast</span><span class="tree-desc">агент рисует схемы своей работы и журнал решений со ссылками в код; не ставим</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md"><span class="tree-name">clm-8b</span><span class="tree-desc">четвёртая модель решений: раздельные векторы ситуации и вариантов, кэш; не ставим, Laya легче</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/felix-rieseberg.md"><span class="tree-name">felix-rieseberg</span><span class="tree-desc">инженер Anthropic (Claude.ai, Cowork, Claude Code Desktop), автор разбора о глубоких задачах для модели</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -552,7 +560,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">141</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">144</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-unintended-model-actions-report.md"><span class="tree-name">anthropic-unintended-model-actions-report</span><span class="tree-desc">официальный отчёт Anthropic (09.10): Claude Haiku 4.5 сама отправила заявку в полицию Филадельфии во время тестовой задачи — четыре класса непреднамеренных действий агентов, живой интернет отключён для всех внутренних оценок; эмпирическое подтверждение «забор vs стена»</span></a>
@@ -690,6 +698,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-04.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-04</span><span class="tree-desc">changelog Claude Code 2.1.287–2.1.288: Claude Mods — не изолированные плагины-перехватчики событий; критический фикс обхода защиты «всегда спрашивать» перед <code>rm</code> в <code>bash -c</code>/<code>sh -c</code> под <code>bypassPermissions</code> (номер версии фикса расходится между источниками)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-07</span><span class="tree-desc">changelog Claude Code 2.1.289–2.1.292: батч из восьми permission-bypass фиксов разом — Windows 8.3-короткое имя для <code>rm</code>, UNC-пути, TOCTOU через symlink в чтении notebook/PDF, наследование одобрения мода на вложенную shell-команду</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-haiku-5-5-launch.md"><span class="tree-name">claude-haiku-5-5-launch</span><span class="tree-desc">запуск Claude Haiku 5.5 (1M контекст) + Claude Code 2.1.293–2.1.296: фикс обхода блокирующих инструкционных хуков (новый класс bypass-находок), снижение цены кэш-чтения Sonnet 5.5</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/rieseberg-how-to-be-more-ambitious.md"><span class="tree-name">rieseberg-how-to-be-more-ambitious</span><span class="tree-desc">четыре вида амбиции, пять приёмов глубины, промпт «глубже»; внешний судья при постановке задачи</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -704,7 +713,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">9</span></summary>
+      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">10</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span><span class="badge-new">новое</span></a>
