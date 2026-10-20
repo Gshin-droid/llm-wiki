@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-20 (2 записи) · след. запуск 08:00 (10.21)</div>
+      <div class="mono">обновлено 2026-10-20 (3 записи) · след. запуск 08:00 (10.21)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">293</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
-    <div class="stat"><span class="n">80</span><span class="l">entities</span></div>
+    <div class="stat"><span class="n">295</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">9</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">81</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">46</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">153</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">154</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 20.10: разбор инбокса — Matt Pocock /writing-for-agents; ежедневное закрытие пробелов нашло два расхождения бэклога с реальным состоянием вики — закрытие openJev-verdict-2.0 потерялось при коммите 10-14, raw-файлы hindsight не пропадали, а не доехали до клона рутины — и исправило оба</span>
+      <span class="section-note">3 записи · 20.10: разбор инбокса — Matt Pocock /writing-for-agents, лекция Stanford о постоянно работающих агентах; ежедневное закрытие пробелов нашло два расхождения бэклога с реальным состоянием вики — закрытие openJev-verdict-2.0 потерялось при коммите 10-14, raw-файлы hindsight не пропадали, а не доехали до клона рутины — и исправило оба</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Stanford CS146S: как устроены постоянно работающие агенты</div>
+        <div class="news-body">Лекция об устройстве Grok Bot почти целиком совпала с правилами вики. Новый приём — сжимать разговор, пока кэш тёплый — проверен на своих журналах: перерывы дольше часа дают половину всей записи в кэш, а встроенное сжатие при простое работает только в терминале.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/stanford-always-on-agents.md">stanford-always-on-agents</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/prompt-cache-control-mod.md">prompt-cache-control-mod</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md">agent-harness</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
@@ -393,7 +400,7 @@
     </div>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">80</span></summary>
+      <summary><span class="drawer-label">Entities</span><span class="drawer-desc">люди, компании, инструменты</span><span class="drawer-count">81</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
@@ -474,6 +481,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gstack.md"><span class="tree-name">gstack</span><span class="tree-desc">набор Гарри Тана из ~50 скиллов-ролей; не ставим, берём журнал исходящих отправок</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/inspo.md"><span class="tree-name">inspo</span><span class="tree-desc">MCP-архив 832 сайтов с DESIGN.md, снятым с кода; кандидат в источник якоря стиля</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/spotify-shunt-plugin.md"><span class="tree-name">spotify-shunt-plugin</span><span class="tree-desc">плагин Spotify: чтение больших файлов — дешёвой модели; не ставим</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/lee-robinson.md"><span class="tree-name">lee-robinson</span><span class="tree-desc">автор лекции о постоянно работающих агентах</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -530,7 +538,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">153</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">154</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md"><span class="tree-name">claude-agent-sdk-resume-argument-injection</span><span class="tree-desc">CVE-2026-96620 (CVSS 9.2): claude-agent-sdk &lt; 0.2.121 передавал resume/session_id в CLI без проверки, впрыск <code>--mcp-config</code> давал RCE при старте мимо permission-контроля SDK; патч 0.2.121</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
@@ -678,6 +686,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-redesigning-source-control.md"><span class="tree-name">anthropic-redesigning-source-control</span><span class="tree-desc">официальный пост Anthropic: собственная система контроля версий (Scion) на масштабе 30 000 слияний/день; ревью по намерению, superfan-агенты, агент чинит конфликт быстрее человека</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-observability-platform.md"><span class="tree-name">claude-agent-observability-platform</span><span class="tree-desc">официальный пост Claude Platform: трассировка агента через OpenTelemetry (публичная бета), три категории применения, клиентские примеры с цифрами</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mattpocock-writing-for-agents.md"><span class="tree-name">mattpocock-writing-for-agents</span><span class="tree-desc">скилл о письме для агентов; пак обновлён до 1.3.1</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/stanford-always-on-agents.md"><span class="tree-name">stanford-always-on-agents</span><span class="tree-desc">лекция CS146S об устройстве Grok Bot; замер цены перерывов</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
