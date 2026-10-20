@@ -342,26 +342,33 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-20 (1 запись) · след. запуск 08:00 (10.21)</div>
+      <div class="mono">обновлено 2026-10-20 (2 записи) · след. запуск 08:00 (10.21)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">292</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">293</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">80</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">46</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">152</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">153</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 20.10: ежедневное закрытие пробелов нашло два расхождения бэклога с реальным состоянием вики — закрытие openJev-verdict-2.0 потерялось при коммите 10-14, raw-файлы hindsight не пропадали, а не доехали до клона рутины — и исправило оба</span>
+      <span class="section-note">2 записи · 20.10: разбор инбокса — Matt Pocock /writing-for-agents; ежедневное закрытие пробелов нашло два расхождения бэклога с реальным состоянием вики — закрытие openJev-verdict-2.0 потерялось при коммите 10-14, raw-файлы hindsight не пропадали, а не доехали до клона рутины — и исправило оба</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Matt Pocock: /writing-for-agents и обновление пака до 1.3.1</div>
+        <div class="news-body">«Указатель решает, а не содержимое»: дотянется ли агент до скилла или файла, решает формулировка описания — то, что накануне измерено на своём скилле. Приём «три степени радикальности» для чистки правил. Пак обновлён, тексты новых скиллов прочитаны до запуска.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mattpocock-writing-for-agents.md">mattpocock-writing-for-agents</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md">mattpocock-skills</a> · <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-plugin-eval.md">claude-plugin-eval</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -430,7 +437,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/web3nity.md"><span class="tree-name">web3nity</span><span class="tree-desc">автор методологии «презентация через ИИ-агента»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/context7.md"><span class="tree-name">context7</span><span class="tree-desc">сервис/MCP-сервер Upstash с актуальной документацией библиотек; допроверка 10-15 — версия пакета 4.0.7→4.4.1, OAuth-укрепление хостед-транспорта, новый параметр language</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка; 10-09 — допроверка: манифест 22→27, реорганизован в engineering/productivity, два скилла пропали</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка; 10-09 — допроверка: манифест 22→27, реорганизован в engineering/productivity, два скилла пропали</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md</span></a>
@@ -523,7 +530,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">152</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">153</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md"><span class="tree-name">claude-agent-sdk-resume-argument-injection</span><span class="tree-desc">CVE-2026-96620 (CVSS 9.2): claude-agent-sdk &lt; 0.2.121 передавал resume/session_id в CLI без проверки, впрыск <code>--mcp-config</code> давал RCE при старте мимо permission-контроля SDK; патч 0.2.121</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
@@ -670,6 +677,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-plugin-eval.md"><span class="tree-name">claude-plugin-eval</span><span class="tree-desc">встроенный замер скиллов: проба на своём, проверка проверки</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-redesigning-source-control.md"><span class="tree-name">anthropic-redesigning-source-control</span><span class="tree-desc">официальный пост Anthropic: собственная система контроля версий (Scion) на масштабе 30 000 слияний/день; ревью по намерению, superfan-агенты, агент чинит конфликт быстрее человека</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-observability-platform.md"><span class="tree-name">claude-agent-observability-platform</span><span class="tree-desc">официальный пост Claude Platform: трассировка агента через OpenTelemetry (публичная бета), три категории применения, клиентские примеры с цифрами</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mattpocock-writing-for-agents.md"><span class="tree-name">mattpocock-writing-for-agents</span><span class="tree-desc">скилл о письме для агентов; пак обновлён до 1.3.1</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
