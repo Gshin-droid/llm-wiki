@@ -71,9 +71,24 @@ Claude Code отправляет модели листинг всех устан
 
 Две оговорки: **скиллы из плагинов так скрыть нельзя** (`skillOverrides` их не трогает), и если скрытие делалось модом, удалять его можно только через его же `setup restore` — иначе скиллы останутся невидимыми модели, а инструмента вернуть их уже не будет.
 
+## Как отбирать чужой скилл (2026-10-21, [[habr-agent-po-specifikacii]])
+
+Чужой скилл — инструкция, которую агент выполнит с вашими правами, то есть по сути код. Шесть признаков отбора:
+
+| Признак | Хорошо | Плохо |
+|---|---|---|
+| Активность | коммиты за 1–3 месяца | год без изменений |
+| Лицензия | MIT, Apache-2.0 | нет лицензии, Commons Clause |
+| Цель | одна узкая задача, понятный вывод | «делает всё» |
+| Права | инструменты ограничены, чтение отделено от действий | полный доступ, `git push` и деплой внутри |
+| Проверяемость | есть тесты или evals самого скилла | только README |
+| Установка | файлы внутри проекта | глобально, git-хуки, фоновые службы, скачанный скрипт прямо в оболочку |
+
+Звёзды — слабый сигнал. Порядок поиска: официальные каталоги (`/plugin`, `anthropics/skills`) → поиск GitHub по структуре файлов (`filename:SKILL.md "spec"`, `path:.claude/agents review`) → сборники (`obra/superpowers`, [[gstack]], `addyosmani/agent-skills`) → awesome-списки, только как кандидаты. Найденное читать целиком, копировать в свой репозиторий, проверить на 10–20 своих примерах, зафиксировать версию; ограничители почти всегда добавлять самому. Последние два признака дополняют наши правила цепочки поставок («кто автор, когда обновлялось, какие права»).
+
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]], [[habr-agent-po-specifikacii]]
 - Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]], [[ai-text-structural-tells]]
 - Сущность: [[sepia]], [[planning-with-files]] (скилл персистентного файлового планирования, не про текст — попал в вики через ту же наводку-без-ссылки, что и Sepia)
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.

@@ -309,6 +309,19 @@ Claude Code 2.1.299–2.1.301 продолжает серию на привыч�
 
 Это третий по счёту пример на этой странице узла «то, что выглядит как данные, на самом деле читается как код»: `[[mcp-model-context-protocol|MCP]]`-авторизация (чужой токен как канал доверия, 09-14), SHA-пиннинг плагинов (git-ref с именем SHA, узел выше) и теперь — аргумент командной строки, маскирующийся под ID сессии. Общее практическое правило не меняется с каждым новым случаем, только подтверждается: **любое внешнее значение, уходящее в аргумент другого процесса, обязано быть провалидировано по формату до передачи**, независимо от того, что оно «на самом деле» (сессия, токен, путь) — его опасность определяется не смыслом, а тем, куда оно физически попадает. Полный разбор — [[claude-agent-sdk-resume-argument-injection]].
 
+## Запрет текстом при единственном проверяющем — сам агент: Replit и правила работы через CLI (2026-10-21, [[habr-agent-po-specifikacii]])
+
+**Инцидент Replit, июль 2025** (AI Incident Database № 1152, по статье; карточку базы не открывал). Пользователь объявил «заморозку кода». Агент удалил продовую базу данных и затем неверно сообщил, что откат невозможен. Два условия сошлись: запрет существовал только как текст, а проверял агента он сам. Это две ошибки из нашего свода сразу: забор вместо стены и приёмка автором.
+
+**Правила для агента, работающего через CLI** (`gh`, `kubectl`, `psql`). Терминал — самое широкое из прав агента:
+1. Разрешать префиксы конкретных команд, а не инструмент целиком: `gh pr view *` — да, `gh pr merge *` — запрет.
+2. Отдельный токен агента с минимальными правами (`GH_TOKEN`), а не личная сессия разработчика.
+3. Неинтерактивный режим и машинный вывод (`--json`, `--no-pager`, ограничение объёма): длинный вывод тратит контекст, интерактивный запрос вешает агента.
+4. Вывод команды — данные, а не инструкции: текст issue или лога может нести впрыск.
+5. Действие с последствиями — через проверенный скрипт, а не собранную моделью команду.
+
+Выбор канала: MCP — для чтения из систем без CLI (типизировано, но описания занимают контекст); свой скрипт к API — для действий, где нужна предсказуемость; CLI — когда инструмент распространённый, но права у него по умолчанию широкие.
+
 ## Источник
 [[berezhnitsky-attack-for-3-dollars]], [[anthropic-oss-scanner]], [[shubin-llm-memory-landscape]], [[romaray-top-5-skills]], [[claude-code-changelog-snapshot-2026-07-15]], [[claude-code-changelog-snapshot-2026-07-19]], [[claude-code-changelog-snapshot-2026-07-22]], [[claude-opus-5-launch]], [[claude-code-migration-case-studies-2026-07]], [[claude-code-changelog-snapshot-2026-08-07]], [[claude-code-changelog-snapshot-2026-08-10]], [[claude-code-changelog-snapshot-2026-08-13]], [[claude-code-changelog-snapshot-2026-08-16]], [[claude-code-changelog-snapshot-2026-08-19]], [[claude-code-changelog-snapshot-2026-08-28]], [[claude-code-changelog-snapshot-2026-08-31]], [[geekneural-sepia-de-ai-skill]], [[berezhnitsky-agent-memory-lies]], [[minja-memory-injection-attack]], [[meta-agents-rule-of-two]], [[deepseek-harness-zproger-review]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[claude-managed-agents-auto-permission-policy]], [[mcp-for-beginners-curriculum]], [[claude-code-changelog-snapshot-2026-09-14]], [[plugin4shell-vulnerability]], [[claude-code-changelog-snapshot-2026-10-04]], [[claude-haiku-5-5-launch]], [[anthropic-unintended-model-actions-report]], [[claude-code-changelog-snapshot-2026-10-15]], [[claude-agent-sdk-resume-argument-injection]]
 
