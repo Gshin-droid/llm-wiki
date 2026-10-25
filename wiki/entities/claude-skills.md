@@ -90,6 +90,10 @@ Claude Code отправляет модели листинг всех устан
 
 Звёзды — слабый сигнал. Порядок поиска: официальные каталоги (`/plugin`, `anthropics/skills`) → поиск GitHub по структуре файлов (`filename:SKILL.md "spec"`, `path:.claude/agents review`) → сборники (`obra/superpowers`, [[gstack]], `addyosmani/agent-skills`) → awesome-списки, только как кандидаты. Найденное читать целиком, копировать в свой репозиторий, проверить на 10–20 своих примерах, зафиксировать версию; ограничители почти всегда добавлять самому. Последние два признака дополняют наши правила цепочки поставок («кто автор, когда обновлялось, какие права»).
 
+## Противоречия
+
+**Цифра у Sepia в разделе «Экосистема вокруг одной задачи» устарела (найдено 2026-10-25, сверка с сырьём).** Абзац 2026-09-01 называет «у Sepia 1 280 звёзд при четырёх днях жизни репозитория» — на тот момент цифра была верной (прямое чтение репозитория при ingest'е [[geekneural-sepia-de-ai-skill]]), но сама страница [[sepia]] уже зафиксировала рост в «Допроверка 2026-10-05»: версия 0.4.0→0.12.2, звёзды ~1 280→~3,0k, 303 коммита, появились скрипты-линтеры (`check_persona.py`, `check_versions.py`) и шестой доменный маршрут. То есть источник расхождения — не ошибка, а время: абзац не обновлялся вместе со своим же источником. Текст 09-01 не переписан (сверка находит, не чинит); тот же устаревший «1 280★» встречается и на [[ai-text-structural-tells]] — не исправлено той же логике, пункт один на обе страницы.
+
 ## Связи
 
 - Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]], [[habr-agent-po-specifikacii]], [[claude-plugin-eval]]
