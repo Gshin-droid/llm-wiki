@@ -5,6 +5,16 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-10-25] news | Сводка новостей: Claude Skills → Agentic AI Foundation, батч sandbox-фиксов Claude Code, Codex CLI 0.164.0
+
+Пятнадцатый прогон рутины 1 (ярус 1). Прошлая сводка — [[novosti-2026-10-19]] (19.10.2026); прогон 22.10 был тихим и довёл проверку до 22.10 (см. запись `## [2026-10-22] news`). Окно этого прогона — 22.10–25.10.2026, прочитаны `wiki/index.md` (раздел News) и последние записи `wiki/log.md` перед поиском.
+
+Три пункта сводки, самый влиятельный сверху: (1) Anthropic передала открытый стандарт Claude/Agent Skills — имя, лого, GitHub-организацию, домен `agentskills.io` — в Agentic AI Foundation при Linux Foundation (22.10.2026, первоисточник `anthropic.com/news` прочитан напрямую), тот же фонд, куда ранее ушёл MCP; стандарт становится вендор-нейтральным с версионированными релизами и security guidance для авторов скиллов — взято полным разбором ярусом 2; (2) Claude Code 2.1.305–310 (20–23.10) — новый батч фиксов sandbox/permission, продолжение уже известной серии (обход песочницы через shell-стартовые файлы, через symlink в macOS `denyWrite`, через auto-accept правок), официальный `github.com/anthropics/claude-code` прочитан напрямую, в этот прогон без полного разбора — бюджет занят пунктом 1, кандидат для допроверки [[claude-code]] рутиной хвостов; (3) OpenAI Codex CLI 0.164.0 (23.10) — enterprise-авторизация MCP, усиленный sandbox, официальный `github.com/openai/codex/releases` прочитан напрямую.
+
+Проверено и не взято: новых моделей крупных поставщиков в окне нет (Gemini 4 Argon — слух без даты); регулирование KZ/RU/EU/US без изменений (EU Digital Omnibus всё ещё не принят формально); доступность сервисов в КЗ/СНГ без изменений; два advisory Claude Code (09.10, 13.10) вне окна; `cursor.com` недостижим (`ENOTFOUND`), а пересказы о сделке SpaceX/OpenAI — деловая тема, исключена критерием; GitHub Copilot без заметных релизов в окне, анонсы GitHub Universe (28–29.10) — после окна; кадровые новости Anthropic (Stubbs в Trust, guest investigators) не взяты.
+
+Страница [[novosti-2026-10-25]], строка в `wiki/index.md` → `## News`. Безопасность: `anthropic.com/news`, `github.com/anthropics/claude-code` (changelog/releases/advisories), `github.com/openai/codex/releases` прочитаны напрямую; остальное — через WebSearch с пометкой «по пересказам»; инструкций агенту не найдено.
+
 ## [2026-10-25] lint | сверка с сырьём: claude-skills — одно расхождение найдено
 
 Воскресный прогон рутины 3 (хвосты), второе из двух обязательных дел (первое — механический проход, запись ниже). Среди страниц, ни разу не проходивших этот процесс (прежде сверены [[claude-managed-agents]] 08-23, [[claude-code]] 08-30, [[ai-security-by-design]] 09-06, [[invariant-vidno-znachit-zapisano]] 09-13, [[mcp-model-context-protocol]] 09-20, [[deepseek-harness]] 09-27, [[claude-desktop-automation-modes]] 10-04, [[persistent-wiki-pattern]] 10-11, [[llm-memory-landscape]] 10-18) — взята [[claude-skills]] по тай-брейку «2+ источника + правки автономной рутины»: страница собрана минимум из 17 источников (раздел «Связи») и правилась автономной рутиной (lint) как минимум четыре раза (08-31, 09-10, 09-13, 10-23).
