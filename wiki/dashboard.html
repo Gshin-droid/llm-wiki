@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-24 (1 запись) · след. запуск 08:00 (10.25)</div>
+      <div class="mono">обновлено 2026-10-25 (2 записи) · след. запуск 08:00 (10.26)</div>
     </div>
   </header>
 
@@ -358,16 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 24.10: ежедневное закрытие пробелов — допроверка claude-artifacts, два противоречия с первоисточником найдены и зафиксированы</span>
+      <span class="section-note">2 записи · 25.10: воскресный прогон — механический проход (17 просроченных дат) и сверка с сырьём claude-skills (одно расхождение)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробела — допроверка claude-artifacts: публичный шаринг коннекторов и путь Compliance API разошлись с записью 09-05</div>
-        <div class="news-body">Официальная документация (code.claude.com) разошлась с прошлой допроверкой в двух местах: артефакт с коннекторами на деле можно опубликовать по публичной ссылке (просто коннекторы не сработают для зрителя не из организации), а пути Compliance API получили сегмент apps/. Плюс новое: публикация из Remote Control (v2.1.281+), скачивание файла как отдельная capability, шаблоны Claude Slides/Design/Docs.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md">claude-artifacts</a></div>
+        <div class="news-title">сверка с сырьём: claude-skills — одно расхождение найдено</div>
+        <div class="news-body">Воскресный прогон, второе обязательное дело: страница claude-skills (17+ источников, правилась автономной рутиной 4 раза) сверена против своих wiki/sources — большинство утверждений совпало дословно, но абзац про Sepia (1 280 звёзд, четыре дня жизни репозитория) устарел: сама страница sepia зафиксировала рост до ~3,0k звёзд ещё 05.10. Зафиксировано разделом «Противоречия», пункт в бэклоге.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md">sepia</a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Воскресный прогон — механический проход</div>
+        <div class="news-body">321 страница, 33 находки, битых ссылок и сирот нет. Просроченных «Актуально на» — 17 (было 15): восемь новых пересечений порога (claude-statusline, claude-admin-api, mem0, zep-graphiti, cloudflare-tunnel, m3e-canvas, sol-pi, nvidia-pair), claude-managed-agents выпал (дата сдвинулась попутно), apache-maka вернулась. Находки — в gaps-backlog.md, не чинились скопом.</div>
+        <div class="news-links"></div>
       </article>
 
     </div>
@@ -405,7 +412,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md"><span class="tree-name">sepia</span><span class="tree-desc">открытый (MIT) скилл «убрать признаки машинного письма»: 11 файлов правил, 4 операции, русского нет; 10-05 — версия 0.4.0→0.12.2, два новых скрипта линтуют конфигурацию, а не текст</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/geekneural.md"><span class="tree-name">geekneural</span><span class="tree-desc">Telegram-канал, наводка на Sepia; при сверке с репозиторием три расхождения — брать наводкой, не фактом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов; 10-12 — допроверка: версия 3.17.0→3.24.0, официальный плагин <code>dsh-planning-with-files</code> для deepseek-harness</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; допроверка 10-23 — /skill-doctor: критерий «unused» сужен до «never invoked»; формат claude plugin eval оказался уже раскрыт отдельной страницей</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; сверка с сырьём 10-25 — большинство утверждений подтвердилось, но цифра звёзд Sepia устарела (раздел «Противоречия»)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
@@ -504,7 +511,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 10-24 — два противоречия с 09-05 (публичный шаринг коннекторов на деле разрешён, путь Compliance API сменился), плюс Remote Control, скачивание файла, шаблоны Slides/Design/Docs</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 10-24 — два противоречия с 09-05 (публичный шаринг коннекторов на деле разрешён, путь Compliance API сменился), плюс Remote Control, скачивание файла, шаблоны Slides/Design/Docs</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/verification-three-levels.md"><span class="tree-name">verification-three-levels</span><span class="tree-desc">лестница проверок агента: инварианты в коде, замеры на эталонах, человек; 10-15 — третий пример тихого сбоя: Dynamic Workflows-агент отчитался успехом при пропущенном шаге; 09-13 — соседний подвид, отсутствие отчёта (/goal); 10-19 — продакшн-трассы (OpenTelemetry) как непрерывный вход второго уровня</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-harness.md"><span class="tree-name">agent-harness</span><span class="tree-desc">обвязка между моделью и работой: агент = модель + харнес, восемь частей, пять болей, внутренний и внешний харнес</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/spatiotemporal-composability.md"><span class="tree-name">spatiotemporal-composability</span><span class="tree-desc">обратимые компоненты: почему свод правил умеет только расти и что даёт возможность снять плагин без следа</span></a>
