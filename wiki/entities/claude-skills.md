@@ -1,7 +1,7 @@
 # Claude Skills
 
 **Тип:** функция продукта (Claude.ai / Claude Code)
-**Актуально на:** 2026-10-23
+**Актуально на:** 2026-10-25
 
 ## Что это
 Переносимая папка с инструкцией (`SKILL.md`) и опциональными скриптами/референсами, которая один раз устанавливается и "прокачивает" Claude в конкретной области — не разовая задача, а устойчивое умение, применимое в разных проектах и чатах. Вызывается командой `/` или подключается автоматически, когда Claude решает, что скилл релевантен задаче (см. архитектуру progressive disclosure в [[skill-authoring-practical-rules]]). Официально — открытый стандарт [Agent Skills](https://agentskills.io), не привязан к одному инструменту.
@@ -90,13 +90,17 @@ Claude Code отправляет модели листинг всех устан
 
 Звёзды — слабый сигнал. Порядок поиска: официальные каталоги (`/plugin`, `anthropics/skills`) → поиск GitHub по структуре файлов (`filename:SKILL.md "spec"`, `path:.claude/agents review`) → сборники (`obra/superpowers`, [[gstack]], `addyosmani/agent-skills`) → awesome-списки, только как кандидаты. Найденное читать целиком, копировать в свой репозиторий, проверить на 10–20 своих примерах, зафиксировать версию; ограничители почти всегда добавлять самому. Последние два признака дополняют наши правила цепочки поставок («кто автор, когда обновлялось, какие права»).
 
+## Governance: передан в Agentic AI Foundation (2026-10-22, [[claude-skills-agentic-ai-foundation]])
+
+Стандарт Agent Skills больше не держится односторонне Anthropic. Anthropic передала имя, лого, GitHub-организацию и домен `agentskills.io` в **[[agentic-ai-foundation|Agentic AI Foundation (AAIF)]]** при Linux Foundation — тот же фонд, куда ранее ушёл MCP (Anthropic — соучредитель AAIF вместе с Block и OpenAI). Roadmap: версионированные релизы спецификации, формальный процесс предложений изменений, **security guidance для тех, кто пишет и устанавливает скиллы** — то есть будущий официальный ответ на вопрос, который сейчас в этой вики закрыт только собственным неформальным сводом из шести признаков (раздел «Как отбирать чужой скилл» выше). Ведущие мейнтейнеры — David Soria Parra и **Mahesh Murag** — тот самый соавтор Skills из раздела «Что это» выше, теперь в роли мейнтейнера открытого стандарта, а не только автора фичи внутри Anthropic. Инженеры Anthropic, Google, OpenAI и других компаний сопровождают стандарт как частные лица. Практическое следствие: изменения спецификации `SKILL.md` теперь могут приходить через релизы AAIF независимо от changelog Claude Code — стоит отслеживать отдельно, когда появится первый версионированный релиз или security guidance.
+
 ## Противоречия
 
 **Цифра у Sepia в разделе «Экосистема вокруг одной задачи» устарела (найдено 2026-10-25, сверка с сырьём).** Абзац 2026-09-01 называет «у Sepia 1 280 звёзд при четырёх днях жизни репозитория» — на тот момент цифра была верной (прямое чтение репозитория при ingest'е [[geekneural-sepia-de-ai-skill]]), но сама страница [[sepia]] уже зафиксировала рост в «Допроверка 2026-10-05»: версия 0.4.0→0.12.2, звёзды ~1 280→~3,0k, 303 коммита, появились скрипты-линтеры (`check_persona.py`, `check_versions.py`) и шестой доменный маршрут. То есть источник расхождения — не ошибка, а время: абзац не обновлялся вместе со своим же источником. Текст 09-01 не переписан (сверка находит, не чинит); тот же устаревший «1 280★» встречается и на [[ai-text-structural-tells]] — не исправлено той же логике, пункт один на обе страницы.
 
 ## Связи
 
-- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]], [[habr-agent-po-specifikacii]], [[claude-plugin-eval]]
+- Источники: [[ai-proryv-5-levels-claude]], [[metics-media-10k-website]], [[qaisar-claude-full-course]], [[karpathy-skills-claude-md]], [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[claude-code-changelog-snapshot-2026-07-20]], [[romaray-top-5-skills]], [[bohomolov-skill-architecture]], [[geekneural-sepia-de-ai-skill]], [[claude-code-changelog-snapshot-2026-09-10]], [[claude-code-changelog-snapshot-2026-09-13]], [[jev-skill-suggestion-mod]], [[habr-agent-po-specifikacii]], [[claude-plugin-eval]], [[claude-skills-agentic-ai-foundation]]
 - Концепт: [[five-levels-of-claude-mastery]], [[skill-authoring-practical-rules]], [[dynamic-workflows]], [[mcp-model-context-protocol]], [[ai-text-structural-tells]]
-- Сущность: [[sepia]], [[planning-with-files]] (скилл персистентного файлового планирования, не про текст — попал в вики через ту же наводку-без-ссылки, что и Sepia)
+- Сущность: [[sepia]], [[planning-with-files]] (скилл персистентного файлового планирования, не про текст — попал в вики через ту же наводку-без-ссылки, что и Sepia), [[agentic-ai-foundation]]
 - Отличие от [[claude-projects]]: skill — переносимое умение на любой контекст, project — память под конкретную роль.

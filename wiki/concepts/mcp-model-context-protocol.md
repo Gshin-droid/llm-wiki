@@ -129,7 +129,11 @@ if __name__ == "__main__":
 ## Не путать со Skills
 Механизмы часто смешивают (см. [[romaray-top-5-skills]] — вторичный источник, перечисляющий MCP-серверы и скиллы одним списком). Разбор различий — на странице [[claude-skills]].
 
+## Governance: тот же фонд, что теперь и у Skills (добавлено 2026-10-25, [[claude-skills-agentic-ai-foundation]])
+
+MCP держится не Anthropic напрямую, а **[[agentic-ai-foundation|Agentic AI Foundation (AAIF)]]** при Linux Foundation — найдено попутно при разборе новости о передаче туда же стандарта Agent Skills (22.10.2026). Anthropic — соучредитель AAIF вместе с Block и OpenAI; точная дата, когда MCP туда передали, этим заходом не устанавливалась (не первая цель разбора, не изобретать). Практическое следствие для обеих страниц одно: будущие изменения спецификации — и MCP, и `SKILL.md` — теперь приходят через версионированные релизы AAIF, а не только через changelog продуктов Anthropic.
+
 ## Связи
-- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]], [[claude-fable-5-1-launch]], [[mcp-for-beginners-curriculum]]
-- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]], [[mcp-for-beginners]]
+- Источники: [[mcp-2026-07-28-spec-final]], [[mcp-2026-07-28-spec-release-candidate]] (superseded), [[mcp-roadmap-2026-08-22]], [[claude-agent-sdk-overview]], [[romaray-top-5-skills]], [[web3nity-mcp-guide]], [[makeform-freecad-mcp-tutorial]], [[claude-fable-5-1-launch]], [[mcp-for-beginners-curriculum]], [[claude-skills-agentic-ai-foundation]]
+- Сущности: [[claude-code]], [[claude-agent-sdk]], [[obsidian]], [[maxim-bashkardinov]], [[context7]], [[claude-skills]], [[freecad]], [[mcp-for-beginners]], [[agentic-ai-foundation]]
 - Концепты: [[project-documentation-vault-pattern]], [[ai-security-by-design]], [[claude-api-cost-optimization]]

@@ -154,9 +154,13 @@ Enterprise > Personal (`~/.claude/skills/`) > Project (`.claude/skills/`) > Plug
 
 Ограничение, которое здесь уже измерено: маршрутизация окупается не сама по себе. Замер 2026-07-29 ([[humanizer-ru-skill-refactor]]) показал, что наивный вынос правил по файлам вышел на 12% дороже монолита из-за лишних ходов агента, и выигрыш появился только когда файлы перестали открываться вовсе. У Sepia ходов на маршрут два-три — но замера этого никто не делал, звёзды репозитория о стоимости не говорят.
 
+## Governance стандарта переходит в AAIF — ждать официального свода по безопасности (добавлено 2026-10-25, [[claude-skills-agentic-ai-foundation]])
+
+Правила отбора чужого скилла (раздел «Как отбирать чужой скилл» на [[claude-skills]]) и границы доверия выше в этом файле — собственный неформальный свод. 22.10.2026 Anthropic передала стандарт Agent Skills в [[agentic-ai-foundation|Agentic AI Foundation]]; в roadmap заявлено **security guidance для тех, кто пишет и устанавливает скиллы** — то есть будущий официальный ответ на тот же вопрос. Документа пока не существует (пост объявляет только планы, не публикует сам свод) — когда он появится, сверить с ним собственные критерии, а не держать два независимых списка параллельно; задача зафиксирована на [[claude-skills]] и в `wiki/gaps-backlog.md`.
+
 ## Связи
-- Источники: [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[bohomolov-skill-architecture]], [[anthropic-context-engineering-claude-5]], [[geekneural-sepia-de-ai-skill]]
-- Сущность: [[sepia]] — чужой скилл, разобранный как образец маршрутизации
+- Источники: [[anthropic-official-skills-docs]], [[anthropic-code-summit-build-skills-talk]], [[habr-claude-skills-practical-guide]], [[hook-4-pravila-claude-skills]], [[bohomolov-skill-architecture]], [[anthropic-context-engineering-claude-5]], [[geekneural-sepia-de-ai-skill]], [[claude-skills-agentic-ai-foundation]]
+- Сущность: [[sepia]] — чужой скилл, разобранный как образец маршрутизации; [[agentic-ai-foundation]] — governance стандарта
 - Концепт: [[context-engineering-claude-5]] — место скиллов среди остальных слоёв контекста
 - Сущность: [[claude-skills]]
 - Концепт: [[five-levels-of-claude-mastery]] (скиллы — третий уровень владения)

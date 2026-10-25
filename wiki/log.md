@@ -5,6 +5,20 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-10-25] ingest | Claude Skills переданы в Agentic AI Foundation
+
+Ярус 2 того же прогона рутины 1 (новости), сразу после пуша сводки [[novosti-2026-10-25]]. Источник — официальный пост Anthropic «Donating Agent Skills to the Agentic AI Foundation» (`anthropic.com/news`, 22.10.2026), прочитан напрямую через `WebFetch`. Новая страница [[claude-skills-agentic-ai-foundation]].
+
+Факт: Anthropic передала имя, лого, GitHub-организацию и домен `agentskills.io` в Agentic AI Foundation (AAIF) при Linux Foundation — тот же фонд, куда ранее ушёл MCP; Anthropic — соучредитель AAIF вместе с Block и OpenAI. Roadmap — версионированные релизы спецификации, формальный процесс предложений, security guidance для авторов и устанавливающих скиллы. Ведущие мейнтейнеры — David Soria Parra и Mahesh Murag; последний уже известен вики как один из создателей Skills ([[anthropic-code-summit-build-skills-talk]]) — прямая связь отмечена явно.
+
+Новая сущность [[agentic-ai-foundation]] (governance-фонд, держит и MCP, и Skills). Дополнены: [[claude-skills]] (раздел «Governance», «Актуально на» → 10-25, обратная ссылка в «Связи»), [[mcp-model-context-protocol]] (раздел о том же фонде, попутно найдено при разборе — точная дата передачи MCP не устанавливалась, не изобретена), [[skill-authoring-practical-rules]] (указание ждать официального security guidance вместо собственного неформального свода). Задача «сверить свой свод отбора скилла с guidance AAIF, когда выйдет» — в `wiki/gaps-backlog.md`, не выполнена (документа ещё нет).
+
+Берём логику, не инструмент — AAIF не ставится, это governance чужого стандарта; практический вывод — отслеживать версионированные релизы спецификации отдельно от changelog Claude Code, и сверить будущий security guidance с собственным сводом признаков вместо параллельного списка.
+
+`python3 .claude/skills/wiki-ingest/scripts/ingest.py check claude-skills-agentic-ai-foundation` — пройдено после правок (страница в индексе, запись в логе за сегодня, обратная ссылка из entities/concepts есть).
+
+Безопасность: прочитан только официальный пост `anthropic.com/news`; текста, похожего на инструкцию для агента, не найдено.
+
 ## [2026-10-25] news | Сводка новостей: Claude Skills → Agentic AI Foundation, батч sandbox-фиксов Claude Code, Codex CLI 0.164.0
 
 Пятнадцатый прогон рутины 1 (ярус 1). Прошлая сводка — [[novosti-2026-10-19]] (19.10.2026); прогон 22.10 был тихим и довёл проверку до 22.10 (см. запись `## [2026-10-22] news`). Окно этого прогона — 22.10–25.10.2026, прочитаны `wiki/index.md` (раздел News) и последние записи `wiki/log.md` перед поиском.
