@@ -170,6 +170,7 @@ _(идеи, модели, принципы)_
 
 ## Sources
 _(саммари загруженных источников)_
+- [[claude-code-templates-turn-inspector-mod]] — мод боковой панели Claude Code: контекстное окно по ходам, разбивка на системный блок/предыдущие ходы/thinking/текст/вызовы инструментов, честно разделённые точные числа и оценки; дополняет [[context-engineering-claude-5]], [[prompt-cache-control-mod]]
 - [[unsloth-decision-model-training]] — официальный рецепт Unsloth (`FastDecisionModel`/`DecisionTrainer`) дообучить свою модель решений под любой язык/домен, со встроенной калибровкой; дополняет [[laya]], [[jev-typesafe]], [[kalibrovka-uverennosti-resheniy]], новая сущность [[unsloth]]
 - [[claude-code-changelog-snapshot-2026-10-23]] — допроверка claude-code рутиной хвостов: v2.1.302–v2.1.310, девятый узел серии permission-bypass (три обхода песочницы в v2.1.309) и первое осознанное ослабление песочницы вендором (`allowNestedUserNamespaces`, v2.1.305); дополняет [[ai-security-by-design]], [[agent-observability]] (событие `claude_code.safety_event`)
 - [[claude-skills-agentic-ai-foundation]] — официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation (Linux Foundation, 22.10.2026) вместе с MCP; версионированные релизы спецификации, формальный процесс предложений, roadmap на security guidance для авторов скиллов; разбор дополняет [[claude-skills]], [[mcp-model-context-protocol]], [[skill-authoring-practical-rules]], новая сущность [[agentic-ai-foundation]]

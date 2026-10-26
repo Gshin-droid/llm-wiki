@@ -90,4 +90,4 @@
 
 - Сущности: [[claude-code]], [[vibe-coding-channel]]
 - Концепты: [[claude-api-cost-optimization]]
-- Источники: [[jev-skill-suggestion-mod]] (другой мод того же каталога), [[claude-code-changelog-snapshot-2026-10-04]] (появление Claude Mods), [[claude-code-changelog-snapshot-2026-08-25]] (первое появление раздельного срока жизни кэша)
+- Источники: [[jev-skill-suggestion-mod]] (другой мод того же каталога), [[claude-code-templates-turn-inspector-mod]] (тот же каталог, тот же класс мода-наблюдателя — контекст вместо кэша), [[claude-code-changelog-snapshot-2026-10-04]] (появление Claude Mods), [[claude-code-changelog-snapshot-2026-08-25]] (первое появление раздельного срока жизни кэша)

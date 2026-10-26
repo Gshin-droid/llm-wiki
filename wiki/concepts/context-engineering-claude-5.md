@@ -47,10 +47,15 @@
 
 Отдельный сюжет — **auto-memory**: ровно этот механизм виден в сессиях этой вики (директория памяти с файлами-фактами и индексом, которые агент ведёт сам). Он не заменяет `CLAUDE.md` и тем более wiki-слой: память копит факты о пользователе и работе, вики — курируемое знание с проверкой на входе (см. [[persistent-wiki-pattern]], [[claude-memory-tool]]). Механику (формат, область видимости, конфликт с `CLAUDE.md`), которую эта статья не раскрывает, закрывает официальная документация Claude Code — см. [[claude-code-memory-docs]].
 
+## Дополнение (2026-10-26): инструмент посмотреть на слои буквально, по ходам
+
+Источник — [[claude-code-templates-turn-inspector-mod]]. Разделы выше говорят, что должно жить в системном промпте, а что в скиллах — но не дают способа увидеть это в разрезе на реальной сессии. Мод `turn-inspector` рисует ровно эти слои (системный блок / предыдущие ходы / новое сообщение / thinking / текст / вызов инструмента) как стек по каждому ходу, с долей окна контекста и честным разделением точных чисел (из `usage` API) от оценок (эвристика символов на токен). Практический вывод: прежде чем сокращать `CLAUDE.md` или выносить правило в скилл по интуиции, можно открыть панель и увидеть, сколько токенов конкретно стоит системный блок на старте сессии — не гадать по чужим пересказам (как в наводке `ai-assistant #121`, которая спрашивала то же самое без инструмента для ответа).
+
 ## Источники
 
 [[anthropic-context-engineering-claude-5]]
+[[claude-code-templates-turn-inspector-mod]] — инструмент увидеть слои контекста по ходам, а не только правило, что в них должно лежать
 
 ## Связи
 
-[[claude-code]] · [[claude-skills]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-memory-tool]] · [[claude-code-practices]] · [[claude-opus-5-launch]] · [[humanizer-ru-skill-refactor]] · [[claude-code-memory-docs]]
+[[claude-code]] · [[claude-skills]] · [[skill-authoring-practical-rules]] · [[llm-coding-guidelines]] · [[claude-memory-tool]] · [[claude-code-practices]] · [[claude-opus-5-launch]] · [[humanizer-ru-skill-refactor]] · [[claude-code-memory-docs]] · [[claude-code-templates-turn-inspector-mod]]
