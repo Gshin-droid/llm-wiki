@@ -169,6 +169,7 @@ _(идеи, модели, принципы)_
 
 ## Sources
 _(саммари загруженных источников)_
+- [[claude-code-changelog-snapshot-2026-10-23]] — допроверка claude-code рутиной хвостов: v2.1.302–v2.1.310, девятый узел серии permission-bypass (три обхода песочницы в v2.1.309) и первое осознанное ослабление песочницы вендором (`allowNestedUserNamespaces`, v2.1.305); дополняет [[ai-security-by-design]], [[agent-observability]] (событие `claude_code.safety_event`)
 - [[claude-skills-agentic-ai-foundation]] — официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation (Linux Foundation, 22.10.2026) вместе с MCP; версионированные релизы спецификации, формальный процесс предложений, roadmap на security guidance для авторов скиллов; разбор дополняет [[claude-skills]], [[mcp-model-context-protocol]], [[skill-authoring-practical-rules]], новая сущность [[agentic-ai-foundation]]
 - [[claude-agent-observability-platform]] — официальный пост Claude Platform: трассировка агента через OpenTelemetry (публичная бета), три категории применения, клиентские примеры с цифрами (Ramp, FloQast); конкретная форма «обнаружения» из [[zabor-i-stena-prava-agenta]], развёрнуто в [[agent-observability]]
 - [[anthropic-redesigning-source-control]] — официальный инженерный пост Anthropic: собственная система контроля версий (Scion) вместо git на масштабе 30 000 слияний/день; практические выводы — ревью по намерению не построчно, superfan-агенты, агент чинит конфликт быстрее человека; дополняет [[agent-teams]]
