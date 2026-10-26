@@ -38,9 +38,13 @@
 
 [[clm-8b]] (Contrastive-LM, Apache 2.0) устроен иначе, чем Jev, Laya и Verdict: ситуацию и варианты кодирует отдельно и сравнивает векторы, поэтому векторы вариантов кэшируются. Заявлено «наравне с Jev» и до 9 раз быстрее — авторский замер, см. [[clm-8b-contrastive-system-one]]. Цена — полноценная Qwen3-8B на видеокарте через vLLM; для наших задач с единицами вариантов Laya остаётся на своей ступени.
 
+## Дообучение через Unsloth (2026-10-26)
+
+[[unsloth]] умеет не только обучать модели решений с нуля, но и доводить уже готовый чекпоинт Laya дальше (`FastDecisionModel`, LoRA): в официальной таблице бенчмарков «Laya (fine-tuned)» — 77% точности на тестовом наборе `typed-decisions`+BANKING77+CLINC150, 2,5 ГБ, 10 минут обучения. Отдельно — локальная Decision API Unsloth Desktop регистрирует любую дообученную модель под именем `laya` (или `jev-latest`), то есть собственный дообученный чекпоинт может подменить вызовы к этой модели без смены кода, который её зовёт. Разбор — [[unsloth-decision-model-training]]; это первый найденный в вики воспроизводимый путь дообучить decision-модель под язык/домен, которого нет в опубликованных замерах Laya (в первую очередь — русский, см. открытый пункт `wiki/gaps-backlog.md`).
+
 ## Связи
 
-- Источники в вики: [[laya-local-decision-engine]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]]
+- Источники в вики: [[laya-local-decision-engine]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]], [[unsloth-decision-model-training]]
 - Концепты: [[kalibrovka-uverennosti-resheniy]]
 - Практики: [[delegirovanie-deshevym-modelyam]]
-- Сущности: [[jev-typesafe]], [[openjev-verdict-2]]
+- Сущности: [[jev-typesafe]], [[openjev-verdict-2]], [[unsloth]]

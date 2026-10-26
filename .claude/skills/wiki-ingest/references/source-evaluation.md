@@ -47,6 +47,7 @@
 | `arxiv.org` и все проверенные зеркала — `openreview.net`, `neurips.cc`, `researchgate.net`, `semanticscholar.org`, `huggingface.co`, `alphaxiv.org` | `EGRESS_BLOCKED` на уровне прокси | 08-09 |
 | `research.trychroma.com`, `docs.letta.com`, `antigravity.google`, `cursor.com` | `EGRESS_BLOCKED`, домен целиком | 08-08, 08-09, 08-10 |
 | `exa.ai`, `docs.exa.ai` | 403 на весь сайт, не на отдельную страницу | 08-01 и позже |
+| `unsloth.ai`, `www.aitmpl.com` | не резолвятся вовсе (`getaddrinfo ENOTFOUND`) из автономного прогона — DNS-уровень, как у `claude.dev` | 10-26 |
 | `habr.com` — **обычный адрес** | 403 на весь сайт | 08-01 и позже |
 | `openai.com` | 403 на `openai.com/index/*`; страница существует, но не читается | 08-21, из локальной сессии |
 | `web.archive.org`, `r.jina.ai` | не работают как обход — инструменту недоступны | 08-01, 08-05 |

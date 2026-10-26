@@ -55,8 +55,12 @@
 
 [[clm-8b]] (Contrastive-LM, Apache 2.0) устроен иначе, чем Jev, Laya и Verdict: ситуацию и варианты кодирует отдельно и сравнивает векторы, поэтому векторы вариантов кэшируются. Заявлено «наравне с Jev» и до 9 раз быстрее — авторский замер, см. [[clm-8b-contrastive-system-one]]. Цена — полноценная Qwen3-8B на видеокарте через vLLM; отдельно авторы пишут, что Jev не справляется с ролью проверяющего на длинных задачах агентов (выбирает хуже первого варианта наугад) — на 38 и 30 задачах, сравнивая с дообученным CLM.
 
+## Собственная модель вместо отказа от интерфейса (2026-10-26)
+
+[[unsloth]] (разбор — [[unsloth-decision-model-training]]) даёт официальный воспроизводимый рецепт дообучить свою модель решений и зарегистрировать её в локальной Decision API под именем `jev-latest` — запросы к этому имени идут на локальную модель, формат ответа совпадает с форматом Jev/Laya. Решение 2026-09-22 («не используем Jev ни в каком виде») этим не отменяется — речь не об использовании облачного сервиса, а о том, что код, написанный под имя `jev-latest`, можно было бы запитать локальной моделью без переписывания.
+
 ## Связи
 
-- Источники в вики: [[laya-local-decision-engine]], [[jev-skill-suggestion-mod]], [[jev-ecosystem-projects]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]]
-- Сущности: [[laya]], [[openjev-verdict-2]]
+- Источники в вики: [[laya-local-decision-engine]], [[jev-skill-suggestion-mod]], [[jev-ecosystem-projects]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]], [[unsloth-decision-model-training]]
+- Сущности: [[laya]], [[openjev-verdict-2]], [[unsloth]]
 - Концепты: [[kalibrovka-uverennosti-resheniy]]
