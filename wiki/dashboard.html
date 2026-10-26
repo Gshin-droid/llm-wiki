@@ -342,53 +342,39 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-25 (4 записи) · след. запуск 08:00 (10.26)</div>
+      <div class="mono">обновлено 2026-10-26 (2 записи) · след. запуск 08:00 (10.27)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">301</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">6</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">302</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">9</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">82</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">47</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">158</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">159</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">4 записи · 25.10: Claude Skills переданы в Agentic AI Foundation (сводка + полный разбор), воскресный прогон — механический проход (17 просроченных дат) и сверка с сырьём claude-skills (одно расхождение)</span>
+      <span class="section-note">2 записи · 26.10: допроверка claude-code (changelog 2.1.302–310, девятый узел bypass-серии) и закрытие пробела бэклога — цифра звёзд Sepia на claude-skills/ai-text-structural-tells</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude Skills переданы в Agentic AI Foundation</div>
-        <div class="news-body">Ярус 2 рутины новостей: Anthropic передала стандарт Agent Skills (имя, лого, GitHub-организацию, домен agentskills.io) в Agentic AI Foundation при Linux Foundation — тот же фонд, куда ранее ушёл MCP. Версионированные релизы спецификации и roadmap на security guidance для авторов скиллов; новая сущность agentic-ai-foundation.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-skills-agentic-ai-foundation.md">claude-skills-agentic-ai-foundation</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md">agentic-ai-foundation</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: Claude Skills → Agentic AI Foundation, батч sandbox-фиксов Claude Code, Codex CLI 0.164.0</div>
-        <div class="news-body">Пятнадцатый прогон рутины 1, окно 22–25.10. Три пункта: передача Skills в AAIF (полный разбор выше), батч фиксов sandbox/permission Claude Code 2.1.305–310, релиз OpenAI Codex CLI 0.164.0 с enterprise-авторизацией MCP.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-25.md">novosti-2026-10-25</a></div>
+        <div class="news-title">Claude Code changelog 2.1.302–2.1.310: девятый узел bypass-серии и первое осознанное ослабление песочницы</div>
+        <div class="news-body">Допроверка claude-code по наводке разведчика новостей (novosti-2026-10-25). v2.1.309 закрывает три обхода песочницы разом (shell-стартовые файлы вне sandbox, symlink denyWrite на macOS, MCP-конфиг через автопринятые правки); v2.1.305/310 впервые в серии — осознанный клапан вендора (allowNestedUserNamespaces из-за AppArmor), не баг. Плюс событие OpenTelemetry safety_event для agent-observability.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-23.md">claude-code-changelog-snapshot-2026-10-23</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-observability.md">agent-observability</a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">сверка с сырьём: claude-skills — одно расхождение найдено</div>
-        <div class="news-body">Воскресный прогон, второе обязательное дело: страница claude-skills (17+ источников, правилась автономной рутиной 4 раза) сверена против своих wiki/sources — большинство утверждений совпало дословно, но абзац про Sepia (1 280 звёзд, четыре дня жизни репозитория) устарел: сама страница sepia зафиксировала рост до ~3,0k звёзд ещё 05.10. Зафиксировано разделом «Противоречия», пункт в бэклоге.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md">sepia</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Воскресный прогон — механический проход</div>
-        <div class="news-body">321 страница, 33 находки, битых ссылок и сирот нет. Просроченных «Актуально на» — 17 (было 15): восемь новых пересечений порога (claude-statusline, claude-admin-api, mem0, zep-graphiti, cloudflare-tunnel, m3e-canvas, sol-pi, nvidia-pair), claude-managed-agents выпал (дата сдвинулась попутно), apache-maka вернулась. Находки — в gaps-backlog.md, не чинились скопом.</div>
-        <div class="news-links"></div>
+        <div class="news-title">Закрытие пробела — цифра звёзд Sepia исправлена на claude-skills и ai-text-structural-tells</div>
+        <div class="news-body">Пункт бэклога, явно оставленный воскресной сверкой с сырьём 10-25: «1 280 звёзд» у Sepia было верно на дату своего ingest'а (09-01), но сама страница sepia зафиксировала рост до ~3,0k ещё 05.10. Обе дочерние копии цифры обновлены с пометкой даты и причины, текст 09-01 не переписан молча.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-text-structural-tells.md">ai-text-structural-tells</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md">sepia</a></div>
       </article>
 
     </div>
@@ -411,7 +397,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-15 — changelog 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов, MCP-редиректы), тихий пропуск шага у Dynamic Workflows-агентов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 10-26 — changelog 2.1.302–2.1.310: девятый узел bypass-серии (три обхода sandbox в v2.1.309) плюс первое осознанное ослабление песочницы вендором (allowNestedUserNamespaces)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -426,8 +412,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md"><span class="tree-name">sepia</span><span class="tree-desc">открытый (MIT) скилл «убрать признаки машинного письма»: 11 файлов правил, 4 операции, русского нет; 10-05 — версия 0.4.0→0.12.2, два новых скрипта линтуют конфигурацию, а не текст</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/geekneural.md"><span class="tree-name">geekneural</span><span class="tree-desc">Telegram-канал, наводка на Sepia; при сверке с репозиторием три расхождения — брать наводкой, не фактом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов; 10-12 — допроверка: версия 3.17.0→3.24.0, официальный плагин <code>dsh-planning-with-files</code> для deepseek-harness</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; сверка с сырьём тем же днём — цифра звёзд Sepia устарела (раздел «Противоречия»)</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
@@ -505,11 +491,11 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/seven-signs-of-old-junior.md"><span class="tree-name">seven-signs-of-old-junior</span><span class="tree-desc">карьерная стагнация разработчиков, включая ИИ-зависимость</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/10k-website-checklist.md"><span class="tree-name">10k-website-checklist</span><span class="tree-desc">воркфлоу немассового веб-дизайна через Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-full-workflow.md"><span class="tree-name">vibecoding-full-workflow</span><span class="tree-desc">сквозной процесс разработки приложения через ИИ-агента</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-text-structural-tells.md"><span class="tree-name">ai-text-structural-tells</span><span class="tree-desc">почему чистка тире и слов-маркеров не делает текст человеческим: детекция после стилевой правки не падает (93,2% → 93,9%); четыре приёма, не зависящих от языка</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-text-structural-tells.md"><span class="tree-name">ai-text-structural-tells</span><span class="tree-desc">почему чистка тире и слов-маркеров не делает текст человеческим: детекция после стилевой правки не падает (93,2% → 93,9%); четыре приёма, не зависящих от языка; 10-26 — цифра звёзд Sepia исправлена на актуальную</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-15 — восьмой узел серии: песочница плагинов, MCP-редиректы, плюс новый класс — тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 10-26 — девятый узел серии: три обхода sandbox в v2.1.309, плюс первое осознанное ослабление песочницы вендором вместо бага</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
@@ -541,13 +527,13 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/kalibrovka-uverennosti-resheniy.md"><span class="tree-name">kalibrovka-uverennosti-resheniy</span><span class="tree-desc">уверенность модели как измеримая величина (ECE), а не интуиция; 10-02 — название RLCD не цитата первоисточника, омоним другого опубликованного метода; 10-14 — третий самостоятельный вариант расшифровки RLCD найден у openjev-verdict-2</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/maket-kak-tz-dlya-agenta.md"><span class="tree-name">maket-kak-tz-dlya-agenta</span><span class="tree-desc">референс вместо ТЗ прозой: четыре вида референса, три беды прозы, три границы приёма</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/design-md-yakor-stilya.md"><span class="tree-name">design-md-yakor-stilya</span><span class="tree-desc">DESIGN.md как позитивный якорь стиля в паре со списком запретных примет; почему не подключать через @-импорт и как дешевле</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-observability.md"><span class="tree-name">agent-observability</span><span class="tree-desc">трассировка вызовов агента (OpenTelemetry) как «обнаружение» из zabor-i-stena-prava-agenta: трасса → проверка надёжности → расширение доступа; непрерывный вход второго уровня verification-three-levels</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-observability.md"><span class="tree-name">agent-observability</span><span class="tree-desc">трассировка вызовов агента (OpenTelemetry) как «обнаружение» из zabor-i-stena-prava-agenta: трасса → проверка надёжности → расширение доступа; 10-26 — событие claude_code.safety_event делает видимым и момент отказа, не только успех</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/urovni-avtonomnosti-agenta.md"><span class="tree-name">urovni-avtonomnosti-agenta</span><span class="tree-desc">сколько свободы дано агенту и чем подтверждено: R0–R5 «для среды», защитники T1–T5, метрики, разметка своей системы</span></a>
       </div>
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">158</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">159</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md"><span class="tree-name">claude-agent-sdk-resume-argument-injection</span><span class="tree-desc">CVE-2026-96620 (CVSS 9.2): claude-agent-sdk &lt; 0.2.121 передавал resume/session_id в CLI без проверки, впрыск <code>--mcp-config</code> давал RCE при старте мимо permission-контроля SDK; патч 0.2.121</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-15.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-15</span><span class="tree-desc">changelog Claude Code 2.1.299–2.1.301: восьмой узел bypass-серии (песочница плагинов <code>--plugin-dir</code>, MCP без HTTP-редиректов) плюс тихий пропуск шага Dynamic Workflows-агентом при отчёте об успехе</span></a>
@@ -697,7 +683,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/mattpocock-writing-for-agents.md"><span class="tree-name">mattpocock-writing-for-agents</span><span class="tree-desc">скилл о письме для агентов; пак обновлён до 1.3.1</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/stanford-always-on-agents.md"><span class="tree-name">stanford-always-on-agents</span><span class="tree-desc">лекция CS146S об устройстве Grok Bot; замер цены перерывов</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-agent-po-specifikacii.md"><span class="tree-name">habr-agent-po-specifikacii</span><span class="tree-desc">Хабр 20.10: агент как набор файлов (цель, конституция, спека, эталоны, запреты, метрики) с рабочим кодом ревьюера PR; допроверка 10-22 — цифра «85%→55%» у Anthropic не найдена нигде, закрыта отрицательно</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-skills-agentic-ai-foundation.md"><span class="tree-name">claude-skills-agentic-ai-foundation</span><span class="tree-desc">официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation при Linux Foundation (22.10.2026), версионированные релизы и roadmap на security guidance</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-skills-agentic-ai-foundation.md"><span class="tree-name">claude-skills-agentic-ai-foundation</span><span class="tree-desc">официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation при Linux Foundation (22.10.2026), версионированные релизы и roadmap на security guidance</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-23.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-23</span><span class="tree-desc">changelog Claude Code 2.1.302–2.1.310: девятый узел bypass-серии (три обхода sandbox в v2.1.309) плюс первое осознанное ослабление песочницы вендором (allowNestedUserNamespaces) и событие OpenTelemetry safety_event</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
