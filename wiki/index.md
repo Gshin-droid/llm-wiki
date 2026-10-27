@@ -92,6 +92,8 @@ _(люди, компании, инструменты)_
 - [[inspo]] — MCP-архив 832 реальных сайтов с DESIGN.md, снятым с кода; кандидат в источник якоря стиля, подключать вручную в проект
 - [[spotify-shunt-plugin]] — плагин Spotify: хук отдаёт чтение больших файлов дешёвой модели; только через Spotify Portal, не ставим
 - [[lee-robinson]] — автор стэнфордской лекции о постоянно работающих агентах (Grok Bot)
+- [[gigaam]] — семейство открытых акустических моделей Sber для русской речи (MIT), ASR-движок проекта [[dictum-golosovaya-diktovka]]; закрытие пробела 10-27: официальная таблица WER против Whisper (9.1%/8.3% против 21.0%), диаризации не делает — только VAD для longform
+- [[whisperx]] — обёртка над Whisper: батчи, word-level alignment, разделение по говорящим через `pyannote` (BSD-2-Clause); закрытие пробела 10-27: официальная оговорка «diarization is far from perfect», word-level диаризация — открытый TODO автора
 
 ## Concepts
 _(идеи, модели, принципы)_
@@ -170,6 +172,7 @@ _(идеи, модели, принципы)_
 
 ## Sources
 _(саммари загруженных источников)_
+- [[gigaam-whisperx-repo-review]] — закрытие пробела рутиной хвостов: официальные репозитории GigaAM и WhisperX против наводки инбокса — GigaAM бьёт Whisper по WER на русском (9.1%/8.3% против 21.0%), но не делает диаризацию (только VAD); WhisperX делает диаризацию через `pyannote`, но сам честно пишет «far from perfect»; новые сущности [[gigaam]], [[whisperx]]
 - [[claude-code-templates-turn-inspector-mod]] — мод боковой панели Claude Code: контекстное окно по ходам, разбивка на системный блок/предыдущие ходы/thinking/текст/вызовы инструментов, честно разделённые точные числа и оценки; дополняет [[context-engineering-claude-5]], [[prompt-cache-control-mod]]
 - [[unsloth-decision-model-training]] — официальный рецепт Unsloth (`FastDecisionModel`/`DecisionTrainer`) дообучить свою модель решений под любой язык/домен, со встроенной калибровкой; дополняет [[laya]], [[jev-typesafe]], [[kalibrovka-uverennosti-resheniy]], новая сущность [[unsloth]]
 - [[claude-code-changelog-snapshot-2026-10-23]] — допроверка claude-code рутиной хвостов: v2.1.302–v2.1.310, девятый узел серии permission-bypass (три обхода песочницы в v2.1.309) и первое осознанное ослабление песочницы вендором (`allowNestedUserNamespaces`, v2.1.305); дополняет [[ai-security-by-design]], [[agent-observability]] (событие `claude_code.safety_event`)
