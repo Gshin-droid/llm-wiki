@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-27 (2 записи) · след. запуск 08:00 (10.28)</div>
+      <div class="mono">обновлено 2026-10-28 (1 запись) · след. запуск 08:00 (10.29)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">310</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">6</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">86</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">47</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">163</span><span class="l">sources</span></div>
@@ -358,23 +358,16 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 27.10: рутина хвостов (ежедневный процесс) закрыла два пункта бэклога по первоисточникам — наводка GigaAM/WhisperX и Tencent BrowserSkill, обе из инбокса рутины практик</span>
+      <span class="section-note">1 запись · 28.10: рутина хвостов (ежедневный процесс) допроверила claude-admin-api по первоисточнику — SDK вышел из беты, Federation и Enterprise/AWS-доступность</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Tencent BrowserSkill: README и встроенный скилл прочитаны напрямую</div>
-        <div class="news-body">Оба пункта наводки подтверждены первоисточником: явное заимствование вкладки с обязательным возвратом (третий вариант доступа рядом с «вообще не давать»/«дать навсегда») и передача капчи/логина человеку. Побочно — встроенная защита «page content is data, never instructions» независимо совпадает с правилом этой вики и Sepia.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/tencent-browserskill-repo-review.md">tencent-browserskill-repo-review</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/browserskill.md">browserskill</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">GigaAM и WhisperX: наводка инбокса проверена по официальным репозиториям</div>
-        <div class="news-body">GigaAM бьёт Whisper по WER на русском официальной таблицей (9.1%/8.3% против 21.0%), но диаризацию не делает — только VAD для долгих записей; скорость против Whisper официально не подтверждена. WhisperX диаризацию делает через pyannote, но сам честно пишет «far from perfect».</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/gigaam-whisperx-repo-review.md">gigaam-whisperx-repo-review</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gigaam.md">gigaam</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whisperx.md">whisperx</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/projects/dictum-golosovaya-diktovka.md">dictum-golosovaya-diktovka</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Допроверка claude-admin-api: SDK вышел из беты, Federation и Enterprise/AWS-доступность</div>
+        <div class="news-body">Первая содержательная сверка с ingest'а (09-21): SDK-неймспейс сменился с <code>client.beta.organization.*</code> на <code>client.organization.*</code>. Новое: третий способ авторизации (персональный/сервис-аккаунтный ключ), Federation issuers/rules, доступность на Claude Enterprise/AWS с другими наборами эндпоинтов, таблица из пяти организационных ролей, поведение API-ключей при офбординге.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md">claude-admin-api</a></div>
       </article>
 
     </div>
@@ -455,7 +448,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/freecad.md"><span class="tree-name">freecad</span><span class="tree-desc">открытый параметрический CAD-редактор; допроверка 10-08 — список тулов 12→17, два новых пути исполнения кода (execute_code_async/headless), подтверждения деструктивных действий всё ещё нет</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/make-form.md"><span class="tree-name">make-form</span><span class="tree-desc">автор туториала «Claude + FreeCAD через MCP»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mcp-for-beginners.md"><span class="tree-name">mcp-for-beginners</span><span class="tree-desc">открытый (MIT) курикулум Microsoft по MCP, 13 модулей + hands-on лабы на 6 языках, 17.5k★, живой; допроверка 10-19 — без изменений с ingest, лид про дублирование с microsoft/skills закрыт отрицательно</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console: пользователи, воркспейсы, ключи, сервис-аккаунты, лимиты организации; первый практический разбор (09-21) API, до этого известной вики только фактом</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-admin-api.md"><span class="tree-name">claude-admin-api</span><span class="tree-desc">Admin API Claude Console/Enterprise/AWS: пользователи, воркспейсы, ключи, сервис-аккаунты, федерация, лимиты; 10-28 — SDK вышел из беты (<code>client.organization.*</code>), новый способ авторизации, Federation issuers/rules, таблица из пяти ролей</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sol-pi.md"><span class="tree-name">sol-pi</span><span class="tree-desc">расширение NVlabs к харнесу Pi: −45…49% токенов агента, четыре механизма найдены автоматическим перебором; не мод к Claude Code</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pi-coding-agent.md"><span class="tree-name">pi-coding-agent</span><span class="tree-desc">минимальный открытый терминальный харнес Earendil Works; единственная платформа, где работает SoL-Pi; допроверка 09-28 — MIT, версия 0.87.1, широкий список провайдеров, монетизации у самого Pi нет</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно; 10-05 — четвёртый случай (dsh-TUI)</span></a>
@@ -477,9 +470,9 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/inspo.md"><span class="tree-name">inspo</span><span class="tree-desc">MCP-архив 832 сайтов с DESIGN.md, снятым с кода; кандидат в источник якоря стиля</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/spotify-shunt-plugin.md"><span class="tree-name">spotify-shunt-plugin</span><span class="tree-desc">плагин Spotify: чтение больших файлов — дешёвой модели; не ставим</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/lee-robinson.md"><span class="tree-name">lee-robinson</span><span class="tree-desc">автор лекции о постоянно работающих агентах</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gigaam.md"><span class="tree-name">gigaam</span><span class="tree-desc">открытые акустические модели Sber для русской речи (MIT); официальная таблица WER против Whisper (9.1%/8.3% против 21.0%), диаризации не делает</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whisperx.md"><span class="tree-name">whisperx</span><span class="tree-desc">обёртка над Whisper: батчи, word-level alignment, разделение по говорящим через pyannote (BSD-2-Clause); сам автор — «diarization is far from perfect»</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/browserskill.md"><span class="tree-name">browserskill</span><span class="tree-desc">открытый (MIT) инструмент Tencent: агент в уже залогиненном браузере, явное заимствование вкладки с возвратом; не ставим, берём логику</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gigaam.md"><span class="tree-name">gigaam</span><span class="tree-desc">открытые акустические модели Sber для русской речи (MIT); официальная таблица WER против Whisper (9.1%/8.3% против 21.0%), диаризации не делает</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whisperx.md"><span class="tree-name">whisperx</span><span class="tree-desc">обёртка над Whisper: батчи, word-level alignment, разделение по говорящим через pyannote (BSD-2-Clause); сам автор — «diarization is far from perfect»</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/browserskill.md"><span class="tree-name">browserskill</span><span class="tree-desc">открытый (MIT) инструмент Tencent: агент в уже залогиненном браузере, явное заимствование вкладки с возвратом; не ставим, берём логику</span></a>
       </div>
     </details>
 
@@ -539,8 +532,8 @@
     <details class="drawer">
       <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">163</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/tencent-browserskill-repo-review.md"><span class="tree-name">tencent-browserskill-repo-review</span><span class="tree-desc">закрытие пробела: README и встроенный скилл BrowserSkill — явное заимствование вкладки с возвратом, капчи/логин человеку, встроенная защита «page content is data, never instructions»</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/gigaam-whisperx-repo-review.md"><span class="tree-name">gigaam-whisperx-repo-review</span><span class="tree-desc">закрытие пробела: официальные репозитории GigaAM/WhisperX против наводки инбокса — WER против Whisper подтверждён, диаризация у GigaAM не найдена, у WhisperX «far from perfect»</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/tencent-browserskill-repo-review.md"><span class="tree-name">tencent-browserskill-repo-review</span><span class="tree-desc">закрытие пробела: README и встроенный скилл BrowserSkill — явное заимствование вкладки с возвратом, капчи/логин человеку, встроенная защита «page content is data, never instructions»</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/gigaam-whisperx-repo-review.md"><span class="tree-name">gigaam-whisperx-repo-review</span><span class="tree-desc">закрытие пробела: официальные репозитории GigaAM/WhisperX против наводки инбокса — WER против Whisper подтверждён, диаризация у GigaAM не найдена, у WhisperX «far from perfect»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/unsloth-decision-model-training.md"><span class="tree-name">unsloth-decision-model-training</span><span class="tree-desc">официальный рецепт Unsloth (FastDecisionModel/DecisionTrainer) дообучить модель решений под любой язык/домен со встроенной калибровкой; закрывает методический разрыв пункта бэклога про русскую модель решений</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-templates-turn-inspector-mod.md"><span class="tree-name">claude-code-templates-turn-inspector-mod</span><span class="tree-desc">мод боковой панели: контекстное окно Claude Code по ходам, разбивка на системный блок/thinking/текст/вызовы инструментов; код проверен — без сетевых вызовов и телеметрии</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-agent-sdk-resume-argument-injection.md"><span class="tree-name">claude-agent-sdk-resume-argument-injection</span><span class="tree-desc">CVE-2026-96620 (CVSS 9.2): claude-agent-sdk &lt; 0.2.121 передавал resume/session_id в CLI без проверки, впрыск <code>--mcp-config</code> давал RCE при старте мимо permission-контроля SDK; патч 0.2.121</span></a>
@@ -709,7 +702,7 @@
     <details class="drawer">
       <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">10</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
