@@ -16,6 +16,8 @@
 
 **Дополнение 2026-08-31.** Пятый материал — вводный разбор RAG, самый ранний по дате публикации (14.10.2025) из всех пяти. Тот же паттерн: без ссылок на источники метрик/фреймворков, но архитектурная часть (конвейер, пять продвинутых техник, Ragas) проверяема по описанию самого механизма и презумпции не противоречит.
 
+**Дополнение 2026-10-29.** Шестой и седьмой материалы — о проверке агентов ([[berezhnitsky-testing-ai-agents]], 09.10) и о месте человека в процессе ([[berezhnitsky-engineer-when-ai-writes-code]], 28.10). **В шестом впервые дан список первоисточников** — 15 ссылок на исследования в описании: прежняя устойчивая слабость закрыта (сами статьи не проверялись — домен из прогонов открывается плохо). Седьмой снова без ссылок. Оба сошлись с независимыми источниками того же разбора по пяти пунктам — [[pyat-mysley-pachki-a]].
+
 ## Связи
-- Источники: [[berezhnitsky-7-signs-old-jun]], [[berezhnitsky-attack-for-3-dollars]], [[berezhnitsky-agent-memory-lies]], [[bereznitsky-harness-engineering]], [[berezhnitsky-rag-explained]]
+- Источники: [[berezhnitsky-7-signs-old-jun]], [[berezhnitsky-attack-for-3-dollars]], [[berezhnitsky-agent-memory-lies]], [[bereznitsky-harness-engineering]], [[berezhnitsky-rag-explained]], [[berezhnitsky-testing-ai-agents]], [[berezhnitsky-engineer-when-ai-writes-code]]
 - Концепты: [[seven-signs-of-old-junior]], [[ai-security-by-design]], [[agent-memory-five-questions]], [[agent-harness]], [[verification-three-levels]], [[rag-retrieval-augmented-generation]]
