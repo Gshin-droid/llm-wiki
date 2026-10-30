@@ -4,6 +4,8 @@
     python ingest.py pending              # сырые материалы без страницы в wiki/sources
     python ingest.py check <slug>         # проверить готовность разбора
     python ingest.py check-new <base>     # то же для страниц, добавленных после base (для CI)
+    python ingest.py reshenie <часть имени> --zagolovok "..." --tekst "..."
+                                          # запись-решение «не берём» в лог
     python ingest.py --self-test
 
 Смысловое (что взять из источника, во что превратить, чему противоречит)
@@ -174,6 +176,66 @@ def check(root, slug, today):
     return problems
 
 
+# Web Clipper и ассистент кладут в имена неразрывные пробелы и дефисы: набранное
+# с клавиатуры имя с ними не совпадает, 29.10 запись руками из-за этого не сработала.
+LOOKALIKE = str.maketrans({" ": " ", " ": " ", "‑": "-", "‐": "-", "–": "-"})
+
+
+def _norm(s):
+    return s.translate(LOOKALIKE).casefold()
+
+
+def reshenie(root, part, title, text, today):
+    """Запись-решение «не берём» в начало лога. Пост ищется только среди
+    неразобранных: решение второй раз не запишется. Возвращает (путь, ошибка)."""
+    found = [i for i in pending(root) if _norm(part) in _norm(i)]
+    if len(found) != 1:
+        return None, (f"по «{part}» среди неразобранного найдено {len(found)}"
+                      + "".join(f"\n  {f}" for f in found))
+    item = found[0]
+    key = item[:-3] if item.endswith(".md") else item  # pending сверяет по имени без .md
+    num = inbox_posts(root).get(item, (None,))[0]
+    ref = f"`{key}`" + (f" (`ai-assistant {num}`)" if num and num.startswith("#") else "")
+    entry = f"## [{today}] ingest | {title}\n\nСырьё: {ref}. {text.strip()}\n\n"
+
+    log = root / "wiki" / "log.md"
+    old = log.read_text(encoding="utf-8")
+    m = re.search(r"^## \[", old, re.M)  # новые записи сверху, сразу под шапкой
+    new = old[:m.start()] + entry + old[m.start():] if m else old.rstrip() + "\n\n" + entry
+    if key not in new or not new.startswith(old[:m.start()] if m else old.rstrip()):
+        return None, "запись собралась неправильно, лог не тронут"
+    log.write_text(new, encoding="utf-8")
+    if item in pending(root):
+        return None, f"запись легла, но {item} всё ещё в pending — проверить лог руками"
+    return item, None
+
+
+def self_test_reshenie():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        r = Path(tmp)
+        d = r / "raw" / "inbox-assistant"
+        d.mkdir(parents=True)
+        (r / "wiki" / "sources").mkdir(parents=True)
+        nbsp = "2026-10-21-защита vps‑ssh.md"
+        (d / nbsp).write_text("---\nsource: ai-assistant #190\n---\nтекст", encoding="utf-8")
+        (d / "2026-10-21-другое.md").write_text("текст", encoding="utf-8")
+        head = "# Лог\n\nшапка\n\n"
+        (r / "wiki" / "log.md").write_text(head + "## [2026-10-01] ingest | старое\n\nтело\n", encoding="utf-8")
+
+        item, err = reshenie(r, "защита vps-ssh", "наводка: VPS — не берём", "Решение пользователя.", "2026-10-30")
+        assert err is None and item.endswith(nbsp), err
+        log = (r / "wiki" / "log.md").read_text(encoding="utf-8")
+        assert log.startswith(head + "## [2026-10-30] ingest | наводка: VPS — не берём\n"), log
+        assert "(`ai-assistant #190`)" in log and "## [2026-10-01] ingest | старое" in log
+        assert pending(r) == ["raw/inbox-assistant/2026-10-21-другое.md"], pending(r)
+        # повтор и неоднозначность лог не трогают
+        (d / "2026-10-22-третье.md").write_text("текст", encoding="utf-8")
+        assert reshenie(r, "защита", "x", "y", "2026-10-30")[1]
+        assert reshenie(r, "2026", "x", "y", "2026-10-30")[1]
+        assert (r / "wiki" / "log.md").read_text(encoding="utf-8") == log
+
+
 def added_sources(base, ref="HEAD", cwd=None):
     """Слаги страниц wiki/sources/, появившихся между base и ref.
 
@@ -248,6 +310,7 @@ def self_test():
 
     self_test_added()
     self_test_duplicates()
+    self_test_reshenie()
     print("self-test ok")
 
 
@@ -312,8 +375,10 @@ def self_test_added():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("command", nargs="?", choices=["pending", "check", "check-new"])
-    ap.add_argument("slug", nargs="?", help="для check — slug страницы, для check-new — base-коммит")
+    ap.add_argument("command", nargs="?", choices=["pending", "check", "check-new", "reshenie"])
+    ap.add_argument("slug", nargs="?", help="для check — slug страницы, для check-new — base-коммит, для reshenie — часть имени сырья")
+    ap.add_argument("--zagolovok", help="reshenie: заголовок записи после «ingest |»")
+    ap.add_argument("--tekst", help="reshenie: тело — что за материал и почему не берём")
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -357,6 +422,16 @@ def main():
                 print(f"  - {p}")
             return 1
         print(f"{args.slug}: страница, индекс, лог и связи на месте.")
+        return 0
+
+    if args.command == "reshenie":
+        if not (args.slug and args.zagolovok and args.tekst):
+            ap.error("reshenie требует часть имени, --zagolovok и --tekst")
+        item, err = reshenie(root, args.slug, args.zagolovok, args.tekst, dt.date.today().isoformat())
+        if err:
+            print(err, file=sys.stderr)
+            return 1
+        print(f"Решение записано в wiki/log.md, {item} ушёл из pending.")
         return 0
 
     if args.command == "check-new":
