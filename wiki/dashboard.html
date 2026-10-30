@@ -342,26 +342,54 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-30 (2 записи) · след. запуск 08:00 (10.31)</div>
+      <div class="mono">обновлено 2026-10-30 (6 записей) · след. запуск 08:00 (10.31)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">319</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">322</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">10</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">86</span><span class="l">entities</span></div>
-    <div class="stat"><span class="n">47</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">171</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
+    <div class="stat"><span class="n">173</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 30.10: ежемесячный цикл dsh-плагинов + допроверка apache-maka (противоречие найдено)</span>
+      <span class="section-note">6 записей · 30.10: сводка о поддельном расширении Claude Code, два разбора инбокса, цикл dsh-плагинов, допроверка apache-maka</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">наводка: поддельное расширение Claude Code в магазине Cursor — взято пунктом сводки</div>
+        <div class="news-body">Пересланный пост с неточным заголовком («официальное расширение»); отдельной страницы нет, новость — в сводке, механизм — в концепте безопасности.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-30.md">news</a></span>
+        <div class="news-title">Внеочередная сводка: поддельное расширение Claude Code в магазине Cursor</div>
+        <div class="news-body">29.10 в магазине расширений Cursor около 11 часов лежала anthropic.claude-code 2.1.313 с SSH-бэкдором; магазин Microsoft и Open VSX не затронуты. В сводке — признаки заражения и как проверить машину; в концепте — третья проверка доверия к расширению: канал поставки.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code<span class="badge-new">обновлено</span></a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md">cursor<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">«Вайб-кодинг»: 23 проверки перед первым платежом</div>
+        <div class="news-body">Авторский пост канала с чек-листом перед первым платежом, переложенный на свой стек: из 23 пунктов наши скиллы закрывали 2,5; пункты под Supabase переложены смыслом.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vaib-koding-23-punkta-pered-pervym-platezhom.md">vaib-koding-23-punkta-pered-pervym-platezhom</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-app-security.md">vibecoding-app-security<span class="badge-new">обновлено</span></a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md">vibe-coding-channel<span class="badge-new">обновлено</span></a></div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Базовая защита VPS: наводка сверена с документацией</div>
+        <div class="news-body">Пункты наводки сверены с OpenSSH, fail2ban, CrowdSec и Ansible. Главное, чего в наводке нет: в sshd_config побеждает первое значение, и файл cloud-init может открыть вход по паролю — проверять sshd -T.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vps-bazovaya-zashchita-ssh-crowdsec-ansible.md">vps-bazovaya-zashchita-ssh-crowdsec-ansible</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md">bazovaya-zashchita-servera</a></div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -403,7 +431,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/pinecone.md"><span class="tree-name">pinecone</span><span class="tree-desc">векторная БД для масштабирования (не используется); 10-16 — официальный MCP работает только с индексами integrated inference, self-hosted Nexus README не упомянут</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/notebooklm.md"><span class="tree-name">notebooklm</span><span class="tree-desc">RAG-система Google, контраст с паттерном этой вики</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md"><span class="tree-name">cursor</span><span class="tree-desc">AI-native IDE, альтернатива Claude Code; 10-30 — в её магазине расширений около 11 часов лежала поддельная Claude Code 2.1.313 с SSH-бэкдором</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/multica.md"><span class="tree-name">multica</span><span class="tree-desc">организация, публикует репозиторий с гайдлайнами Карпати; продукт — source-available (Multica License, не чистый Apache 2.0) платформа делегирования задач 26 агентам; допроверка 10-08</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/comrad404.md"><span class="tree-name">comrad404</span><span class="tree-desc">автор канала обзоров ИИ-инструментов; разбор харнеса, необычно добросовестный для формата</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/paragonzone.md"><span class="tree-name">paragonzone</span><span class="tree-desc">канал про ИИ-инструменты; разбор безопасности вайбкодинг-проектов на собственном стенде</span></a>
@@ -484,7 +512,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">47</span></summary>
+      <summary><span class="drawer-label">Concepts</span><span class="drawer-desc">идеи, модели, принципы</span><span class="drawer-count">48</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/persistent-wiki-pattern.md"><span class="tree-name">persistent-wiki-pattern</span><span class="tree-desc">вики вместо RAG: накопление знаний вместо повторного извлечения; 10-06 — Google Open Knowledge Format формализует ту же архитектуру независимо</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ingest-query-lint.md"><span class="tree-name">ingest-query-lint</span><span class="tree-desc">пять операций ведения вики (Ingest/Query/Project/Practice/Lint)</span></a>
@@ -533,11 +561,12 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/design-md-yakor-stilya.md"><span class="tree-name">design-md-yakor-stilya</span><span class="tree-desc">DESIGN.md как позитивный якорь стиля в паре со списком запретных примет; почему не подключать через @-импорт и как дешевле</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-observability.md"><span class="tree-name">agent-observability</span><span class="tree-desc">трассировка вызовов агента (OpenTelemetry) как «обнаружение» из zabor-i-stena-prava-agenta: трасса → проверка надёжности → расширение доступа; 10-26 — событие claude_code.safety_event делает видимым и момент отказа, не только успех</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/urovni-avtonomnosti-agenta.md"><span class="tree-name">urovni-avtonomnosti-agenta</span><span class="tree-desc">сколько свободы дано агенту и чем подтверждено: R0–R5 «для среды», защитники T1–T5, метрики, разметка своей системы</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md"><span class="tree-name">bazovaya-zashchita-servera</span><span class="tree-desc">базовая защита VPS: вход по ключу, «первое значение побеждает» в sshd_config и файл cloud-init, sshd -T как доказательство, fail2ban/CrowdSec</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">167</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">173</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/unclebob-ub-mode.md"><span class="tree-name">unclebob-ub-mode</span><span class="tree-desc">скилл инженерной дисциплины Роберта Мартина: не ставим (дублирует ponytail/superpowers), берём мутационное тестирование и правило «тест, проходящий при пустых функциях, — выбросить»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opencode-agents-md-pravila.md"><span class="tree-name">opencode-agents-md-pravila</span><span class="tree-desc">AGENTS.md проекта OpenCode: из трёх правил поста взято одно — усложнение ради маловероятного, по формуле «сбой — вероятность — цена»</span></a>
@@ -697,6 +726,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-agent-po-specifikacii.md"><span class="tree-name">habr-agent-po-specifikacii</span><span class="tree-desc">Хабр 20.10: агент как набор файлов (цель, конституция, спека, эталоны, запреты, метрики) с рабочим кодом ревьюера PR; допроверка 10-22 — цифра «85%→55%» у Anthropic не найдена нигде, закрыта отрицательно; 10-28 — итог пилота перенесён в скилл наряда</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-skills-agentic-ai-foundation.md"><span class="tree-name">claude-skills-agentic-ai-foundation</span><span class="tree-desc">официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation при Linux Foundation (22.10.2026), версионированные релизы и roadmap на security guidance</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-23.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-23</span><span class="tree-desc">changelog Claude Code 2.1.302–2.1.310: девятый узел bypass-серии (три обхода sandbox в v2.1.309) плюс первое осознанное ослабление песочницы вендором (allowNestedUserNamespaces) и событие OpenTelemetry safety_event</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vaib-koding-23-punkta-pered-pervym-platezhom.md"><span class="tree-name">vaib-koding-23-punkta-pered-pervym-platezhom</span><span class="tree-desc">«Вайб-кодинг»: 23 проверки перед первым платежом (платежи, данные, интерфейс), переложено на свой стек</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vps-bazovaya-zashchita-ssh-crowdsec-ansible.md"><span class="tree-name">vps-bazovaya-zashchita-ssh-crowdsec-ansible</span><span class="tree-desc">наводка чата о защите VPS, сверенная с документацией OpenSSH, fail2ban, CrowdSec, Ansible</span><span class="badge-new">новое</span></a>
       </div>
     </details>
 
@@ -711,7 +742,7 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">10</span></summary>
+      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">11</span></summary>
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span></a>
