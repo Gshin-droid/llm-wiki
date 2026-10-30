@@ -7,7 +7,11 @@
 ## Что это
 AI-ориентированная IDE, альтернатива/конкурент [[claude-code]] по use case (AI-assisted разработка прямо в редакторе). Поддерживает project rules через `.cursor/rules/*.mdc`, куда можно положить те же гайдлайны, что и в [[claude-code|CLAUDE.md]] — см. [[llm-coding-guidelines]].
 
+## Инцидент: поддельное расширение Claude Code в магазине Cursor (29.10.2026)
+Свой магазин расширений Cursor — отдельная цепочка поставок: 29.10 в нём около 11 часов лежала поддельная `anthropic.claude-code` 2.1.313 с SSH-бэкдором, в магазине Microsoft её не было. Атрибуция магазина — по заявлению Cursor в пересказах. Подробности — [[novosti-2026-10-30]].
+
 ## Связи
+- Инцидент: [[novosti-2026-10-30]], [[ai-security-by-design]]
 - Источник: [[karpathy-skills-claude-md]]
 - Альтернатива для: [[claude-code]]
 - Использует: [[llm-coding-guidelines]] (через `.cursor/rules/karpathy-guidelines.mdc`)
