@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-10-30 (6 записей) · след. запуск 08:00 (10.31)</div>
+      <div class="mono">обновлено 2026-10-31 (2 записи) · след. запуск 08:00 (11.01)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">322</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">10</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">86</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">173</span><span class="l">sources</span></div>
@@ -358,51 +358,23 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">6 записей · 30.10: сводка о поддельном расширении Claude Code, два разбора инбокса, цикл dsh-плагинов, допроверка apache-maka</span>
+      <span class="section-note">2 записи · 31.10: VPN-туннель не закрыт (домены заблокированы), допроверка opencode — провайдер claude-agent возвращает подписку</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">наводка: поддельное расширение Claude Code в магазине Cursor — взято пунктом сводки</div>
-        <div class="news-body">Пересланный пост с неточным заголовком («официальное расширение»); отдельной страницы нет, новость — в сводке, механизм — в концепте безопасности.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-10-30.md">news</a></span>
-        <div class="news-title">Внеочередная сводка: поддельное расширение Claude Code в магазине Cursor</div>
-        <div class="news-body">29.10 в магазине расширений Cursor около 11 часов лежала anthropic.claude-code 2.1.313 с SSH-бэкдором; магазин Microsoft и Open VSX не затронуты. В сводке — признаки заражения и как проверить машину; в концепте — третья проверка доверия к расширению: канал поставки.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code<span class="badge-new">обновлено</span></a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md">cursor<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">«Вайб-кодинг»: 23 проверки перед первым платежом</div>
-        <div class="news-body">Авторский пост канала с чек-листом перед первым платежом, переложенный на свой стек: из 23 пунктов наши скиллы закрывали 2,5; пункты под Supabase переложены смыслом.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vaib-koding-23-punkta-pered-pervym-platezhom.md">vaib-koding-23-punkta-pered-pervym-platezhom</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/vibecoding-app-security.md">vibecoding-app-security<span class="badge-new">обновлено</span></a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md">vibe-coding-channel<span class="badge-new">обновлено</span></a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Базовая защита VPS: наводка сверена с документацией</div>
-        <div class="news-body">Пункты наводки сверены с OpenSSH, fail2ban, CrowdSec и Ansible. Главное, чего в наводке нет: в sshd_config побеждает первое значение, и файл cloud-init может открыть вход по паролю — проверять sshd -T.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vps-bazovaya-zashchita-ssh-crowdsec-ansible.md">vps-bazovaya-zashchita-ssh-crowdsec-ansible</a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md">bazovaya-zashchita-servera</a></div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">VPN-туннель вместо открытого порта SSH — не закрыто, оба домена заблокированы</div>
+        <div class="news-body">wireguard.com и tailscale.com недостижимы, запасные README репозиториев не описывают ни архитектуру, ни риск потери доступа. Пункт бэклога остаётся открытым — закрывается локальной сессией или при разблокировке доменов.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md">bazovaya-zashchita-servera</a></div>
       </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка apache-maka: официальный релиз 0.2.0, противоречие по «признанному отклонению» гейта уведомлений</div>
-        <div class="news-body">Бюджет каталога скиллов и контракт приватности подтверждены без расхождений; найден официальный ASF-релиз 0.2.0 и уточнение про Node.js 23 (не поддерживается). Текущая документация не подтверждает ранее записанный баг гейта уведомлений — формулирует противоположное как намеренное поведение; зафиксировано разделом «Противоречия», старый текст не удалён.</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md">apache-maka</a></div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Ежемесячный цикл dsh: тег dsh-plugin вырос до 24 862, вердикт не изменился</div>
-        <div class="news-body">Второй цикл ежемесячной проверки экосистемы плагинов DeepSeek Harness — всё ещё developer preview, аудита безопасности нет, изоляции плагинов нет. Тег dsh-plugin вырос 16 300→24 862, топ выдачи по звёздам сменился на треть (новый лидер — реверс-инжиниринг, тема не про плагины dsh прямо).</div>
-        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md">deepseek-harness</a></div>
+        <div class="news-title">Допроверка opencode: провайдер claude-agent возвращает подписку другим путём</div>
+        <div class="news-body">Версия монорепозитория 1.3.0→2.2.5. Новый провайдер claude-agent (v2.2.3) запускает установленный у пользователя claude под его собственным логином — подписка Anthropic в OpenCode снова доступна (показывает $0), но не возвратом снятой в 02-2026 схемы встроенных OAuth-плагинов.</div>
+        <div class="news-links"><a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md">opencode<span class="badge-new">обновлено</span></a> <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md">opencode-vs-claude-code<span class="badge-new">обновлено</span></a></div>
       </article>
 
     </div>
@@ -469,8 +441,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mattpocock-skills.md"><span class="tree-name">mattpocock-skills</span><span class="tree-desc">пак скиллов Matt Pocock: grilling→spec→tickets→implement, tracer-bullet нарезка; 10-09 — допроверка: манифест 22→27, реорганизован в engineering/productivity, два скилла пропали</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/exa.md"><span class="tree-name">exa</span><span class="tree-desc">поисковый API + официальный MCP для агентов, neural search (не установлен)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/woome-ai.md"><span class="tree-name">woome-ai</span><span class="tree-desc">автор видео про контент-фермы Claude Code + Дзен</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; допроверка 09-09 — точная версия (1.3.0) снятия OAuth-плагинов подписки Claude, AGENTS.md фолбэчит на CLAUDE.md; 10-28 — правило AGENTS.md против лишней работы агента</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md"><span class="tree-name">apache-maka</span><span class="tree-desc">обвязка в инкубаторе Apache: состояние выводится из журнала, T1/T2, парковка недоказанного; 10-30 — допроверка: официальный ASF-релиз 0.2.0, Node.js 23 не поддерживается, противоречие по «признанному отклонению» гейта уведомлений</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/opencode.md"><span class="tree-name">opencode</span><span class="tree-desc">open-source мультипровайдерный CLI-агент для кодинга, альтернатива Claude Code; 10-31 — допроверка: версия 1.3.0→2.2.5, новый провайдер claude-agent (v2.2.3) запускает установленный у пользователя claude под его логином — подписка снова доступна другим путём</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/apache-maka.md"><span class="tree-name">apache-maka</span><span class="tree-desc">обвязка в инкубаторе Apache: состояние выводится из журнала, T1/T2, парковка недоказанного; 10-30 — допроверка: официальный ASF-релиз 0.2.0, Node.js 23 не поддерживается, противоречие по «признанному отклонению» гейта уведомлений</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/deepseek-harness.md"><span class="tree-name">deepseek-harness</span><span class="tree-desc">открытый харнес DeepSeek: сменны провайдер модели, исполнитель кода, песочница и права, интерфейс, хранилище; несменны цикл, журнал и реестр инструментов (<code>ctx.tools</code> — <code>core</code>, не <code>seam</code>); 09-27 — сверка с сырьём нашла противоречие с правкой 08-24; 10-13 — закрыто по первоисточнику: ошибка была в правке 08-24; 10-05 — community-плагин ставится без пересборки из исходников, default-профиль <code>danger-full-access</code>+<code>never</code> у «рекомендованного» плагина; 10-12 — официальный плагин <code>dsh-planning-with-files</code> переносит сторонний инструмент на dsh; 10-30 — ежемесячный цикл: тег <code>dsh-plugin</code> вырос 16 300→24 862, вердикт не изменился</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/bohomolov-lab.md"><span class="tree-name">bohomolov-lab</span><span class="tree-desc">автор серии Inside Claude, разбор архитектуры многофайлового скилла</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zproger.md"><span class="tree-name">zproger</span><span class="tree-desc">автор обзоров OpenCode и DeepSeek Harness; презумпция — брать как повод, факты сверять отдельно</span></a>
@@ -561,7 +533,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/design-md-yakor-stilya.md"><span class="tree-name">design-md-yakor-stilya</span><span class="tree-desc">DESIGN.md как позитивный якорь стиля в паре со списком запретных примет; почему не подключать через @-импорт и как дешевле</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-observability.md"><span class="tree-name">agent-observability</span><span class="tree-desc">трассировка вызовов агента (OpenTelemetry) как «обнаружение» из zabor-i-stena-prava-agenta: трасса → проверка надёжности → расширение доступа; 10-26 — событие claude_code.safety_event делает видимым и момент отказа, не только успех</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/urovni-avtonomnosti-agenta.md"><span class="tree-name">urovni-avtonomnosti-agenta</span><span class="tree-desc">сколько свободы дано агенту и чем подтверждено: R0–R5 «для среды», защитники T1–T5, метрики, разметка своей системы</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md"><span class="tree-name">bazovaya-zashchita-servera</span><span class="tree-desc">базовая защита VPS: вход по ключу, «первое значение побеждает» в sshd_config и файл cloud-init, sshd -T как доказательство, fail2ban/CrowdSec</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/bazovaya-zashchita-servera.md"><span class="tree-name">bazovaya-zashchita-servera</span><span class="tree-desc">базовая защита VPS: вход по ключу, «первое значение побеждает» в sshd_config и файл cloud-init, sshd -T как доказательство, fail2ban/CrowdSec</span></a>
       </div>
     </details>
 
@@ -726,8 +698,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/habr-agent-po-specifikacii.md"><span class="tree-name">habr-agent-po-specifikacii</span><span class="tree-desc">Хабр 20.10: агент как набор файлов (цель, конституция, спека, эталоны, запреты, метрики) с рабочим кодом ревьюера PR; допроверка 10-22 — цифра «85%→55%» у Anthropic не найдена нигде, закрыта отрицательно; 10-28 — итог пилота перенесён в скилл наряда</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-skills-agentic-ai-foundation.md"><span class="tree-name">claude-skills-agentic-ai-foundation</span><span class="tree-desc">официальный пост Anthropic: Claude Skills передан в Agentic AI Foundation при Linux Foundation (22.10.2026), версионированные релизы и roadmap на security guidance</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-23.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-23</span><span class="tree-desc">changelog Claude Code 2.1.302–2.1.310: девятый узел bypass-серии (три обхода sandbox в v2.1.309) плюс первое осознанное ослабление песочницы вендором (allowNestedUserNamespaces) и событие OpenTelemetry safety_event</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vaib-koding-23-punkta-pered-pervym-platezhom.md"><span class="tree-name">vaib-koding-23-punkta-pered-pervym-platezhom</span><span class="tree-desc">«Вайб-кодинг»: 23 проверки перед первым платежом (платежи, данные, интерфейс), переложено на свой стек</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vps-bazovaya-zashchita-ssh-crowdsec-ansible.md"><span class="tree-name">vps-bazovaya-zashchita-ssh-crowdsec-ansible</span><span class="tree-desc">наводка чата о защите VPS, сверенная с документацией OpenSSH, fail2ban, CrowdSec, Ansible</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vaib-koding-23-punkta-pered-pervym-platezhom.md"><span class="tree-name">vaib-koding-23-punkta-pered-pervym-platezhom</span><span class="tree-desc">«Вайб-кодинг»: 23 проверки перед первым платежом (платежи, данные, интерфейс), переложено на свой стек</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/vps-bazovaya-zashchita-ssh-crowdsec-ansible.md"><span class="tree-name">vps-bazovaya-zashchita-ssh-crowdsec-ansible</span><span class="tree-desc">наводка чата о защите VPS, сверенная с документацией OpenSSH, fail2ban, CrowdSec, Ansible</span></a>
       </div>
     </details>
 
@@ -751,7 +723,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/audit-nashey-obvyazki.md"><span class="tree-name">audit-nashey-obvyazki</span><span class="tree-desc">что из разобранного про харнес у нас уже стоит и чего нет: шесть частей из восьми, пробел — повторяющееся бесполезное поведение</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/proiskhozhdenie-pravila-effekt-30-dney.md"><span class="tree-name">proiskhozhdenie-pravila-effekt-30-dney</span><span class="tree-desc">цепочка происхождения правила «разовая правка или в скилл навсегда?»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026), когда что выбирать</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/opencode-vs-claude-code.md"><span class="tree-name">opencode-vs-claude-code</span><span class="tree-desc">сравнение двух CLI-агентов: мультипровайдерность против оркестрации, запрет subscription-OAuth (ToS, февраль 2026) — уточнён 10-31, когда что выбирать</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/ustroystvo-agentnoy-obolochki.md"><span class="tree-name">ustroystvo-agentnoy-obolochki</span><span class="tree-desc">как устроен агент внутри: цикл, журнал как источник, что оттуда берём</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/karta-shvov-nashey-obvyazki.md"><span class="tree-name">karta-shvov-nashey-obvyazki</span><span class="tree-desc">фаза цикла → чем вмешиваться → чем платишь; куда класть новое правило</span></a>
       </div>
