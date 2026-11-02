@@ -31,5 +31,5 @@ Conformer-based модель (220M–600M параметров), четыре л
 ## Связи
 
 - Концепты: [[asr-benchmark-traps]], [[obrezka-slovarya-modeli]], [[inverse-text-normalization]]
-- Сущности: [[whisperx]]
+- Сущности: [[whisperx]], [[voicestudio]] (другая локальная студия, использует `whisper.cpp`, не GigaAM, как один из опциональных ASR-движков)
 - Проекты: [[dictum-golosovaya-diktovka]]

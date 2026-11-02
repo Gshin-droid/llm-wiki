@@ -31,4 +31,4 @@ ASR-движок — сам Whisper (`large-v2`/`large-v3`), WhisperX не за�
 ## Связи
 
 - Концепты: [[asr-benchmark-traps]], [[inverse-text-normalization]]
-- Сущности: [[gigaam]]
+- Сущности: [[gigaam]], [[voicestudio]] (смежная локальная студия синтеза/распознавания речи)
