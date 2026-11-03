@@ -27,6 +27,7 @@
 | Инструмент | Первоисточник | Что умеет | Лицензия |
 |---|---|---|---|
 | OpenViking | [volcengine/OpenViking](https://github.com/volcengine/OpenViking) | Память, знания и навыки агента в одной файловой системе `viking://` с ls/read/grep, сводка у каждой папки. Сосед [[llm-memory-landscape]] | AGPLv3 |
+| mgi-mind | [madgodinc/mgi-mind](https://github.com/madgodinc/mgi-mind) | Локальная долговременная память агентов: один бинарник на Rust, Qdrant, ONNX-модели, MCP; гибридный поиск (смысл + точные слова) с переранжированием. Не ставим — основа уже есть (`bge-m3` в Ollama), замеров экономии у автора нет; [[kontekst-szhat-ili-nachat-zanovo]] | см. репозиторий |
 | semantica | [semantica-agi/semantica](https://github.com/semantica-agi/semantica) | Решения ИИ как узлы графа с происхождением по W3C PROV-O, экспорт аудита. Не объясняет рассуждение модели — только фиксирует цепочку. Сосед [[invariant-vidno-znachit-zapisano]] | MIT |
 
 ## Локальные модели и данные
