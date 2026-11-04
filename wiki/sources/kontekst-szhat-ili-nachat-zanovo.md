@@ -132,5 +132,5 @@ MRR — среднее 1/место правильной страницы: уч�
 
 - Сущности: [[claude-code]], [[superpowers]]
 - Концепты: [[context-engineering-claude-5]], [[llm-memory-landscape]]
-- Источники: [[prompt-cache-control-mod]] (сжатие при простое, свой замер), [[claude-subscription-automation-terms]] (лимиты подписки)
+- Источники: [[prompt-cache-control-mod]] (сжатие при простое, свой замер), [[claude-subscription-automation-terms]] (лимиты подписки), [[claude-code-changelog-snapshot-2026-11-04]] (idle-компакция 200K+ токенов стала штатной функцией 2.1.314 — обходной мод выше предсказал её точно)
 - Синтез: [[katalog-instrumentov-iz-inboksa]] (mgi-mind)

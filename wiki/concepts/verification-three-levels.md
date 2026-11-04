@@ -159,6 +159,7 @@ zeroshot собирает правило в граф: автор пишет, о�
 - [[bereznitsky-harness-engineering]] — три уровня, критерий инварианта, дыра в состоянии, чеклист
 - [[claude-code-changelog-snapshot-2026-09-13]] — фикс `/goal`, пример тихого сбоя без отчёта
 - [[claude-code-changelog-snapshot-2026-10-15]] — фикс 2.1.301, пример ложного отчёта об успехе у Dynamic Workflows
+- [[claude-code-changelog-snapshot-2026-11-04]] — `onFailure: "block"` для хуков Agent SDK: сбой проверяющего хука теперь блокирует действие вместо fail-open пропуска
 - [[whiteboard-devfast-agent-review-canvas]] — журнал решений агента как способ удешевить проверку человеком
 
 ## Связи
