@@ -53,11 +53,11 @@
       "WebFetch(domain:context7.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:claude.ai)",
-      "mcp__plugin_playwright_playwright__browser_take_screenshot",
-      "mcp__plugin_playwright_playwright__browser_console_messages",
-      "mcp__plugin_playwright_playwright__browser_find",
-      "mcp__plugin_playwright_playwright__browser_hover",
-      "mcp__plugin_playwright_playwright__browser_resize"
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_find",
+      "mcp__playwright__browser_hover",
+      "mcp__playwright__browser_resize"
     ],
     "ask": []
   }
