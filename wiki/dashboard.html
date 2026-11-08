@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-07 (3 записи) · след. запуск 08:00 (11.08)</div>
+      <div class="mono">обновлено 2026-11-08 (2 записи) · след. запуск 08:00 (11.09)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">332</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">181</span><span class="l">sources</span></div>
@@ -358,38 +358,26 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 07.11: закрытие пробела в каталоге дашборда (рутина хвостов); сводка новостей — Claude Code 2.1.319 (рутина новостей, ярус 1); полный разбор changelog v2.1.319 (ярус 2)</span>
+      <span class="section-note">2 записи · 08.11, воскресный прогон рутины хвостов: механический проход (19 просроченных «Актуально на», без битых ссылок/сирот) и сверка с сырьём zabor-i-stena-prava-agenta (8 проверок, расхождений не найдено)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробела: каталог dashboard.html отстал от файлов на диске (16 строк)</div>
-        <div class="news-body">Построчное сравнение (не только числом, как 11-06, а по именам файлов) нашло недостающие строки каталога: hindsight (Entities), pyat-mysley-pachki-a (Synthesis), 14 файлов в Sources. Concepts и Projects, названные 11-06 «лишними на одну строку», при построчной проверке совпали с диском без остатка — то расхождение уже устранилось раньше без отдельной записи. Все 16 строк добавлены, drawer-count Sources исправлен 179→180.</div>
+        <div class="news-title">Воскресный механический проход: 19 просроченных «Актуально на», без битых ссылок и сирот</div>
+        <div class="news-body">361 страница, 37 находок. Три страницы впервые пересекли 30-дневный порог (obsidian-web-clipper, freecad, multica), остальные 16 — остаток с 11-06. Полный список — в wiki/gaps-backlog.md, закрывать по одной в следующие дни. Побочно: в журнале нет записи воскресного прогона 11-01 — возможный пропущенный запуск, допроверка статуса рутины недоступна из этой сессии.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/hindsight.md">hindsight</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pyat-mysley-pachki-a.md">pyat-mysley-pachki-a</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
         </div>
       </article>
 
       <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: Claude Code 2.1.319 — продолжение серии permission-bypass фиксов, denyInsteadOfPrompting</div>
-        <div class="news-body">Окно 04.11–07.11.2026. Широкий поиск по моделям/регулированию/доступности/уязвимостям не нашёл ничего другого, проходящего критерий сводки; дедлайн маркировки EU AI Act подтверждён как 02.12.2026 (не наступил, в сводку не взят).</div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Сверка с сырьём: zabor-i-stena-prava-agenta — расхождений не найдено</div>
+        <div class="news-body">Самая правленная синтез-страница вики (13+ источников, минимум 9 автономных дополнений), впервые прошла эту проверку. Восемь нетривиальных утверждений и цитат сверены против wiki/sources-страниц и одного raw-файла — все совпали дословно, расхождений нет.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-11-07.md">novosti-2026-11-07</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude Code changelog v2.1.319 — десятый узел серии permission-bypass, denyInsteadOfPrompting</div>
-        <div class="news-body">Ярус 2 той же сводки: три bypass-фикса разом (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), новая настройка permissions.denyInsteadOfPrompting, ужесточение auto mode за LLM-гейтвеями и Bedrock/Vertex/Foundry.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-07.md">claude-code-changelog-snapshot-2026-11-07</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a>
         </div>
       </article>
 
@@ -725,7 +713,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-subscription-automation-terms.md"><span class="tree-name">claude-subscription-automation-terms</span><span class="tree-desc">разбор условий подписки Anthropic для автоматизации: `claude -p` из крона не запрещён Consumer Terms напрямую, граница — объём и круг пользователей, не сам факт автоматизации</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/kontekst-szhat-ili-nachat-zanovo.md"><span class="tree-name">kontekst-szhat-ili-nachat-zanovo</span><span class="tree-desc">контекст: сжать, начать заново или вынести в память — шесть наводок инбокса; сравнение эмбеддингов для poisk.py (Giga-Embeddings 480M); 11-04 — idle-компакция >200K токенов (2.1.314) стала штатной, предсказанная здесь как мод</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-04.md"><span class="tree-name">claude-code-changelog-snapshot-2026-11-04</span><span class="tree-desc">changelog Claude Code 2.1.314–2.1.318: `permissions.blockWritesOutsideWorkingDirectories` держит границу записи в любом permission-режиме, Fast mode Opus 4.8 снимается 30.11, проверка перед отправкой email в сеть, хуки Agent SDK fail-closed, idle-компакция &gt;200K токенов</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-11-07</span><span class="tree-desc">changelog Claude Code 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting, ужесточение auto mode за LLM-гейтвеями и Bedrock/Vertex/Foundry</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-11-07</span><span class="tree-desc">changelog Claude Code 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting, ужесточение auto mode за LLM-гейтвеями и Bedrock/Vertex/Foundry</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-oss-scanner.md"><span class="tree-name">anthropic-oss-scanner</span><span class="tree-desc">OSS Scanner (08.10.2026): Anthropic бесплатно сканирует критичные открытые проекты моделями и шлёт отчёты без проверки человеком; нам не подходит по критериям, берём логику — проверяющий агент без сети, находка через цепочку агентов, непроверенное помечается</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-reducing-cost-claude-platform.md"><span class="tree-name">anthropic-reducing-cost-claude-platform</span><span class="tree-desc">статья блога Anthropic (08.09.2026): шесть анти-паттернов промптов при смене модели (−9% цены и +2 п.п. точности после prompt-audit), effort ошибается в обе стороны; цифры пересказа из Telegram с первоисточником не сходятся</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/berezhnitsky-engineer-when-ai-writes-code.md"><span class="tree-name">berezhnitsky-engineer-when-ai-writes-code</span><span class="tree-desc">Березницкий: узкое место — проверяющий человек; ворота между фазами (код → судья другого класса → человек), тест-план до плана реализации, человек на дизайне, проверка кода мутациями и архитектурным судьёй</span></a>
