@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-08 (2 записи) · след. запуск 08:00 (11.09)</div>
+      <div class="mono">обновлено 2026-11-09 (23 записи) · след. запуск 08:00 (11.10)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">332</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">333</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">11</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">181</span><span class="l">sources</span></div>
@@ -358,26 +358,56 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 08.11, воскресный прогон рутины хвостов: механический проход (19 просроченных «Актуально на», без битых ссылок/сирот) и сверка с сырьём zabor-i-stena-prava-agenta (8 проверок, расхождений не найдено)</span>
+      <span class="section-note">23 записи · 09.11, разбор инбокса вместе с пользователем: группа «безопасность», 15 дублей закрыто, починен поиск неразобранного</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Воскресный механический проход: 19 просроченных «Актуально на», без битых ссылок и сирот</div>
-        <div class="news-body">361 страница, 37 находок. Три страницы впервые пересекли 30-дневный порог (obsidian-web-clipper, freecad, multica), остальные 16 — остаток с 11-06. Полный список — в wiki/gaps-backlog.md, закрывать по одной в следующие дни. Побочно: в журнале нет записи воскресного прогона 11-01 — возможный пропущенный запуск, допроверка статуса рутины недоступна из этой сессии.</div>
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Утечки из Claude Code: пароли в settings.local.json и email в User-Agent</div>
+        <div class="news-body">Кнопка «да, больше не спрашивать» сохраняет команду дословно, с паролем, а от git файл прячет только машинное исключение одной машины (Apiiro); проверено у себя — защита дописана в .gitignore. Заплатка от утечки email (2.1.317) пробита на 2.1.318.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a>
         </div>
       </article>
 
       <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Сверка с сырьём: zabor-i-stena-prava-agenta — расхождений не найдено</div>
-        <div class="news-body">Самая правленная синтез-страница вики (13+ источников, минимум 9 автономных дополнений), впервые прошла эту проверку. Восемь нетривиальных утверждений и цитат сверены против wiki/sources-страниц и одного raw-файла — все совпали дословно, расхождений нет.</div>
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">blockWritesOutsideWorkingDirectories: проба в песочнице WSL</div>
+        <div class="news-body">Настройка 2.1.314 не покрывает Bash. В паре с песочницей стена полная: Write вне папки — отказ настройки, Bash — отказ песочницы, запись внутри — проходит. Плюс две ловушки запуска проб из Git Bash.</div>
         <div class="news-links">
           <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/rabota-iz-windows-lovushki.md">rabota-iz-windows-lovushki</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">query</span>
+        <div class="news-title">Подлинность модели у дешёвого посредника</div>
+        <div class="news-body">«Спросить модель» и бенчмарк не работают (Berkeley: уклонение от бенчмарка; Kimi: разрыв исполнителей 20+ п. п.). Работают закрепление исполнителя, свои эталоны и вероятности токенов; фильтр для дешёвых доступов.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md">podlinnost-modeli-u-posrednika</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md">openrouter</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">config</span>
+        <div class="news-title">Починка поиска неразобранного и 15 дублей инбокса</div>
+        <div class="news-body">Запись о закрытой копии «…-2» прятала оригинал: с 02.11 из списка тихо выпали три поста. Сверка имени теперь по границе, случай в самопроверке. Дубли постов канала закрыты решениями.</div>
+        <div class="news-links">
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">decision</span>
+        <div class="news-title">Наводки и новости группы «безопасность» — не берём; Awesome REA — в каталог</div>
+        <div class="news-body">Изоляция в виртуалке, права через settings, PR от агентов — уже глубже в вики; GPT-6 Cyber — закрытый доступ, цифры производителя. Каталог реверс-инжиниринга — строкой на будущее.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md">katalog-instrumentov-iz-inboksa</a>
         </div>
       </article>
 
@@ -401,7 +431,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 11-07 — changelog 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting; 11-04 — changelog 2.1.314–2.1.318: граница записи `blockWritesOutsideWorkingDirectories` держится в любом permission-режиме, Fast mode Opus 4.8 снимается 30.11; 11-02 — локальный backend Strata через ANTHROPIC_BASE_URL</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 11-07 — changelog 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting; 11-04 — changelog 2.1.314–2.1.318: граница записи `blockWritesOutsideWorkingDirectories` держится в любом permission-режиме, Fast mode Opus 4.8 снимается 30.11; 11-02 — локальный backend Strata через ANTHROPIC_BASE_URL</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -420,7 +450,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; 11-05 — комиссии (5,5%/5%), BYOK-лимит $25k/мес, лимиты бесплатных моделей, трёхслойная система credit/budget/rate, новая категория моделей «decisions»; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; 11-05 — комиссии (5,5%/5%), BYOK-лимит $25k/мес, лимиты бесплатных моделей, трёхслойная система credit/budget/rate, новая категория моделей «decisions»; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/metics-media.md"><span class="tree-name">metics-media</span><span class="tree-desc">канал про сайты за $10k через Claude Code</span></a>
@@ -506,7 +536,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 11-04 — новый класс защиты: проверка перед отправкой email аккаунта в сеть при вызове веб/shell-инструмента (Claude Code 2.1.317); 10-26 — девятый узел серии: три обхода sandbox в v2.1.309, плюс первое осознанное ослабление песочницы вендором вместо бага; 11-02 — ANTHROPIC_BASE_URL сам по себе не признак атаки, смотреть на адрес, не на наличие переменной (Strata)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 11-04 — новый класс защиты: проверка перед отправкой email аккаунта в сеть при вызове веб/shell-инструмента (Claude Code 2.1.317); 10-26 — девятый узел серии: три обхода sandbox в v2.1.309, плюс первое осознанное ослабление песочницы вендором вместо бага; 11-02 — ANTHROPIC_BASE_URL сам по себе не признак атаки, смотреть на адрес, не на наличие переменной (Strata)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
@@ -742,10 +772,11 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">11</span></summary>
+      <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">12</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 11-04 — первая граница записи, не зависящая от режима разрешений (`permissions.blockWritesOutsideWorkingDirectories`, включая bypassPermissions); 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill); 11-02 — агент-администратор локальной службы через MCP документирован вендором (Strata), контраст у VoiceStudio (суженные права)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 11-04 — первая граница записи, не зависящая от режима разрешений (`permissions.blockWritesOutsideWorkingDirectories`, включая bypassPermissions); 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill); 11-02 — агент-администратор локальной службы через MCP документирован вендором (Strata), контраст у VoiceStudio (суженные права)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md"><span class="tree-name">podlinnost-modeli-u-posrednika</span><span class="tree-desc">подаёт ли посредник ту модель, за которую платишь: «спросить модель» и бенчмарк не работают, работают закрепление исполнителя, свои эталоны, logprobs; фильтр для дешёвых доступов</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
