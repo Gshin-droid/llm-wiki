@@ -342,26 +342,37 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-09 (35 записей) · след. запуск 08:00 (11.10)</div>
+      <div class="mono">обновлено 2026-11-09 (36 записей) · след. запуск 08:00 (11.10)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">335</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">16</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">336</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">19</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">181</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">182</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">35 записей · 09.11, разбор инбокса вместе с пользователем: группы «безопасность» и «Claude Code», путеводитель «Claude по полочкам», 15 дублей закрыто</span>
+      <span class="section-note">36 записей · 09.11, разбор инбокса вместе с пользователем (группы «безопасность» и «Claude Code», путеводитель «Claude по полочкам», 15 дублей) плюс автономный прогон рутины практик вечером</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Рутина практик: полное руководство Claude Platform по авторству скиллов</div>
+        <div class="news-body">Инбокс был пуст — находка через целевой WebSearch: официальная страница best-practices для Agent Skills даёт семь новых приёмов (степени свободы инструкции, механика частичного чтения вложенных references, метод «Claude A / Claude B», solve-don't-defer, gerund-имена, полные имена MCP-инструментов). Найдено и зафиксировано расхождение с прежним правилом про установку пакетов в рантайме — только на claude.ai, не на Claude API.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md">claude-platform-agent-skills-best-practices</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md">skill-authoring-practical-rules</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">query</span>
@@ -494,7 +505,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md"><span class="tree-name">sepia</span><span class="tree-desc">открытый (MIT) скилл «убрать признаки машинного письма»: 11 файлов правил, 4 операции, русского нет; 10-05 — версия 0.4.0→0.12.2, два новых скрипта линтуют конфигурацию, а не текст</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/geekneural.md"><span class="tree-name">geekneural</span><span class="tree-desc">Telegram-канал, наводка на Sepia; при сверке с репозиторием три расхождения — брать наводкой, не фактом; 11-02 — третий случай той же неточности на VoiceStudio (числа моделей не подтверждены)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов; 10-12 — допроверка: версия 3.17.0→3.24.0, официальный плагин <code>dsh-planning-with-files</code> для deepseek-harness</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 11-03 — SEP-2640 в репозитории MCP формально определяет раздачу Agent Skills через MCP-транспорт; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт; 10-28 — дополнение о сворачивании субагентов в основной цикл</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 11-09 — официальное руководство Claude Platform по авторству скиллов, семь новых приёмов; 11-03 — SEP-2640 в репозитории MCP формально определяет раздачу Agent Skills через MCP-транспорт; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт; 10-28 — дополнение о сворачивании субагентов в основной цикл</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
@@ -589,7 +600,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов; допроверка 09-01 — маршрутная таблица и скиллы-обёртки под операцию; 10-28 — четыре приёма из руководства agentskills.io</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов; 11-09 — семь приёмов из полного руководства Claude Platform (степени свободы, Claude A/Claude B, solve-don't-defer) плюс раздел «Противоречия» про установку пакетов; допроверка 09-01 — маршрутная таблица и скиллы-обёртки под операцию; 10-28 — четыре приёма из руководства agentskills.io</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам; допроверка 11-03 — SEP-2663 (Tasks) закрыт статусом Final, найден протокольный мост к Agent Skills (SEP-2640); 09-14 — практическая сторона от курикулума Microsoft: дизайн тула, три угрозы авторизации</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация; 10-06 — Google OKF независимо формализует те же пять вопросов другим словарём</span></a>
@@ -623,8 +634,9 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">181</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">182</span></summary>
       <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md"><span class="tree-name">claude-platform-agent-skills-best-practices</span><span class="tree-desc">официальное руководство Claude Platform по авторству скиллов — семь приёмов, которых в вики не было; рутина практик, целевой WebSearch, не инбокс</span><span class="badge-new">новое</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/unclebob-ub-mode.md"><span class="tree-name">unclebob-ub-mode</span><span class="tree-desc">скилл инженерной дисциплины Роберта Мартина: не ставим (дублирует ponytail/superpowers), берём мутационное тестирование и правило «тест, проходящий при пустых функциях, — выбросить»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opencode-agents-md-pravila.md"><span class="tree-name">opencode-agents-md-pravila</span><span class="tree-desc">AGENTS.md проекта OpenCode: из трёх правил поста взято одно — усложнение ради маловероятного, по формуле «сбой — вероятность — цена»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/agentskills-best-practices.md"><span class="tree-name">agentskills-best-practices</span><span class="tree-desc">руководство agentskills.io для авторов скиллов: около двух третей уже было в вики, взяты четыре приёма</span></a>
