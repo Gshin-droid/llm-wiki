@@ -63,7 +63,8 @@ def pending(root):
             if item.name.startswith("."):
                 continue
             key = item.stem if item.is_file() else item.name
-            if key and key not in text:
+            # граница имени: запись о «…-2» не должна закрывать «…» (случай 09.11)
+            if key and not re.search(re.escape(key) + r"(?![\w-])", text):
                 out.append(f"raw/{sub}/{item.name}")
     return out
 
@@ -276,6 +277,17 @@ def self_test():
             "## [2026-07-29] project | архив-чего-то ingest не требует\n", encoding="utf-8")
         assert pending(r) == ["raw/inbox-assistant/2026-07-28-новьё.md"], pending(r)
         assert check(r, "statya-x", "2026-07-29") == [], check(r, "statya-x", "2026-07-29")
+
+        # Закрыта копия «…-2» — оригинал без суффикса остаётся в pending (случай 09.11).
+        for n in ("2026-11-08-модели.md", "2026-11-08-модели-2.md"):
+            (r / "raw" / "inbox-assistant" / n).write_text("сырьё", encoding="utf-8")
+        with (r / "wiki" / "log.md").open("a", encoding="utf-8") as f:
+            f.write("Сырьё: `raw/inbox-assistant/2026-11-08-модели-2` — дубль\n")
+        got = pending(r)
+        assert "raw/inbox-assistant/2026-11-08-модели.md" in got, got
+        assert "raw/inbox-assistant/2026-11-08-модели-2.md" not in got, got
+        for n in ("2026-11-08-модели.md", "2026-11-08-модели-2.md"):
+            (r / "raw" / "inbox-assistant" / n).unlink()
 
         (r / "wiki" / "index.md").write_text("пусто\n", encoding="utf-8")
         (r / "wiki" / "entities" / "some-author.md").write_text("нет ссылок", encoding="utf-8")
