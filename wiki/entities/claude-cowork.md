@@ -30,6 +30,10 @@
 
 Побочно — два пункта официальных release notes Claude Platform (`platform.claude.com/docs/en/release-notes/overview`) за время с прошлой сверки: **26.08.2026** — эндпоинты Compliance API для сессий Cowork и Claude Code вышли из беты; **15.10.2026** — Compliance API стал возвращать текст, который участник организации сохранил как «Instructions for Claude» на claude.ai и «Global instructions» в Cowork (в бете для Claude Enterprise) — раньше API отдавал только транскрипты, не настройки инструкций.
 
+## Соседний продукт: Claude Duet (2026-11-09, [страница продукта](https://claude.com/product/claude-duet))
+
+Проактивный агент приложения Claude на Opus 5.5: свой облачный компьютер, утренняя сводка по почте и календарю, задачи по сообщению, сам пишет, когда готово или нужно решение; спрашивает перед отправкой сообщений и оплатой. Использует память, скиллы и коннекторы аккаунта Claude; отдельное приложение iOS/Android, на компьютере — claude.ai. Отличие от Cowork: Cowork ждёт, пока откроешь чат, Duet приходит сам. Ограничения на 09.11: *«research preview on a waitlist for Claude Pro and Max subscribers in the US»* — **только США**, Team и Enterprise не входят; тратит **общий лимит тарифа**, фоновые проверки тоже. Вне США недоступен — записано на случай расширения (наводка `ai-assistant #161`, решение пользователя 09.11).
+
 ## Связи
 - Источники: [[ai-proryv-5-levels-claude]], [[qaisar-claude-full-course]], [[nikita-efimov-claude-automations]]
 - Концепты: [[five-levels-of-claude-mastery]], [[claude-desktop-automation-modes]]
