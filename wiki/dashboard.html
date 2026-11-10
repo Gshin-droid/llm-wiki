@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-09 (36 записей) · след. запуск 08:00 (11.10)</div>
+      <div class="mono">обновлено 2026-11-10 (1 запись) · след. запуск 08:00 (11.11)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">336</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">19</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">182</span><span class="l">sources</span></div>
@@ -358,115 +358,18 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">36 записей · 09.11, разбор инбокса вместе с пользователем (группы «безопасность» и «Claude Code», путеводитель «Claude по полочкам», 15 дублей) плюс автономный прогон рутины практик вечером</span>
+      <span class="section-note">1 запись · 10.11, допроверка флагнутой страницы (рутина хвостов, обычный ежедневный прогон)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Рутина практик: полное руководство Claude Platform по авторству скиллов</div>
-        <div class="news-body">Инбокс был пуст — находка через целевой WebSearch: официальная страница best-practices для Agent Skills даёт семь новых приёмов (степени свободы инструкции, механика частичного чтения вложенных references, метод «Claude A / Claude B», solve-don't-defer, gerund-имена, полные имена MCP-инструментов). Найдено и зафиксировано расхождение с прежним правилом про установку пакетов в рантайме — только на claude.ai, не на Claude API.</div>
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Допроверка флагнутой страницы: CLM-8B</div>
+        <div class="news-body">Бэклог без автономно закрываемых пунктов «не начато» (все локальные/практические или на исчерпанных заблокированных доменах) — шаг 2: допроверка по первоисточнику. CLM-8B сверена с github.com/Contrastive-LM/CLM — рост без противоречий: звёзды 2,3к→3,2к, форки 275, новый эндпоинт /v1/rank, двухступенчатая архитектура сервиса, лимит состояния 2048 токенов, замер кэша на RTX 4090.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md">claude-platform-agent-skills-best-practices</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md">skill-authoring-practical-rules</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md">claude-skills</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">query</span>
-        <div class="news-title">Claude по полочкам: путеводитель по Claude Code и соседям</div>
-        <div class="news-body">9 полочек — где работает, режимы разрешений, модели и усилия, контекст, агенты, автоматизация, расширения, безопасность, соседние продукты: что это, как включить и выключить, где подробно. Цифр не дублирует; отдельно — шесть мест, где вики расходится сама с собой.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-po-polochkam.md">claude-po-polochkam</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">query</span>
-        <div class="news-title">Две схемы работы с субагентами</div>
-        <div class="news-body">Параллельные worktree с пакетом работ на задачу (AGENTS.md InvariantFS, «дисциплина по роли») против «один кусок — один агент» с независимой приёмкой: таблица, плюсы и минусы, три вопроса для выбора.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/dve-skhemy-parallelnyh-subagentov.md">dve-skhemy-parallelnyh-subagentov</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md">agentic-sdlc-frameworks</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Лимиты и режимы Claude Code: «без присмотра», ultrathink, Message Threads</div>
-        <div class="news-body">RETRY_WATCHDOG — бесконечные повторы, глобально не ставить; строка состояния фоновых субагентов стоила до четверти запросов; ultrathink поднимает усилия на ход; Message Threads экономит время, не лимит.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude Duet и FlashProve; антиприём «самонастройки по гайдам из сети»</div>
-        <div class="news-body">Duet — проактивный агент приложения Claude, пока только США, записан на будущее. FlashProve — доказуемый вывод модели, прототип. Совет «пусть агент сам перенастроит себя по гайдам из сети» записан как то, чего делать не надо.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md">claude-cowork</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md">podlinnost-modeli-u-posrednika</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Группа «Claude Code» — не берём: лимит «в 4 раза быстрее», /storage, правило про игры, «пины», STE, стоп ревью</div>
-        <div class="news-body">Слухи без первоисточника, уже стоящее строже (предел два возврата) или пока непроверенное — закрыты решениями в журнале.</div>
-        <div class="news-links">
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Утечки из Claude Code: пароли в settings.local.json и email в User-Agent</div>
-        <div class="news-body">Кнопка «да, больше не спрашивать» сохраняет команду дословно, с паролем, а от git файл прячет только машинное исключение одной машины (Apiiro); проверено у себя — защита дописана в .gitignore. Заплатка от утечки email (2.1.317) пробита на 2.1.318.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/claude-code-practices.md">claude-code-practices</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">blockWritesOutsideWorkingDirectories: проба в песочнице WSL</div>
-        <div class="news-body">Настройка 2.1.314 не покрывает Bash. В паре с песочницей стена полная: Write вне папки — отказ настройки, Bash — отказ песочницы, запись внутри — проходит. Плюс две ловушки запуска проб из Git Bash.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md">zabor-i-stena-prava-agenta</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/rabota-iz-windows-lovushki.md">rabota-iz-windows-lovushki</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">query</span>
-        <div class="news-title">Подлинность модели у дешёвого посредника</div>
-        <div class="news-body">«Спросить модель» и бенчмарк не работают (Berkeley: уклонение от бенчмарка; Kimi: разрыв исполнителей 20+ п. п.). Работают закрепление исполнителя, свои эталоны и вероятности токенов; фильтр для дешёвых доступов.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md">podlinnost-modeli-u-posrednika</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md">openrouter</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">config</span>
-        <div class="news-title">Починка поиска неразобранного и 15 дублей инбокса</div>
-        <div class="news-body">Запись о закрытой копии «…-2» прятала оригинал: с 02.11 из списка тихо выпали три поста. Сверка имени теперь по границе, случай в самопроверке. Дубли постов канала закрыты решениями.</div>
-        <div class="news-links">
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">decision</span>
-        <div class="news-title">Наводки и новости группы «безопасность» — не берём; Awesome REA — в каталог</div>
-        <div class="news-body">Изоляция в виртуалке, права через settings, PR от агентов — уже глубже в вики; GPT-6 Cyber — закрытый доступ, цифры производителя. Каталог реверс-инжиниринга — строкой на будущее.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md">katalog-instrumentov-iz-inboksa</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md">clm-8b</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md">clm-8b-contrastive-system-one</a>
         </div>
       </article>
 
@@ -490,7 +393,7 @@
       <div class="tree-rows">
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/andrej-karpathy.md"><span class="tree-name">andrej-karpathy</span><span class="tree-desc">автор метода/гиста, лежащего в основе паттерна вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mitchell-hashimoto.md"><span class="tree-name">mitchell-hashimoto</span><span class="tree-desc">сооснователь HashiCorp, ввёл термин «харнес-инжиниринг» и принцип структурно невозможной ошибки</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 11-07 — changelog 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting; 11-04 — changelog 2.1.314–2.1.318: граница записи `blockWritesOutsideWorkingDirectories` держится в любом permission-режиме, Fast mode Opus 4.8 снимается 30.11; 11-02 — локальный backend Strata через ANTHROPIC_BASE_URL</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md"><span class="tree-name">claude-code</span><span class="tree-desc">CLI-агент Anthropic, движок этой вики; 11-07 — changelog 2.1.319: десятый узел bypass-серии (sandbox escape при создании worktree, подставной префикс окружения в Bash, sed мимо проверки прав), permissions.denyInsteadOfPrompting; 11-04 — changelog 2.1.314–2.1.318: граница записи `blockWritesOutsideWorkingDirectories` держится в любом permission-режиме, Fast mode Opus 4.8 снимается 30.11; 11-02 — локальный backend Strata через ANTHROPIC_BASE_URL</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian.md"><span class="tree-name">obsidian</span><span class="tree-desc">markdown-редактор с графом связей, IDE для просмотра вики</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/obsidian-web-clipper.md"><span class="tree-name">obsidian-web-clipper</span><span class="tree-desc">расширение браузера для сохранения статей; установлено и используется с 07-07; допроверка 10-07 — версия всё ещё 1.7.1, troubleshooting-документ переехал из репозитория на заблокированный help.obsidian.md</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/antigravity-ide.md"><span class="tree-name">antigravity-ide</span><span class="tree-desc">альтернативная IDE для запуска Claude Code (не используется)</span></a>
@@ -505,11 +408,11 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sepia.md"><span class="tree-name">sepia</span><span class="tree-desc">открытый (MIT) скилл «убрать признаки машинного письма»: 11 файлов правил, 4 операции, русского нет; 10-05 — версия 0.4.0→0.12.2, два новых скрипта линтуют конфигурацию, а не текст</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/geekneural.md"><span class="tree-name">geekneural</span><span class="tree-desc">Telegram-канал, наводка на Sepia; при сверке с репозиторием три расхождения — брать наводкой, не фактом; 11-02 — третий случай той же неточности на VoiceStudio (числа моделей не подтверждены)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/planning-with-files.md"><span class="tree-name">planning-with-files</span><span class="tree-desc">открытый (MIT) скилл персистентного файлового планирования: task_plan/findings/progress на диске, hash attestation, gated mode; независимая реализация Agent-Maintained Handoff, 60+ агентов; 10-12 — допроверка: версия 3.17.0→3.24.0, официальный плагин <code>dsh-planning-with-files</code> для deepseek-harness</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 11-09 — официальное руководство Claude Platform по авторству скиллов, семь новых приёмов; 11-03 — SEP-2640 в репозитории MCP формально определяет раздачу Agent Skills через MCP-транспорт; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт; 10-28 — дополнение о сворачивании субагентов в основной цикл</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 11-09 — официальное руководство Claude Platform по авторству скиллов, семь новых приёмов; 11-03 — SEP-2640 в репозитории MCP формально определяет раздачу Agent Skills через MCP-транспорт; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт; 10-28 — дополнение о сворачивании субагентов в основной цикл</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; 11-05 — комиссии (5,5%/5%), BYOK-лимит $25k/мес, лимиты бесплатных моделей, трёхслойная система credit/budget/rate, новая категория моделей «decisions»; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; 11-05 — комиссии (5,5%/5%), BYOK-лимит $25k/мес, лимиты бесплатных моделей, трёхслойная система credit/budget/rate, новая категория моделей «decisions»; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/metics-media.md"><span class="tree-name">metics-media</span><span class="tree-desc">канал про сайты за $10k через Claude Code</span></a>
@@ -563,7 +466,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; 09-26 — Agent Substrate (обязательная нижележащая среда) отдельный открытый проект, не org Google, сам pre-1.0</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md"><span class="tree-name">impeccable</span><span class="tree-desc">дизайнерские команды для агента (polish, distill, bolder) + хуки + скачиваемый движок; 10-10 — запрос roll и SessionStart-хук прочитаны: без кода и путей, хук сети не касается</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/whiteboard-devfast.md"><span class="tree-name">whiteboard-devfast</span><span class="tree-desc">агент рисует схемы своей работы и журнал решений со ссылками в код; не используется — счётчик свежести снят 11-06 (решение «не ставим» было принято 29.09, маркера статуса не было)</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md"><span class="tree-name">clm-8b</span><span class="tree-desc">четвёртая модель решений: раздельные векторы ситуации и вариантов, кэш; не ставим, Laya легче</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md"><span class="tree-name">clm-8b</span><span class="tree-desc">четвёртая модель решений: раздельные векторы ситуации и вариантов, кэш; не ставим, Laya легче; 11-10 — допроверка: эндпоинт /v1/rank, двухступенчатый сервис, лимит 2048 токенов, звёзды 2,3к→3,2к</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/felix-rieseberg.md"><span class="tree-name">felix-rieseberg</span><span class="tree-desc">инженер Anthropic (Claude.ai, Cowork, Claude Code Desktop), автор разбора о глубоких задачах для модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ponytail.md"><span class="tree-name">ponytail</span><span class="tree-desc">плагин «ленивый старший разработчик», 5.3.2: что делает на машине, правило длины ответа, как выключить</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gstack.md"><span class="tree-name">gstack</span><span class="tree-desc">набор Гарри Тана из ~50 скиллов-ролей; не ставим, берём журнал исходящих отправок</span></a>
@@ -595,12 +498,12 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/obrezka-slovarya-modeli.md"><span class="tree-name">obrezka-slovarya-modeli</span><span class="tree-desc">выбросить из модели куски словаря, до которых вход не дотянется: три четверти веса уходят без потери качества, две ловушки дают молчаливую порчу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/asr-benchmark-traps.md"><span class="tree-name">asr-benchmark-traps</span><span class="tree-desc">четыре способа, которыми замер модели распознавания речи врёт; четвёртый — набор из одиночных фраз не видит границ между предложениями</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/inverse-text-normalization.md"><span class="tree-name">inverse-text-normalization</span><span class="tree-desc">вернуть расшифровке цифры, дефисы и знаки; название класса задачи как способ найти готовое, три яруса по цене</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 11-04 — новый класс защиты: проверка перед отправкой email аккаунта в сеть при вызове веб/shell-инструмента (Claude Code 2.1.317); 10-26 — девятый узел серии: три обхода sandbox в v2.1.309, плюс первое осознанное ослабление песочницы вендором вместо бага; 11-02 — ANTHROPIC_BASE_URL сам по себе не признак атаки, смотреть на адрес, не на наличие переменной (Strata)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md"><span class="tree-name">ai-security-by-design</span><span class="tree-desc">как ИИ изменил кибербезопасность и принципы защиты; 11-04 — новый класс защиты: проверка перед отправкой email аккаунта в сеть при вызове веб/shell-инструмента (Claude Code 2.1.317); 10-26 — девятый узел серии: три обхода sandbox в v2.1.309, плюс первое осознанное ослабление песочницы вендором вместо бага; 11-02 — ANTHROPIC_BASE_URL сам по себе не признак атаки, смотреть на адрес, не на наличие переменной (Strata)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-watch-skill.md"><span class="tree-name">claude-watch-skill</span><span class="tree-desc">Claude анализирует кадры видео по тайм-кодам</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/llm-memory-landscape.md"><span class="tree-name">llm-memory-landscape</span><span class="tree-desc">три разные задачи «памяти для ИИ»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/project-documentation-vault-pattern.md"><span class="tree-name">project-documentation-vault-pattern</span><span class="tree-desc">Obsidian-вики как документация кодового проекта; допроверка 09-12 — obsidian-mcp-plugin вышел из беты, REST API мост больше не нужен</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/second-brain-daily-workflows.md"><span class="tree-name">second-brain-daily-workflows</span><span class="tree-desc">ежедневные продуктивностные воркфлоу Obsidian+Claude</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов; 11-09 — семь приёмов из полного руководства Claude Platform (степени свободы, Claude A/Claude B, solve-don't-defer) плюс раздел «Противоречия» про установку пакетов; допроверка 09-01 — маршрутная таблица и скиллы-обёртки под операцию; 10-28 — четыре приёма из руководства agentskills.io</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md"><span class="tree-name">skill-authoring-practical-rules</span><span class="tree-desc">как создавать Skills вместо промтов; 11-09 — семь приёмов из полного руководства Claude Platform (степени свободы, Claude A/Claude B, solve-don't-defer) плюс раздел «Противоречия» про установку пакетов; допроверка 09-01 — маршрутная таблица и скиллы-обёртки под операцию; 10-28 — четыре приёма из руководства agentskills.io</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/mcp-model-context-protocol.md"><span class="tree-name">mcp-model-context-protocol</span><span class="tree-desc">открытый протокол подключения агентов к внешним сервисам; допроверка 11-03 — SEP-2663 (Tasks) закрыт статусом Final, найден протокольный мост к Agent Skills (SEP-2640); 09-14 — практическая сторона от курикулума Microsoft: дизайн тула, три угрозы авторизации</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-memory-tool.md"><span class="tree-name">claude-memory-tool</span><span class="tree-desc">официальный файловый инструмент памяти Claude API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-memory-five-questions.md"><span class="tree-name">agent-memory-five-questions</span><span class="tree-desc">пять решений, которые память агента принимает за тебя дефолтами; почему заброшенная вики стареет как дезинформация; 10-06 — Google OKF независимо формализует те же пять вопросов другим словарём</span></a>
@@ -609,7 +512,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/dynamic-workflows.md"><span class="tree-name">dynamic-workflows</span><span class="tree-desc">скриптовая оркестрация субагентов: agent/pipeline/parallel, quality-паттерны; 09-28 — приём общего секундомера из cookbook про латентность переносим и сюда</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agent-teams.md"><span class="tree-name">agent-teams</span><span class="tree-desc">команды агентов Claude Code: когда team вместо субагентов, размеры, failure modes; 09-28 — cookbook про общий секундомер команды, не чувствующей время по умолчанию (pressure vs budget); 10-19 — инфраструктурный масштаб у Anthropic (30 000 слияний/день): ревью по намерению, superfan-агенты</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-content-farming-workflow.md"><span class="tree-name">ai-content-farming-workflow</span><span class="tree-desc">техника контент-фермы через ИИ-агента: скрапинг, «система» файлов вместо промта</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/agentic-sdlc-frameworks.md"><span class="tree-name">agentic-sdlc-frameworks</span><span class="tree-desc">GSD и Superpowers: агентские фреймворки, автоматизирующие весь SDLC</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-desktop-automation-modes.md"><span class="tree-name">claude-desktop-automation-modes</span><span class="tree-desc">четыре способа автоматизации через Claude Desktop: Cowork Scheduler, Routines, /loop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/cloud-computing-fundamentals.md"><span class="tree-name">cloud-computing-fundamentals</span><span class="tree-desc">основы облачных вычислений: NIST-определение, IaaS/PaaS/FaaS/SaaS, специфика РФ</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/claude-artifacts.md"><span class="tree-name">claude-artifacts</span><span class="tree-desc">живые интерактивные страницы из сессии Claude Code: публикация, шаринг, MCP-коннекторы зрителя; допроверка 10-24 — два противоречия с 09-05 (публичный шаринг коннекторов на деле разрешён, путь Compliance API сменился), плюс Remote Control, скачивание файла, шаблоны Slides/Design/Docs</span></a>
@@ -636,7 +539,7 @@
     <details class="drawer">
       <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">182</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md"><span class="tree-name">claude-platform-agent-skills-best-practices</span><span class="tree-desc">официальное руководство Claude Platform по авторству скиллов — семь приёмов, которых в вики не было; рутина практик, целевой WebSearch, не инбокс</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md"><span class="tree-name">claude-platform-agent-skills-best-practices</span><span class="tree-desc">официальное руководство Claude Platform по авторству скиллов — семь приёмов, которых в вики не было; рутина практик, целевой WebSearch, не инбокс</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/unclebob-ub-mode.md"><span class="tree-name">unclebob-ub-mode</span><span class="tree-desc">скилл инженерной дисциплины Роберта Мартина: не ставим (дублирует ponytail/superpowers), берём мутационное тестирование и правило «тест, проходящий при пустых функциях, — выбросить»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opencode-agents-md-pravila.md"><span class="tree-name">opencode-agents-md-pravila</span><span class="tree-desc">AGENTS.md проекта OpenCode: из трёх правил поста взято одно — усложнение ради маловероятного, по формуле «сбой — вероятность — цена»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/agentskills-best-practices.md"><span class="tree-name">agentskills-best-practices</span><span class="tree-desc">руководство agentskills.io для авторов скиллов: около двух третей уже было в вики, взяты четыре приёма</span></a>
@@ -780,7 +683,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-09-28.md"><span class="tree-name">claude-code-changelog-snapshot-2026-09-28</span><span class="tree-desc">changelog Claude Code 2.1.283: deniedModels/availableModelsMatch:"exact" для организаций, /doctor prompt-audit — аудит CLAUDE.md/скиллов на приёмы под устаревшие модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-cookbook-latency-multi-agent.md"><span class="tree-name">claude-cookbook-latency-multi-agent</span><span class="tree-desc">официальный cookbook (22.09.2026): команда lead+helpers на сыром Messages API не чувствует время по умолчанию — приём общего секундомера, pressure vs budget, честные границы применимости</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/whiteboard-devfast-agent-review-canvas.md"><span class="tree-name">whiteboard-devfast-agent-review-canvas</span><span class="tree-desc">Whiteboard от dev.fast: инструмент не берём, берём схему в отчёте и пункт «решил сам, без спроса»</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md"><span class="tree-name">clm-8b-contrastive-system-one</span><span class="tree-desc">CLM-8B против Jev: кэш вариантов, роль проверяющего; замеры авторские и на 30–38 задачах</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/clm-8b-contrastive-system-one.md"><span class="tree-name">clm-8b-contrastive-system-one</span><span class="tree-desc">CLM-8B против Jev: кэш вариантов, роль проверяющего; замеры авторские и на 30–38 задачах; 11-10 — допроверка по README репозитория, рост без противоречий</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-01.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-01</span><span class="tree-desc">changelog Claude Code 2.1.284–2.1.286: Claude Sonnet 5.5 — дефолтная модель Sonnet; allowedProviders для организаций; отключаемый CLAUDE_CODE_DISABLE_WEB_FETCH; claude --desktop</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-04.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-04</span><span class="tree-desc">changelog Claude Code 2.1.287–2.1.288: Claude Mods — не изолированные плагины-перехватчики событий; критический фикс обхода защиты «всегда спрашивать» перед <code>rm</code> в <code>bash -c</code>/<code>sh -c</code> под <code>bypassPermissions</code> (номер версии фикса расходится между источниками)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-10-07.md"><span class="tree-name">claude-code-changelog-snapshot-2026-10-07</span><span class="tree-desc">changelog Claude Code 2.1.289–2.1.292: батч из восьми permission-bypass фиксов разом — Windows 8.3-короткое имя для <code>rm</code>, UNC-пути, TOCTOU через symlink в чтении notebook/PDF, наследование одобрения мода на вложенную shell-команду</span></a>
@@ -834,11 +737,11 @@
     <details class="drawer">
       <summary><span class="drawer-label">Synthesis</span><span class="drawer-desc">ответы на вопросы, сравнения, анализ</span><span class="drawer-count">14</span></summary>
       <div class="tree-rows">
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 11-04 — первая граница записи, не зависящая от режима разрешений (`permissions.blockWritesOutsideWorkingDirectories`, включая bypassPermissions); 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill); 11-02 — агент-администратор локальной службы через MCP документирован вендором (Strata), контраст у VoiceStudio (суженные права)</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md"><span class="tree-name">podlinnost-modeli-u-posrednika</span><span class="tree-desc">подаёт ли посредник ту модель, за которую платишь: «спросить модель» и бенчмарк не работают, работают закрепление исполнителя, свои эталоны, logprobs; фильтр для дешёвых доступов</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-po-polochkam.md"><span class="tree-name">claude-po-polochkam</span><span class="tree-desc">путеводитель по Claude Code и соседям на 9 полочек: что это, как включить и выключить, где подробно; где вики расходится сама с собой</span><span class="badge-new">новое</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/dve-skhemy-parallelnyh-subagentov.md"><span class="tree-name">dve-skhemy-parallelnyh-subagentov</span><span class="tree-desc">параллельные worktree против «один кусок — один агент»: сравнение, плюсы и минусы, что взять себе</span><span class="badge-new">новое</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/zabor-i-stena-prava-agenta.md"><span class="tree-name">zabor-i-stena-prava-agenta</span><span class="tree-desc">почему правила и хуки — забор, а урезанный список инструментов агента — стена; правило двух, четыре края стены, лестница надёжности; 11-04 — первая граница записи, не зависящая от режима разрешений (`permissions.blockWritesOutsideWorkingDirectories`, включая bypassPermissions); 10-13 — подтверждено без атакующего отчётом Anthropic; 10-19 — обнаружение получило механизм: трассировка (agent-observability); 10-27 — третий вариант доступа: явное заимствование вкладки с возвратом (browserskill); 11-02 — агент-администратор локальной службы через MCP документирован вендором (Strata), контраст у VoiceStudio (суженные права)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/katalog-instrumentov-iz-inboksa.md"><span class="tree-name">katalog-instrumentov-iz-inboksa</span><span class="tree-desc">инструменты из инбокса «может пригодиться»: первоисточник и одна фраза на каждый; полный разбор — когда появится задача</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/podlinnost-modeli-u-posrednika.md"><span class="tree-name">podlinnost-modeli-u-posrednika</span><span class="tree-desc">подаёт ли посредник ту модель, за которую платишь: «спросить модель» и бенчмарк не работают, работают закрепление исполнителя, свои эталоны, logprobs; фильтр для дешёвых доступов</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-po-polochkam.md"><span class="tree-name">claude-po-polochkam</span><span class="tree-desc">путеводитель по Claude Code и соседям на 9 полочек: что это, как включить и выключить, где подробно; где вики расходится сама с собой</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/dve-skhemy-parallelnyh-subagentov.md"><span class="tree-name">dve-skhemy-parallelnyh-subagentov</span><span class="tree-desc">параллельные worktree против «один кусок — один агент»: сравнение, плюсы и минусы, что взять себе</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/pre-project-architecture-checklist.md"><span class="tree-name">pre-project-architecture-checklist</span><span class="tree-desc">чек-лист архитектуры/безопасности перед стартом проекта</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/moy-uroven-vladeniya-claude.md"><span class="tree-name">moy-uroven-vladeniya-claude</span><span class="tree-desc">оценка текущего уровня владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/claude-code-checklist-postoyannogo-ispolzovaniya.md"><span class="tree-name">claude-code-checklist-postoyannogo-ispolzovaniya</span><span class="tree-desc">практический чек-лист Claude Code для повседневного использования</span></a>
