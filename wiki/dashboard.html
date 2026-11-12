@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-11 (2 записи) · след. запуск 08:00 (11.12)</div>
+      <div class="mono">обновлено 2026-11-12 (1 запись) · след. запуск 08:00 (11.13)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">337</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">4</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">3</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">183</span><span class="l">sources</span></div>
@@ -358,26 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">2 записи · 11.11 — допроверка флагнутой страницы claude-statusline и закрытие бэклог-пункта про каталог дашборда (обе — рутина хвостов)</span>
+      <span class="section-note">1 запись · 11.12 — допроверка флагнутой страницы mem0 (рутина хвостов)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">claude-statusline вышел из семимесячной спячки — версия 1.0.7</div>
-        <div class="news-body">Допроверка по первоисточнику (кулдаун снят, 53 дня с 09-19): прошлый вывод «проект неактивен» устарел — три новых коммита 2026-11-05…11-06, версия 1.0.6→1.0.7 (живой уровень эффорта из stdin/`$CLAUDE_EFFORT` с поддержкой `max`/`xhigh`, починка раздельного расчёта five_hour/seven_day). Звёзды/форки/issues без изменений.</div>
+        <div class="news-title">Допроверка mem0: без расхождений, рост версии и звёзд</div>
+        <div class="news-body">Допроверка по первоисточнику (52 дня с 09-21): отсутствие graph-хранилища подтверждено третий раз подряд, алгоритм памяти без изменений с апреля 2026. Версия PyPI 2.1.0→2.2.1, звёзды 65.7k→68.8k.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md">claude-statusline</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">lint</span>
-        <div class="news-title">Закрытие пробела: каталог dashboard.html — расхождение 11-06 устранилось само</div>
-        <div class="news-body">Построчная сверка `comm` каталога против реальных файлов `wiki/{entities,concepts,sources,projects,synthesis}` дала точное совпадение по всем пяти разделам — разрыв, найденный механическим проходом 11-06, закрылся обычными ежедневными правками страниц, без отдельного большого прохода.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md">mem0</a>
         </div>
       </article>
 
@@ -428,7 +419,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/qaisar-kurmangaliev.md"><span class="tree-name">qaisar-kurmangaliev</span><span class="tree-desc">автор полного курса по Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/neiroprosveshchenie.md"><span class="tree-name">neiroprosveshchenie</span><span class="tree-desc">автор техники «просмотра» видео через Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/memora.md"><span class="tree-name">memora</span><span class="tree-desc">MCP-сервер памяти для агентов; допроверка 11-04 — changelog (v0.5.7.6) опередил устаревшую метку «Latest» на странице релизов GitHub, SQLite стал возможным primary с репликацией в D1, снята эвристика проекта по ключевым словам, отдельный read-only JSON API</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 09-21 — без расхождений, версия PyPI 2.1.0, 65.7k★</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 11-12 — без расхождений (graph store третий раз не найден), версия PyPI 2.1.0→2.2.1, 65.7k★→68.8k★</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT); допроверка 09-29 — главная ветка репозитория теперь редирект на letta-code, legacy V1 ушёл на ветку archive</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
@@ -436,7 +427,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/shubin-danila.md"><span class="tree-name">shubin-danila</span><span class="tree-desc">автор обзора ландшафта LLM-памяти</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/sonny-huynh.md"><span class="tree-name">sonny-huynh</span><span class="tree-desc">автор паттерна «второй мозг» с ежедневными воркфлоу</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nikita-vels.md"><span class="tree-name">nikita-vels</span><span class="tree-desc">автор справочника из 30 практических концептов Claude Code</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI; допроверка 11-11 — проект вышел из семимесячной спячки, версия 1.0.6→1.0.7 (живой уровень эффорта, поддержка max/xhigh, починка расчёта лимитов)</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-statusline.md"><span class="tree-name">claude-statusline</span><span class="tree-desc">statusline-скрипт для Claude Code CLI; допроверка 11-11 — проект вышел из семимесячной спячки, версия 1.0.6→1.0.7 (живой уровень эффорта, поддержка max/xhigh, починка расчёта лимитов)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-agent-sdk.md"><span class="tree-name">claude-agent-sdk</span><span class="tree-desc">библиотека Python/TypeScript для встраивания agent loop в свои приложения; 09-07 — cookbook Scheduled Repository Reviewer; 09-08 — один из трёх рантаймов блюпринта Commerce Agents; 10-05 — опциональный backend у community-плагина конкурирующего харнеса; 10-19 — трассы экспортируются автоматически (OpenTelemetry)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-managed-agents.md"><span class="tree-name">claude-managed-agents</span><span class="tree-desc">hosted agent harness Anthropic: agent/environment/session/events; допроверка 09-10 — permission policy auto, ant sessions connect; 09-08 — один из трёх рантаймов блюпринта Commerce Agents; 10-19 — observability через OpenTelemetry (публичная бета)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/commerce-agents.md"><span class="tree-name">commerce-agents</span><span class="tree-desc">официальный открытый эталонный блюпринт торгового агента: один агент на трёх рантаймах, safety-гейты (fencing, provenance, host approval) в общем исполнителе тула</span></a>
