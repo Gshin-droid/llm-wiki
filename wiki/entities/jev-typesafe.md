@@ -75,8 +75,13 @@
 
 **Побочная крупная находка — рынок вырос быстрее, чем знала вики.** На 16.10.2026 категория «decisions» на OpenRouter — **22 модели от 13 производителей**, не только Jev: OpenAI (`gpt-6-luna-decisions`), Microsoft (`microsoft-decision-1`), Perplexity (`pplx-decider-v1.2`/`-flash`), Cloudflare (`clef`/`clef-flash`/`clef-omni`), Inception (`mercury-decide`), Liquid AI (`d1`/`d1-ultra`), Upstage (`solar-decide`/`-flash`), плюс Nace.AI/Respan/ScaleDown/Together/Jared Palmer. Все идут через общий Decisions API (`POST /api/alpha/decisions`), совместимый почти без изменений кода между моделями. За два месяца с последней сверки экосистемы (09-22/09-29, тогда известны были только Jev/Laya/openJev/CLM-8B) жанр «модель решений» стал товарной категорией крупных поставщиков, а не нишей малоизвестных стартапов. Решение пользователя 2026-09-22 («не использовать Jev ни в каком виде», причины — закрытый сервис малоизвестного поставщика, цена, выигрыш не окупает) **не переоценивается автономно** — но сама причина «малоизвестный поставщик» ослабла для этой товарной категории в целом, не только для TypeSafe; решение, пересматривать ли, — за пользователем. Дополнение на [[laya]].
 
+## Дедупликация графа памяти через Jev (2026-11-13, допроверка [[zep-graphiti]])
+
+Третье применение модели решений этого класса, кроме выбора скилла и сита инструментов: README [[zep-graphiti]] документирует `JevClient`, который отдаёт дедупликацию узлов и разрешение рёбер графа памяти модели Jev вместо обычной языковой модели (рядом — `OpenAIDecisionsClient`, тот же приём через OpenAI Decisions). И здесь, и там решение — не генерация текста, а быстрое типизированное суждение в узком месте конвейера, тот же паттерн, что уже описан разделом «Экосистема» выше.
+
 ## Связи
 
 - Источники в вики: [[laya-local-decision-engine]], [[jev-skill-suggestion-mod]], [[jev-ecosystem-projects]], [[laya-jev-lab-measurements]], [[openjev-verdict-2-repo-review]], [[unsloth-decision-model-training]]
+- [[zep-graphiti]] — дедупликация графа памяти через Jev/OpenAI Decisions
 - Сущности: [[laya]], [[openjev-verdict-2]], [[unsloth]], [[openrouter]] (площадка биллинга и доступа с 11.2026, новая категория моделей «decisions»)
 - Концепты: [[kalibrovka-uverennosti-resheniy]]
