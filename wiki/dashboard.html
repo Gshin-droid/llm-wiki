@@ -342,26 +342,47 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-13 (1 запись) · след. запуск 08:00 (11.14)</div>
+      <div class="mono">обновлено 2026-11-13 (3 записи) · след. запуск 08:00 (11.14)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
-    <div class="stat"><span class="n">337</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">338</span><span class="l">страниц</span></div>
+    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
-    <div class="stat"><span class="n">183</span><span class="l">sources</span></div>
+    <div class="stat"><span class="n">184</span><span class="l">sources</span></div>
   </div>
 
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 11.13 — допроверка флагнутой страницы zep-graphiti (рутина хвостов)</span>
+      <span class="section-note">3 записи · 11.13 — сводка новостей и разбор Claude Code 2.1.323 (рутина новостей), допроверка флагнутой страницы zep-graphiti (рутина хвостов)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">ingest</span>
+        <div class="news-title">Claude Code 2.1.323 — Code Mode, лимит сообщений сессии 20→100 000, дефолт контекста 200K→1M</div>
+        <div class="news-body">Экспериментальный Code Mode (агент пишет JS для своих же вызовов инструментов — не путать с Dynamic Workflows), внутренний лимит сообщений между сессиями при resume/continue поднят с «около 20» до 100 000, дефолтное окно контекста для нераспознанных ID моделей — 1M вместо 200K (риск тихого переполнения вместо недогрузки). Bash-песочница перестала доверять symlink-grant'ам на запись — тот же класс путаницы, что у серии permission-bypass, но без официальной нумерации узла.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-12.md">claude-code-changelog-snapshot-2026-11-12</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">news</span>
+        <div class="news-title">Сводка новостей: Claude Code 2.1.323, статус OpenAI–Cursor</div>
+        <div class="news-body">Окно 10.11–13.11.2026: Claude Code 2.1.323 (12.11) — Code Mode, лимит сообщений сессии 20→100 000, дефолт контекста неизвестных моделей 200K→1M; проверка пункта из прошлой сводки — точная дата отключения OpenAI-доступа в Cursor (предложенная 12.11) до сих пор не согласована компаниями, но задокументированы альтернативы (расширение Codex, ограниченный BYOK). Остальные крупные поставщики, регулирование КЗ/РФ/ЕС/США, доступность в СНГ и уязвимости за окно — без нового подтверждённого.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-11-13.md">novosti-2026-11-13</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md">cursor</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
@@ -537,8 +558,9 @@
     </details>
 
     <details class="drawer">
-      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">183</span></summary>
+      <summary><span class="drawer-label">Sources</span><span class="drawer-desc">саммари загруженных источников</span><span class="drawer-count">184</span></summary>
       <div class="tree-rows">
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-12.md"><span class="tree-name">claude-code-changelog-snapshot-2026-11-12</span><span class="tree-desc">changelog Claude Code 2.1.323: экспериментальный Code Mode (агент пишет JS для своих же вызовов инструментов), лимит сообщений сессии 20→100 000, дефолт контекста неизвестных моделей 200K→1M, Bash-песочница против symlink-grant'ов на запись</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-platform-agent-skills-best-practices.md"><span class="tree-name">claude-platform-agent-skills-best-practices</span><span class="tree-desc">официальное руководство Claude Platform по авторству скиллов — семь приёмов, которых в вики не было; рутина практик, целевой WebSearch, не инбокс</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/unclebob-ub-mode.md"><span class="tree-name">unclebob-ub-mode</span><span class="tree-desc">скилл инженерной дисциплины Роберта Мартина: не ставим (дублирует ponytail/superpowers), берём мутационное тестирование и правило «тест, проходящий при пустых функциях, — выбросить»</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/opencode-agents-md-pravila.md"><span class="tree-name">opencode-agents-md-pravila</span><span class="tree-desc">AGENTS.md проекта OpenCode: из трёх правил поста взято одно — усложнение ради маловероятного, по формуле «сбой — вероятность — цена»</span></a>
