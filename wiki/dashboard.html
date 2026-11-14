@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-13 (3 записи) · след. запуск 08:00 (11.14)</div>
+      <div class="mono">обновлено 2026-11-14 (1 запись) · след. запуск 08:00 (11.15)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">338</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">5</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">184</span><span class="l">sources</span></div>
@@ -358,39 +358,17 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 11.13 — сводка новостей и разбор Claude Code 2.1.323 (рутина новостей), допроверка флагнутой страницы zep-graphiti (рутина хвостов)</span>
+      <span class="section-note">1 запись · 11.14 — допроверка флагнутой страницы m3e-canvas (рутина хвостов)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
-        <span class="news-stamp">ingest</span>
-        <div class="news-title">Claude Code 2.1.323 — Code Mode, лимит сообщений сессии 20→100 000, дефолт контекста 200K→1M</div>
-        <div class="news-body">Экспериментальный Code Mode (агент пишет JS для своих же вызовов инструментов — не путать с Dynamic Workflows), внутренний лимит сообщений между сессиями при resume/continue поднят с «около 20» до 100 000, дефолтное окно контекста для нераспознанных ID моделей — 1M вместо 200K (риск тихого переполнения вместо недогрузки). Bash-песочница перестала доверять symlink-grant'ам на запись — тот же класс путаницы, что у серии permission-bypass, но без официальной нумерации узла.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-code-changelog-snapshot-2026-11-12.md">claude-code-changelog-snapshot-2026-11-12</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-code.md">claude-code</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/ai-security-by-design.md">ai-security-by-design</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: Claude Code 2.1.323, статус OpenAI–Cursor</div>
-        <div class="news-body">Окно 10.11–13.11.2026: Claude Code 2.1.323 (12.11) — Code Mode, лимит сообщений сессии 20→100 000, дефолт контекста неизвестных моделей 200K→1M; проверка пункта из прошлой сводки — точная дата отключения OpenAI-доступа в Cursor (предложенная 12.11) до сих пор не согласована компаниями, но задокументированы альтернативы (расширение Codex, ограниченный BYOK). Остальные крупные поставщики, регулирование КЗ/РФ/ЕС/США, доступность в СНГ и уязвимости за окно — без нового подтверждённого.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-11-13.md">novosti-2026-11-13</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cursor.md">cursor</a>
-        </div>
-      </article>
-
-      <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка zep-graphiti: закрыт вопрос про multi-pass extraction, Jev в дедупликации графа</div>
-        <div class="news-body">Прямое чтение кода `add_episode` подтвердило пять LLM-стадий на эпизод — открытый с 09-21 вопрос «тяжёлый multi-pass extraction» закрыт. Temporal-поля без изменений, звёзды 31,0k→32,8k, добавлен backend Amazon Neptune, Kuzu помечен deprecated; побочно — Graphiti дедуплицирует граф через модели решений Jev/OpenAI Decisions.</div>
+        <div class="news-title">Допроверка m3e-canvas: без расхождений, найдена ИИ-помощь по своему ключу</div>
+        <div class="news-body">Повторное истечение порога «Актуально на» (53 дня с ingest'а). README и репозиторий github.com/lnkiai/m3e-canvas прочитаны напрямую: звёзды 8к+→10,3к, форки 1,1к, issues 9 — без расхождений с прежним описанием. Новая находка — необязательная ИИ-помощь по своему ключу (OpenAI/Claude/Gemini/DeepSeek) и ссылка-макет, которую может достроить агент; практическая проба самого экспорта промпта остаётся не начатой.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md">zep-graphiti</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md">jev-typesafe</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md">m3e-canvas</a>
         </div>
       </article>
 
@@ -442,7 +420,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/neiroprosveshchenie.md"><span class="tree-name">neiroprosveshchenie</span><span class="tree-desc">автор техники «просмотра» видео через Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/memora.md"><span class="tree-name">memora</span><span class="tree-desc">MCP-сервер памяти для агентов; допроверка 11-04 — changelog (v0.5.7.6) опередил устаревшую метку «Latest» на странице релизов GitHub, SQLite стал возможным primary с репликацией в D1, снята эвристика проекта по ключевым словам, отдельный read-only JSON API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/mem0.md"><span class="tree-name">mem0</span><span class="tree-desc">memory-фреймворк для агентов на API; допроверка 11-12 — без расхождений (graph store третий раз не найден), версия PyPI 2.1.0→2.2.1, 65.7k★→68.8k★</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; допроверка 11-13 — закрыт вопрос «тяжёлый multi-pass extraction» (пять LLM-стадий на эпизод, код `add_episode`), звёзды 31,0k→32,8k, backend Amazon Neptune, Kuzu deprecated, дедупликация графа через Jev/OpenAI Decisions; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/zep-graphiti.md"><span class="tree-name">zep-graphiti</span><span class="tree-desc">temporal knowledge graph для памяти; допроверка 11-13 — закрыт вопрос «тяжёлый multi-pass extraction» (пять LLM-стадий на эпизод, код `add_episode`), звёзды 31,0k→32,8k, backend Amazon Neptune, Kuzu deprecated, дедупликация графа через Jev/OpenAI Decisions; 09-22 — происхождение неверных полей valid_from/valid_until/recorded_at установлено: неточность самого Habr-источника, не рассинхрон с кодом</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/letta.md"><span class="tree-name">letta</span><span class="tree-desc">memory-as-OS фреймворк (бывший MemGPT); допроверка 09-29 — главная ветка репозитория теперь редирект на letta-code, legacy V1 ушёл на ветку archive</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/graphify.md"><span class="tree-name">graphify</span><span class="tree-desc">локальный граф архитектуры кода</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/maxim-bashkardinov.md"><span class="tree-name">maxim-bashkardinov</span><span class="tree-desc">автор гайда Obsidian+Claude через MCP для документации проекта</span></a>
@@ -478,11 +456,11 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/vibe-coding-channel.md"><span class="tree-name">vibe-coding-channel</span><span class="tree-desc">Telegram-канал наводок: цифры передаёт точно, ограничения продукта опускает системно; 10-05 — четвёртый случай (dsh-TUI)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/nvidia-pair.md"><span class="tree-name">nvidia-pair</span><span class="tree-desc">маршрутизатор локального вывода (Apache 2.0, бета 0.1.5): раздаёт запросы к Ollama/LM Studio по машинам сети, но видеопамять не складывает; 09-24 — упорядоченный failover-список узлов, конфигурация через приложение; 11-02 — рядом в ландшафте Strata (offloading одной модели, не маршрутизация)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/laya.md"><span class="tree-name">laya</span><span class="tree-desc">открытая модель типизированных решений 0,3–0,5B: вероятность, выбор или оценка за один проход и 33 мс; 11-05 — рынок класса вырос до 22 моделей/13 производителей на OpenRouter, Laya остаётся единственной открытой локальной; 10-26 — Unsloth умеет дообучать готовый чекпоинт Laya дальше, подмена имени `laya` в локальной Decision API</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya, классификатор мода скиллов и, с 11-13, дедупликатор графа памяти Zep/Graphiti; 11-05 — первоисточник через OpenRouter: версия 1.13→1.14, примитив Box, контекст 262 144 токена, биллинг без ключа TypeSafe; 10-26 — Unsloth регистрирует свою дообученную модель под именем `jev-latest` в локальной Decision API</span><span class="badge-new">обновлено</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/jev-typesafe.md"><span class="tree-name">jev-typesafe</span><span class="tree-desc">платный облачный API типизированных решений: точка отсчёта для Laya, классификатор мода скиллов и, с 11-13, дедупликатор графа памяти Zep/Graphiti; 11-05 — первоисточник через OpenRouter: версия 1.13→1.14, примитив Box, контекст 262 144 токена, биллинг без ключа TypeSafe; 10-26 — Unsloth регистрирует свою дообученную модель под именем `jev-latest` в локальной Decision API</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/unsloth.md"><span class="tree-name">unsloth</span><span class="tree-desc">библиотека дообучения LLM (QLoRA); FastDecisionModel/DecisionTrainer — официальный рецепт превратить любую LLM в модель решений класса Laya/Jev; лицензия расходится внутри проекта — decision-код AGPL-3.0-only при Apache-2.0 у остального пакета</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openjev-verdict-2.md"><span class="tree-name">openjev-verdict-2</span><span class="tree-desc">третья модель типизированных решений (149,6M, Apache 2.0), заявляет превосходство над laya и jev-typesafe на собственном тестовом наборе — не независимо; 10-02 — метод RLCD общий с laya только по названию; 10-14 — лицензия/запуск/языки/набор данных закрыты, третий самостоятельный вариант расшифровки RLCD, утечка теста (42%) в другом бенчмарке того же репозитория</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/cloudflare-tunnel.md"><span class="tree-name">cloudflare-tunnel</span><span class="tree-desc">публичный HTTPS-адрес локальному серверу одной командой; только для разработки, 200 запросов, без SSE</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT)</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md"><span class="tree-name">m3e-canvas</span><span class="tree-desc">макет мышью в браузере, на выходе промпт для агента-кодера (MIT); допроверка 11-14 — без расхождений, звёзды 8к+→10,3к, форки 1,1к, найдена необязательная ИИ-помощь по своему ключу и ссылка-макет, которую может достроить агент</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/material-3-expressive.md"><span class="tree-name">material-3-expressive</span><span class="tree-desc">дизайн-система Google с Android 16; полностью реализована в Jetpack Compose; допроверка 10-01 — в React Native фундамент вышел в пререлиз 6.0.0-alpha.0, видимые компоненты всё ещё открытыми PR</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/google-ax.md"><span class="tree-name">google-ax</span><span class="tree-desc">открытая среда выполнения агентов поверх Kubernetes (Apache 2.0, v0.3.0): контрольные точки состояния, сетевой allowlist как несущий примитив; 09-26 — Agent Substrate (обязательная нижележащая среда) отдельный открытый проект, не org Google, сам pre-1.0</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/impeccable.md"><span class="tree-name">impeccable</span><span class="tree-desc">дизайнерские команды для агента (polish, distill, bolder) + хуки + скачиваемый движок; 10-10 — запрос roll и SessionStart-хук прочитаны: без кода и путей, хук сети не касается</span></a>
