@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-14 (1 запись) · след. запуск 08:00 (11.15)</div>
+      <div class="mono">обновлено 2026-11-15 (2 записи) · след. запуск 08:00 (11.16)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">338</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">88</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">184</span><span class="l">sources</span></div>
@@ -358,17 +358,26 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 11.14 — допроверка флагнутой страницы m3e-canvas (рутина хвостов)</span>
+      <span class="section-note">2 записи · 11.15 — воскресный прогон: механический проход + сверка с сырьём (рутина хвостов)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка m3e-canvas: без расхождений, найдена ИИ-помощь по своему ключу</div>
-        <div class="news-body">Повторное истечение порога «Актуально на» (53 дня с ingest'а). README и репозиторий github.com/lnkiai/m3e-canvas прочитаны напрямую: звёзды 8к+→10,3к, форки 1,1к, issues 9 — без расхождений с прежним описанием. Новая находка — необязательная ИИ-помощь по своему ключу (OpenAI/Claude/Gemini/DeepSeek) и ссылка-макет, которую может достроить агент; практическая проба самого экспорта промпта остаётся не начатой.</div>
+        <div class="news-title">Сверка с сырьём: skill-authoring-practical-rules — два пункта без якоря, противоречий нет</div>
+        <div class="news-body">Страница, собранная минимум из девяти источников и правленная автономной рутиной дюжину раз за четыре месяца, впервые прошла сверку с сырьём. Все числовые замеры (токен-эффективность, гранулярность скилла) и дословные формулировки подтвердились; два места — цифра «~70 КБ базы правил» у Sepia и деталь упаковки ZIP — без чёткого якоря в доступном материале, заведены в бэклог без правки страницы.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/m3e-canvas.md">m3e-canvas</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/concepts/skill-authoring-practical-rules.md">skill-authoring-practical-rules</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">Итоги механического прохода: 19 просроченных «Актуально на», новых блокировок нет</div>
+        <div class="news-body">369 страниц, 38 находок, битых ссылок/сирот/страниц вне индекса нет. Просроченных «Актуально на» — 19 (рост с 14 на пять: impeccable, hindsight, planning-with-files, openjev-verdict-2, context7 — все повторное истечение порога). Список заброшенных доменов без изменений к 11-08. Находки сложены в gaps-backlog, не чинились на месте.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
         </div>
       </article>
 
