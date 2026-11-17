@@ -6,7 +6,7 @@
 **Автор:** Nanako0129
 **Лицензия:** MIT
 **Репозиторий:** https://github.com/Nanako0129/sepia
-**Актуально на:** 2026-10-05
+**Актуально на:** 2026-11-17
 
 ## Метрики репозитория (на 2026-09-01)
 
@@ -33,6 +33,16 @@
 **Папка `research/` выросла** — 11 файлов, включая новые, которых не было на 09-01: `hemingway.md`, `newswriting-guides.md`, `zh-news-corpus.md`, `ecosystem.md`, `platforms.md` — рост в сторону журналистики совпадает с появлением нового доменного маршрута выше, не случайное добавление.
 
 Деталь не проверялась: содержимое `evals/deaify-release-note` и новых файлов `research/` построчно — за пределами вопроса допроверки (сама метка просрочки касалась общей картины устройства, не нового материала).
+
+## Допроверка 2026-11-17 (закрытие пробела, gaps-backlog)
+
+Два пункта бэклога про [[skill-authoring-practical-rules]] проверены прямым `git clone github.com/Nanako0129/sepia` и прямым чтением официальной документации Skills (не пересказов). Версия скилла **0.12.2 → 0.13.0**, звёзды ~3,0k → **~3,8k**, форки — **237** (раньше не отслеживались).
+
+**Таблица «операция → контракт» подтверждена дословно**: `skills/sepia/SKILL.md`, раздел `## Operations`, строка `| Operation | Contract |` — ровно то, на что ссылается [[skill-authoring-practical-rules]].
+
+**Цифра «~70 КБ суммарной базы правил / одиннадцать файлов» (снимок 09-01, версия 0.4.0) для текущей версии не подтвердилась — репозиторий вырос кратно.** `references/` сейчас — **19 файлов правил**, не одиннадцать: прежние пять «проходов» (`narrative-pass`, `discourse-pass`, `style-pass`, `professional-pass`, `rubric`) и домены — но доменных файлов теперь шесть (`release-notes`, `postmortems`, `journalism`, `dev-replies`, `tech-articles`, `tickets`), плюс три новых раздела, которых на 09-01/10-05 не было вовсе: `model-fingerprints.md` (прозовый/нарративный «отпечаток» модели по семействам — Fable, GPT, Gemini), `voice-skills.md` (композиция с чужим голосовым/стилевым скиллом по явному opt-in) и целая папка `voices/` (`registry.md`, `PERSONA-TEMPLATE.md`, `hemingway.md`, `tw-journalism.md`, `personas/nyaneko.md` — система «персон» с таблицей переопределения правил и явной ценой отклонения). Отдельно — `references/languages/zh.md`, калибровка для китайского. Суммарный объём только `references/` — **~230 КБ** (`du -sb`), с `SKILL.md` (~16 КБ) — **~250 КБ**; «~70 КБ» не держится ни для одной прочитанной версии. Механизм диспетчера (пол активации — два-три файла за вызов, не всё сразу) не изменился, абсолютная цифра у [[skill-authoring-practical-rules]] снята как снимок устаревшей версии, не факт текущего репозитория.
+
+**Деталь «имя папки ZIP-архива должно совпадать с полем `name`» не подтверждена ни одним первоисточником.** Прочитаны напрямую: `platform.claude.com/docs/en/agents-and-tools/agent-skills/overview`, `.../best-practices`, API-референс `POST /v1/skills` (`platform.claude.com/docs/en/api/beta/skills/create`) и официальные `scripts/package_skill.py`/`scripts/quick_validate.py` из `github.com/anthropics/skills` — ни один не упоминает такое требование. API-референс формулирует условие иначе: «all files must be in the same top-level directory and must include a SKILL.md file at the root of that directory» — про имя папки ни слова, сам `package_skill.py` называет итоговый файл по имени папки (`{skill_name}.skill`), но не проверяет совпадение с `name` из frontmatter. Деталь, зафиксированная сверкой 2026-11-15 как «без якоря», снята из [[skill-authoring-practical-rules]] этой допроверкой.
 
 ## Четыре операции
 
