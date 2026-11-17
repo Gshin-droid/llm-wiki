@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Сторож журнала: запись из wiki/log.md не может исчезнуть или задвоиться.
 
-    python log_guard.py <BASE_REF>   # сверить с состоянием файла в base-коммите
-    python log_guard.py              # только проверка на дубли в текущем файле
+    python log_guard.py              # сверить журнал со всей его историей в git
     python log_guard.py --self-test
+
+2026-11-17: сверка с прошлым пушем заменена сверкой со всей историей. Пропажа
+заголовка 10.11 (b152030) дала один красный прогон, его не заметили, а со
+следующего пуша сравнивать стало не с чем — сторож неделю был зелёным при
+сломанном журнале. Теперь пропажа краснеет на каждом пуше, пока её не вернут.
+Первый же прогон нашёл вторую такую же потерю — 07.08, до появления сторожа.
 
 Повод — 2026-08-13. Автономная рутина сделала два коммита подряд, а второй
 писала по тексту лога, прочитанному ДО первого: заголовок чужой записи она
@@ -34,10 +39,27 @@ def headings(text):
     return [m.group(0).strip() for m in HEAD.finditer(text)]
 
 
-def check(base_text, cur_text):
-    """Возвращает (пропавшие, задвоившиеся). Пустые списки — всё хорошо."""
+# Заголовки, убранные осознанно (переименование). Переименовать заголовок —
+# значит внести сюда старое имя тем же коммитом: так снятие видно в истории.
+RETIRED = {
+    # 2026-07-31, 6da2016: тег scout → ingest по конвенции вики.
+    "## [2026-07-31] scout | Финальная спецификация MCP 2026-07-28 вышла точно в срок"
+    " — закрыт открытый статус на странице протокола",
+}
+
+
+def ever_headings(patch_text):
+    """Заголовки, когда-либо добавленные в журнал, по выводу `git log -p`."""
+    added = (l[1:].strip() for l in patch_text.split("\n") if l.startswith("+## ["))
+    return list(dict.fromkeys(h for h in added if HEAD.match(h)))
+
+
+def check(base, cur_text):
+    """base — текст журнала или список заголовков, которые обязаны остаться.
+    Возвращает (пропавшие, задвоившиеся). Пустые списки — всё хорошо."""
     cur = headings(cur_text)
-    missing = [h for h in dict.fromkeys(headings(base_text)) if h not in cur]
+    base = headings(base) if isinstance(base, str) else base
+    missing = [h for h in dict.fromkeys(base) if h not in cur and h not in RETIRED]
     dupes = [h for h, n in Counter(cur).items() if n > 1]
     return missing, dupes
 
@@ -62,17 +84,19 @@ def out_of_order(cur_text):
     return None if dates[0] == newest else (dates[0], newest)
 
 
-def git_show(ref, path):
-    """Текст файла в коммите; пустая строка, если файла там не было."""
-    r = subprocess.run(["git", "show", f"{ref}:{path}"],
-                       capture_output=True, text=True, encoding="utf-8")
-    return r.stdout if r.returncode == 0 else ""
+def git_history(path):
+    """Все изменения файла за историю. В неполном клоне истории меньше —
+    сторож видит меньше, но ложно не краснеет."""
+    r = subprocess.run(["git", "log", "-p", "--format=", "--no-color", "--no-ext-diff",
+                        "--", path], capture_output=True, text=True, encoding="utf-8")
+    if r.returncode != 0:
+        sys.exit(f"git log не сработал: {r.stderr.strip()}")
+    return r.stdout
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("base", nargs="?", help="коммит, с которым сверять (обычно github.event.before)")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
 
@@ -81,10 +105,9 @@ def main():
         return 0
 
     cur = open(LOG, encoding="utf-8").read()
-    # У первого push ветки base — сорок нулей: сравнивать не с чем, остаются дубли.
-    no_base = not a.base or set(a.base) <= {"0"}
-    base_text = "" if no_base else git_show(a.base, LOG)
-    missing, dupes = check(base_text, cur)
+    # Сверка со всей историей, а не с прошлым пушем: иначе пропажа краснеет
+    # один раз, а со следующего пуша сторож снова зелёный (случай 2026-11-10).
+    missing, dupes = check(ever_headings(git_history(LOG)), cur)
 
     disorder = out_of_order(cur)
     for h in missing:
@@ -125,6 +148,22 @@ def self_test():
 
     # Первый push ветки: базы нет, но дубли ловим и без неё.
     assert check("", broken) == ([], ["## [2026-08-13] lint | Новое"])
+
+    # Храповик: заголовок пропал два пуша назад — сравнение с прошлым пушем
+    # его уже не видит, сравнение со всей историей видит. Случай 2026-11-10.
+    patch = ("@@ -1,0 +1,1 @@\n+## [2026-08-12] practice | Замеры моделей\n+текст\n"
+             "@@ -1,1 +1,1 @@\n-## [2026-08-12] practice | Замеры моделей\n"
+             "+## [2026-08-13] lint | Новое\n"
+             " ## [2026-08-14] lint | Контекст, не добавление\n")
+    assert ever_headings(patch) == ["## [2026-08-12] practice | Замеры моделей",
+                                    "## [2026-08-13] lint | Новое"], ever_headings(patch)
+    later = "# Лог\n\n## [2026-08-14] news | Ещё новее\n\n## [2026-08-13] lint | Новое\n"
+    missing, _ = check(ever_headings(patch), later)
+    assert missing == ["## [2026-08-12] practice | Замеры моделей"], missing
+    # Законное переименование из списка RETIRED — не находка.
+    assert check(["## [2026-07-31] scout | Финальная спецификация MCP 2026-07-28 "
+                  "вышла точно в срок — закрыт открытый статус на странице протокола"],
+                 later) == ([], [])
 
     # Порядок: первая запись — самая свежая.
     assert out_of_order(ok) is None, out_of_order(ok)
