@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-18 (11 записей) · след. запуск 08:00 (11.19)</div>
+      <div class="mono">обновлено 2026-11-18 (12 записей) · след. запуск 08:00 (11.19)</div>
     </div>
   </header>
 
@@ -358,10 +358,19 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">11 записей · 11.18 (и 4 записи 11.17) — сбой субагента Claude Code помечает сам, свой сторож не нужен; проба ACP: да, OpenCode на локальной модели шлёт запросы разрешения; сжатие при простое в панели работает; правило «прочитай Y» в хук; оболочки для агентов: что берём; ACP; claude -p и пятичасовое окно; допроверка google-ax: релиз v0.3.1, рост звёзд ×2.2, детали Substrate; settings.json-пункт бэклога отклонён auto mode, остаётся локальным</span>
+      <span class="section-note">12 записей · 11.18 (и 4 записи 11.17) — сверка CLAUDE.md с кодом в ночном обходе; сбой субагента Claude Code помечает сам, свой сторож не нужен; проба ACP: да, OpenCode на локальной модели шлёт запросы разрешения; сжатие при простое в панели работает; правило «прочитай Y» в хук; оболочки для агентов: что берём; ACP; claude -p и пятичасовое окно; допроверка google-ax: релиз v0.3.1, рост звёзд ×2.2, детали Substrate; settings.json-пункт бэклога отклонён auto mode, остаётся локальным</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">lint</span>
+        <div class="news-title">CLAUDE.md против кода: сверка в обходчике</div>
+        <div class="news-body">Пути и имена из кода, упомянутые в CLAUDE.md, раз в сутки сверяются с файлами и текстом кода; при старте сессии видно расхождение по своему проекту. 366 упоминаний — одна настоящая находка: описание удалённой вкладки. Эвристика, только отчёт.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/synthesis/obolochki-agentov-chto-berem.md">obolochki-agentov-chto-berem</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
