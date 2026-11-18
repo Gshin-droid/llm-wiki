@@ -15,6 +15,11 @@
 | Orca | [stablyai/orca](https://github.com/stablyai/orca) | Оболочка над несколькими CLI-агентами (Claude Code, Codex, OpenCode и др.): каждый в своём git worktree, один промпт — несколько агентов, сравнение и слияние лучшего | MIT |
 | Pi в браузере | [HF Space](https://huggingface.co/spaces/deyunma/MiniCPM5-2B-WebGPU-Pi) | Агент для программирования целиком в браузере через WebGPU, модель MiniCPM5-2B (int4), ~1,84 ГБ при первой загрузке, без сервера | Apache-2.0 |
 | tgrep | [microsoft/tgrep](https://github.com/microsoft/tgrep) | Поиск по коду для агентов: триграммный индекс, клиент-сервер со слежением за изменениями. Смысл — на больших кодовых базах | MIT |
+| T3 Code | [pingdotgg/t3code](https://github.com/pingdotgg/t3code) | Пульт над установленными Claude Code, Codex, Cursor, OpenCode, Pi и агентами ACP: компьютер, браузер, телефон; worktree на ветку. По умолчанию «Full access» и телеметрия — разбор [[obolochki-agentov-chto-berem]] | MIT |
+| Hermes Agent | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | Агент с профилями, скиллами, памятью, куратором скиллов и очередью утверждения записей. По умолчанию читает файл входа Claude Code — [[obolochki-agentov-chto-berem]] | MIT |
+| OMP (oh-my-pi) | [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi) | Форк [[pi-coding-agent]]: спящие правила, советник второй моделью, субагенты в worktree, правки по хэшу строк | MIT |
+| Kilo Code | [Kilo-Org/kilocode](https://github.com/Kilo-Org/kilocode) | Агент для VS Code, JetBrains и терминала, 500+ моделей по цене поставщика, режимы Code/Plan/Ask/Debug | MIT |
+| ThinkRail | [JetBrains/thinkrail](https://github.com/JetBrains/thinkrail) | Интерфейс JetBrains поверх Pi: описание модуля в SPEC.md и CI-сверка интерфейса с кодом; ночные сборки | Apache-2.0 |
 
 ## Управление устройствами
 
