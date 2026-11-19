@@ -5,6 +5,10 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-11-19] practice | Ловушка Windows: случайный порт в зарезервированном диапазоне
+
+В [[rabota-iz-windows-lovushki]] добавлена ловушка 7: сервер, сам выбирающий случайный порт, получает `listen EACCES`, если порт попал в диапазон, который держит Windows (`netsh interface ipv4 show excludedportrange protocol=tcp`). Случай — сервер набросков скилла brainstorming (superpowers): порт 51666 в диапазоне 51646–51745. Обход проверен опытом: `BRAINSTORM_PORT=47321` — сервер запустился. В трекере superpowers жалобы нет (поиск «EACCES», «excluded port windows»). Решение пользователя записать — 19.11.
+
 ## [2026-11-19] lint | допроверка exa: `agent_tools` → `agent_run`, Dynamic Highlights, `exa.ai` теперь ENOTFOUND
 
 Ежедневный процесс закрытия пробелов (четверг, обычный порядок). `python ingest.py pending` — инбокс пуст. В `wiki/gaps-backlog.md` нет пункта со статусом «не начато», закрываемого автономно без локальной машины/GPU/решения пользователя/разблокировки известного домена — все открытые пункты либо помечены «локально», либо упираются в уже опробованные блокированные домены (`epam.com`, `claude.dev`, `wireguard.com`/`tailscale.com`, `docs.typesafe.ai`, `developers.cloudflare.com`), либо ждут внешнего события (публикация AAIF, срок месячной допроверки `deepseek-harness` — после 2026-11-30).
