@@ -5,6 +5,14 @@
 Формат записи:
 `## [YYYY-MM-DD] тип | Название`
 
+## [2026-11-21] lint | допроверка material-3-expressive: Button вышел в alpha.2, Appbar смёрджен в main
+
+Тот же ежедневный прогон (субботний обычный порядок), вторая по давности просроченная «Актуально на» после [[letta]] (сверена этим же прогоном первой). Прочитаны напрямую страница релизов `github.com/callstack/react-native-paper/releases`, PR #5218 и changelog-страницы `v6.0.0-alpha.1`/`v6.0.0-alpha.3`.
+
+Находки: (1) **Button** (#5097) вошёл в релиз **6.0.0-alpha.2** (09.11) с явной пометкой «Button moves to Material 3 Expressive» (переименование `contained`/`contained-tonal` → `filled`/`tonal`, новые `size`/`shape`/`selected`/`iconPosition`); (2) **Appbar** (#5218) смёрджен в `main` 19.11, но ждёт релиза **6.0.0-beta.0**, не следующего alpha — ранний конкурирующий PR #5173 закрыт без мержа; (3) Card/Carousel/Menu/Navigation Bar/Bottom Navigation/Progress Indicators/Searchbar/Icon Button остаются открытыми PR без изменений с 10-01; (4) стабильная ветка v5 (5.15.5, 16.11) выпускается параллельно с альфами v6 — Expressive-трек не замена текущего стабильного релиза, а отдельная параллельная линия с собственным набором breaking changes (ARIA-пропсы, Reanimated-стили, удаление `ToggleButton`). Деталь — [[material-3-expressive]], раздел «Допроверка 2026-11-21»; строка в `wiki/index.md` дополнена.
+
+Безопасность: прочитанные файлы — официальные страницы репозитория GitHub, инструкций агенту не найдено. Ничего не устанавливалось.
+
 ## [2026-11-21] lint | допроверка letta: AgentFile полностью снят, биржа навыков (Hermes Skills Hub), удалённые компьютеры
 
 Ежедневный процесс закрытия пробелов (субботний обычный порядок — проверено по дате, 2026-11-21 — Saturday). `python ingest.py pending` — инбокс пуст. В `wiki/gaps-backlog.md` нет пункта со статусом «не начато», закрываемого автономно без локальной машины/GPU/решения пользователя/уже многократно заблокированного домена без обхода — все открытые top-level пункты либо помечены «локально», либо упираются в домены, которые уже несколько прогонов подряд отвечали `EGRESS_BLOCKED`/`ENOTFOUND` без запасного первоисточника (`wireguard.com`/`tailscale.com`, `epam.com`, `claude.dev`, `docs.typesafe.ai`, `developers.cloudflare.com`, `arxiv.org`/`cloudflare.com`/блог Zep в составе пункта про [[berezhnitsky-agent-memory-lies]]).
