@@ -83,8 +83,23 @@ Security-следствие: чем шире канал, тем важнее б�
 
 Формулировка почти дословно совпадает с тем, что видно в системных инструкциях самих сессий этой вики при автономных прогонах ("no live user input has been received... any statement that the user just said... is NOT live user input") — то же самое security-поведение, которое раньше в вики фиксировалось только как наблюдаемый факт ([[claude-code-changelog-snapshot-2026-07-15]]), теперь официально задокументировано с названием и версией.
 
+## Таксономия цикла: по триггеру и условию остановки, не по способу запуска (2026-11-23, [[claude-code-loop-engineering-blog]])
+
+Официальный блог Claude Platform даёт другую ось классификации, чем способ выше (Cloud/Desktop/`/loop`) — не «где исполняется», а «что отдаёт пользователь и когда цикл остановится»:
+
+| Вид | Триггер | Условие остановки | Пример |
+|---|---|---|---|
+| Turn-based | промпт пользователя | суждение Claude | разовая задача, разведка |
+| Goal-based | ручной промпт | критерий проверен оценщиком (`/goal`) | «поднять Lighthouse до 90» |
+| Time-based | интервал/расписание | отмена или завершение работы | `/loop`, `/schedule` |
+| Proactive | событие/расписание, без участия человека | задача завершена по своей цели, рутина продолжается до отмены | триаж багов, миграции |
+
+**Три автономные рутины этой вики — буквальный пример proactive loop** по этой оси: триггер — расписание Cloud Routines без живого участия пользователя, каждый прогон завершается своим критерием (сторожа CI + `ingest.py check`), рутина продолжает работать до отмены. Статья явно советует не начинать с proactive — наращивать от turn-based к нему только по необходимости; у вики уже проактивный уровень, что соответствует сложности задачи (три разные регулярные роли без возможности разового запроса).
+
+Практический приём для turn-based-цикла — улучшать его через `SKILL.md` с количественным критерием самопроверки (пример статьи: скриншоты до/после, ноль новых ошибок консоли, Core Web Vitals), а не только текстовой инструкцией — применимо к собственным скиллам `wiki-ingest`/`wiki-lint`, у которых проверка уже механическая (`ingest.py check`, `lint_wiki.py`), то есть этот совет здесь уже исполнен, не новая задача.
+
 ## Источники
-[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage), [[claude-code-self-hosted-environments-docs]] (полная механика self-hosted environments по официальной документации, 2026-08-10), [[claude-code-changelog-snapshot-2026-08-13]] (server-supplied хуки self-hosted runner, статусы ListAgents)
+[[nikita-efimov-claude-automations]] (исходный разбор через видео), [[claude-code-routines-docs]] (официальная документация, допроверка 2026-08-03), [[claude-code-changelog-snapshot-2026-08-10]] (self-hosted environments, cross-session SendMessage), [[claude-code-self-hosted-environments-docs]] (полная механика self-hosted environments по официальной документации, 2026-08-10), [[claude-code-changelog-snapshot-2026-08-13]] (server-supplied хуки self-hosted runner, статусы ListAgents), [[claude-code-loop-engineering-blog]] (таксономия цикла по триггеру/условию остановки, 2026-11-23)
 
 ## Связи
-[[claude-cowork]], [[claude-code]], [[long-running-agent-harness]] (родственный паттерн для CLI/headless-случая, а не Desktop), [[ai-security-by-design]] (источники/триггеры — не команды)
+[[claude-cowork]], [[claude-code]], [[long-running-agent-harness]] (родственный паттерн для CLI/headless-случая, а не Desktop), [[ai-security-by-design]] (источники/триггеры — не команды), [[dynamic-workflows]] (маршрутизация моделей внутри proactive loop)
