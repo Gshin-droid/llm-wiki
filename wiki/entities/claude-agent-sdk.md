@@ -1,7 +1,7 @@
 # Claude Agent SDK
 
 **Тип:** инструмент (библиотека Python/TypeScript от Anthropic)
-**Актуально на:** 2026-11-23 (допроверка официального overview + changelog'ов обоих SDK; биллинг в последний раз допроверен 08-05, статус без изменений)
+**Актуально на:** 2026-11-23 (допроверка официального overview + changelog'ов обоих SDK, тем же днём дополнена quickstart/agent-loop; биллинг в последний раз допроверен 08-05, статус без изменений)
 
 ## Что это
 Библиотека, дающая программный доступ к тому же agent loop, встроенным инструментам и context management, что работают внутри [[claude-code]] — "Claude Code как библиотека". В отличие от CLI, встраивается в собственное приложение разработчика: свой процесс, своя инфраструктура, session state в JSONL на диске.
@@ -86,7 +86,18 @@ Pip-пакет `claude-agent-sdk` младше версии **0.2.121** пере
 
 Побочно, только у TypeScript SDK (не проверялось для Python-пакета): релиз 0.3.327 — breaking change, *«Deprecated `createSdkMcpServer()` servers in an agent's `mcpServers`: ignored with a warning, and other options apply»*; релиз 0.3.329 добавил новую настройку `permissions.workingDirectoriesExclude` — список путей **внутри** разрешённых рабочих директорий, которые при чтении/записи всё равно считаются «вне» них (дополняет, а не повторяет уже известную [[claude-code]]/[[zabor-i-stena-prava-agenta]] настройку `permissions.blockWritesOutsideWorkingDirectories`, которая держит внешнюю границу, а не исключения внутри). Не проверено отдельно, появился ли эквивалент в Python SDK — вне объёма этой сверки.
 
+## Практические механизмы цикла: turns, разрешения, бюджет, компакция (2026-11-23, рутина практик, [[claude-agent-sdk-quickstart-loop-docs]])
+
+Официальные страницы `quickstart` и `agent-loop` (следующий шаг после overview, допроверенного этим же днём рутиной хвостов выше) — впервые прочитаны целиком. SDK явно запускает **тот же execution loop, что у Claude Code CLI**, поэтому механика ниже описывает и то, как устроены собственные автономные рутины этой вики.
+
+- **Полная таблица режимов разрешений**: `default` (нужен `canUseTool`-колбэк), `acceptEdits` (авто-одобряет правки файлов + файловые команды в рабочих директориях, остальной Bash — по правилам), `plan` (даже разрешённые правки идут через `canUseTool`), `dontAsk` (никогда не спрашивает, иначе отказ), `auto` (модель-классификатор решает по каждому вызову отдельно — та же модель, что уже разобрана на уровне CLI в [[ai-security-by-design]]), `bypassPermissions` (без вопросов вообще, только для изолированных сред, не под root на Unix).
+- **`max_budget_usd` считает траты субагентов в общий лимит**, а не только главного цикла; при достижении потолка новый субагент не запустить, уже работающие — останавливаются. **Headroom**: сверка со стоимостью идёт постфактум по уже пришедшему ответу — факт расхода может превысить потолок на цену этого ответа плюс то, что успеют потратить субагенты до остановки. Практический вывод для любого бюджетного лимита — закладывать запас.
+- **Таблица уровней `effort`** (low/medium/high/xhigh/max) как параметр кода (`ClaudeAgentOptions`/`AgentDefinition`), не только настройка интерфейса — дополняет уже известный CLI/API-уровень этого рычага в [[claude-api-cost-optimization]].
+- **Параллельное исполнение тулов**: read-only (`Read`/`Glob`/`Grep`, MCP-тулы с `readOnlyHint`) — параллельно; всё, что меняет состояние — последовательно по умолчанию; свой кастомный тул по умолчанию последовательный, параллельность — явным `readOnlyHint`.
+- **Автоматическая компакция контекста** — два управляемых рычага, которых не было на [[kontekst-szhat-ili-nachat-zanovo]]: свободно озаглавленный раздел `CLAUDE.md` с инструкцией, что сохранять при сжатии (компактор матчит по смыслу, не по имени заголовка), и `PreCompact`-хук для архивации полной расшифровки до сжатия.
+- **`allowed_tools` авто-одобряет, но не ограничивает** — агент всё равно может вызвать не перечисленный инструмент через обычный permission flow; ограничить набор целиком — отдельное поле `tools`. Деталь, которой не было на этой странице до сих пор, хотя `allowed_tools` упоминается здесь с июля.
+
 ## Связи
-- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]], [[claude-agent-observability-platform]]
+- Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]], [[claude-agent-observability-platform]], [[claude-agent-sdk-quickstart-loop-docs]]
 - Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]], [[commerce-agents]]
-- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]], [[agent-observability]], [[zabor-i-stena-prava-agenta]]
+- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]], [[agent-observability]], [[zabor-i-stena-prava-agenta]], [[claude-api-cost-optimization]]
