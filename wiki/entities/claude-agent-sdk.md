@@ -1,7 +1,7 @@
 # Claude Agent SDK
 
 **Тип:** инструмент (библиотека Python/TypeScript от Anthropic)
-**Актуально на:** 2026-10-19 (зарегистрирована критическая уязвимость pip-пакета, сверено с первоисточником; биллинг в последний раз допроверен 08-05, статус без изменений)
+**Актуально на:** 2026-11-23 (допроверка официального overview + changelog'ов обоих SDK; биллинг в последний раз допроверен 08-05, статус без изменений)
 
 ## Что это
 Библиотека, дающая программный доступ к тому же agent loop, встроенным инструментам и context management, что работают внутри [[claude-code]] — "Claude Code как библиотека". В отличие от CLI, встраивается в собственное приложение разработчика: свой процесс, своя инфраструктура, session state в JSONL на диске.
@@ -18,7 +18,7 @@ async for message in query(prompt="Find and fix the bug in auth.py",
 - **[[claude-code]] (CLI)** — интерактивная разработка в терминале, одноразовые задачи.
 - **Claude Agent SDK (эта страница)** — библиотека для встраивания в CI/CD и собственные продакшн-приложения; те же возможности, что у CLI, воркфлоу переносятся напрямую.
 - **[[claude-managed-agents|Managed Agents]]** (хостед REST API — разобран отдельно 2026-07-15) — Anthropic сам держит sandbox и event log, приложение только исполняет tool calls, которые триггерит Claude. Типичный путь развития: прототип на Agent SDK → продакшн на Managed Agents.
-- **Anthropic Client SDK** (сырой Messages API) — самый низкий уровень: разработчик сам пишет tool loop; Agent SDK берёт это на себя.
+- **Anthropic Client SDK** (сырой Messages API) — самый низкий уровень: разработчик сам пишет tool loop, либо берёт готовый бета-инструмент `tool_runner` (допроверка 2026-11-23) и не пишет цикл сам, оставаясь при этом ниже Agent SDK по готовым возможностям (hooks/субагенты/MCP/sessions из коробки у него нет).
 
 ## Капабилити из коробки
 - **Built-in tools**: Read, Write, Edit, Bash, Monitor, Glob, Grep, WebSearch, WebFetch, AskUserQuestion.
@@ -72,7 +72,21 @@ Pip-пакет `claude-agent-sdk` младше версии **0.2.121** пере
 
 В отличие от Managed Agents/Messages API (нужно добавить OTel destination в Console вручную) — у Agent SDK трассы модель-вызовов, tool use и MCP экспортируются **автоматически**, без дополнительной настройки. Полный разбор паттерна «трасса → проверка надёжности → расширение доступа» — [[agent-observability]].
 
+## Допроверка 2026-11-23: первая содержательная сверка официального overview с ingest'а (07-09)
+
+Первая проверка раздела «Что это»/«Место среди способов» по первоисточнику с момента создания страницы — предыдущие допроверки (08-02, 08-05, 10-14, 10-19) трогали только биллинг, OTel или CVE, не сам обзор. `code.claude.com/docs/en/agent-sdk/overview` прочитана целиком напрямую, без блокировки.
+
+Без расхождений, но пять находок, которых страница не знала вовсе:
+
+- **У Client SDK (голого Messages API) появился официальный бета-инструмент для цикла тулов** — `tool_runner` (документация: `platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner`). Страница описывала Client SDK как вариант, где «разработчик сам пишет tool loop» без исключений — теперь это не вся правда: можно взять готовый раннер в беттестве и не писать цикл руками, оставаясь при этом на уровень ниже Agent SDK. Раздел «Место среди способов работать с Claude» уточнён.
+- **Plugins — отдельная капабилити, не просто «читает конфиг».** Официальная таблица капабилити называет Plugins пятым пунктом рядом с Hooks/Субагенты/MCP/Permissions: *«Package skills, agents, hooks, and MCP servers, and load them by local path»* — упаковка в единицу и загрузка по локальному пути, а не только чтение `.claude/`-файлов из рабочей директории, как было на странице.
+- **Для языков помимо Python/TypeScript** — официальный путь не «пишите свою интеграцию», а запуск CLI подпроцессом: `claude -p` с `--output-format json` даёт тот же agent loop без привязки к двум официальным SDK.
+- **Лицензия/условия использования** — не упоминались вовсе: использование Agent SDK регулируется Anthropic Commercial Terms of Service, в том числе когда на нём построен продукт для собственных конечных пользователей (кроме компонентов с отдельной лицензией, указанной в их LICENSE-файле).
+- **TypeScript и Python SDK versioning разъехались.** Прямое чтение `CHANGELOG.md` обоих официальных репозиториев (`anthropics/claude-agent-sdk-typescript`, `anthropics/claude-agent-sdk-python`): TS SDK держит версионную синхронность с CLI — версия 0.3.330 явно привязана к Claude Code 2.1.330 (тот же релиз из [[claude-code-changelog-snapshot-2026-11-22]]), каждая запись отдельно подписана «updates parity with Claude Code vX.Y.Z»; Python SDK заметно отстаёт — версия 0.2.178 синхронизирована только с CLI 2.1.318, на 12 версий CLI позади TS SDK на момент этой сверки. Разная скорость поддержки — практический довод при выборе языка для нового интеграционного проекта, которого страница не содержала.
+
+Побочно, только у TypeScript SDK (не проверялось для Python-пакета): релиз 0.3.327 — breaking change, *«Deprecated `createSdkMcpServer()` servers in an agent's `mcpServers`: ignored with a warning, and other options apply»*; релиз 0.3.329 добавил новую настройку `permissions.workingDirectoriesExclude` — список путей **внутри** разрешённых рабочих директорий, которые при чтении/записи всё равно считаются «вне» них (дополняет, а не повторяет уже известную [[claude-code]]/[[zabor-i-stena-prava-agenta]] настройку `permissions.blockWritesOutsideWorkingDirectories`, которая держит внешнюю границу, а не исключения внутри). Не проверено отдельно, появился ли эквивалент в Python SDK — вне объёма этой сверки.
+
 ## Связи
 - Источники: [[claude-agent-sdk-overview]], [[claude-cookbook-scheduled-repository-reviewer]], [[claude-commerce-agents-blueprint]], [[claude-agent-sdk-resume-argument-injection]], [[claude-agent-observability-platform]]
 - Сущности: [[claude-code]], [[claude-managed-agents]], [[planning-with-files]], [[commerce-agents]]
-- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]], [[agent-observability]]
+- Концепты: [[mcp-model-context-protocol]], [[long-running-agent-harness]], [[ai-security-by-design]], [[agent-observability]], [[zabor-i-stena-prava-agenta]]
