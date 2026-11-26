@@ -358,10 +358,19 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 11.26 — допроверка inspo (рутина «хвосты»)</span>
+      <span class="section-note">2 записи · 11.26 — ловушка python -I, допроверка inspo (рутина «хвосты»)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">practice</span>
+        <div class="news-title">python -I отключает PYTHONIOENCODING: вывод снова в cp1251</div>
+        <div class="news-body">Ловушка № 8 дополнена: под <code>-I</code> переменные <code>PYTHON*</code> не читаются. Кириллица молча портится при коде 0, а символы вне cp1251 роняют скрипт. Лечится так: <code>-I -X utf8</code> или <code>sys.stdout.reconfigure(encoding="utf-8")</code>.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/rabota-iz-windows-lovushki.md">rabota-iz-windows-lovushki</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
