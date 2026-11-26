@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-25 (3 записи) · след. запуск 08:00 (11.26)</div>
+      <div class="mono">обновлено 2026-11-26 (1 запись) · след. запуск 08:00 (11.27)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">349</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">89</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">193</span><span class="l">sources</span></div>
@@ -358,35 +358,18 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">3 записи · 11.25 — допроверка gstack (рутина «хвосты»), диспетчерская: доска нарядов между сессиями, сводка новостей: Claude Code 2.1.331–332</span>
+      <span class="section-note">1 запись · 11.26 — допроверка inspo (рутина «хвосты»)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка gstack: журнал отправок — хеш-цепочка и не файрвол, Codex↔Claude Code двунаправленно</div>
-        <div class="news-body">Из пяти никогда не допроверявшихся по первоисточнику страниц выбран gstack (ponytail и claude-agent-sdk уже закрыты раньше). README и docs/privacy.md подтвердили прежние выводы и добавили: журнал отправок — хеш-цепочка с защитой от подмены, явно не файрвол, только аудит попыток; внешние проверки идут в обе стороны (Codex↔Claude Code), не только Codex, как знала страница; телеметрия двухуровневая на Supabase; найдены два соседних продукта — Capy и GBrain, не разбирались.</div>
+        <div class="news-title">Допроверка inspo: облегчённый профиль инструментов, рост версии 0.1.16→0.2.0</div>
+        <div class="news-body">Последняя из пяти никогда не допроверявшихся по первоисточнику страниц (кроме spotify-shunt-plugin). README подтвердил рост (версия 0.1.16→0.2.0, звёзды ~900→1,1k) и нашёл облегчённый профиль инструментов <code>INSPO_PROFILE=lite</code> (9 тулов из 15) — тот же приём экономии токенов, что у tool profiles memora. Закрыты два открытых вопроса: ограничения SSRF на get_design_system(live:true) и формулировка про отсутствие логирования IP/запроса подтверждены дословно первоисточником.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gstack.md">gstack</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">practice</span>
-        <div class="news-title">Диспетчерская: одно окно на много проектов и канал между сессиями</div>
-        <div class="news-body">Новая страница по наряду пользователя: блоки работы с диспетчерской (заход, отметка, записка, карточка), доска нарядов как канал между сессиями, подлинность одобрения (отпечаток против «кто одобрил», забор против стены). Личные детали (скрипты, папки, пороги, машины) опущены намеренно.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/practices/dispetcherskaya-mnogo-proektov.md">dispetcherskaya-mnogo-proektov</a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <span class="news-stamp">news</span>
-        <div class="news-title">Сводка новостей: Claude Code 2.1.331–332 (routine → cloud scheduled task, автообновление маркетплейсов плагинов)</div>
-        <div class="news-body">Окно 22–25.11: UI-терминология сменила «routine»/«cloud schedule» на «cloud scheduled task» (расходится с тем, как вика называет свои три автономные рутины), маркетплейсы плагинов начнут автообновляться по умолчанию с 30.11, новый хук PreSkillShellCommand контролирует шелл-команды скиллов при загрузке. Полного разбора ярусом 2 в этот прогон нет.</div>
-        <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-11-25.md">novosti-2026-11-25</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/inspo.md">inspo</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/inspo-mcp.md">inspo-mcp</a>
         </div>
       </article>
 
@@ -486,8 +469,8 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/clm-8b.md"><span class="tree-name">clm-8b</span><span class="tree-desc">четвёртая модель решений: раздельные векторы ситуации и вариантов, кэш; не ставим, Laya легче; 11-10 — допроверка: эндпоинт /v1/rank, двухступенчатый сервис, лимит 2048 токенов, звёзды 2,3к→3,2к</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/felix-rieseberg.md"><span class="tree-name">felix-rieseberg</span><span class="tree-desc">инженер Anthropic (Claude.ai, Cowork, Claude Code Desktop), автор разбора о глубоких задачах для модели</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ponytail.md"><span class="tree-name">ponytail</span><span class="tree-desc">плагин «ленивый старший разработчик», тег v5.3.3; 11-24 — на main ещё не выпущенный фикс UTF-8 на границе чанка stdin в хуках</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gstack.md"><span class="tree-name">gstack</span><span class="tree-desc">набор Гарри Тана из ~50 скиллов-ролей; не ставим, берём журнал исходящих отправок; 11-25 — журнал хеш-цепочкой («не файрвол»), внешние проверки Codex↔Claude Code двунаправленно, найдены соседние продукты Capy/GBrain</span><span class="badge-new">обновлено</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/inspo.md"><span class="tree-name">inspo</span><span class="tree-desc">MCP-архив 832 сайтов с DESIGN.md, снятым с кода; кандидат в источник якоря стиля</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gstack.md"><span class="tree-name">gstack</span><span class="tree-desc">набор Гарри Тана из ~50 скиллов-ролей; не ставим, берём журнал исходящих отправок; 11-25 — журнал хеш-цепочкой («не файрвол»), внешние проверки Codex↔Claude Code двунаправленно, найдены соседние продукты Capy/GBrain</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/inspo.md"><span class="tree-name">inspo</span><span class="tree-desc">MCP-архив 832 сайтов с DESIGN.md, снятым с кода; кандидат в источник якоря стиля; допроверка 11-26 — версия 0.1.16→0.2.0, облегчённый профиль INSPO_PROFILE=lite (9 тулов из 15)</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/spotify-shunt-plugin.md"><span class="tree-name">spotify-shunt-plugin</span><span class="tree-desc">плагин Spotify: чтение больших файлов — дешёвой модели; не ставим</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/lee-robinson.md"><span class="tree-name">lee-robinson</span><span class="tree-desc">автор лекции о постоянно работающих агентах</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/gigaam.md"><span class="tree-name">gigaam</span><span class="tree-desc">открытые акустические модели Sber для русской речи (MIT); официальная таблица WER против Whisper (9.1%/8.3% против 21.0%), диаризации не делает; 11-02 — рядом VoiceStudio (использует whisper.cpp, не GigaAM)</span></a>
@@ -715,7 +698,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/rieseberg-how-to-be-more-ambitious.md"><span class="tree-name">rieseberg-how-to-be-more-ambitious</span><span class="tree-desc">четыре вида амбиции, пять приёмов глубины, промпт «глубже»; внешний судья при постановке задачи</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/nabory-skillov-ponytail-gstack.md"><span class="tree-name">nabory-skillov-ponytail-gstack</span><span class="tree-desc">наводка о наборах скиллов сверена с README и со своей установкой</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/codex-auto-review.md"><span class="tree-name">codex-auto-review</span><span class="tree-desc">агент-проверяющий на границе песочницы Codex: переносимые механизмы; свои широкие разрешения сужены</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/inspo-mcp.md"><span class="tree-name">inspo-mcp</span><span class="tree-desc">анонс Inspo сверен с README; подключать позже вручную</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/inspo-mcp.md"><span class="tree-name">inspo-mcp</span><span class="tree-desc">анонс Inspo сверен с README; подключать позже вручную; допроверка 11-26 — SSRF-ограничения и отсутствие логирования IP/запроса подтверждены дословно</span><span class="badge-new">обновлено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/spotify-shunt.md"><span class="tree-name">spotify-shunt</span><span class="tree-desc">три чужих замера и свой: делегирование чтения отложено</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/claude-plugin-eval.md"><span class="tree-name">claude-plugin-eval</span><span class="tree-desc">встроенный замер скиллов: проба на своём, проверка проверки</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/anthropic-redesigning-source-control.md"><span class="tree-name">anthropic-redesigning-source-control</span><span class="tree-desc">официальный пост Anthropic: собственная система контроля версий (Scion) на масштабе 30 000 слияний/день; ревью по намерению, superfan-агенты, агент чинит конфликт быстрее человека</span></a>
