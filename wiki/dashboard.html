@@ -342,14 +342,14 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-28 (1 запись) · след. запуск 08:00 (11.29)</div>
+      <div class="mono">обновлено 2026-11-28 (2 записи) · след. запуск 08:00 (11.29)</div>
     </div>
   </header>
 
   <!-- DASHBOARD:STATS — пересчитай: страниц = все .md в wiki/{entities,concepts,sources,projects,synthesis} (find wiki/entities -name '*.md' | wc -l и т.д.); "новых за сутки" = число файлов, изменённых/созданных коммитами с сегодняшней датой (git log --since=midnight --name-only --diff-filter=AM -- wiki/) -->
   <div class="stats">
     <div class="stat"><span class="n">349</span><span class="l">страниц</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">обновлено за сутки</span></div>
+    <div class="stat"><span class="n">1</span><span class="l">обновлено за сутки</span></div>
     <div class="stat"><span class="n">89</span><span class="l">entities</span></div>
     <div class="stat"><span class="n">48</span><span class="l">concepts</span></div>
     <div class="stat"><span class="n">193</span><span class="l">sources</span></div>
@@ -358,10 +358,19 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 11.28 — допроверка supabase (рутина «хвосты»)</span>
+      <span class="section-note">2 записи · 11.28 — сводка новостей (California SB 53) и допроверка supabase (рутина «хвосты»)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
+
+      <article class="news-card">
+        <span class="news-stamp">news</span>
+        <div class="news-title">Сводка новостей: California SB 53 (Transparency in Frontier AI Act) — действует с 01.01.2026, в вики раньше не было</div>
+        <div class="news-body">Окно 25–28.11.2026 не дало новых фактов (Claude Code без релизов новее уже разобранного 2.1.332, крупные поставщики без новых моделей). Один пункт взят по правилу действующего регулирования: California SB 53 обязывает крупных разработчиков frontier-моделей (порог &gt;10<sup>26</sup> операций, включая Anthropic) публиковать framework безопасности и transparency-отчёты, сообщать о критических инцидентах в Cal OES, защищать информаторов; штраф до $1 млн. По пересказам нескольких юридических разборов — <code>leginfo.legislature.ca.gov</code> недостижим из этого окружения.</div>
+        <div class="news-links">
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/news/novosti-2026-11-28.md">novosti-2026-11-28</a>
+        </div>
+      </article>
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
