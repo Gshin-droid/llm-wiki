@@ -342,7 +342,7 @@
     <div class="updated">
       <div class="pulse-row"><span class="pulse-dot"></span><span>автопополнение активно</span></div>
       <!-- DASHBOARD:UPDATED-LINE — обнови на дату сегодняшнего запуска и дату следующего (рутина «хвосты» ходит ежедневно в 08:00 по Алматы) -->
-      <div class="mono">обновлено 2026-11-27 (1 запись) · след. запуск 08:00 (11.28)</div>
+      <div class="mono">обновлено 2026-11-28 (1 запись) · след. запуск 08:00 (11.29)</div>
     </div>
   </header>
 
@@ -358,18 +358,18 @@
   <section>
     <div class="section-head">
       <h2>Новости за последние сутки</h2>
-      <span class="section-note">1 запись · 11.27 — допроверка spotify-shunt-plugin (рутина «хвосты»)</span>
+      <span class="section-note">1 запись · 11.28 — допроверка supabase (рутина «хвосты»)</span>
     </div>
     <!-- DASHBOARD:NEWS — замени карточки ниже записями из wiki/log.md, появившимися ПОСЛЕ даты в DASHBOARD:UPDATED-LINE (обычно это ровно сегодняшние; если прошлый прогон дашборд не обновил, возьми и пропущенные дни — иначе запись не покажется никогда, так и вышло 08-12). Один .news-card на запись: news-stamp = тип (news/ingest/project/query/decision/lint/config/practice; у записи news ссылка ведёт на страницу сводки wiki/news/novosti-YYYY-MM-DD.md), news-title = заголовок после "|", news-body = 1-2 предложения саммари текста записи, news-links = ссылки на упомянутые [[wiki-страницы]] в формате https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/<категория>/<slug>.md. Если новых записей нет — покажи одну карточку с news-stamp "тихо" и текстом "Сегодня новых материалов не добавлено — не нашлось ничего, что прошло бы порог качества." Обнови section-note (число записей и даты). Похожие по сути записи (формализация старых решений, дубли инбокса) можно объединять в одну карточку — дашборд читают глазами, не парсером. -->
     <div class="news-list">
 
       <article class="news-card">
         <span class="news-stamp">lint</span>
-        <div class="news-title">Допроверка spotify-shunt-plugin: код не менялся с 08-14, найдено ограничение code-writer без хука</div>
-        <div class="news-body">Последняя из пяти никогда не допроверявшихся по первоисточнику страниц. README (прямой <code>git clone</code>) подтвердил механику и цифры замера без расхождений; код плагина не менялся с 2026-08-14, рост — только во внимании к репозиторию (звёзды 2,5k→3,3k). Новое: хук защищает только <code>bulk-reader</code>, <code>code-writer</code> — без enforcement.</div>
+        <div class="news-title">Допроверка supabase: AI/Vector toolkit раскрыт (pgvector), self-hosting впервые разобран</div>
+        <div class="news-body">Прямой <code>git clone</code> (<code>supabase.com</code> снова недостижим) впервые открыл саму документацию, не только README: AI/Vector toolkit — обычное расширение Postgres <code>pgvector</code>, гайды по векторным колонкам/гибридному поиску/RAG; self-hosting — Docker Compose, &lt;15 минут, минимум 4 ГБ ОЗУ/2 ядра/40 ГБ SSD. Лицензия Apache 2.0 без изменений. Попутно найдено: страница <code>pinecone</code> помечена «не используется», но формат статуса не совпадает с правилом lint-скрипта, снимающим счётчик свежести — пункт в бэклоге.</div>
         <div class="news-links">
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/spotify-shunt-plugin.md">spotify-shunt-plugin</a>
-          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/sources/spotify-shunt.md">spotify-shunt</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md">supabase</a>
+          <a href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/gaps-backlog.md">gaps-backlog</a>
         </div>
       </article>
 
@@ -411,7 +411,7 @@
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-skills.md"><span class="tree-name">claude-skills</span><span class="tree-desc">переносимые «умения» для Claude; 11-09 — официальное руководство Claude Platform по авторству скиллов, семь новых приёмов; 11-03 — SEP-2640 в репозитории MCP формально определяет раздачу Agent Skills через MCP-транспорт; 10-25 — стандарт передан в Agentic AI Foundation при Linux Foundation, тот же фонд, куда ушёл MCP; 10-26 — цифра звёзд Sepia в разделе «Экосистема» исправлена на актуальную (~3,0k), раздел «Противоречия» закрыт; 10-28 — дополнение о сворачивании субагентов в основной цикл</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/agentic-ai-foundation.md"><span class="tree-name">agentic-ai-foundation</span><span class="tree-desc">фонд при Linux Foundation, держит governance открытых стандартов агентского ИИ (соучредители Anthropic/Block/OpenAI); под ним MCP и, с 10-25, Claude Skills</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/claude-cowork.md"><span class="tree-name">claude-cowork</span><span class="tree-desc">режим "агент за компьютером": Desktop, с 08-2026 также web/mobile и боковая панель Claude in Chrome; 10-17 — на Pro/Max уже не бета, на Team/Enterprise бета</span></a>
-        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты), шире список community-библиотек</span></a>
+        <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/supabase.md"><span class="tree-name">supabase</span><span class="tree-desc">Backend-as-a-Service для вайбкодинг-проектов; 11-28 — AI/Vector toolkit раскрыт (pgvector), self-hosting впервые разобран (Docker Compose, &lt;15 мин); 10-16 — сам продукт лицензирован Apache 2.0 (не только компоненты)</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/openrouter.md"><span class="tree-name">openrouter</span><span class="tree-desc">агрегатор нейросетевых моделей; 11-05 — комиссии (5,5%/5%), BYOK-лимит $25k/мес, лимиты бесплатных моделей, трёхслойная система credit/budget/rate, новая категория моделей «decisions»; допроверка 09-15 — официальный Agent SDK (`callModel()`), официальный MCP-сервер (`mcp.openrouter.ai`), алиасы моделей с тильдой на новейшую версию семейства</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/ai-proryv.md"><span class="tree-name">ai-proryv</span><span class="tree-desc">автор видео про 5 уровней владения Claude</span></a>
         <a class="tree-row" href="https://github.com/Gshin-droid/llm-wiki/blob/main/wiki/entities/dmitry-bereznitsky.md"><span class="tree-name">dmitry-bereznitsky</span><span class="tree-desc">разработчик, автор видео про карьеру и AI-кибербезопасность</span></a>
